@@ -4,10 +4,14 @@ const ConferenceItem = ({ conference }) => {
     return (
         <li>
             <div class="card">
-                <div class="container">
-
-
-                </div>
+                <h3>
+                    {conference.name}
+                </h3>
+                <p>
+                    {conference.topic}
+                    {conference.date}
+                    {conference.city}
+                </p>
             </div>
         </li>
     )
