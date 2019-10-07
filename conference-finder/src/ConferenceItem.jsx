@@ -5,11 +5,11 @@ const ConferenceItem = ({ conference }) => {
         <li>
             <div class="card">
                 <h3>
-                    {conference.name}
+                    {conference.conferenceName}
                 </h3>
                 <p>
-                    {conference.topic}
-                    {conference.date}
+                    {conference.conferenceTopic}
+                    {conference.conferenceDateTime}
                     {conference.city}
                 </p>
             </div>

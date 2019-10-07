@@ -1,38 +1,42 @@
 [
   {
     "id": 1,
-    "name": "Festival of Marketing",
-    "date": "2019-11-12T12:34:11Z",
+    "conferenceName": "Festival of Marketing",
+    "conferenceDateTime": "2019-11-12T12:34:11Z",
     "city": "London",
-    "description": "From Festivalofmarketing.com: The Festival of Marketing is a unique experience where ambitious marketers can discover, learn, celebrate and shape the future together. As the largest global event dedicated to brand marketers, the Festival reflects the very nature of ...",
-    "topic": "Marketing"
-  }, {
+    "conferenceDescription": "From Festivalofmarketing.com: The Festival of Marketing is a unique experience where ambitious marketers can discover, learn, celebrate and shape the future together. As the largest global event dedicated to brand marketers, the Festival reflects the very nature of ...",
+    "conferenceTopic": "Marketing"
+  },
+  {
     "id": 2,
-    "name": "Royal Parks Half Marathon 2019",
-    "date": "2019-10-12T12:34:11Z",
+    "conferenceName": "Royal Parks Half Marathon 2019",
+    "conferenceDateTime": "2019-10-12T12:34:11Z",
     "city": "Manchester",
-    "description": "From Meetingneeds.org.uk: HOW TO BECOME A CHARITY PARTNER AND WHAT’S IN IT FOR YOUR ORGANISATION? As a Charity Partner, you get to be a central part of the Events Industry charity and share in our growth story. Leveraging your engagement with Meeting Needs a",
-    "topic": "Sport"
-  }, {
+    "conferenceDescription": "From Meetingneeds.org.uk: HOW TO BECOME A CHARITY PARTNER AND WHAT’S IN IT FOR YOUR ORGANISATION? As a Charity Partner, you get to be a central part of the Events Industry charity and share in our growth story. Leveraging your engagement with Meeting Needs a",
+    "conferenceTopic": "Sport"
+  },
+  {
     "id": 3,
-    "name": "Capital Markets Innovation Summit 2019",
-    "date": "2019-10-19T12:34:11Z",
+    "conferenceName": "Capital Markets Innovation Summit 2019",
+    "conferenceDateTime": "2019-10-19T12:34:11Z",
     "city": "Leeds",
-    "description": "From Wbresearch.com: Discover how Europe’s leading investment banks are embracing innovation to transform their operating model to move beyond mandatory regulatory change and optimise profitability. Attracting 150+ operations and innovations decision makers ..",
-    "topic": "Innovation"
-  }, {
+    "conferenceDescription": "From Wbresearch.com: Discover how Europe’s leading investment banks are embracing innovation to transform their operating model to move beyond mandatory regulatory change and optimise profitability. Attracting 150+ operations and innovations decision makers ..",
+    "conferenceTopic": "Innovation"
+  },
+  {
     "id": 4,
-    "name": "About CCR",
-    "date": "2019-10-26T17:34:11Z",
+    "conferenceName": "About CCR",
+    "conferenceDateTime": "2019-10-26T17:34:11Z",
     "city": "Liverpool",
-    "description": "From Easyfairs.com: The CCR conference and exhibition is supported by leading medical aesthetic organisations who co-locate their events to bring all specialities together under one roof; the British Association of Aesthetic Plastic Surgeons (BAAPS), the ",
-    "topic": "Medical"
-  }, {
+    "conferenceDescription": "From Easyfairs.com: The CCR conference and exhibition is supported by leading medical aesthetic organisations who co-locate their events to bring all specialities together under one roof; the British Association of Aesthetic Plastic Surgeons (BAAPS), the ",
+    "conferenceTopic": "Medical"
+  },
+  {
     "id": 5,
-    "name": "Freedom To Operate Conference",
-    "date": "2019-10-30T11:34:11Z",
+    "conferenceName": "Freedom To Operate Conference",
+    "conferenceDateTime": "2019-10-30T11:34:11Z",
     "city": "London",
-    "description": "From 10times.com: The Freedom To Operate Conference is a platform to understand the background, defining terms and objectives; fundamentals of FTO search scope, methods for searching for claimed features, using basic legal status tools to assist .",
-    "topic": "Legal"
+    "conferenceDescription": "From 10times.com: The Freedom To Operate Conference is a platform to understand the background, defining terms and objectives; fundamentals of FTO search scope, methods for searching for claimed features, using basic legal status tools to assist .",
+    "conferenceTopic": "Legal"
   }
 ]
