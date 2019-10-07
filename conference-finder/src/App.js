@@ -1,24 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import ConferenceItem from './ConferenceItem';
+import conferences from './conferenceDataMock.json';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul>
+        <ConferenceItem conference={conferences[0]} />
+        <ConferenceItem conference={conferences[1]} />
+        <ConferenceItem conference={conferences[2]} />
+        <ConferenceItem conference={conferences[3]} />
+        <ConferenceItem conference={conferences[4]} />
+      </ul>
     </div>
   );
 }
