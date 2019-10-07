@@ -1,18 +1,13 @@
 import React from "react";
 
 const ConferenceItem = ({ conference }) => {
-  const {
-    conferenceName,
-    conferenceTopic,
-    conferenceDateTime,
-    city
-  } = conference;
+  const { name, topic, dateTime, city } = conference;
   return (
     <li>
       <div className="card">
-        <h3>{conferenceName}</h3>
-        <p>{conferenceTopic}</p>
-        <p>{conferenceDateTime}</p>
+        <h3>{name}</h3>
+        <p>{topic}</p>
+        <p>{dateTime}</p>
         <p>{city}</p>
       </div>
     </li>
