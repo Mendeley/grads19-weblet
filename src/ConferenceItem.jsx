@@ -1,5 +1,4 @@
 import React from "react";
-import moment from "moment";
 
 const ConferenceItem = ({ conference }) => {
   const { name, topic, dateTime, city } = conference;
