@@ -1,8 +1,7 @@
 import React from "react";
 import ConferenceItem from "./ConferenceItem";
-import conferences from "./conferenceDataMock.json";
 
-const ConferenceList = () => (
+const ConferenceList = ({ conferences }) => (
   <ul className="conferenceList">
     {conferences.map(conference => (
       <ConferenceItem key={conference.id} conference={conference} />
