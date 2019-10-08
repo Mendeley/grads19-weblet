@@ -1,6 +1,6 @@
 import React from "react";
 import ConferenceItem from "./ConferenceItem";
-import { conferences } from "./conferenceDataMock";
+import conferences from "./conferenceDataMock.json";
 
 const ConferenceList = () => {
   return (
