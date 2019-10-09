@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { getTimestring, getDatestring, getBackgroundColor } from "./utils";
 
 const StyledCard = styled.div`
   width: 100%;
@@ -21,30 +22,14 @@ const StyledConferenceItem = styled.li`
 const ConferenceItem = ({ conference }) => {
   const { name, topic, dateTime, city } = conference;
   const date = new Date(dateTime);
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear();
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const inputBackground = ({ hours }) => {
-    if (hours >= 18) {
-      return "#AD9FC8";
-    } else if (hours < 6) {
-      return "#AD9FC8";
-    }
-  };
 
   return (
     <StyledConferenceItem>
-      <StyledCard background={inputBackground({ hours })}>
+      <StyledCard background={getBackgroundColor(date)}>
         <h3>{name}</h3>
         <p>{topic}</p>
-        <p>
-          {day}/{month}/{year}
-        </p>
-        <p>
-          {hours}:{minutes}
-        </p>
+        <p>{getDatestring(date)}</p>
+        <p>{getTimestring(date)}</p>
         <p>{city}</p>
       </StyledCard>
     </StyledConferenceItem>

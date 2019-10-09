@@ -1,6 +1,5 @@
 import React from "react";
 import ConferenceItem from "./ConferenceItem";
-import conferences from "./conferenceDataMock.json";
 import styled from "styled-components";
 
 const StyledConferenceList = styled.ul`
@@ -12,7 +11,7 @@ const StyledConferenceList = styled.ul`
   justify-content: center;
 `;
 
-const ConferenceList = () => (
+const ConferenceList = ({ conferences }) => (
   <StyledConferenceList>
     {conferences.map(conference => (
       <ConferenceItem key={conference.id} conference={conference} />
