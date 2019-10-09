@@ -3,7 +3,7 @@ import ConferenceItem from "./ConferenceItem";
 import conferences from "./conferenceDataMock.json";
 import styled from "styled-components";
 
-const StyledUList = styled.ul`
+const StyledConferenceList = styled.ul`
   margin: 0;
   padding: 0;
   list-style-type: none;
@@ -13,11 +13,11 @@ const StyledUList = styled.ul`
 `;
 
 const ConferenceList = () => (
-  <StyledUList>
+  <StyledConferenceList>
     {conferences.map(conference => (
       <ConferenceItem key={conference.id} conference={conference} />
     ))}
-  </StyledUList>
+  </StyledConferenceList>
 );
 
 export default ConferenceList;

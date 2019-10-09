@@ -13,7 +13,7 @@ const StyledCard = styled.div`
   }
 `;
 
-const StyledListItem = styled.li`
+const StyledConferenceItem = styled.li`
   width: 300px;
   margin: 24px;
 `;
@@ -21,20 +21,26 @@ const StyledListItem = styled.li`
 const ConferenceItem = ({ conference }) => {
   const { name, topic, dateTime, city } = conference;
   const date = new Date(dateTime);
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+
   return (
-    <StyledListItem>
+    <StyledConferenceItem>
       <StyledCard>
         <h3>{name}</h3>
         <p>{topic}</p>
         <p>
-          {date.getDate()}/{date.getMonth() + 1}/{date.getFullYear()}
+          {day}/{month}/{year}
         </p>
         <p>
-          {date.getHours()}:{date.getMinutes()}
+          {hours}:{minutes}
         </p>
         <p>{city}</p>
       </StyledCard>
-    </StyledListItem>
+    </StyledConferenceItem>
   );
 };
 export default ConferenceItem;
