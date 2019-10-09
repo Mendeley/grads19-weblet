@@ -31,8 +31,6 @@ const ConferenceItem = ({ conference }) => {
       return "#AD9FC8";
     } else if (hours < 6) {
       return "#AD9FC8";
-    } else {
-      return "papayawhip";
     }
   };
 
