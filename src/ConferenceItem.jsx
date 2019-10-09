@@ -6,7 +6,7 @@ const StyledCard = styled.div`
   height: 200px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  background: papayawhip;
+  background: ${props => props.background || "papayawhip"};
 
   :hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -26,10 +26,19 @@ const ConferenceItem = ({ conference }) => {
   const year = date.getFullYear();
   const hours = date.getHours();
   const minutes = date.getMinutes();
+  const inputBackground = ({ hours }) => {
+    if (hours >= 18) {
+      return "#AD9FC8";
+    } else if (hours < 6) {
+      return "#AD9FC8";
+    } else {
+      return "papayawhip";
+    }
+  };
 
   return (
     <StyledConferenceItem>
-      <StyledCard>
+      <StyledCard background={inputBackground({ hours })}>
         <h3>{name}</h3>
         <p>{topic}</p>
         <p>
