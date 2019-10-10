@@ -1,12 +1,18 @@
 import React from "react";
-import "./App.css";
 import ConferenceList from "./ConferenceList";
+import styled from "styled-components";
+import conferences from "./conferenceDataMock.json";
+
+const StyledApp = styled.div`
+  text-align: center;
+  background: lightgrey;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <ConferenceList />
-    </div>
+    <StyledApp>
+      <ConferenceList conferences={conferences} />
+    </StyledApp>
   );
 }
 
