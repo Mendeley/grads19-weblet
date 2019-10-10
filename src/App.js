@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
 import ConferenceList from "./ConferenceList";
 import { getConferenceList } from "./api";
+import styled from "styled-components";
+
+const StyledApp = styled.div`
+  text-align: center;
+  background: lightgrey;
+`;
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,14 +30,14 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <StyledApp>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
         <ConferenceList conferences={conferences} />
       )}
       {errorCaught ? <p>An error has occurred...</p> : ""}
-    </div>
+    </StyledApp>
   );
 }
 
