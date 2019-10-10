@@ -1,6 +1,6 @@
 import React from "react";
-import ConferenceItem from "./ConferenceItem";
 import styled from "styled-components";
+import ConferenceItem from "./ConferenceItem";
 
 const StyledConferenceList = styled.ul`
   margin: 0;

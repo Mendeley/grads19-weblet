@@ -1,4 +1,4 @@
-import { getTimestring, getDatestring, getBackgroundColor } from "./utils";
+import { getBackgroundColor, getTimestring, getDatestring } from "./utils";
 
 describe("utils", () => {
   describe("getTimestring", () => {
