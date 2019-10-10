@@ -27,12 +27,18 @@ describe("ConferenceList", () => {
       topic: "Sport"
     }
   ];
-  describe("given data renders ConferenceList items", () => {
-    it("renders data", () => {
-      let wrapper = shallow(<ConferenceList conferences={mockData} />);
-      expect(wrapper.find(ConferenceItem).length).toEqual(2);
-      wrapper = shallow(<ConferenceList conferences={[]} />);
-      expect(wrapper.find(ConferenceItem).length).toEqual(0);
-    });
+  it("given list of 2 conferences renders ConferenceList with 2 items", () => {
+    expect.assertions(1);
+
+    let wrapper = shallow(<ConferenceList conferences={mockData} />);
+
+    expect(wrapper.find(ConferenceItem).length).toEqual(2);
+  });
+  it("given empty list renders ConferenceList with 0 items", () => {
+    expect.assertions(1);
+
+    let wrapper = shallow(<ConferenceList conferences={[]} />);
+
+    expect(wrapper.find(ConferenceItem).length).toEqual(0);
   });
 });
