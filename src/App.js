@@ -1,16 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import ConferenceList from "./ConferenceList";
-import axios from "axios";
-
-const getConferenceList = async () => {
-  try {
-    const response = await axios.get("../conferenceDataMock.json");
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
-};
+import { getConferenceList } from "./api";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
