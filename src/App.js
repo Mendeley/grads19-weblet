@@ -6,18 +6,24 @@ import { getConferenceList } from "./api";
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [conferences, setConferences] = useState([]);
+  const [errorCaught, setErrorCaught] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
 
-      const conferences = await getConferenceList();
-      setConferences(conferences);
+      try {
+        const conferences = await getConferenceList();
+        setConferences(conferences);
+      } catch (error) {
+        setErrorCaught(true);
+      }
+
       setIsLoading(false);
     }
     fetchData();
   }, []);
-  getConferenceList();
+
   return (
     <div className="App">
       {isLoading ? (
@@ -25,6 +31,7 @@ function App() {
       ) : (
         <ConferenceList conferences={conferences} />
       )}
+      {errorCaught ? <p>An error has occurred...</p> : ""}
     </div>
   );
 }

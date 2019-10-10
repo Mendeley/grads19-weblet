@@ -5,6 +5,6 @@ export const getConferenceList = async () => {
     const response = await axios.get("../conferenceDataMock.json");
     return response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
