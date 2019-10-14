@@ -1,8 +1,8 @@
+import Adapter from "enzyme-adapter-react-16";
 import React from "react";
 import { shallow, configure } from "enzyme";
-import ConferenceList from "./ConferenceList";
 import ConferenceItem from "./ConferenceItem";
-import Adapter from "enzyme-adapter-react-16";
+import ConferenceList from "./ConferenceList";
 
 configure({ adapter: new Adapter() });
 
