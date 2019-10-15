@@ -9,23 +9,23 @@ describe("Button", () => {
   it("renders a blank button", () => {
     expect.assertions(1);
 
-    const result = shallow(<Button />);
+    const component = shallow(<Button />);
 
-    expect(result.debug()).toMatchSnapshot();
+    expect(component.debug()).toMatchSnapshot();
   });
   it("renders a button with text", () => {
     expect.assertions(1);
 
-    const result = shallow(<Button children="Test" />);
+    const component = shallow(<Button>Test</Button>);
 
-    expect(result.debug()).toMatchSnapshot();
+    expect(component.debug()).toMatchSnapshot();
   });
   it("executes passed function when clicked", () => {
     expect.assertions(1);
 
     const callBack = jest.fn();
 
-    const wrapper = shallow(<Button onClick={callBack} children="Test" />);
+    const wrapper = shallow(<Button onClick={callBack}>Test</Button>);
 
     wrapper.find(StyledButton).simulate("click");
 
