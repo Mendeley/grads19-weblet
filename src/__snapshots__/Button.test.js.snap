@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button renders a blank button 1`] = `"<styled.button onClick={[undefined]} />"`;
+exports[`Button renders a blank button 1`] = `"<styled.button onClick={[Function: onClick]} />"`;
 
 exports[`Button renders a button with text 1`] = `
-"<styled.button onClick={[undefined]}>
+"<styled.button onClick={[Function: onClick]}>
   Test
 </styled.button>"
 `;

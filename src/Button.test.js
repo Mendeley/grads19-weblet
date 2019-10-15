@@ -9,14 +9,14 @@ describe("Button", () => {
   it("renders a blank button", () => {
     expect.assertions(1);
 
-    const component = shallow(<Button />);
+    const component = shallow(<Button onClick={() => {}}></Button>);
 
     expect(component.debug()).toMatchSnapshot();
   });
   it("renders a button with text", () => {
     expect.assertions(1);
 
-    const component = shallow(<Button>Test</Button>);
+    const component = shallow(<Button onClick={() => {}}>Test</Button>);
 
     expect(component.debug()).toMatchSnapshot();
   });
