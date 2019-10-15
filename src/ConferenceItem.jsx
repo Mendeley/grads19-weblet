@@ -21,7 +21,7 @@ const StyledConferenceItem = styled.li`
 `;
 
 const ConferenceItem = ({ conference }) => {
-  const { name, topic, dateTime, city} = conference;
+  const { name, topic, dateTime, city } = conference;
   const date = new Date(dateTime);
 
   return (
@@ -32,7 +32,7 @@ const ConferenceItem = ({ conference }) => {
         <p>{getDatestring(date)}</p>
         <p>{getTimestring(date)}</p>
         <p>{city}</p>
-        <Button> Test </Button>
+        <Button>Test</Button>
       </StyledCard>
     </StyledConferenceItem>
   );
