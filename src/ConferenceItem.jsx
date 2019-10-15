@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { getTimestring, getDatestring, getBackgroundColor } from "./utils";
+// import Button from "./Button.jsx";
 
 const StyledCard = styled.div`
   width: 100%;
@@ -19,7 +20,7 @@ const StyledConferenceItem = styled.li`
   margin: 24px;
 `;
 
-const ConferenceItem = ({ conference }) => {
+const ConferenceItem = ({ conference, openConferenceDetails }) => {
   const { name, topic, dateTime, city } = conference;
   const date = new Date(dateTime);
 
@@ -31,6 +32,9 @@ const ConferenceItem = ({ conference }) => {
         <p>{getDatestring(date)}</p>
         <p>{getTimestring(date)}</p>
         <p>{city}</p>
+        <button onClick={() => openConferenceDetails({ conference })}>
+          Description
+        </button>
       </StyledCard>
     </StyledConferenceItem>
   );
