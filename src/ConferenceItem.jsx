@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { getTimestring, getDatestring, getBackgroundColor } from "./utils";
+import Button from "./Button.jsx";
 
 const StyledCard = styled.div`
   width: 100%;
@@ -31,6 +32,7 @@ const ConferenceItem = ({ conference }) => {
         <p>{getDatestring(date)}</p>
         <p>{getTimestring(date)}</p>
         <p>{city}</p>
+        <Button>Test</Button>
       </StyledCard>
     </StyledConferenceItem>
   );
