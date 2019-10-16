@@ -1,5 +1,4 @@
 import React from "react";
-// import Button from "./Button.jsx";
 import styled from "styled-components";
 import { getTimestring, getDatestring } from "./utils";
 import {
@@ -15,7 +14,7 @@ const StyledConferenceDetails = styled.div`
   background: darkslategray;
 `;
 
-const ConferenceDetails = ({ conferences, setConferenceDetailsOpen }) => {
+const ConferenceDetails = ({ conferences }) => {
   let { id } = useParams();
   let conference = {};
   conferences.forEach(singleConference => {
@@ -39,7 +38,6 @@ const ConferenceDetails = ({ conferences, setConferenceDetailsOpen }) => {
           Back
         </Link>
       </Router>
-      {/* <button onClick={() => setConferenceDetailsOpen(false)}>Back</button> */}
     </StyledConferenceDetails>
   );
 };

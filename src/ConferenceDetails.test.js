@@ -18,7 +18,7 @@ describe("ConferenceDetails", () => {
     it("renders conference details", () => {
         expect.assertions(1);
 
-        const component = shallow(<ConferenceDetails conference={mockData} setConferenceDetails={() => {}} />);
+        const component = shallow(<ConferenceDetails conferences={mockData} />);
 
         expect(component.debug()).toMatchSnapshot();
     });

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { getTimestring, getDatestring, getBackgroundColor } from "./utils";
-// import Button from "./Button.jsx";
 import {
   BrowserRouter as Router,
   Link
@@ -24,7 +23,7 @@ const StyledConferenceItem = styled.li`
   margin: 24px;
 `;
 
-const ConferenceItem = ({ conference, openConferenceDetails }) => {
+const ConferenceItem = ({ conference }) => {
   const { id, name, topic, dateTime, city } = conference;
   const date = new Date(dateTime);
 
@@ -41,9 +40,6 @@ const ConferenceItem = ({ conference, openConferenceDetails }) => {
             Description
           </Link>
         </Router>
-        {/* <button onClick={() => openConferenceDetails({ conference })}>
-          Description
-        </button> */}
       </StyledCard>
     </StyledConferenceItem>
   );
