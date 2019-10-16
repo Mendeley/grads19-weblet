@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConferenceDetails renders conference details 1`] = `
+"<styled.div>
+  <h3>
+    Festival of Marketing
+  </h3>
+  <p>
+    Marketing
+  </p>
+  <p>
+    12/11/2019
+  </p>
+  <p>
+    12:34
+  </p>
+  <p>
+    London
+  </p>
+  <p>
+    From Festivalofmarketing.com: The Festival of Marketing is a unique experience where ambitious marketers can discover, learn, celebrate and shape the future together. As the largest global event dedicated to brand marketers, the Festival reflects the very nature of ...
+  </p>
+  <button onClick={[Function: onClick]}>
+    Back
+  </button>
+</styled.div>"
+`;
