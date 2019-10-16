@@ -2,6 +2,11 @@ import React from "react";
 // import Button from "./Button.jsx";
 import styled from "styled-components";
 import { getTimestring, getDatestring } from "./utils";
+import {
+  BrowserRouter as Router,
+  Link,
+  useParams
+} from "react-router-dom";
 
 const StyledConferenceDetails = styled.div`
   width: 100%;
@@ -10,7 +15,14 @@ const StyledConferenceDetails = styled.div`
   background: darkslategray;
 `;
 
-const ConferenceDetails = ({ conference, setConferenceDetailsOpen }) => {
+const ConferenceDetails = ({ conferences, setConferenceDetailsOpen }) => {
+  let { id } = useParams();
+  let conference = {};
+  conferences.forEach(singleConference => {
+    if (Number(singleConference.id) === Number(id)) {
+      conference = singleConference;
+    }
+  });
   const { name, topic, dateTime, city, description } = conference;
   const date = new Date(dateTime);
 
@@ -22,7 +34,12 @@ const ConferenceDetails = ({ conference, setConferenceDetailsOpen }) => {
       <p>{getTimestring(date)}</p>
       <p>{city}</p>
       <p>{description}</p>
-      <button onClick={() => setConferenceDetailsOpen(false)}>Back</button>
+      <Router> 
+        <Link to="/">
+          Back
+        </Link>
+      </Router>
+      {/* <button onClick={() => setConferenceDetailsOpen(false)}>Back</button> */}
     </StyledConferenceDetails>
   );
 };

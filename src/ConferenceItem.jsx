@@ -2,6 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { getTimestring, getDatestring, getBackgroundColor } from "./utils";
 // import Button from "./Button.jsx";
+import {
+  BrowserRouter as Router,
+  Link
+} from "react-router-dom";
 
 const StyledCard = styled.div`
   width: 100%;
@@ -21,7 +25,7 @@ const StyledConferenceItem = styled.li`
 `;
 
 const ConferenceItem = ({ conference, openConferenceDetails }) => {
-  const { name, topic, dateTime, city } = conference;
+  const { id, name, topic, dateTime, city } = conference;
   const date = new Date(dateTime);
 
   return (
@@ -32,9 +36,14 @@ const ConferenceItem = ({ conference, openConferenceDetails }) => {
         <p>{getDatestring(date)}</p>
         <p>{getTimestring(date)}</p>
         <p>{city}</p>
-        <button onClick={() => openConferenceDetails({ conference })}>
+        <Router>
+          <Link to={`/${id}`}>
+            Description
+          </Link>
+        </Router>
+        {/* <button onClick={() => openConferenceDetails({ conference })}>
           Description
-        </button>
+        </button> */}
       </StyledCard>
     </StyledConferenceItem>
   );

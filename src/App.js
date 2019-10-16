@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import ConferenceList from "./ConferenceList";
+import ConferencePage from "./ConferencePage";
 import { getConferenceList } from "./api";
 
 const StyledApp = styled.div`
@@ -34,7 +34,7 @@ function App() {
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <ConferenceList conferences={conferences} />
+        <ConferencePage conferences={conferences} />
       )}
       {errorCaught ? <p>An error has occurred...</p> : ""}
     </StyledApp>
