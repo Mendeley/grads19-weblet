@@ -1,11 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { getTimestring, getDatestring } from "./utils";
-import {
-  BrowserRouter as Router,
-  Link,
-  useParams
-} from "react-router-dom";
+import { BrowserRouter as Router, Link, useParams } from "react-router-dom";
 
 const StyledConferenceDetails = styled.div`
   width: 100%;
@@ -33,10 +29,8 @@ const ConferenceDetails = ({ conferences }) => {
       <p>{getTimestring(date)}</p>
       <p>{city}</p>
       <p>{description}</p>
-      <Router> 
-        <Link to="/">
-          Back
-        </Link>
+      <Router>
+        <Link to="/">Back</Link>
       </Router>
     </StyledConferenceDetails>
   );
