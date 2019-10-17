@@ -29,7 +29,7 @@ const ConferenceDetails = ({ conferences }) => {
       <p>{getTimestring(date)}</p>
       <p>{city}</p>
       <p>{description}</p>
-        <Link to="/">Back</Link>
+      <Link to="/">Back</Link>
     </StyledConferenceDetails>
   );
 };

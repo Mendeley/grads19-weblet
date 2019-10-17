@@ -51,6 +51,6 @@ function App() {
       {errorCaught ? <p>An error has occurred...</p> : ""}
     </StyledApp>
   );
-}
+};
 
 export default App;
