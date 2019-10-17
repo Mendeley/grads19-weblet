@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import ConferencePage from "./ConferencePage";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import ConferencePage from "./Conference/ConferencePage";
+import ConferenceDetails from "./Conference/ConferenceDetails";
+import ConferenceList from "./Conference/ConferenceList";
 import { getConferenceList } from "./api";
 
 const StyledApp = styled.div`
@@ -34,7 +37,16 @@ function App() {
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <ConferencePage conferences={conferences} />
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <ConferenceList conferences={conferences} />
+          </Route>
+          <Route path="/:id">
+            <ConferenceDetails conferences={conferences} />
+          </Route>
+        </Switch>
+      </Router>
       )}
       {errorCaught ? <p>An error has occurred...</p> : ""}
     </StyledApp>

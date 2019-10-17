@@ -4,7 +4,6 @@ import Adapter from "enzyme-adapter-react-16";
 import MemoryRouter, { Router, Route } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import React from "react";
-import { jsxEmptyExpression } from "@babel/types";
 
 configure({ adapter: new Adapter() });
 

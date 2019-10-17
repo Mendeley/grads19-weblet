@@ -1,10 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { getTimestring, getDatestring, getBackgroundColor } from "./utils";
-import {
-  BrowserRouter as Router,
-  Link
-} from "react-router-dom";
+import { getTimestring, getDatestring, getBackgroundColor } from "../utils";
+import { Link } from "react-router-dom";
 
 const StyledCard = styled.div`
   width: 100%;
@@ -35,11 +32,9 @@ const ConferenceItem = ({ conference }) => {
         <p>{getDatestring(date)}</p>
         <p>{getTimestring(date)}</p>
         <p>{city}</p>
-        <Router>
-          <Link to={`/${id}`}>
-            Description
-          </Link>
-        </Router>
+        <Link to={`/${id}`}>
+          Description
+        </Link>
       </StyledCard>
     </StyledConferenceItem>
   );
