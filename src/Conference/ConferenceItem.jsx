@@ -1,7 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+<<<<<<< HEAD:src/Conference/ConferenceItem.jsx
 import { getTimestring, getDatestring, getBackgroundColor } from "../utils";
 import { Link } from "react-router-dom";
+=======
+import { getTimestring, getDatestring, getBackgroundColor } from "./utils";
+import Button from "./Button.jsx";
+>>>>>>> master:src/ConferenceItem.jsx
 
 const StyledCard = styled.div`
   width: 100%;
