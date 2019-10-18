@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { BrowserRouter as Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import ConferenceDetails from "./Conference/ConferenceDetails";
 import ConferenceList from "./Conference/ConferenceList";
 import { getConferenceList } from "./api";
@@ -36,9 +36,7 @@ function App() {
         <p>Loading...</p>
       ) : (
           <Switch>
-            <Redirect to="/" />
             <Route exact path="/">
-
               <ConferenceList conferences={conferences} />
             </Route>
             <Route path="/:id">
