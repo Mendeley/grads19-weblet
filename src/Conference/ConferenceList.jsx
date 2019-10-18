@@ -11,12 +11,17 @@ const StyledConferenceList = styled.ul`
   justify-content: center;
 `;
 
-const ConferenceList = ({ conferences }) => (
-  <StyledConferenceList>
-    {conferences.map(conference => (
-      <ConferenceItem key={conference.id} conference={conference} />
-    ))}
-  </StyledConferenceList>
-);
+const ConferenceList = ({ conferences }) => {
+  return (
+        <StyledConferenceList>
+          {conferences.map(conference => (
+            <ConferenceItem
+              key={conference.id}
+              conference={conference}
+            />
+          ))}
+        </StyledConferenceList>
+  );
+};
 
 export default ConferenceList;

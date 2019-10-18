@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { getTimestring, getDatestring, getBackgroundColor } from "./utils";
-import Button from "./Button.jsx";
+import { getTimestring, getDatestring, getBackgroundColor } from "../utils";
+import { Link } from "react-router-dom";
 
 const StyledCard = styled.div`
   width: 100%;
@@ -21,7 +21,7 @@ const StyledConferenceItem = styled.li`
 `;
 
 const ConferenceItem = ({ conference }) => {
-  const { name, topic, dateTime, city } = conference;
+  const { id, name, topic, dateTime, city } = conference;
   const date = new Date(dateTime);
 
   return (
@@ -32,7 +32,9 @@ const ConferenceItem = ({ conference }) => {
         <p>{getDatestring(date)}</p>
         <p>{getTimestring(date)}</p>
         <p>{city}</p>
-        <Button>Test</Button>
+        <Link to={`/${id}`}>
+          Description
+        </Link>
       </StyledCard>
     </StyledConferenceItem>
   );
