@@ -12,12 +12,7 @@ const StyledConferenceDetails = styled.div`
 
 const ConferenceDetails = ({ conferences }) => {
   let { id } = useParams();
-  let conference = {};
-  conferences.forEach(singleConference => {
-    if (Number(singleConference.id) === Number(id)) {
-      conference = singleConference;
-    }
-  });
+  let conference = conferences.find(conference => parseInt(conference.id) === parseInt(id)) || {};
   const { name, topic, dateTime, city, description } = conference;
   const date = new Date(dateTime);
 
