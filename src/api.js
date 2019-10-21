@@ -9,3 +9,13 @@ export const getConferenceList = async () => {
     throw error;
   }
 };
+
+export const getConferenceById = async (id) => {
+  try {
+    const response = await axios.get(`http://localhost:8080/conferences/${id}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
