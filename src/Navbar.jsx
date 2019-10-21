@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const StyledNavbar = styled.nav`
   text-align: center;
@@ -10,7 +10,7 @@ export const StyledNavbar = styled.nav`
 const Navbar = () => {
   return (
     <StyledNavbar>
-      <NavLink to="/">Home</NavLink>
+      <Link to="/">Home</Link>
     </StyledNavbar>
 
   );

@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import React from "react";
 
 configure({ adapter: new Adapter() });
-//adapter adapts enzyme for our version of react?
+//adapter adapts enzyme for our version of react
 
 jest.mock('react-router-dom', () => {
     return {
@@ -26,6 +26,5 @@ describe("Navbar", () => {
         const component = shallow(<Navbar />);
 
         expect(component).toMatchSnapshot();
-        expect(component.find(NavLink).childAt(0).text()).toEqual('Home');
     });
 });
