@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import ConferenceDetails from "./Conference/ConferenceDetails";
 import ConferenceList from "./Conference/ConferenceList";
 import { getConferenceList } from "./api";
+import Navbar from "./Navbar";
 
 const StyledApp = styled.div`
   text-align: center;
@@ -32,6 +33,7 @@ function App() {
   }, []);
   return (
     <StyledApp>
+      <Navbar />
       {isLoading ? (
         <p>Loading...</p>
       ) : (
