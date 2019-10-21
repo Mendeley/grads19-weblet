@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import React from "react";
 
 configure({ adapter: new Adapter() });
-//what is adapter? Does it adapt enzyme for our version of react?
+//adapter adapts enzyme for our version of react?
 
 jest.mock('react-router-dom', () => {
     return {

@@ -10,9 +10,7 @@ export const StyledNavbar = styled.nav`
 const Navbar = () => {
   return (
     <StyledNavbar>
-      <div >
-        <NavLink to="/">Home</NavLink>
-      </div>
+      <NavLink to="/">Home</NavLink>
     </StyledNavbar>
 
   );
