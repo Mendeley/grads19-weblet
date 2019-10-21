@@ -1,11 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Navbar renders a navbar 1`] = `
-"<styled.nav>
+exports[`Navbar renders a navbar with text 1`] = `
+<styled.nav>
   <div>
-    <NavLink to=\\"/\\">
+    <NavLink
+      to="/"
+    >
       Home
     </NavLink>
   </div>
-</styled.nav>"
+</styled.nav>
 `;

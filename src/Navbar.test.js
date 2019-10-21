@@ -1,35 +1,31 @@
-import Navbar, { StyledNavbar } from "./Navbar";
+import Navbar from "./Navbar";
 import { configure, shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
+import { NavLink } from 'react-router-dom';
 import React from "react";
 
 configure({ adapter: new Adapter() });
+//what is adapter? Does it adapt enzyme for our version of react?
+
+jest.mock('react-router-dom', () => {
+    return {
+        NavLink: () => "hey I'm a navlink"
+        //defines a mock navlink for testing purposes
+    }
+});
+
+afterEach(() => {
+    jest.clearAllMocks()
+    //clearing all the mocks we are creating after each test
+});
 
 describe("Navbar", () => {
-    it("renders a navbar", () => {
-        expect.assertions(1);
+    it("renders a navbar with text", () => {
+        expect.assertions(2);
 
-        const component = shallow(<Navbar onClick={() => { }}></Navbar>);
+        const component = shallow(<Navbar />);
 
-        expect(component.debug()).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
+        expect(component.find(NavLink).childAt(0).text()).toEqual('Home');
     });
-
-    // it("renders a button with text", () => {
-    //     expect.assertions(1);
-
-    //     const component = shallow(<Button onClick={() => { }}>Test</Button>);
-
-    //     expect(component.debug()).toMatchSnapshot();
-    // });
-    // it("executes passed function when clicked", () => {
-    //     expect.assertions(1);
-
-    //     const callBack = jest.fn();
-
-    //     const wrapper = shallow(<Button onClick={callBack}>Test</Button>);
-
-    //     wrapper.find(StyledButton).simulate("click");
-
-    //     expect(callBack).toHaveBeenCalledTimes(1);
-    // });
 });
