@@ -5,7 +5,6 @@ jest.mock("axios");
 
 describe("getConferenceList", () => {
   const mockData = {
-    id: 1,
     data: [
       {
         id: 1,
@@ -34,6 +33,33 @@ describe("getConferenceList", () => {
     axios.get.mockImplementation(() => Promise.resolve(mockData));
 
     const result = await getConferenceList();
+
+    expect(result).toEqual(mockData.data);
+  });
+});
+
+//test data for getConferencesById
+describe("getConferenceById", () => {
+  const mockData = {
+    data:
+    {
+      id: 1,
+      name: "Festival of Marketing",
+      dateTime: "2019-11-12T12:34:11Z",
+      city: "London",
+      description:
+        "From Festivalofmarketing.com: The Festival of Marketing is a unique experience where ambitious marketers can discover, learn, celebrate and shape the future together. As the largest global event dedicated to brand marketers, the Festival reflects the very nature of ...",
+      topic: "Marketing"
+    }
+  };
+
+  //test to return conference by id
+  it("returns conference by id", async () => {
+    expect.assertions(1);
+
+    axios.get.mockResolvedValue(mockData);
+
+    const result = await getConferenceById(1);
 
     expect(result).toEqual(mockData.data);
   });
