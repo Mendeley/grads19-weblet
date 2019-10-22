@@ -4,6 +4,8 @@ import { Switch, Route } from "react-router-dom";
 import ConferenceDetails from "./Conference/ConferenceDetails";
 import ConferenceList from "./Conference/ConferenceList";
 import { getConferenceList } from "./api";
+import Navbar from "./Navbar";
+import { BrowserRouter } from "react-router-dom";
 
 const StyledApp = styled.div`
   text-align: center;
@@ -31,21 +33,24 @@ function App() {
     fetchData();
   }, []);
   return (
-    <StyledApp>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-          <Switch>
-            <Route exact path="/">
-              <ConferenceList conferences={conferences} />
-            </Route>
-            <Route path="/:id">
-              <ConferenceDetails conferences={conferences} />
-            </Route>
-          </Switch>
-        )}
-      {errorCaught ? <p>An error has occurred...</p> : ""}
-    </StyledApp>
+    <BrowserRouter>
+      <StyledApp>
+        <Navbar />
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+            <Switch>
+              <Route exact path="/">
+                <ConferenceList conferences={conferences} />
+              </Route>
+              <Route path="/:id">
+                <ConferenceDetails conferences={conferences} />
+              </Route>
+            </Switch>
+          )}
+        {errorCaught && <p>An error has occurred...</p>}
+      </StyledApp>
+    </BrowserRouter>
   );
 };
 

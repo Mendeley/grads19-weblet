@@ -1,11 +1,11 @@
 import axios from "axios";
-import { getConferenceList } from "./api";
+import { getConferenceList, getConferenceById } from "./api";
 
 jest.mock("axios");
 
+//test data for all confereces
 describe("getConferenceList", () => {
   const mockData = {
-    id: 1,
     data: [
       {
         id: 1,
@@ -28,13 +28,15 @@ describe("getConferenceList", () => {
     ]
   };
 
-  it("returns expected data", async () => {
+  //test to return all conferences
+  it("returns list of conferences", async () => {
     expect.assertions(1);
 
-    axios.get.mockImplementation(() => Promise.resolve(mockData));
+    axios.get.mockResolvedValue(mockData);
 
     const result = await getConferenceList();
 
     expect(result).toEqual(mockData.data);
   });
 });
+
