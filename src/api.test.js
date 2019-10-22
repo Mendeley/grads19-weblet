@@ -40,8 +40,6 @@ describe("getConferenceList", () => {
   });
 });
 
-<<<<<<< HEAD
-=======
 //test data for getConferencesById
 describe("getConferenceById", () => {
   const mockData = {
@@ -68,4 +66,3 @@ describe("getConferenceById", () => {
     expect(result).toEqual(mockData.data);
   });
 });
->>>>>>> GP19-45: added test for api
