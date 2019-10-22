@@ -7,9 +7,12 @@ import { getConferenceList } from "./api";
 import Navbar from "./Navbar";
 import { BrowserRouter } from "react-router-dom";
 
-const StyledApp = styled.div`
+const StyledApp = styled.body`
   text-align: center;
-  background: lightgrey;
+  background: #ccb7bb;
+  width: auto;
+  height: 1000px;
+  
 `;
 
 function App() {

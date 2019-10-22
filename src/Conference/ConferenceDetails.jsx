@@ -6,9 +6,38 @@ import { Link, useParams } from "react-router-dom";
 const StyledConferenceDetails = styled.div`
   width: 100%;
   height: 400px;
-  color: white;
-  background: darkslategray;
+
 `;
+
+const StyledDetailsCardHeading = styled.h3`
+background: #dbd8db;
+width: 100%;
+height: 55px;
+font-size: 30px;
+font-weight: bold;
+text-align: center;
+vertical-align: middle;
+
+
+`;
+
+const StyledDetailsCard = styled.div`
+  border-style: solid;
+  border-color: black;
+  border-radius: 25px;
+  background: ${props => props.background || "#dbd8db"};
+  width: 60%;
+  height: 370px;
+  transition: 0.3s;
+  :hover {box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);}
+  vertical-align: middle;
+  margin:0 auto;
+
+`;
+
+export const StyledLink = styled(Link)`
+  color: #7a517d;
+  `;
 
 const ConferenceDetails = ({ conferences }) => {
   let { id } = useParams();
@@ -18,13 +47,15 @@ const ConferenceDetails = ({ conferences }) => {
 
   return (
     <StyledConferenceDetails>
-      <h3>{name}</h3>
-      <p>{topic}</p>
-      <p>{getDatestring(date)}</p>
-      <p>{getTimestring(date)}</p>
-      <p>{city}</p>
-      <p>{description}</p>
-      <Link to="/">Back</Link>
+      <StyledDetailsCard>
+        <StyledDetailsCardHeading>{name}</StyledDetailsCardHeading>
+        <p>{topic}</p>
+        <p>{getDatestring(date)}</p>
+        <p>{getTimestring(date)}</p>
+        <p>{city}</p>
+        <p>{description}</p>
+        <StyledLink to="/">Back</StyledLink>
+      </StyledDetailsCard>
     </StyledConferenceDetails>
   );
 };
