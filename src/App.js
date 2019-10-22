@@ -48,7 +48,7 @@ function App() {
               </Route>
             </Switch>
           )}
-        {errorCaught ? <p>An error has occurred...</p> : ""}
+        {errorCaught && <p>An error has occurred...</p>}
       </StyledApp>
     </BrowserRouter>
   );
