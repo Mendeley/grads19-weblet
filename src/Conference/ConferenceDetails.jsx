@@ -18,21 +18,20 @@ const ConferenceDetails = () => {
   const [errorCaught, setErrorCaught] = useState(false);
   const { id } = useParams();
 
+  const fetchData = async () => {
+    setIsLoading(true);
+
+    try {
+      const conference = await getConferenceById(id);
+      setConference(conference);
+    } catch (error) {
+      setErrorCaught(true);
+    }
+
+    setIsLoading(false);
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-
-      try {
-        const conference = await getConferenceById(id);
-        setConference(conference);
-      } catch (error) {
-        setErrorCaught(true);
-      }
-
-      setIsLoading(false);
-    };
-
     if (id) {
       fetchData();
     }

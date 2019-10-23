@@ -1,8 +1,11 @@
 import ConferenceDetails from "./ConferenceDetails";
 import { configure, shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import  { useParams }  from  "react-router-dom";
+import { useParams } from "react-router-dom";
 import React from "react";
+import axios from "axios";
+
+jest.mock("axios");
 
 jest.mock('react-router-dom', () => {
   return {
@@ -31,10 +34,12 @@ describe("ConferenceDetails", () => {
   it("renders conference details", () => {
     expect.assertions(1);
 
-    useParams.mockReturnValue({ id: '1'})
- 
-    const component = shallow(<ConferenceDetails conferences={mockData} />);
-    
+    axios.get.mockResolvedValue(mockData);
+
+    useParams.mockReturnValue({ id: '1' })
+
+    const component = shallow(<ConferenceDetails />);
+
     expect(component.debug()).toMatchSnapshot();
   });
 });
