@@ -21,8 +21,7 @@ const StyledCard = styled.div`
   height: 250px;
   transition: 0.3s;
   :hover {box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);}
-  .container {
-    display: flex;}
+  vertical-align: middle;
 `;
 
 
