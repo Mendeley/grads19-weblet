@@ -36,22 +36,22 @@ const ConferenceDetails = () => {
     }
   }, []);
 
-  // if (isLoading) {
-  //   return <p>Loading...</p>;
-  // }
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   if (errorCaught) {
     return <p>An error has occurred...</p>;
   }
 
-  const { name, topic, dateTime, city, description } = conference || {};
+  const { name, topic, dateTime, city, description } = conference;
   const date = new Date(dateTime);
 
 
-  return isLoading ? <p>Loading...</p> : (
+  return (
     <StyledConferenceDetails>
-      <h3>{name || ''}</h3>
-      <p>{topic || ''}</p>
+      <h3>{name}</h3>
+      <p>{topic}</p>
       <p>{getDatestring(date)}</p>
       <p>{getTimestring(date)}</p>
       <p>{city}</p>
