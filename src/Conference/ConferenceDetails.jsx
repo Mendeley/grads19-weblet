@@ -25,7 +25,7 @@ const StyledDetailsCard = styled.div`
   border-style: solid;
   border-color: black;
   border-radius: 25px;
-  background: ${props => props.background || "#dbd8db"};
+  background: #dbd8db;
   width: 60%;
   height: 370px;
   transition: 0.3s;

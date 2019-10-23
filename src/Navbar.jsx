@@ -3,13 +3,15 @@ import styled from "styled-components";
 import { Link } from 'react-router-dom';
 
 export const StyledNavbar = styled.nav`
-  background: #ccb7bb;
+  background: #322d38;
   width: 100%;
-  height: 30px;
+  height: 40px;
   `;
 
 export const StyledLink = styled(Link)`
-  color: black;
+  color: white;
+  margin: 10px;
+  float: left;
   `;
 
 const Navbar = () => {
