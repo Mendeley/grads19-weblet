@@ -27,7 +27,6 @@ const ConferenceDetails = () => {
     } catch (error) {
       setErrorCaught(true);
     }
-
     setIsLoading(false);
   };
 
@@ -35,23 +34,24 @@ const ConferenceDetails = () => {
     if (id) {
       fetchData();
     }
-  }, [id]);
+  }, []);
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+  // if (isLoading) {
+  //   return <p>Loading...</p>;
+  // }
 
   if (errorCaught) {
     return <p>An error has occurred...</p>;
   }
 
-  const { name, topic, dateTime, city, description } = conference;
+  const { name, topic, dateTime, city, description } = conference || {};
   const date = new Date(dateTime);
 
-  return (
+
+  return isLoading ? <p>Loading...</p> : (
     <StyledConferenceDetails>
-      <h3>{name}</h3>
-      <p>{topic}</p>
+      <h3>{name || ''}</h3>
+      <p>{topic || ''}</p>
       <p>{getDatestring(date)}</p>
       <p>{getTimestring(date)}</p>
       <p>{city}</p>
