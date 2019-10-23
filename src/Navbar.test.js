@@ -9,7 +9,9 @@ configure({ adapter: new Adapter() });
 jest.mock('react-router-dom', () => {
     return {
         Link: () => "hey I'm a link"
-        //defines a mock navlink for testing purposes
+        //defines a mock link for testing purposes
+
+     
     }
 });
 
