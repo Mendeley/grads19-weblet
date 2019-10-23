@@ -6,7 +6,7 @@ import { Link, useParams } from "react-router-dom";
 const StyledConferenceDetails = styled.div`
   width: 100%;
   height: 400px;
-
+  padding: 20px;
 `;
 
 const StyledDetailsCardHeading = styled.h3`
@@ -17,8 +17,6 @@ font-size: 30px;
 font-weight: bold;
 text-align: center;
 vertical-align: middle;
-
-
 `;
 
 const StyledDetailsCard = styled.div`
@@ -26,13 +24,12 @@ const StyledDetailsCard = styled.div`
   border-color: black;
   border-radius: 25px;
   background: #dbd8db;
-  width: 60%;
+  width: 65%;
   height: 370px;
   transition: 0.3s;
   :hover {box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);}
   vertical-align: middle;
   margin:0 auto;
-
 `;
 
 export const StyledLink = styled(Link)`

@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 export const StyledNavbar = styled.nav`
   background: #322d38;
-  width: 100%;
-  height: 40px;
+  width: 100vw;
+  height: 4vh;
   `;
 
 export const StyledLink = styled(Link)`
