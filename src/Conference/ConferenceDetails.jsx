@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getTimestring, getDatestring } from "../utils";
 import { Link, useParams } from "react-router-dom";
-import { getConferenceById } from '../api.js';
+import { getConferenceById } from "../api.js";
 
 const StyledConferenceDetails = styled.div`
   width: 100%;
@@ -10,15 +10,14 @@ const StyledConferenceDetails = styled.div`
   padding: 20px;
 `;
 
-
 const StyledDetailsCardHeading = styled.h3`
-background: #dbd8db;
-width: 100%;
-height: 55px;
-font-size: 30px;
-font-weight: bold;
-text-align: center;
-vertical-align: middle;
+  background: #dbd8db;
+  width: 100%;
+  height: 55px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
 `;
 
 const StyledDetailsCard = styled.div`
@@ -29,19 +28,18 @@ const StyledDetailsCard = styled.div`
   width: 65%;
   height: 370px;
   transition: 0.3s;
-  :hover {box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);}
+  :hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
   vertical-align: middle;
-  margin:0 auto;
+  margin: 0 auto;
 `;
 
 export const StyledLink = styled(Link)`
   color: #7a517d;
-  `;
-
-
+`;
 
 const ConferenceDetails = () => {
-
   const [isLoading, setIsLoading] = useState(true);
   const [conference, setConference] = useState(null);
   const [errorCaught, setErrorCaught] = useState(false);
@@ -73,6 +71,9 @@ const ConferenceDetails = () => {
     return <p>An error has occurred...</p>;
   }
 
+  const { name, topic, dateTime, city, description } = conference || {};
+  const date = new Date(dateTime);
+
   return (
     <StyledConferenceDetails>
       <StyledDetailsCard>
@@ -86,6 +87,5 @@ const ConferenceDetails = () => {
       </StyledDetailsCard>
     </StyledConferenceDetails>
   );
-
 };
 export default ConferenceDetails;
