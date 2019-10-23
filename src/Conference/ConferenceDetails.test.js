@@ -1,8 +1,7 @@
 import ConferenceDetails from "./ConferenceDetails";
-import { configure, shallow, mount } from "enzyme";
+import { configure, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { useParams } from "react-router-dom";
-import { act } from 'react-dom/test-utils';
 import React from "react";
 import axios from "axios";
 
@@ -19,6 +18,11 @@ jest.mock('react-router-dom', () => {
 
 configure({ adapter: new Adapter() });
 
+/* This is a temporary workaround for enzyme/react bug #14769 (github.com/facebook/react/issues/14769):
+
+  Enzyme throws an warning when used with useEffect hook. We're surpressing this warning as it's not informative
+  and will be removed in future releases.
+*/
 beforeAll(() => {
   jest.spyOn(console, 'error').mockImplementation((...args) => {
     if (!args[0].includes('Warning: An update to %s inside a test was not wrapped in act')) {
@@ -50,8 +54,8 @@ describe("ConferenceDetails", () => {
     axios.get.mockResolvedValue(mockData);
 
     useParams.mockReturnValue({ id: '1' });
-    let component;
-    component = mount(<ConferenceDetails />);
+
+    const component = mount(<ConferenceDetails />);
 
     setImmediate(() => {
       component.update();
