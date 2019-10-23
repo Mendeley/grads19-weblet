@@ -3,14 +3,21 @@ import styled from "styled-components";
 import { Link } from 'react-router-dom';
 
 export const StyledNavbar = styled.nav`
-  text-align: center;
-  background: papayawhip;
-`;
+  background: #322d38;
+  width: 100vw;
+  height: 4vh;
+  `;
+
+export const StyledLink = styled(Link)`
+  color: white;
+  margin: 10px;
+  float: left;
+  `;
 
 const Navbar = () => {
   return (
     <StyledNavbar>
-      <Link to="/">Home</Link>
+      <a><StyledLink to="/">Home</StyledLink></a>
     </StyledNavbar>
 
   );

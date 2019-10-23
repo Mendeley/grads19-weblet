@@ -3,22 +3,37 @@ import styled from "styled-components";
 import { getTimestring, getDatestring, getBackgroundColor } from "../utils";
 import { Link } from "react-router-dom";
 
-const StyledCard = styled.div`
-  width: 100%;
-  height: 200px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  background: ${props => props.background || "papayawhip"};
-
-  :hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  }
+const StyledCardHeading = styled.div`
+background: #dbd8db;
+width: 315px;
+height: 55px;
+font-size: 24px;
+font-weight: bold;
+text-align: center;
 `;
+
+const StyledCard = styled.div`
+  border-style: solid;
+  border-color: black;
+  border-radius: 0 0 25px 25px;
+  background: #f7f4f1;
+  width: 315px;
+  height: 250px;
+  transition: 0.3s;
+  :hover {box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);}
+  .container {
+    display: flex;}
+`;
+
 
 const StyledConferenceItem = styled.li`
   width: 300px;
   margin: 24px;
 `;
+
+const StyledLink = styled(Link)`
+  color: #7a517d;
+  `;
 
 const ConferenceItem = ({ conference }) => {
   const { id, name, topic, dateTime, city } = conference;
@@ -27,14 +42,12 @@ const ConferenceItem = ({ conference }) => {
   return (
     <StyledConferenceItem>
       <StyledCard background={getBackgroundColor(date)}>
-        <h3>{name}</h3>
+        <StyledCardHeading>{name}</StyledCardHeading>
         <p>{topic}</p>
         <p>{getDatestring(date)}</p>
         <p>{getTimestring(date)}</p>
         <p>{city}</p>
-        <Link to={`/${id}`}>
-          Description
-        </Link>
+        <StyledLink to={`/${id}`}>Description</StyledLink>
       </StyledCard>
     </StyledConferenceItem>
   );
