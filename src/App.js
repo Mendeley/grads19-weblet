@@ -11,7 +11,7 @@ const StyledApp = styled.body`
   text-align: center;
   background: #ccb7bb;
   width: auto;
-  height: 1000px;
+  height: 100vh;
   
 `;
 
