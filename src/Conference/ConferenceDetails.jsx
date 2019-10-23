@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getTimestring, getDatestring } from "../utils";
 import { Link, useParams } from "react-router-dom";
+import { getConferenceById } from '../api.js';
 
 const StyledConferenceDetails = styled.div`
   width: 100%;
   height: 400px;
   padding: 20px;
 `;
+
 
 const StyledDetailsCardHeading = styled.h3`
 background: #dbd8db;
@@ -36,11 +38,40 @@ export const StyledLink = styled(Link)`
   color: #7a517d;
   `;
 
-const ConferenceDetails = ({ conferences }) => {
-  let { id } = useParams();
-  let conference = conferences.find(conference => parseInt(conference.id) === parseInt(id)) || {};
-  const { name, topic, dateTime, city, description } = conference;
-  const date = new Date(dateTime);
+
+
+const ConferenceDetails = () => {
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [conference, setConference] = useState(null);
+  const [errorCaught, setErrorCaught] = useState(false);
+  const { id } = useParams();
+
+  const fetchData = async () => {
+    setIsLoading(true);
+
+    try {
+      const conference = await getConferenceById(id);
+      setConference(conference);
+    } catch (error) {
+      setErrorCaught(true);
+    }
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    if (id) {
+      fetchData();
+    }
+  }, []);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (errorCaught) {
+    return <p>An error has occurred...</p>;
+  }
 
   return (
     <StyledConferenceDetails>
@@ -55,5 +86,6 @@ const ConferenceDetails = ({ conferences }) => {
       </StyledDetailsCard>
     </StyledConferenceDetails>
   );
+
 };
 export default ConferenceDetails;

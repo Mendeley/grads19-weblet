@@ -10,6 +10,8 @@ jest.mock('react-router-dom', () => {
     return {
         Link: () => "hey I'm a link"
         //defines a mock link for testing purposes
+
+     
     }
 });
 
