@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { getTimestring, getDatestring, getBackgroundColor } from "../utils";
+import { getTimestring, getDatestring } from "../utils";
 import { Link } from "react-router-dom";
 
 const StyledCardHeading = styled.div`
@@ -39,7 +39,7 @@ const ConferenceItem = ({ conference }) => {
   const date = new Date(dateTime);
   return (
     <StyledConferenceItem>
-      <StyledCard background={getBackgroundColor(date)}>
+      <StyledCard>
         <StyledCardHeading>{name}</StyledCardHeading>
         <p>{topic}</p>
         <p>{getDatestring(date)}</p>

@@ -8,6 +8,15 @@ export const StyledNavbar = styled.nav`
   height: 4vh;
   `;
 
+const StyledList = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  
+`;
+
 export const StyledLink = styled(Link)`
   color: white;
   margin: 10px;
@@ -17,7 +26,15 @@ export const StyledLink = styled(Link)`
 const Navbar = () => {
   return (
     <StyledNavbar>
-      <a><StyledLink to="/">Home</StyledLink></a>
+      <StyledList>
+        <li>
+          <StyledLink to="/">Home</StyledLink>
+        </li>
+        <li>
+          <StyledLink to="/add">Add Conference</StyledLink>
+        </li>
+      </StyledList>
+
     </StyledNavbar>
 
   );

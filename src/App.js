@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Switch, Route } from "react-router-dom";
 import ConferenceDetails from "./Conference/ConferenceDetails";
 import ConferenceList from "./Conference/ConferenceList";
+import AddConference from "./Conference/AddConference";
 import { getConferenceList } from "./api";
 import Navbar from "./Navbar";
 import { BrowserRouter } from "react-router-dom";
@@ -46,8 +47,11 @@ function App() {
               <Route exact path="/">
                 <ConferenceList conferences={conferences} />
               </Route>
+              <Route path="/add">
+                <AddConference />
+              </Route>
               <Route path="/:id">
-                <ConferenceDetails conferences={conferences} />
+                <ConferenceDetails />
               </Route>
             </Switch>
           )}
