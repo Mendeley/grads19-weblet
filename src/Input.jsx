@@ -4,10 +4,10 @@ import React from "react";
 //<Input label="name:" type="text" etc /> 
 const Input = ({ label, type, id, value, onChange, ...props }) => {
   return (
-    <label>
-      {label}
+    <div>
+      <label>{label}</label>
       < input type={type} id={id} value={value} onChange={onChange} {...props} />
-    </label>
+    </div>
   )
 };
 

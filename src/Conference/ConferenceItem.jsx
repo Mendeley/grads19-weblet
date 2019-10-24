@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { getTimestring, getDatestring, getBackgroundColor } from "../utils";
 import { Link } from "react-router-dom";
-//import Input from "../Input"
 
 const StyledCardHeading = styled.div`
 background: #dbd8db;
@@ -48,7 +47,6 @@ const ConferenceItem = ({ conference }) => {
         <p>{city}</p>
         <StyledLink to={`/${id}`}>Description</StyledLink>
       </StyledCard>
-      {/* <Input type="datetime-local" /> */}
     </StyledConferenceItem>
   );
 };
