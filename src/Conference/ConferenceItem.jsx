@@ -37,7 +37,6 @@ const StyledLink = styled(Link)`
 const ConferenceItem = ({ conference }) => {
   const { id, name, topic, dateTime, city } = conference;
   const date = new Date(dateTime);
-
   return (
     <StyledConferenceItem>
       <StyledCard background={getBackgroundColor(date)}>
