@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input renders a dateTime input 1`] = `
+"<label>
+  <input type=\\"datetime-local\\" id={[undefined]} value={[undefined]} onChange={[undefined]} />
+</label>"
+`;
+
+exports[`Input renders a submit input 1`] = `
+"<label>
+  <input type=\\"submit\\" id={[undefined]} value={[undefined]} onChange={[undefined]} />
+</label>"
+`;
+
+exports[`Input renders a text input 1`] = `
+"<label>
+  <input type=\\"text\\" id={[undefined]} value={[undefined]} onChange={[undefined]} />
+</label>"
+`;

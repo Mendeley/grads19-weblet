@@ -2,15 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { getTimestring, getDatestring, getBackgroundColor } from "../utils";
 import { Link } from "react-router-dom";
-import Input from "../Input";
+//import Input from "../Input"
 
 const StyledCardHeading = styled.div`
-  background: #dbd8db;
-  width: 315px;
-  height: 55px;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
+background: #dbd8db;
+width: 315px;
+height: 55px;
+font-size: 24px;
+font-weight: bold;
+text-align: center;
 `;
 
 const StyledCard = styled.div`
@@ -21,11 +21,10 @@ const StyledCard = styled.div`
   width: 315px;
   height: 250px;
   transition: 0.3s;
-  :hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  }
+  :hover {box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);}
   vertical-align: middle;
 `;
+
 
 const StyledConferenceItem = styled.li`
   width: 300px;
@@ -34,12 +33,11 @@ const StyledConferenceItem = styled.li`
 
 const StyledLink = styled(Link)`
   color: #7a517d;
-`;
+  `;
 
 const ConferenceItem = ({ conference }) => {
   const { id, name, topic, dateTime, city } = conference;
   const date = new Date(dateTime);
-
   return (
     <StyledConferenceItem>
       <StyledCard background={getBackgroundColor(date)}>
@@ -49,8 +47,8 @@ const ConferenceItem = ({ conference }) => {
         <p>{getTimestring(date)}</p>
         <p>{city}</p>
         <StyledLink to={`/${id}`}>Description</StyledLink>
-        <Input type="submit" />
       </StyledCard>
+      {/* <Input type="datetime-local" /> */}
     </StyledConferenceItem>
   );
 };
