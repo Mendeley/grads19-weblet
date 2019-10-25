@@ -1,5 +1,5 @@
-import React from 'react';
-import Form from "../Form"
+import React from "react";
+import Form from "../Form";
 import styled from "styled-components";
 
 const StyledConferenceForm = styled.div`
@@ -18,7 +18,6 @@ const StyledCardHeading = styled.h3`
   vertical-align: middle;
 `;
 
-
 const StyledCard = styled.div`
   border-style: solid;
   border-color: black;
@@ -34,18 +33,15 @@ const StyledCard = styled.div`
   margin: 0 auto;
 `;
 
-
-
-
 const AddConference = () => {
-    return (
-        <StyledConferenceForm>
-            <StyledCard>
-                <StyledCardHeading>CREATE A NEW CONFERENCE!!!</StyledCardHeading>
-                <Form />
-            </StyledCard>
-        </StyledConferenceForm >
-    )
-}
+  return (
+    <StyledConferenceForm>
+      <StyledCard>
+        <StyledCardHeading>CREATE A NEW CONFERENCE!!!</StyledCardHeading>
+        <Form />
+      </StyledCard>
+    </StyledConferenceForm>
+  );
+};
 
 export default AddConference;
