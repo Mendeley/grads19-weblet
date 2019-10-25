@@ -3,9 +3,11 @@ import Input from "./Input";
 import { createNewConference } from "./api";
 
 const Form = () => {
+  const date = new Date();
+
   const [state, setState] = useState({
     name: "",
-    dateTime: "",
+    dateTime: date, // fix format of this to match BE
     city: "",
     description: "",
     topic: ""
@@ -17,8 +19,14 @@ const Form = () => {
   };
 
   const submitForm = async () => {
+    console.log(state);
+    const newState = {
+      ...state,
+      dateTime: "2020-06-02T21:34:33.616Z"
+    };
     try {
-      const status = await createNewConference(state);
+      const status = await createNewConference(newState);
+      // navigate to home page 😃
       console.log(status);
     } catch (error) {
       console.log(error);
@@ -26,7 +34,12 @@ const Form = () => {
   };
 
   return (
-    <form>
+    <form
+      onSubmit={ev => {
+        ev.preventDefault();
+        submitForm();
+      }}
+    >
       <Input
         label="Conference Name: "
         type="text"
@@ -62,7 +75,7 @@ const Form = () => {
         value={state.topic}
         onChange={handleChange}
       />
-      <Input type="submit" onClick={() => submitForm()} />
+      <Input type="submit" value="submit" />
     </form>
   );
 };

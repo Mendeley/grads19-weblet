@@ -61,7 +61,7 @@ const ConferenceDetails = () => {
     if (id) {
       fetchData();
     }
-  }, []);
+  });
 
   if (isLoading) {
     return <p>Loading...</p>;

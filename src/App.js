@@ -8,12 +8,11 @@ import { getConferenceList } from "./api";
 import Navbar from "./Navbar";
 import { BrowserRouter } from "react-router-dom";
 
-const StyledApp = styled.body`
+const StyledApp = styled.div`
   text-align: center;
   background: #ccb7bb;
   width: auto;
-  height: 100vh;
-  
+  height: 100%;
 `;
 
 function App() {
@@ -43,22 +42,22 @@ function App() {
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-            <Switch>
-              <Route exact path="/">
-                <ConferenceList conferences={conferences} />
-              </Route>
-              <Route path="/add">
-                <AddConference />
-              </Route>
-              <Route path="/:id">
-                <ConferenceDetails />
-              </Route>
-            </Switch>
-          )}
+          <Switch>
+            <Route exact path="/">
+              <ConferenceList conferences={conferences} />
+            </Route>
+            <Route path="/add">
+              <AddConference />
+            </Route>
+            <Route path="/:id">
+              <ConferenceDetails />
+            </Route>
+          </Switch>
+        )}
         {errorCaught && <p>An error has occurred...</p>}
       </StyledApp>
     </BrowserRouter>
   );
-};
+}
 
 export default App;
