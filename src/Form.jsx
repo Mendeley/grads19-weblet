@@ -23,7 +23,7 @@ const Form = () => {
     console.log(state);
     const newState = {
       ...state,
-      dateTime: state.dateTime + ":00.000Z"
+      dateTime: state.dateTime + "Z"
     };
     try {
       const status = await createNewConference(newState);
