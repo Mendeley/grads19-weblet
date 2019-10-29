@@ -5,7 +5,6 @@ import { Link, useParams } from "react-router-dom";
 import { getConferenceById } from "../api.js";
 
 const StyledConferenceDetails = styled.div`
-  width: 100%;
   height: 400px;
   padding: 20px;
 `;
@@ -61,7 +60,8 @@ const ConferenceDetails = () => {
     if (id) {
       fetchData();
     }
-  });
+  // eslint-disable-next-line
+  }, [id]);
 
   if (isLoading) {
     return <p>Loading...</p>;

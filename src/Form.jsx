@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import Input from "./Input";
 import { createNewConference } from "./api";
+import { useHistory } from 'react-router-dom';
 
 const Form = () => {
-  const date = new Date();
-
+  
+  let history = useHistory();
   const [state, setState] = useState({
     name: "",
-    dateTime: date, // fix format of this to match BE
+    dateTime: "", // fix format of this to match BE
     city: "",
     description: "",
     topic: ""
@@ -22,11 +23,11 @@ const Form = () => {
     console.log(state);
     const newState = {
       ...state,
-      dateTime: "2020-06-02T21:34:33.616Z"
+      dateTime: state.dateTime + ":00.000Z"
     };
     try {
       const status = await createNewConference(newState);
-      // navigate to home page 😃
+      history.push("/"); // navigate to home page 😃
       console.log(status);
     } catch (error) {
       console.log(error);
@@ -46,6 +47,7 @@ const Form = () => {
         name="name"
         value={state.name}
         onChange={handleChange}
+        required
       />
       <Input
         label="Date and Time: "
@@ -53,6 +55,7 @@ const Form = () => {
         name="dateTime"
         value={state.dateTime}
         onChange={handleChange}
+        required
       />
       <Input
         label="City: "
@@ -60,6 +63,7 @@ const Form = () => {
         name="city"
         value={state.city}
         onChange={handleChange}
+        required
       />
       <Input
         label="Description: "
@@ -67,6 +71,7 @@ const Form = () => {
         name="description"
         value={state.description}
         onChange={handleChange}
+        required
       />
       <Input
         label="Topic: "
@@ -74,6 +79,7 @@ const Form = () => {
         name="topic"
         value={state.topic}
         onChange={handleChange}
+        required
       />
       <Input type="submit" value="submit" />
     </form>

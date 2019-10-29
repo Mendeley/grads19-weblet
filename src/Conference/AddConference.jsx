@@ -3,7 +3,6 @@ import Form from "../Form";
 import styled from "styled-components";
 
 const StyledConferenceForm = styled.div`
-  width: 100%;
   height: 400px;
   padding: 20px;
 `;
@@ -38,7 +37,7 @@ const AddConference = () => {
     <StyledConferenceForm>
       <StyledCard>
         <StyledCardHeading>CREATE A NEW CONFERENCE!!!</StyledCardHeading>
-        <Form />
+        <Form/>
       </StyledCard>
     </StyledConferenceForm>
   );
