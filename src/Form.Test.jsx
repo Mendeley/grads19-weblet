@@ -1,21 +1,38 @@
+import { useHistory, BrowserRouter } from "react-router-dom";
 import React from "react";
-import { isTSAnyKeyword } from "@babel/types";
+import Form from "./Form";
+import { shallow, configure } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import Input from "./Input";
+import { act } from "react-dom/test-utils";
 
-//test handle test
-// describe("handleChange", () => {
-//     it("should call setState on input of new conference details", () => {
-//         }
-//     )
+configure({ adapter: new Adapter() });
 
-//test submit
-    
+jest.mock("react-router-dom", () => ({
+  useHistory: () => ({
+    push: jest.fn()
+  })
+}));
+
+// Testing handleChange
 describe("handleChange", () => {
-    it("should return updated conference homepage onClick", () => {
-        const wrapper = shallow(<Form />);
+  it("should update input value on change", done => {
+    const wrapper = shallow(<Form />);
+    const nameInput = wrapper.find("#name");
+    console.log(nameInput.debug());
 
-        expect(wrapper.find('.clicks-0').length).to.equal(1);
-        wrapper.find('test').simulate('click')
-        }
-    )
+    expect(nameInput.length).toEqual(1);
+    nameInput.simulate("change", {
+      target: { name: "name", value: "Test Conference" }
+    });
 
-//testing errors
+    setImmediate(() => {
+      wrapper.update();
+      expect(nameInput.prop("value")).toEqual("Test Conference");
+      done();
+    });
+  });
+});
+
+// Testing Errors
+// Testing Submit

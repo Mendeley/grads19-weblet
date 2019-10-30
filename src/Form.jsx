@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import Input from "./Input";
 import { createNewConference } from "./api";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 const Form = () => {
-  
   let history = useHistory();
   const [state, setState] = useState({
     name: "",
@@ -42,6 +41,7 @@ const Form = () => {
       }}
     >
       <Input
+        id="name"
         label="Conference Name: "
         type="text"
         name="name"
