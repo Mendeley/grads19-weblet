@@ -19,17 +19,17 @@ function App() {
     <BrowserRouter>
       <StyledApp>
         <Navbar />
-          <Switch>
-            <Route exact path="/">
-              <ConferenceList />
-            </Route>
-            <Route path="/add">
-              <AddConference />
-            </Route>
-            <Route path="/:id">
-              <ConferenceDetails />
-            </Route>
-          </Switch>
+        <Switch>
+          <Route exact path="/">
+            <ConferenceList />
+          </Route>
+          <Route path="/add">
+            <AddConference />
+          </Route>
+          <Route path="/:id">
+            <ConferenceDetails />
+          </Route>
+        </Switch>
       </StyledApp>
     </BrowserRouter>
   );

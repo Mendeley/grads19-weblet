@@ -1,70 +1,86 @@
 import React from "react";
 import Form from "./Form";
-import { shallow, configure } from "enzyme";
+import { mount, configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import { useHistory } from "react-router-dom";
-import axios from "axios";
-
-jest.mock("axios");
+import { Router } from "react-router-dom";
+import { createMemoryHistory } from "history";
+import { createNewConference } from "./api";
 
 configure({ adapter: new Adapter() });
 
-jest.mock("react-router-dom", () => ({
-  useHistory: () => ({
-    push: jest.fn()
-  })
+jest.mock("./api", () => ({
+  createNewConference: jest.fn()
 }));
 
-// jest.mock("react", () => ({
-//   onSubmit: () => ({
-//     //preventDefaultqq: jest.fn()
-//   })
-// }));
-
-// // Testing handleChange
-// describe("handleChange", () => {
-//   it("should update input value on change", done => {
-//     expect.assertions(2);
-
-//     const wrapper = shallow(<Form />);
-//     const nameInput = wrapper.find("#name");
-//     console.log(nameInput.debug());
-
-//     expect(nameInput.length).toEqual(1);
-//     nameInput.simulate("change", { target: { name: "name", value: "TestConference" } });
-//     console.log(nameInput.debug());
-
-//     expect(nameInput.prop("value")).toEqual("TestConference");
-
-//   });
-// });
-
-// Testing Submit
 describe("submitForm", () => {
-  const mockData = {
-    data: {
-      id: 1,
-      name: "Festival of Marketing",
-      dateTime: "2019-11-12T12:34:11Z",
-      city: "London",
-      description:
-        "From Festivalofmarketing.com: The Festival of Marketing is a unique experience where ambitious marketers can discover, learn, celebrate and shape the future together. As the largest global event dedicated to brand marketers, the Festival reflects the very nature of ...",
-      topic: "Marketing"
-    }
-  };
+  let ev;
+  beforeEach(() => {
+    ev = { preventDefault: jest.fn() };
+  });
 
-  const ev = { preventDefault: () => { } }
+  it("should send axios request", async () => {
+    expect.assertions(2);
 
-  it("should send axios request and navigate to home", async () => {
+    const apiReturnValue = Promise.resolve(200);
+    createNewConference.mockImplementation(() => apiReturnValue);
+
+    const history = createMemoryHistory();
+    history.push("/add");
+
+    const wrapper = mount(
+      <Router history={history}>
+        <Form />
+      </Router>
+    );
+
+    wrapper.find(Form).simulate("submit", ev);
+
+    expect(createNewConference).toHaveBeenCalledTimes(1);
+    expect(createNewConference).toHaveBeenCalledWith({
+      city: "",
+      dateTime: ":00Z",
+      description: "",
+      name: "",
+      topic: ""
+    });
+  });
+  it("should navigate to home if axios request sucessful", async () => {
     expect.assertions(1);
 
-    axios.post.mockResolvedValue(mockData);
+    const apiReturnValue = Promise.resolve(200);
+    createNewConference.mockImplementation(() => apiReturnValue);
 
-    const wrapper = shallow(<Form />);
+    const history = createMemoryHistory();
+    history.push("/add");
 
-    await wrapper.simulate("submit", ev);
+    const wrapper = mount(
+      <Router history={history}>
+        <Form />
+      </Router>
+    );
 
-    expect(useHistory.push).toHaveBeenCalledTimes(1);
+    wrapper.find(Form).simulate("submit", ev);
 
+    await apiReturnValue;
+    expect(history.location.pathname).toBe("/");
+  });
+  it("should stay on page if axios request unsucessful", async () => {
+    expect.assertions(1);
+
+    const apiReturnValue = Promise.reject(400);
+    createNewConference.mockImplementation(() => apiReturnValue);
+
+    const history = createMemoryHistory();
+    history.push("/add");
+
+    const wrapper = mount(
+      <Router history={history}>
+        <Form />
+      </Router>
+    );
+
+    wrapper.find(Form).simulate("submit", ev);
+
+    expect(history.location.pathname).toBe("/add");
   });
 });

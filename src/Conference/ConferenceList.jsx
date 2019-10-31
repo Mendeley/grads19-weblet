@@ -22,8 +22,8 @@ const ConferenceList = () => {
       setIsLoading(true);
 
       try {
-        const conferences = await getConferenceList();
-        setConferences(conferences);
+        const conferenceList = await getConferenceList();
+        setConferences(conferenceList);
       } catch (error) {
         setErrorCaught(true);
       }
@@ -32,20 +32,17 @@ const ConferenceList = () => {
     }
     fetchData();
   }, []);
+
   return (
     <StyledConferenceList>
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : (      
-          conferences.map(conference => (
-            <ConferenceItem
-              key={conference.id}
-              conference={conference}
-            />
-          ))
-          )}
-          {errorCaught && <p>An error has occurred...</p>}
-        </StyledConferenceList>
+      {isLoading && <p>Loading...</p>}
+      {!isLoading &&
+        conferences.length > 0 &&
+        conferences.map(conference => (
+          <ConferenceItem key={conference.id} conference={conference} />
+        ))}
+      {errorCaught && <p>An error has occurred...</p>}
+    </StyledConferenceList>
   );
 };
 

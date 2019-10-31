@@ -9,11 +9,11 @@ jest.mock("axios");
 
 const consoleError = console.error;
 
-jest.mock('react-router-dom', () => {
+jest.mock("react-router-dom", () => {
   return {
     useParams: jest.fn(),
     Link: () => "hey I'm a link"
-  }
+  };
 });
 
 configure({ adapter: new Adapter() });
@@ -24,15 +24,19 @@ configure({ adapter: new Adapter() });
   and will be removed in future releases.
 */
 beforeAll(() => {
-  jest.spyOn(console, 'error').mockImplementation((...args) => {
-    if (!args[0].includes('Warning: An update to %s inside a test was not wrapped in act')) {
+  jest.spyOn(console, "error").mockImplementation((...args) => {
+    if (
+      !args[0].includes(
+        "Warning: An update to %s inside a test was not wrapped in act"
+      )
+    ) {
       consoleError(...args);
     }
-  })
-})
+  });
+});
 
 afterEach(() => {
-  jest.clearAllMocks()
+  jest.clearAllMocks();
 });
 
 describe("ConferenceDetails", () => {
@@ -48,12 +52,12 @@ describe("ConferenceDetails", () => {
     }
   };
 
-  it("renders conference details", (done) => {
+  it("renders conference details", done => {
     expect.assertions(1);
 
     axios.get.mockResolvedValue(mockData);
 
-    useParams.mockReturnValue({ id: '1' });
+    useParams.mockReturnValue({ id: "1" });
 
     const component = mount(<ConferenceDetails />);
 
@@ -61,7 +65,6 @@ describe("ConferenceDetails", () => {
       component.update();
       expect(component.debug()).toMatchSnapshot();
       done();
-    })
-
+    });
   });
 });

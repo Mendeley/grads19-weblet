@@ -7,7 +7,7 @@ const Form = () => {
   let history = useHistory();
   const [state, setState] = useState({
     name: "",
-    dateTime: "", // fix format of this to match BE
+    dateTime: "",
     city: "",
     description: "",
     topic: ""
@@ -24,9 +24,7 @@ const Form = () => {
       dateTime: state.dateTime + ":00Z"
     };
     try {
-      console.log('before');
       await createNewConference(newState);
-      console.log('after');
       history.push("/"); // navigate to home page 😃
     } catch (error) {
       console.log(error);
@@ -48,7 +46,7 @@ const Form = () => {
         value={state.name}
         onChange={handleChange}
         required
-        maxlength="80"
+        maxLength="80"
       />
       <br />
       <Input
@@ -67,7 +65,7 @@ const Form = () => {
         value={state.city}
         onChange={handleChange}
         required
-        maxlength="50"
+        maxLength="50"
       />
       <br />
       <Input
@@ -77,7 +75,7 @@ const Form = () => {
         value={state.description}
         onChange={handleChange}
         required
-        maxlength="1000"
+        maxLength="1000"
       />
       <br />
       <Input
@@ -87,11 +85,11 @@ const Form = () => {
         value={state.topic}
         onChange={handleChange}
         required
-        maxlength="20"
+        maxLength="20"
       />
       <br />
       <Input type="submit" value="submit" id="test" />
-    </form >
+    </form>
   );
 };
 export default Form;
