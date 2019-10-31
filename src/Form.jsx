@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 const Form = () => {
   let history = useHistory();
-  const [state, setState] = useState({
+  const [conference, setConference] = useState({
     name: "",
     dateTime: "",
     city: "",
@@ -15,17 +15,17 @@ const Form = () => {
 
   const handleChange = event => {
     const value = event.target.value;
-    setState({ ...state, [event.target.name]: value });
+    setState({ ...conference, [event.target.name]: value });
   };
 
   const submitForm = async () => {
-    const newState = {
-      ...state,
-      dateTime: state.dateTime + ":00Z"
+    const newConference = {
+      ...conference,
+      dateTime: conference.dateTime + ":00Z"
     };
     try {
-      await createNewConference(newState);
-      history.push("/"); // navigate to home page 😃
+      await createNewConference(newConference);
+      history.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -43,7 +43,7 @@ const Form = () => {
         label="Conference Name: "
         type="text"
         name="name"
-        value={state.name}
+        value={conference.name}
         onChange={handleChange}
         required
         maxLength="80"
@@ -53,7 +53,7 @@ const Form = () => {
         label="Date and Time: "
         type="datetime-local"
         name="dateTime"
-        value={state.dateTime}
+        value={conference.dateTime}
         onChange={handleChange}
         required
       />
@@ -62,7 +62,7 @@ const Form = () => {
         label="City: "
         type="text"
         name="city"
-        value={state.city}
+        value={conference.city}
         onChange={handleChange}
         required
         maxLength="50"
@@ -72,7 +72,7 @@ const Form = () => {
         label="Description: "
         type="text"
         name="description"
-        value={state.description}
+        value={conference.description}
         onChange={handleChange}
         required
         maxLength="1000"
@@ -82,7 +82,7 @@ const Form = () => {
         label="Topic: "
         type="text"
         name="topic"
-        value={state.topic}
+        value={conference.topic}
         onChange={handleChange}
         required
         maxLength="20"

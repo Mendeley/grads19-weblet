@@ -14,23 +14,6 @@ jest.mock("../api", () => ({
   getConferenceList: jest.fn()
 }));
 
-/* This is a temporary workaround for enzyme/react bug #14769 (github.com/facebook/react/issues/14769):
-
-  Enzyme throws an warning when used with useEffect hook. We're surpressing this warning as it's not informative
-  and will be removed in future releases.
-*/
-beforeAll(() => {
-  // jest.spyOn(console, "error").mockImplementation((...args) => {
-  //   if (
-  //     !args[0].includes(
-  //       "Warning: An update to %s inside a test was not wrapped in act"
-  //     )
-  //   ) {
-  //     consoleError(...args);
-  //   }
-  // });
-});
-
 describe("ConferenceList", () => {
   const mockData = [
     {
