@@ -19,15 +19,15 @@ const Form = () => {
   };
 
   const submitForm = async () => {
-    console.log(state);
     const newState = {
       ...state,
       dateTime: state.dateTime + ":00Z"
     };
     try {
-      const status = await createNewConference(newState);
+      console.log('before');
+      await createNewConference(newState);
+      console.log('after');
       history.push("/"); // navigate to home page 😃
-      console.log(status);
     } catch (error) {
       console.log(error);
     }
@@ -48,7 +48,9 @@ const Form = () => {
         value={state.name}
         onChange={handleChange}
         required
+        maxlength="80"
       />
+      <br />
       <Input
         label="Date and Time: "
         type="datetime-local"
@@ -57,6 +59,7 @@ const Form = () => {
         onChange={handleChange}
         required
       />
+      <br />
       <Input
         label="City: "
         type="text"
@@ -64,7 +67,9 @@ const Form = () => {
         value={state.city}
         onChange={handleChange}
         required
+        maxlength="50"
       />
+      <br />
       <Input
         label="Description: "
         type="text"
@@ -72,7 +77,9 @@ const Form = () => {
         value={state.description}
         onChange={handleChange}
         required
+        maxlength="1000"
       />
+      <br />
       <Input
         label="Topic: "
         type="text"
@@ -80,9 +87,11 @@ const Form = () => {
         value={state.topic}
         onChange={handleChange}
         required
+        maxlength="20"
       />
-      <Input type="submit" value="submit" />
-    </form>
+      <br />
+      <Input type="submit" value="submit" id="test" />
+    </form >
   );
 };
 export default Form;

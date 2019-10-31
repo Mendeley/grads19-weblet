@@ -45,7 +45,7 @@ const ConferenceItem = ({ conference }) => {
         <p>{getDatestring(date)}</p>
         <p>{getTimestring(date)}</p>
         <p>{city}</p>
-        <StyledLink to={`/${id}`}>Description</StyledLink>
+        <StyledLink to={`/${id}`}>More details...</StyledLink>
       </StyledCard>
     </StyledConferenceItem>
   );

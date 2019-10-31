@@ -36,8 +36,8 @@ const AddConference = () => {
   return (
     <StyledConferenceForm>
       <StyledCard>
-        <StyledCardHeading>CREATE A NEW CONFERENCE!!!</StyledCardHeading>
-        <Form/>
+        <StyledCardHeading>ADD A NEW CONFERENCE:</StyledCardHeading>
+        <Form />
       </StyledCard>
     </StyledConferenceForm>
   );
