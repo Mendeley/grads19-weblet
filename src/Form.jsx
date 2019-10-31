@@ -15,7 +15,7 @@ const Form = () => {
 
   const handleChange = event => {
     const value = event.target.value;
-    setState({ ...conference, [event.target.name]: value });
+    setConference({ ...conference, [event.target.name]: value });
   };
 
   const submitForm = async () => {
