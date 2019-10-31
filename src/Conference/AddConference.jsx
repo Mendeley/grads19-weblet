@@ -15,6 +15,7 @@ const StyledCardHeading = styled.h3`
   font-weight: bold;
   text-align: center;
   vertical-align: middle;
+  text-transform: uppercase;
 `;
 
 const StyledCard = styled.div`
@@ -36,7 +37,7 @@ const AddConference = () => {
   return (
     <StyledConferenceForm>
       <StyledCard>
-        <StyledCardHeading>ADD A NEW CONFERENCE:</StyledCardHeading>
+        <StyledCardHeading>add a new conference:</StyledCardHeading>
         <Form />
       </StyledCard>
     </StyledConferenceForm>
