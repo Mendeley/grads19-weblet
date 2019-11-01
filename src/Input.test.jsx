@@ -6,26 +6,25 @@ import React from "react";
 configure({ adapter: new Adapter() });
 
 describe("Input", () => {
-    it("renders a text input", () => {
-        expect.assertions(1);
+  it("renders a text input", () => {
+    expect.assertions(1);
 
-        const component = shallow(<Input type="text" />);
+    const component = shallow(<Input type="text" />);
 
-        expect(component.debug()).toMatchSnapshot();
-    });
-    it("renders a dateTime input", () => {
-        expect.assertions(1);
+    expect(component).toMatchSnapshot();
+  });
+  it("renders a dateTime input", () => {
+    expect.assertions(1);
 
-        const component = shallow(<Input type="datetime-local" />);
+    const component = shallow(<Input type="datetime-local" />);
 
-        expect(component.debug()).toMatchSnapshot();
-    });
-    it("renders a submit input", () => {
-        expect.assertions(1);
+    expect(component).toMatchSnapshot();
+  });
+  it("renders a submit input", () => {
+    expect.assertions(1);
 
-        const component = shallow(<Input type="submit" />);
+    const component = shallow(<Input type="submit" />);
 
-        expect(component.debug()).toMatchSnapshot();
-    });
-
+    expect(component).toMatchSnapshot();
+  });
 });

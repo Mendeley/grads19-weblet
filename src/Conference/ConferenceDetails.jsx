@@ -5,7 +5,6 @@ import { Link, useParams } from "react-router-dom";
 import { getConferenceById } from "../api.js";
 
 const StyledConferenceDetails = styled.div`
-  width: 100%;
   height: 400px;
   padding: 20px;
 `;
@@ -45,11 +44,11 @@ const ConferenceDetails = () => {
   const [errorCaught, setErrorCaught] = useState(false);
   const { id } = useParams();
 
-  const fetchData = async () => {
+  const fetchData = async (conferenceId) => {
     setIsLoading(true);
 
     try {
-      const conference = await getConferenceById(id);
+      const conference = await getConferenceById(conferenceId);
       setConference(conference);
     } catch (error) {
       setErrorCaught(true);
@@ -59,9 +58,9 @@ const ConferenceDetails = () => {
 
   useEffect(() => {
     if (id) {
-      fetchData();
+      fetchData(id);
     }
-  }, []);
+  }, [id]);
 
   if (isLoading) {
     return <p>Loading...</p>;

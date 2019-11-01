@@ -10,7 +10,7 @@ export const getConferenceList = async () => {
   }
 };
 
-export const getConferenceById = async (id) => {
+export const getConferenceById = async id => {
   try {
     const response = await axios.get(`http://localhost:8080/conferences/${id}`);
     return response.data;
@@ -20,9 +20,12 @@ export const getConferenceById = async (id) => {
   }
 };
 
-export const createNewConference = async (conference) => {
+export const createNewConference = async conference => {
   try {
-    const response = await axios.post(`http://localhost:8080/conferences, ${conference}`);
+    const response = await axios.post(
+      "http://localhost:8080/conferences",
+      conference
+    );
     return response.status;
   } catch (error) {
     console.log(error);

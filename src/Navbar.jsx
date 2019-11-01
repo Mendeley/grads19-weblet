@@ -1,25 +1,41 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export const StyledNavbar = styled.nav`
   background: #322d38;
-  width: 100vw;
+  width: auto;
   height: 4vh;
-  `;
+  text-align: left;
+`;
+
+const StyledList = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+`;
+
+const StyledListItem = styled.li`
+  display: inline-block;
+  margin: 10px;
+`;
 
 export const StyledLink = styled(Link)`
   color: white;
-  margin: 10px;
-  float: left;
-  `;
+`;
 
 const Navbar = () => {
   return (
     <StyledNavbar>
-      <a><StyledLink to="/">Home</StyledLink></a>
+      <StyledList>
+        <StyledListItem>
+          <StyledLink to="/">Home</StyledLink>
+        </StyledListItem>
+        <StyledListItem>
+          <StyledLink to="/add">Add Conference</StyledLink>
+        </StyledListItem>
+      </StyledList>
     </StyledNavbar>
-
   );
 };
 

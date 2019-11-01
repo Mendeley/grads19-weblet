@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ConferenceItem from "./ConferenceItem";
+import { getConferenceList } from "../api";
 
 const StyledConferenceList = styled.ul`
   margin: 0;
@@ -11,16 +12,37 @@ const StyledConferenceList = styled.ul`
   justify-content: center;
 `;
 
-const ConferenceList = ({ conferences }) => {
+const ConferenceList = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [conferences, setConferences] = useState([]);
+  const [errorCaught, setErrorCaught] = useState(false);
+
+  useEffect(() => {
+    async function fetchData() {
+      setIsLoading(true);
+
+      try {
+        const conferenceList = await getConferenceList();
+        setConferences(conferenceList);
+      } catch (error) {
+        setErrorCaught(true);
+      }
+
+      setIsLoading(false);
+    }
+    fetchData();
+  }, []);
+
   return (
-        <StyledConferenceList>
-          {conferences.map(conference => (
-            <ConferenceItem
-              key={conference.id}
-              conference={conference}
-            />
-          ))}
-        </StyledConferenceList>
+    <StyledConferenceList>
+      {isLoading && <p>Loading...</p>}
+      {!isLoading &&
+        conferences.length > 0 &&
+        conferences.map(conference => (
+          <ConferenceItem key={conference.id} conference={conference} />
+        ))}
+      {errorCaught && <p>An error has occurred...</p>}
+    </StyledConferenceList>
   );
 };
 

@@ -1,10 +1,18 @@
 import Adapter from "enzyme-adapter-react-16";
 import React from "react";
-import { shallow, configure } from "enzyme";
+import { mount, configure } from "enzyme";
 import ConferenceItem from "./ConferenceItem";
 import ConferenceList from "./ConferenceList";
+import { getConferenceList } from "../api";
+import { Router } from "react-router-dom";
+import { act } from "react-dom/test-utils";
+import { createMemoryHistory } from "history";
 
 configure({ adapter: new Adapter() });
+
+jest.mock("../api", () => ({
+  getConferenceList: jest.fn()
+}));
 
 describe("ConferenceList", () => {
   const mockData = [
@@ -27,18 +35,47 @@ describe("ConferenceList", () => {
       topic: "Sport"
     }
   ];
-  it("given list of 2 conferences renders ConferenceList with 2 items", () => {
+  it("given list of 2 conferences renders ConferenceList with 2 items", async () => {
     expect.assertions(1);
 
-    let wrapper = shallow(<ConferenceList conferences={mockData} />);
+    const history = createMemoryHistory();
+    history.push("/");
+
+    const apiReturnValue = Promise.resolve(mockData);
+    getConferenceList.mockImplementation(() => apiReturnValue);
+
+    let wrapper;
+    await act(async () => {
+      wrapper = mount(
+        <Router history={history}>
+          <ConferenceList />
+        </Router>
+      );
+
+      await apiReturnValue;
+    });
+
+    wrapper.update();
 
     expect(wrapper.find(ConferenceItem).length).toEqual(2);
   });
-  it("given empty list renders ConferenceList with 0 items", () => {
-    expect.assertions(1);
+  it("given empty list renders ConferenceList with 0 items", async () => {
+    expect.assertions(3);
 
-    let wrapper = shallow(<ConferenceList conferences={[]} />);
+    const apiReturnValue = Promise.resolve([]);
+    getConferenceList.mockImplementation(() => apiReturnValue);
 
+    let wrapper;
+    await act(async () => {
+      wrapper = mount(<ConferenceList />);
+
+      await apiReturnValue;
+    });
+
+    expect(wrapper.containsMatchingElement(<p>Loading...</p>)).toEqual(false);
     expect(wrapper.find(ConferenceItem).length).toEqual(0);
+    expect(
+      wrapper.containsMatchingElement(<p>An error has occurred...</p>)
+    ).toEqual(false);
   });
 });
