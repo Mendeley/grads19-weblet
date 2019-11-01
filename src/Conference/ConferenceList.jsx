@@ -13,14 +13,11 @@ const StyledConferenceList = styled.ul`
 
 const ConferenceList = ({ conferences }) => {
   return (
-        <StyledConferenceList>
-          {conferences.map(conference => (
-            <ConferenceItem
-              key={conference.id}
-              conference={conference}
-            />
-          ))}
-        </StyledConferenceList>
+    <StyledConferenceList>
+      {conferences.map(conference => (
+        <ConferenceItem key={conference.id} conference={conference} />
+      ))}
+    </StyledConferenceList>
   );
 };
 

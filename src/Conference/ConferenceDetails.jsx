@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getTimestring, getDatestring } from "../utils";
-import { Link, useParams } from "react-router-dom";
-import { getConferenceById } from "../api.js";
+import { Link, useParams, useHistory } from "react-router-dom";
+import { getConferenceById, deleteConference } from "../api.js";
+import Button from "../Button";
 
 const StyledConferenceDetails = styled.div`
   width: 100%;
@@ -40,6 +41,7 @@ export const StyledLink = styled(Link)`
 `;
 
 const ConferenceDetails = () => {
+  let history = useHistory();
   const [isLoading, setIsLoading] = useState(true);
   const [conference, setConference] = useState(null);
   const [errorCaught, setErrorCaught] = useState(false);
@@ -74,6 +76,15 @@ const ConferenceDetails = () => {
   const { name, topic, dateTime, city, description } = conference || {};
   const date = new Date(dateTime);
 
+  const deleteAConference = async id => {
+    try {
+      await deleteConference(id);
+      history.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <StyledConferenceDetails>
       <StyledDetailsCard>
@@ -84,6 +95,14 @@ const ConferenceDetails = () => {
         <p>{city}</p>
         <p>{description}</p>
         <StyledLink to="/">Back</StyledLink>
+        <br />
+        <Button
+          onClick={() => {
+            deleteAConference(id);
+          }}
+        >
+          Delete Conference
+        </Button>
       </StyledDetailsCard>
     </StyledConferenceDetails>
   );
