@@ -2,10 +2,21 @@
 
 exports[`Navbar renders a navbar with text 1`] = `
 <styled.nav>
-  <Link
-    to="/"
-  >
-    Home
-  </Link>
+  <styled.ul>
+    <styled.li>
+      <Styled(Link)
+        to="/"
+      >
+        Home
+      </Styled(Link)>
+    </styled.li>
+    <styled.li>
+      <Styled(Link)
+        to="/add"
+      >
+        Add Conference
+      </Styled(Link)>
+    </styled.li>
+  </styled.ul>
 </styled.nav>
 `;

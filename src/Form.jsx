@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Input from "./Input";
 import { createNewConference } from "./api";
+import { useHistory } from "react-router-dom";
 
 const Form = () => {
-  const date = new Date();
-
-  const [state, setState] = useState({
+  let history = useHistory();
+  const [conference, setConference] = useState({
     name: "",
-    dateTime: date, // fix format of this to match BE
+    dateTime: "",
     city: "",
     description: "",
     topic: ""
@@ -15,19 +15,17 @@ const Form = () => {
 
   const handleChange = event => {
     const value = event.target.value;
-    setState({ ...state, [event.target.name]: value });
+    setConference({ ...conference, [event.target.name]: value });
   };
 
   const submitForm = async () => {
-    console.log(state);
-    const newState = {
-      ...state,
-      dateTime: "2020-06-02T21:34:33.616Z"
+    const newConference = {
+      ...conference,
+      dateTime: conference.dateTime + ":00Z"
     };
     try {
-      const status = await createNewConference(newState);
-      // navigate to home page 😃
-      console.log(status);
+      await createNewConference(newConference);
+      history.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -44,37 +42,51 @@ const Form = () => {
         label="Conference Name: "
         type="text"
         name="name"
-        value={state.name}
+        value={conference.name}
         onChange={handleChange}
+        required
+        maxLength="80"
       />
+      <br />
       <Input
         label="Date and Time: "
         type="datetime-local"
         name="dateTime"
-        value={state.dateTime}
+        value={conference.dateTime}
         onChange={handleChange}
+        required
       />
+      <br />
       <Input
         label="City: "
         type="text"
         name="city"
-        value={state.city}
+        value={conference.city}
         onChange={handleChange}
+        required
+        maxLength="50"
       />
+      <br />
       <Input
         label="Description: "
         type="text"
         name="description"
-        value={state.description}
+        value={conference.description}
         onChange={handleChange}
+        required
+        maxLength="1000"
       />
+      <br />
       <Input
         label="Topic: "
         type="text"
         name="topic"
-        value={state.topic}
+        value={conference.topic}
         onChange={handleChange}
+        required
+        maxLength="20"
       />
+      <br />
       <Input type="submit" value="submit" />
     </form>
   );
