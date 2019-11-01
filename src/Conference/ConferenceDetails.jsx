@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { getTimestring, getDatestring } from "../utils";
 import { Link, useParams, useHistory } from "react-router-dom";
+import { getTimestring, getDatestring } from "../utils";
 import { getConferenceById, deleteConference } from "../api.js";
 import Button from "../Button";
 
@@ -46,7 +46,7 @@ const ConferenceDetails = () => {
   const [errorCaught, setErrorCaught] = useState(false);
   const { id } = useParams();
 
-  const fetchData = async (conferenceId) => {
+  const fetchData = async conferenceId => {
     setIsLoading(true);
 
     try {
@@ -83,6 +83,9 @@ const ConferenceDetails = () => {
       console.log(error);
     }
   };
+  const onClick = () => {
+    deleteAConference(id);
+  };
 
   return (
     <StyledConferenceDetails>
@@ -95,13 +98,7 @@ const ConferenceDetails = () => {
         <p>{description}</p>
         <StyledLink to="/">Back</StyledLink>
         <br />
-        <Button
-          onClick={() => {
-            deleteAConference(id);
-          }}
-        >
-          Delete Conference
-        </Button>
+        <Button onClick={onClick}>Delete Conference</Button>
       </StyledDetailsCard>
     </StyledConferenceDetails>
   );

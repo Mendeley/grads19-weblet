@@ -6,7 +6,6 @@ import React from "react";
 import { getConferenceById } from "../api";
 import { createMemoryHistory } from "history";
 import { act } from "react-dom/test-utils";
-import { getTimestring, getDatestring } from "../utils";
 
 jest.mock("react-router-dom", () => {
   const originalReactRouter = jest.requireActual("react-router-dom");

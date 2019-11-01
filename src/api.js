@@ -23,7 +23,8 @@ export const getConferenceById = async id => {
 export const createNewConference = async conference => {
   try {
     const response = await axios.post(
-      `http://localhost:8080/conferences, ${conference}`
+      `http://localhost:8080/conferences`,
+      conference
     );
     return response.status;
   } catch (error) {
