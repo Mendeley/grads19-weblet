@@ -11,14 +11,14 @@ describe("Button", () => {
 
     const component = shallow(<Button onClick={() => {}}></Button>);
 
-    expect(component.debug()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
   it("renders a button with text", () => {
     expect.assertions(1);
 
     const component = shallow(<Button onClick={() => {}}>Test</Button>);
 
-    expect(component.debug()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
   it("executes passed function when clicked", () => {
     expect.assertions(1);

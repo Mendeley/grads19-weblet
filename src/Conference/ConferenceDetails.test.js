@@ -63,7 +63,7 @@ describe("ConferenceDetails", () => {
 
     setImmediate(() => {
       component.update();
-      expect(component.debug()).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
       done();
     });
   });

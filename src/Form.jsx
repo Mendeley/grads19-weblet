@@ -39,7 +39,6 @@ const Form = () => {
       }}
     >
       <Input
-        id="name"
         label="Conference Name: "
         type="text"
         name="name"
@@ -88,7 +87,7 @@ const Form = () => {
         maxLength="20"
       />
       <br />
-      <Input type="submit" value="submit" id="test" />
+      <Input type="submit" value="submit" />
     </form>
   );
 };
