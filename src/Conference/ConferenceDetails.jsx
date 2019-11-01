@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { getTimestring, getDatestring } from "../utils";
-import { getConferenceById, deleteConference } from "../api.js";
+import { getConferenceById, deleteConferenceById } from "../api.js";
 import Button from "../Button";
 
 const StyledConferenceDetails = styled.div`
@@ -75,16 +75,16 @@ const ConferenceDetails = () => {
   const { name, topic, dateTime, city, description } = conference || {};
   const date = new Date(dateTime);
 
-  const deleteAConference = async id => {
+  const deleteConference = async id => {
     try {
-      await deleteConference(id);
+      await deleteConferenceById(id);
       history.push("/");
     } catch (error) {
       console.log(error);
     }
   };
-  const onClick = () => {
-    deleteAConference(id);
+  const deleteThisConference = () => {
+    deleteConference(id);
   };
 
   return (
@@ -98,7 +98,7 @@ const ConferenceDetails = () => {
         <p>{description}</p>
         <StyledLink to="/">Back</StyledLink>
         <br />
-        <Button onClick={onClick}>Delete Conference</Button>
+        <Button onClick={deleteThisConference}>Delete Conference</Button>
       </StyledDetailsCard>
     </StyledConferenceDetails>
   );

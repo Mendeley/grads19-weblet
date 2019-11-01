@@ -33,7 +33,7 @@ export const createNewConference = async conference => {
   }
 };
 
-export const deleteConference = async id => {
+export const deleteConferenceById = async id => {
   try {
     const response = await axios.delete(
       `http://localhost:8080/conferences/${id}`

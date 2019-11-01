@@ -12,7 +12,6 @@ jest.mock("react-router-dom", () => {
   return {
     ...originalReactRouter,
     useParams: jest.fn(() => ({ id: "1" })),
-    //useHistory: jest.fn(),
     Link: () => "hey I'm a link"
   };
 });
