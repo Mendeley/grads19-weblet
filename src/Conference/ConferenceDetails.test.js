@@ -75,19 +75,11 @@ describe("ConferenceDetails", () => {
       await apiReturnValue;
     });
     wrapper.update();
-    expect(wrapper.containsMatchingElement(<h3>{mockData.name}</h3>)).toEqual(
-      true
-    );
-    expect(wrapper.containsMatchingElement(<p>{mockData.topic}</p>)).toEqual(
-      true
-    );
-    expect(wrapper.containsMatchingElement(<p>12/11/2019</p>)).toEqual(true);
-    expect(wrapper.containsMatchingElement(<p>12:34</p>)).toEqual(true);
-    expect(wrapper.containsMatchingElement(<p>{mockData.city}</p>)).toEqual(
-      true
-    );
-    expect(
-      wrapper.containsMatchingElement(<p>{mockData.description}</p>)
-    ).toEqual(true);
+    expect(wrapper.find("h3.name").length).toBe(1);
+    expect(wrapper.find(".topic").length).toBe(1);
+    expect(wrapper.find(".date").length).toBe(1);
+    expect(wrapper.find(".time").length).toBe(1);
+    expect(wrapper.find(".city").length).toBe(1);
+    expect(wrapper.find(".description").length).toBe(1);
   });
 });

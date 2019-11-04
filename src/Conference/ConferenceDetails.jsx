@@ -90,12 +90,12 @@ const ConferenceDetails = () => {
   return (
     <StyledConferenceDetails>
       <StyledDetailsCard>
-        <StyledDetailsCardHeading>{name}</StyledDetailsCardHeading>
-        <p>{topic}</p>
-        <p>{getDatestring(date)}</p>
-        <p>{getTimestring(date)}</p>
-        <p>{city}</p>
-        <p>{description}</p>
+        <StyledDetailsCardHeading className="name">{name}</StyledDetailsCardHeading>
+        <p className="topic">{topic}</p>
+        <p className="date">{getDatestring(date)}</p>
+        <p className="time">{getTimestring(date)}</p>
+        <p className="city">{city}</p>
+        <p className="description">{description}</p>
         <StyledLink to="/">Back</StyledLink>
         <br />
         <Button onClick={deleteThisConference}>Delete Conference</Button>
