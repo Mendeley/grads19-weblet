@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const getConferenceList = async () => {
   try {
@@ -23,9 +24,7 @@ export const getConferenceById = async id => {
 export const createNewConference = async conference => {
   try {
     const response = await axios.post(
-      `http://localhost:8080/conferences`,
-      conference
-    );
+      "http://localhost:8080/conferences",conference);
     return response.status;
   } catch (error) {
     console.log(error);
@@ -38,8 +37,10 @@ export const deleteConferenceById = async id => {
     const response = await axios.delete(
       `http://localhost:8080/conferences/${id}`
     );
+    toast.success("Conference successfully deleted!", { pauseOnHover: true });
     return response.status;
   } catch (error) {
+    toast.error("Conference not deleted!", { pauseOnHover: true });
     console.log(error);
     throw error;
   }

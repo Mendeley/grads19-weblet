@@ -6,6 +6,8 @@ import ConferenceList from "./Conference/ConferenceList";
 import AddConference from "./Conference/AddConference";
 import Navbar from "./Navbar";
 import { BrowserRouter } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const StyledApp = styled.div`
   text-align: center;
@@ -31,6 +33,7 @@ function App() {
           </Route>
         </Switch>
       </StyledApp>
+      <ToastContainer position="bottom-right" autoClose={5000} pauseOnHover/>
     </BrowserRouter>
   );
 }
