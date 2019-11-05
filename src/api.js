@@ -37,10 +37,10 @@ export const deleteConferenceById = async id => {
     const response = await axios.delete(
       `http://localhost:8080/conferences/${id}`
     );
-    toast.success("Conference successfully deleted!", { pauseOnHover: true });
+    toast.success("Conference successfully deleted!");
     return response.status;
   } catch (error) {
-    toast.error("Conference not deleted!", { pauseOnHover: true });
+    toast.error("Conference not deleted!");
     console.log(error);
     throw error;
   }
