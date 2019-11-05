@@ -6,6 +6,7 @@ import ConferenceList from "./Conference/ConferenceList";
 import AddConference from "./Conference/AddConference";
 import Navbar from "./Navbar";
 import { BrowserRouter } from "react-router-dom";
+import UpdateConference from "./UpdateConference";
 
 const StyledApp = styled.div`
   text-align: center;
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route path="/add">
             <AddConference />
+          </Route>
+          <Route path="/edit/:id">
+            <UpdateConference/>
           </Route>
           <Route path="/:id">
             <ConferenceDetails />
