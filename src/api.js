@@ -32,3 +32,13 @@ export const createNewConference = async conference => {
     throw error;
   }
 };
+
+export const updateConferenceById = async id => {
+  try {
+    const response = await axios.patch(`http://localhost:8080/conferences/${id}`);
+    return response.status;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
