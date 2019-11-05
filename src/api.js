@@ -33,9 +33,9 @@ export const createNewConference = async conference => {
   }
 };
 
-export const updateConferenceById = async id => {
+export const updateConferenceById = async ( id , conference ) => {
   try {
-    const response = await axios.patch(`http://localhost:8080/conferences/${id}`);
+    const response = await axios.patch(`http://localhost:8080/conferences/${id}`, conference);
     return response.status;
   } catch (error) {
     console.log(error);
