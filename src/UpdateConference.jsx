@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "./Input";
 import styled from "styled-components";
+import { useHistory, useParams } from "react-router-dom";
+import { updateConferenceById, getConferenceById } from "./api";
 
 const StyledConferenceForm = styled.div`
   height: 400px;
@@ -32,15 +34,51 @@ const StyledCard = styled.div`
   margin: 0 auto;
 `;
 
-const UpdateConference = () => {
+const UpdateForm = () => {
+  let history = useHistory();
+  const { id } = useParams();
+
+  const [conference, setConference] = useState({
+    name: getConferenceById(id).getName,
+    dateTime: getConferenceById(id).getdateTime,
+    city: getConferenceById(id).getCity,
+    description: getConferenceById(id).getDescription,
+    topic: getConferenceById(id).getTopic
+  });
+
+  const handleChange = event => {
+    const value = event.target.value;
+    setConference({ ...conference, [event.target.name]: value });
+  };
+
+  const submitForm = async () => {
+    const newConference = {
+      ...conference,
+      dateTime: conference.dateTime + ":00Z"
+    };
+    try {
+      await updateConferenceById(newConference);
+      history.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <StyledConferenceForm>
     <StyledCard>
       <StyledCardHeading>Edit a conference:</StyledCardHeading>
-      <form> <Input
+        <form
+          onSubmit={ ev => {
+        ev.preventDefault();
+        submitForm();
+        }}
+        >
+          <Input
       label="Conference Name: "
       type="text"
       name="name"
+      value={conference.name}
+      onChange={handleChange}
       required
       maxLength="80"
     />
@@ -48,14 +86,18 @@ const UpdateConference = () => {
     <Input
       label="Date and Time: "
       type="datetime-local"
-      name="dateTime"
+            name="dateTime"
+            value={conference.dateTime}
+        onChange={handleChange}
       required
     />
     <br />
     <Input
       label="City: "
       type="text"
-      name="city"
+            name="city"
+            value={conference.city}
+            onChange={handleChange}
       required
       maxLength="50"
     />
@@ -63,7 +105,9 @@ const UpdateConference = () => {
     <Input
       label="Description: "
       type="text"
-      name="description"
+            name="description"
+            value={conference.description}
+            onChange={handleChange}
       required
       maxLength="1000"
     />
@@ -71,7 +115,9 @@ const UpdateConference = () => {
     <Input
       label="Topic: "
       type="text"
-      name="topic"
+            name="topic"
+            value={conference.topic}
+            onChange={handleChange}
       required
       maxLength="20"
     />
@@ -82,4 +128,4 @@ const UpdateConference = () => {
     </StyledConferenceForm>  
   );
 };
-export default UpdateConference;
+export default UpdateForm;

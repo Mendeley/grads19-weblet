@@ -27,7 +27,7 @@ function App() {
           <Route path="/add">
             <AddConference />
           </Route>
-          <Route path="/edit/:id">
+          <Route exact path="/:id/edit">
             <UpdateConference/>
           </Route>
           <Route path="/:id">

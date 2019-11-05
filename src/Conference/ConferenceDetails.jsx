@@ -82,7 +82,7 @@ const ConferenceDetails = () => {
         <p>{getTimestring(date)}</p>
         <p>{city}</p>
         <p>{description}</p>
-        <StyledLink to="/">Back</StyledLink>
+        <StyledLink to={`/${id}/edit`}>Edit Conference</StyledLink>       
       </StyledDetailsCard>
     </StyledConferenceDetails>
   );

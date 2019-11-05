@@ -34,9 +34,6 @@ const Navbar = () => {
         <StyledListItem>
           <StyledLink to="/add">Add Conference</StyledLink>
         </StyledListItem>
-        <StyledListItem>
-          <StyledLink to="/edit/:id">Edit Conference</StyledLink>
-        </StyledListItem>
       </StyledList>
     </StyledNavbar>
   );
