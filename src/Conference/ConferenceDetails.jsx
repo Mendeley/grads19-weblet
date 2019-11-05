@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { getTimestring, getDatestring } from "../utils";
-import { Link, useParams } from "react-router-dom";
-import { getConferenceById } from "../api.js";
+import { getConferenceById, deleteConferenceById } from "../api.js";
+import Button from "../Button";
 
 const StyledConferenceDetails = styled.div`
   height: 400px;
@@ -39,12 +40,13 @@ export const StyledLink = styled(Link)`
 `;
 
 const ConferenceDetails = () => {
+  let history = useHistory();
   const [isLoading, setIsLoading] = useState(true);
   const [conference, setConference] = useState(null);
   const [errorCaught, setErrorCaught] = useState(false);
   const { id } = useParams();
 
-  const fetchData = async (conferenceId) => {
+  const fetchData = async conferenceId => {
     setIsLoading(true);
 
     try {
@@ -73,16 +75,30 @@ const ConferenceDetails = () => {
   const { name, topic, dateTime, city, description } = conference || {};
   const date = new Date(dateTime);
 
+  const deleteConference = async id => {
+    try {
+      await deleteConferenceById(id);
+      history.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const deleteThisConference = () => {
+    deleteConference(id);
+  };
+
   return (
     <StyledConferenceDetails>
       <StyledDetailsCard>
-        <StyledDetailsCardHeading>{name}</StyledDetailsCardHeading>
-        <p>{topic}</p>
-        <p>{getDatestring(date)}</p>
-        <p>{getTimestring(date)}</p>
-        <p>{city}</p>
-        <p>{description}</p>
+        <StyledDetailsCardHeading className="name">{name}</StyledDetailsCardHeading>
+        <p className="topic">{topic}</p>
+        <p className="date">{getDatestring(date)}</p>
+        <p className="time">{getTimestring(date)}</p>
+        <p className="city">{city}</p>
+        <p className="description">{description}</p>
         <StyledLink to="/">Back</StyledLink>
+        <br />
+        <Button onClick={deleteThisConference}>Delete Conference</Button>
       </StyledDetailsCard>
     </StyledConferenceDetails>
   );
