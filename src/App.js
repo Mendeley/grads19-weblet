@@ -7,6 +7,8 @@ import AddConference from "./Conference/AddConference";
 import Navbar from "./Navbar";
 import { BrowserRouter } from "react-router-dom";
 import UpdateConference from "./UpdateConference";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const StyledApp = styled.div`
   text-align: center;
@@ -28,13 +30,14 @@ function App() {
             <AddConference />
           </Route>
           <Route exact path="/:id/edit">
-            <UpdateConference/>
+            <UpdateConference />
           </Route>
           <Route path="/:id">
             <ConferenceDetails />
           </Route>
         </Switch>
       </StyledApp>
+      <ToastContainer position="bottom-right" autoClose={5000} pauseOnHover />
     </BrowserRouter>
   );
 }
