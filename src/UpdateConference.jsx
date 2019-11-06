@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useHistory, useParams } from "react-router-dom";
 import { updateConferenceById, getConferenceById } from "./api";
 
+//styling 
 const StyledConferenceForm = styled.div`
   height: 400px;
   padding: 20px;
@@ -34,10 +35,13 @@ const StyledCard = styled.div`
   margin: 0 auto;
 `;
 
+//update form component
 const UpdateForm = () => {
   let history = useHistory();
   const { id } = useParams();
-
+// attempted using getName to populate form with conference details feeding in id
+// problem is calling the axios request multiple times when its already been called in conference details
+//need to get conference data from conference details to keep code running efficiently 
   const [conference, setConference] = useState({
     name: getConferenceById(id).getName,
     dateTime: getConferenceById(id).getdateTime,
@@ -45,12 +49,12 @@ const UpdateForm = () => {
     description: getConferenceById(id).getDescription,
     topic: getConferenceById(id).getTopic
   });
-
+// handle change might function but needs to be checked
   const handleChange = event => {
     const value = event.target.value;
     setConference({ ...conference, [event.target.name]: value });
   };
-
+  //submit form button does not function
   const submitForm = async () => {
     const newConference = {
       ...conference,
@@ -58,11 +62,12 @@ const UpdateForm = () => {
     };
     try {
       await updateConferenceById(newConference);
-      history.push("/");
+      history.push(`/${id}`); //to take user back to conference details page
     } catch (error) {
       console.log(error);
     }
   };
+  //form technicallly functions however does not pre-populate with conference details
   return (
     <StyledConferenceForm>
     <StyledCard>
