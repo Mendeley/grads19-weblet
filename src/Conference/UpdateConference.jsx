@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Input from "./Input";
+import Input from "../Input";
 import styled from "styled-components";
 import { useHistory, useParams } from "react-router-dom";
-import { updateConferenceById, getConferenceById } from "./api";
+import { updateConferenceById, getConferenceById } from "../api";
 
 const StyledConferenceForm = styled.div`
   height: 400px;

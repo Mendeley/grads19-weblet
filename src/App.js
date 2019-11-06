@@ -6,7 +6,7 @@ import ConferenceList from "./Conference/ConferenceList";
 import AddConference from "./Conference/AddConference";
 import Navbar from "./Navbar";
 import { BrowserRouter } from "react-router-dom";
-import UpdateConference from "./UpdateConference";
+import UpdateConference from "./Conference/UpdateConference";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
