@@ -45,3 +45,13 @@ export const deleteConferenceById = async id => {
     throw error;
   }
 };
+
+export const updateConferenceById = async ( id , conference ) => {
+  try {
+    const response = await axios.patch(`http://localhost:8080/conferences/${id}`, conference);
+    return response.status;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
