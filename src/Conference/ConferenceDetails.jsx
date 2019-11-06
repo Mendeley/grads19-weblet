@@ -44,7 +44,7 @@ const ConferenceDetails = () => {
   const [errorCaught, setErrorCaught] = useState(false);
   const { id } = useParams();
 
-  const fetchData = async (conferenceId) => {
+  const fetchData = async conferenceId => {
     setIsLoading(true);
 
     try {
@@ -82,7 +82,7 @@ const ConferenceDetails = () => {
         <p>{getTimestring(date)}</p>
         <p>{city}</p>
         <p>{description}</p>
-        <StyledLink to={`/${id}/edit`}>Edit Conference</StyledLink>       
+        <StyledLink to={`/${id}/edit`}>Edit Conference</StyledLink>
       </StyledDetailsCard>
     </StyledConferenceDetails>
   );

@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Input from "./Input";
 import styled from "styled-components";
 import { useHistory, useParams } from "react-router-dom";
 import { updateConferenceById, getConferenceById } from "./api";
 
-//styling 
 const StyledConferenceForm = styled.div`
   height: 400px;
   padding: 20px;
@@ -35,102 +34,121 @@ const StyledCard = styled.div`
   margin: 0 auto;
 `;
 
-//update form component
 const UpdateForm = () => {
   let history = useHistory();
   const { id } = useParams();
-// attempted using getName to populate form with conference details feeding in id
-// problem is calling the axios request multiple times when its already been called in conference details
-//need to get conference data from conference details to keep code running efficiently 
+
   const [conference, setConference] = useState({
-    name: getConferenceById(id).getName,
-    dateTime: getConferenceById(id).getdateTime,
-    city: getConferenceById(id).getCity,
-    description: getConferenceById(id).getDescription,
-    topic: getConferenceById(id).getTopic
+    name: "",
+    dateTime: "",
+    city: "",
+    description: "",
+    topic: ""
   });
-// handle change might function but needs to be checked
-  const handleChange = event => {
-    const value = event.target.value;
-    setConference({ ...conference, [event.target.name]: value });
-  };
-  //submit form button does not function
-  const submitForm = async () => {
-    const newConference = {
-      ...conference,
-      dateTime: conference.dateTime + ":00Z"
-    };
+
+  const fetchData = async conferenceId => {
     try {
-      await updateConferenceById(newConference);
-      history.push(`/${id}`); //to take user back to conference details page
+      const response = await getConferenceById(conferenceId);
+      console.log(response);
+      setConference({
+        name: response.name,
+        dateTime: response.dateTime.substring(0, response.dateTime.length - 1),
+        city: response.city,
+        description: response.description,
+        topic: response.topic
+      });
     } catch (error) {
       console.log(error);
     }
   };
-  //form technicallly functions however does not pre-populate with conference details
+
+  useEffect(() => {
+    if (id) {
+      fetchData(id);
+    }
+  }, [id]);
+
+  const handleChange = event => {
+    const value = event.target.value;
+    setConference({ ...conference, [event.target.name]: value });
+  };
+
+  const submitForm = async () => {
+    const newConference = {
+      ...conference,
+      dateTime: conference.dateTime + "Z"
+    };
+    try {
+      await updateConferenceById(id, newConference);
+      history.push(`/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <StyledConferenceForm>
-    <StyledCard>
-      <StyledCardHeading>Edit a conference:</StyledCardHeading>
+      <StyledCard>
+        <StyledCardHeading>Edit a conference:</StyledCardHeading>
         <form
-          onSubmit={ ev => {
-        ev.preventDefault();
-        submitForm();
-        }}
+          onSubmit={ev => {
+            ev.preventDefault();
+            submitForm();
+          }}
         >
           <Input
-      label="Conference Name: "
-      type="text"
-      name="name"
-      value={conference.name}
-      onChange={handleChange}
-      required
-      maxLength="80"
-    />
-    <br />
-    <Input
-      label="Date and Time: "
-      type="datetime-local"
+            label="Conference Name: "
+            type="text"
+            name="name"
+            value={conference.name}
+            onChange={handleChange}
+            required
+            maxLength="80"
+          />
+          <br />
+          <Input
+            label="Date and Time: "
+            type="datetime-local"
             name="dateTime"
             value={conference.dateTime}
-        onChange={handleChange}
-      required
-    />
-    <br />
-    <Input
-      label="City: "
-      type="text"
+            onChange={handleChange}
+            required
+          />
+          <br />
+          <Input
+            label="City: "
+            type="text"
             name="city"
             value={conference.city}
             onChange={handleChange}
-      required
-      maxLength="50"
-    />
-    <br />
-    <Input
-      label="Description: "
-      type="text"
+            required
+            maxLength="50"
+          />
+          <br />
+          <Input
+            label="Description: "
+            type="text"
             name="description"
             value={conference.description}
             onChange={handleChange}
-      required
-      maxLength="1000"
-    />
-    <br />
-    <Input
-      label="Topic: "
-      type="text"
+            required
+            maxLength="1000"
+          />
+          <br />
+          <Input
+            label="Topic: "
+            type="text"
             name="topic"
             value={conference.topic}
             onChange={handleChange}
-      required
-      maxLength="20"
-    />
-    <br />
-          <Input type="submit" value="submit" />
-    </form>
-    </StyledCard>
-    </StyledConferenceForm>  
+            required
+            maxLength="20"
+          />
+          <br />
+          <Input type="submit" value="save" />
+        </form>
+      </StyledCard>
+    </StyledConferenceForm>
   );
 };
 export default UpdateForm;
