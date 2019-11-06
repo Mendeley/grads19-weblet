@@ -24,7 +24,9 @@ export const getConferenceById = async id => {
 export const createNewConference = async conference => {
   try {
     const response = await axios.post(
-      "http://localhost:8080/conferences",conference);
+      "http://localhost:8080/conferences",
+      conference
+    );
     return response.status;
   } catch (error) {
     console.log(error);
@@ -46,12 +48,17 @@ export const deleteConferenceById = async id => {
   }
 };
 
-export const updateConferenceById = async ( id , conference ) => {
+export const updateConferenceById = async (id, conference) => {
   try {
-    const response = await axios.patch(`http://localhost:8080/conferences/${id}`, conference);
+    const response = await axios.patch(
+      `http://localhost:8080/conferences/${id}`,
+      conference
+    );
+    toast.success("Conference details have been updated.");
     return response.status;
   } catch (error) {
+    toast.error("Conference details have not been updated.");
     console.log(error);
     throw error;
   }
- };
+};

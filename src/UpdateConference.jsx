@@ -49,7 +49,6 @@ const UpdateForm = () => {
   const fetchData = async conferenceId => {
     try {
       const response = await getConferenceById(conferenceId);
-      console.log(response);
       setConference({
         name: response.name,
         dateTime: response.dateTime.substring(0, response.dateTime.length - 1),
