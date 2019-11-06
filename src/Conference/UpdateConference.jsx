@@ -68,14 +68,14 @@ const UpdateForm = () => {
   }, [id]);
 
   const handleChange = event => {
-    const value = event.target.value;
-    setConference({ ...conference, [event.target.name]: value });
+    const { name, value } = event.target;
+    setConference({ ...conference, [name]: value });
   };
 
   const submitForm = async () => {
     const newConference = {
       ...conference,
-      dateTime: conference.dateTime + "Z"
+      dateTime: `${conference.dateTime}Z`
     };
     try {
       await updateConferenceById(id, newConference);
