@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Input from "../Input";
 import styled from "styled-components";
-import { useHistory, useParams } from "react-router-dom";
-import { updateConferenceById, getConferenceById } from "../api";
+import { useHistory } from "react-router-dom";
+import { updateConferenceById } from "../api";
 
 const StyledConferenceForm = styled.div`
   height: 400px;
@@ -34,51 +34,27 @@ const StyledCard = styled.div`
   margin: 0 auto;
 `;
 
-const UpdateForm = () => {
+const UpdateForm = ({
+  updatedConference,
+  id,
+  setConference,
+  setUpdatedConference
+}) => {
   let history = useHistory();
-  const { id } = useParams();
-
-  const [conference, setConference] = useState({
-    name: "",
-    dateTime: "",
-    city: "",
-    description: "",
-    topic: ""
-  });
-
-  const fetchData = async conferenceId => {
-    try {
-      const response = await getConferenceById(conferenceId);
-      setConference({
-        name: response.name,
-        dateTime: response.dateTime.substring(0, response.dateTime.length - 1),
-        city: response.city,
-        description: response.description,
-        topic: response.topic
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    if (id) {
-      fetchData(id);
-    }
-  }, [id]);
 
   const handleChange = event => {
     const { name, value } = event.target;
-    setConference({ ...conference, [name]: value });
+    setUpdatedConference({ ...updatedConference, [name]: value });
   };
 
   const submitForm = async () => {
     const newConference = {
-      ...conference,
-      dateTime: `${conference.dateTime}Z`
+      ...updatedConference,
+      dateTime: `${updatedConference.dateTime}Z`
     };
     try {
       await updateConferenceById(id, newConference);
+      setConference(newConference);
       history.push(`/${id}`);
     } catch (error) {
       console.log(error);
@@ -99,7 +75,7 @@ const UpdateForm = () => {
             label="Conference Name: "
             type="text"
             name="name"
-            value={conference.name}
+            value={updatedConference.name}
             onChange={handleChange}
             required
             maxLength="80"
@@ -109,7 +85,7 @@ const UpdateForm = () => {
             label="Date and Time: "
             type="datetime-local"
             name="dateTime"
-            value={conference.dateTime}
+            value={updatedConference.dateTime}
             onChange={handleChange}
             required
           />
@@ -118,7 +94,7 @@ const UpdateForm = () => {
             label="City: "
             type="text"
             name="city"
-            value={conference.city}
+            value={updatedConference.city}
             onChange={handleChange}
             required
             maxLength="50"
@@ -128,7 +104,7 @@ const UpdateForm = () => {
             label="Description: "
             type="text"
             name="description"
-            value={conference.description}
+            value={updatedConference.description}
             onChange={handleChange}
             required
             maxLength="1000"
@@ -138,7 +114,7 @@ const UpdateForm = () => {
             label="Topic: "
             type="text"
             name="topic"
-            value={conference.topic}
+            value={updatedConference.topic}
             onChange={handleChange}
             required
             maxLength="20"

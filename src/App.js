@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { Switch, Route } from "react-router-dom";
-import ConferenceDetails from "./Conference/ConferenceDetails";
+import ConferenceCall from "./Conference/ConferenceCall";
 import ConferenceList from "./Conference/ConferenceList";
 import AddConference from "./Conference/AddConference";
 import Navbar from "./Navbar";
 import { BrowserRouter } from "react-router-dom";
-import UpdateConference from "./Conference/UpdateConference";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -29,11 +28,8 @@ function App() {
           <Route path="/add">
             <AddConference />
           </Route>
-          <Route exact path="/:id/edit">
-            <UpdateConference />
-          </Route>
           <Route path="/:id">
-            <ConferenceDetails />
+            <ConferenceCall />
           </Route>
         </Switch>
       </StyledApp>

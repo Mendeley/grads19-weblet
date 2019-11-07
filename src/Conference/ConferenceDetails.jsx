@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { getTimestring, getDatestring } from "../utils";
-import { getConferenceById, deleteConferenceById } from "../api.js";
+import { deleteConferenceById } from "../api.js";
 import Button from "../Button";
 
 const StyledConferenceDetails = styled.div`
@@ -39,30 +39,8 @@ export const StyledLink = styled(Link)`
   color: #7a517d;
 `;
 
-const ConferenceDetails = () => {
+const ConferenceDetails = ({ conference, id, isLoading, errorCaught }) => {
   let history = useHistory();
-  const [isLoading, setIsLoading] = useState(true);
-  const [conference, setConference] = useState(null);
-  const [errorCaught, setErrorCaught] = useState(false);
-  const { id } = useParams();
-
-  const fetchData = async conferenceId => {
-    setIsLoading(true);
-
-    try {
-      const conference = await getConferenceById(conferenceId);
-      setConference(conference);
-    } catch (error) {
-      setErrorCaught(true);
-    }
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    if (id) {
-      fetchData(id);
-    }
-  }, [id]);
 
   if (isLoading) {
     return <p>Loading...</p>;
