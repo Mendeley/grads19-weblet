@@ -27,11 +27,11 @@ const StyledCard = styled.div`
   width: 65%;
   height: 370px;
   transition: 0.3s;
+  vertical-align: middle;
+  margin: 0 auto;
   :hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
-  vertical-align: middle;
-  margin: 0 auto;
 `;
 
 const UpdateForm = ({
@@ -80,7 +80,6 @@ const UpdateForm = ({
             required
             maxLength="80"
           />
-          <br />
           <Input
             label="Date and Time: "
             type="datetime-local"
@@ -89,7 +88,6 @@ const UpdateForm = ({
             onChange={handleChange}
             required
           />
-          <br />
           <Input
             label="City: "
             type="text"
@@ -99,7 +97,6 @@ const UpdateForm = ({
             required
             maxLength="50"
           />
-          <br />
           <Input
             label="Description: "
             type="text"
@@ -109,7 +106,6 @@ const UpdateForm = ({
             required
             maxLength="1000"
           />
-          <br />
           <Input
             label="Topic: "
             type="text"
@@ -119,7 +115,6 @@ const UpdateForm = ({
             required
             maxLength="20"
           />
-          <br />
           <Input type="submit" value="save" />
         </form>
       </StyledCard>
