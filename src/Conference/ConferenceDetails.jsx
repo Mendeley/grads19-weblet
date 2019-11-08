@@ -40,7 +40,7 @@ export const StyledLink = styled(Link)`
 `;
 
 const ConferenceDetails = ({ conference, id, isLoading, errorCaught }) => {
-  let history = useHistory();
+  const history = useHistory();
 
   if (isLoading) {
     return <p>Loading...</p>;

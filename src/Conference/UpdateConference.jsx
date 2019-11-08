@@ -40,7 +40,7 @@ const UpdateForm = ({
   setConference,
   setUpdatedConference
 }) => {
-  let history = useHistory();
+  const history = useHistory();
 
   const handleChange = event => {
     const { name, value } = event.target;
