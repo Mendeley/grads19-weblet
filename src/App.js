@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Switch, Route } from "react-router-dom";
-import ConferenceCall from "./Conference/ConferenceCall";
+import ConferenceContainer from "./Conference/ConferenceContainer";
 import ConferenceList from "./Conference/ConferenceList";
 import AddConference from "./Conference/AddConference";
 import Navbar from "./Navbar";
@@ -29,7 +29,7 @@ function App() {
             <AddConference />
           </Route>
           <Route path="/:id">
-            <ConferenceCall />
+            <ConferenceContainer />
           </Route>
         </Switch>
       </StyledApp>

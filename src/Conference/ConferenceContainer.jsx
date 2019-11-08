@@ -4,7 +4,7 @@ import ConferenceDetails from "./ConferenceDetails";
 import UpdateConference from "./UpdateConference";
 import { getConferenceById } from "../api.js";
 
-const ConferenceCall = () => {
+const ConferenceContainer = () => {
   const [conference, setConference] = useState(null);
   const [updatedConference, setUpdatedConference] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -61,4 +61,4 @@ const ConferenceCall = () => {
   );
 };
 
-export default ConferenceCall;
+export default ConferenceContainer;
