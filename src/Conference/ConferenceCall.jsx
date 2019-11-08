@@ -21,7 +21,7 @@ const ConferenceCall = () => {
         name: conference.name,
         dateTime: conference.dateTime.substring(
           0,
-          conference.dateTime.length - 1
+          conference.dateTime.length - 4
         ),
         city: conference.city,
         description: conference.description,

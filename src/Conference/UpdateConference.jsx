@@ -50,7 +50,7 @@ const UpdateForm = ({
   const submitForm = async () => {
     const newConference = {
       ...updatedConference,
-      dateTime: `${updatedConference.dateTime}Z`
+      dateTime: `${updatedConference.dateTime}:00Z`
     };
     try {
       await updateConferenceById(id, newConference);
