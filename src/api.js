@@ -24,7 +24,9 @@ export const getConferenceById = async id => {
 export const createNewConference = async conference => {
   try {
     const response = await axios.post(
-      "http://localhost:8080/conferences",conference);
+      "http://localhost:8080/conferences",
+      conference
+    );
     return response.status;
   } catch (error) {
     console.log(error);
@@ -41,6 +43,16 @@ export const deleteConferenceById = async id => {
     return response.status;
   } catch (error) {
     toast.error("Conference not deleted!");
+    console.log(error);
+    throw error;
+  }
+};
+
+export const createNewUser = async user => {
+  try {
+    const response = await axios.post("http://localhost:8080/users", user);
+    return response.status;
+  } catch (error) {
     console.log(error);
     throw error;
   }

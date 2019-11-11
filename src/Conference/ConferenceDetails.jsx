@@ -90,7 +90,9 @@ const ConferenceDetails = () => {
   return (
     <StyledConferenceDetails>
       <StyledDetailsCard>
-        <StyledDetailsCardHeading className="name">{name}</StyledDetailsCardHeading>
+        <StyledDetailsCardHeading className="name">
+          {name}
+        </StyledDetailsCardHeading>
         <p className="topic">{topic}</p>
         <p className="date">{getDatestring(date)}</p>
         <p className="time">{getTimestring(date)}</p>
