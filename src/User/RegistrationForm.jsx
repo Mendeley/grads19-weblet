@@ -85,6 +85,8 @@ const RegistrationForm = () => {
             label="Username: "
             type="text"
             name="username"
+            pattern="^[a-zA-Z0-9]*$"
+            title="Must not contain any spaces."
             value={user.username}
             onChange={handleChange}
             required
@@ -94,6 +96,8 @@ const RegistrationForm = () => {
             label="Password: "
             type="password"
             name="password"
+            pattern="((?=.*[a-z])(?=.*[0-9])(?=.*[!?\\#@^&£$*+;:~])(?=.*[A-Z]).{8,16})"
+            title="Must contain at least one number, one uppercase and lowercase letter, one special character and have between 8 and 16 characters."
             value={user.password}
             onChange={handleChange}
             required
