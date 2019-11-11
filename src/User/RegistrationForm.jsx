@@ -1,39 +1,12 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import Input from "../Input";
 import { createNewUser } from "../api";
-
-const StyledUserForm = styled.div`
-  height: 400px;
-  padding: 20px;
-`;
-
-const StyledCardHeading = styled.h3`
-  background: #dbd8db;
-  width: 100%;
-  height: 55px;
-  font-size: 30px;
-  font-weight: bold;
-  text-align: center;
-  vertical-align: middle;
-  text-transform: uppercase;
-`;
-
-const StyledCard = styled.div`
-  border-style: solid;
-  border-color: black;
-  border-radius: 25px;
-  background: #dbd8db;
-  width: 65%;
-  height: 370px;
-  transition: 0.3s;
-  vertical-align: middle;
-  margin: 0 auto;
-  :hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  }
-`;
+import {
+  StyledCardHeading,
+  StyledForm,
+  StyledCard
+} from "../StyledFormComponents";
 
 const RegistrationForm = () => {
   let history = useHistory();
@@ -68,7 +41,7 @@ const RegistrationForm = () => {
     submitForm();
   };
   return (
-    <StyledUserForm>
+    <StyledForm>
       <StyledCard>
         <StyledCardHeading>add a new user:</StyledCardHeading>
         <form onSubmit={onSubmit}>
@@ -129,7 +102,7 @@ const RegistrationForm = () => {
           <Input type="submit" value="submit" />
         </form>
       </StyledCard>
-    </StyledUserForm>
+    </StyledForm>
   );
 };
 
