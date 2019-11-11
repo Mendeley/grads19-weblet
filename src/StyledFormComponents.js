@@ -22,7 +22,7 @@ const StyledCard = styled.div`
   border-radius: 25px;
   background: #dbd8db;
   width: 65%;
-  height: 370px;
+  height: 450px;
   transition: 0.3s;
   :hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
