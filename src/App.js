@@ -8,6 +8,7 @@ import Navbar from "./Navbar";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import RegistrationForm from "./User/RegistrationForm";
 
 const StyledApp = styled.div`
   text-align: center;
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route path="/add">
             <AddConference />
+          </Route>
+          <Route path="/users">
+            <RegistrationForm />
           </Route>
           <Route path="/:id">
             <ConferenceContainer />

@@ -58,6 +58,13 @@ export const updateConferenceById = async (id, conference) => {
     return response.status;
   } catch (error) {
     toast.error("Conference details have not been updated.");
+  }
+};
+export const createNewUser = async user => {
+  try {
+    const response = await axios.post("http://localhost:8080/users", user);
+    return response.status;
+  } catch (error) {
     console.log(error);
     throw error;
   }
