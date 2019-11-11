@@ -47,7 +47,6 @@ const Form = () => {
         required
         maxLength="80"
       />
-      <br />
       <Input
         label="Date and Time: "
         type="datetime-local"
@@ -56,7 +55,6 @@ const Form = () => {
         onChange={handleChange}
         required
       />
-      <br />
       <Input
         label="City: "
         type="text"
@@ -66,7 +64,6 @@ const Form = () => {
         required
         maxLength="50"
       />
-      <br />
       <Input
         label="Description: "
         type="text"
@@ -76,7 +73,6 @@ const Form = () => {
         required
         maxLength="1000"
       />
-      <br />
       <Input
         label="Topic: "
         type="text"
@@ -86,7 +82,6 @@ const Form = () => {
         required
         maxLength="20"
       />
-      <br />
       <Input type="submit" value="submit" />
     </form>
   );

@@ -37,7 +37,7 @@ const AddConference = () => {
   return (
     <StyledConferenceForm>
       <StyledCard>
-        <StyledCardHeading>add a new conference:</StyledCardHeading>
+        <StyledCardHeading>Add a new conference:</StyledCardHeading>
         <Form />
       </StyledCard>
     </StyledConferenceForm>
