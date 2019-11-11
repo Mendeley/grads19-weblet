@@ -29,7 +29,7 @@ function App() {
           <Route path="/add">
             <AddConference />
           </Route>
-          <Route path="/users">
+          <Route path="/users/register">
             <RegistrationForm />
           </Route>
           <Route path="/:id">

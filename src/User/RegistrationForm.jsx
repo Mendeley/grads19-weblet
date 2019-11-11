@@ -28,11 +28,11 @@ const StyledCard = styled.div`
   width: 65%;
   height: 370px;
   transition: 0.3s;
+  vertical-align: middle;
+  margin: 0 auto;
   :hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
-  vertical-align: middle;
-  margin: 0 auto;
 `;
 
 const RegistrationForm = () => {
@@ -63,17 +63,15 @@ const RegistrationForm = () => {
       console.log(error);
     }
   };
-
+  const onSubmit = ev => {
+    ev.preventDefault();
+    submitForm();
+  };
   return (
     <StyledUserForm>
       <StyledCard>
         <StyledCardHeading>add a new user:</StyledCardHeading>
-        <form
-          onSubmit={ev => {
-            ev.preventDefault();
-            submitForm();
-          }}
-        >
+        <form onSubmit={onSubmit}>
           <Input
             label="First Name: "
             type="text"
@@ -121,7 +119,7 @@ const RegistrationForm = () => {
           />
           <Input
             label="Password: "
-            type="text"
+            type="password"
             name="password"
             value={user.password}
             onChange={handleChange}

@@ -54,17 +54,21 @@ export const updateConferenceById = async (id, conference) => {
       `http://localhost:8080/conferences/${id}`,
       conference
     );
-    toast.success("Conference details have been updated.");
+    toast.success("Conference details have been updated!");
     return response.status;
   } catch (error) {
-    toast.error("Conference details have not been updated.");
+    toast.error("Conference details have not been updated!");
+    console.log(error);
+    throw error;
   }
 };
 export const createNewUser = async user => {
   try {
     const response = await axios.post("http://localhost:8080/users", user);
+    toast.success("User successfully registered!");
     return response.status;
   } catch (error) {
+    toast.error("User registration failed!");
     console.log(error);
     throw error;
   }
