@@ -48,7 +48,6 @@ export const deleteConferenceById = async id => {
   }
 };
 
-<<<<<<< HEAD
 export const updateConferenceById = async (id, conference) => {
   try {
     const response = await axios.patch(
@@ -61,8 +60,6 @@ export const updateConferenceById = async (id, conference) => {
     toast.error("Conference details have not been updated.");
   }
 };
-=======
->>>>>>> 07c7a84632adcd4af1476651472b72dc2d115524
 export const createNewUser = async user => {
   try {
     const response = await axios.post("http://localhost:8080/users", user);
