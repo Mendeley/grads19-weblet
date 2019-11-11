@@ -4,36 +4,11 @@ import { Link, useHistory } from "react-router-dom";
 import { getTimestring, getDatestring } from "../utils";
 import { deleteConferenceById } from "../api.js";
 import Button from "../Button";
-
-const StyledConferenceDetails = styled.div`
-  height: 400px;
-  padding: 20px;
-`;
-
-const StyledDetailsCardHeading = styled.h3`
-  background: #dbd8db;
-  width: 100%;
-  height: 55px;
-  font-size: 30px;
-  font-weight: bold;
-  text-align: center;
-  vertical-align: middle;
-`;
-
-const StyledDetailsCard = styled.div`
-  border-style: solid;
-  border-color: black;
-  border-radius: 25px;
-  background: #dbd8db;
-  width: 65%;
-  height: 370px;
-  transition: 0.3s;
-  :hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  }
-  vertical-align: middle;
-  margin: 0 auto;
-`;
+import {
+  StyledCardHeading,
+  StyledForm,
+  StyledCard
+} from "../StyledFormComponents";
 
 export const StyledLink = styled(Link)`
   color: #7a517d;
@@ -66,11 +41,9 @@ const ConferenceDetails = ({ conference, id, isLoading, errorCaught }) => {
   };
 
   return (
-    <StyledConferenceDetails>
-      <StyledDetailsCard>
-        <StyledDetailsCardHeading className="name">
-          {name}
-        </StyledDetailsCardHeading>
+    <StyledForm>
+      <StyledCard>
+        <StyledCardHeading className="name">{name}</StyledCardHeading>
         <p className="topic">{topic}</p>
         <p className="date">{getDatestring(date)}</p>
         <p className="time">{getTimestring(date)}</p>
@@ -79,8 +52,8 @@ const ConferenceDetails = ({ conference, id, isLoading, errorCaught }) => {
         <StyledLink to={`/${id}/edit`}>Edit Conference</StyledLink>
         <br />
         <Button onClick={deleteThisConference}>Delete Conference</Button>
-      </StyledDetailsCard>
-    </StyledConferenceDetails>
+      </StyledCard>
+    </StyledForm>
   );
 };
 export default ConferenceDetails;

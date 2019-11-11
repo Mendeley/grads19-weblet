@@ -1,38 +1,12 @@
 import React from "react";
 import Input from "../Input";
-import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { updateConferenceById } from "../api";
-
-const StyledConferenceForm = styled.div`
-  height: 400px;
-  padding: 20px;
-`;
-
-const StyledCardHeading = styled.h3`
-  background: #dbd8db;
-  width: 100%;
-  height: 55px;
-  font-size: 30px;
-  font-weight: bold;
-  text-align: center;
-  vertical-align: middle;
-`;
-
-const StyledCard = styled.div`
-  border-style: solid;
-  border-color: black;
-  border-radius: 25px;
-  background: #dbd8db;
-  width: 65%;
-  height: 370px;
-  transition: 0.3s;
-  vertical-align: middle;
-  margin: 0 auto;
-  :hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  }
-`;
+import {
+  StyledCardHeading,
+  StyledForm,
+  StyledCard
+} from "../StyledFormComponents";
 
 const UpdateForm = ({
   updatedConference,
@@ -62,7 +36,7 @@ const UpdateForm = ({
   };
 
   return (
-    <StyledConferenceForm>
+    <StyledForm>
       <StyledCard>
         <StyledCardHeading>Edit a conference:</StyledCardHeading>
         <form
@@ -118,7 +92,7 @@ const UpdateForm = ({
           <Input type="submit" value="save" />
         </form>
       </StyledCard>
-    </StyledConferenceForm>
+    </StyledForm>
   );
 };
 export default UpdateForm;
