@@ -9,6 +9,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RegistrationForm from "./User/RegistrationForm";
+import LoginForm from "./User/LoginForm";
 
 const StyledApp = styled.div`
   text-align: center;
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path="/users/register">
             <RegistrationForm />
+          </Route>
+          <Route path="/users/login">
+            <LoginForm />
           </Route>
           <Route path="/:id">
             <ConferenceContainer />

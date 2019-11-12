@@ -73,3 +73,14 @@ export const createNewUser = async user => {
     throw error;
   }
 };
+export const loginUser = async user => {
+  try {
+    const response = await axios.post("http://localhost:8080/auth/login", user);
+    toast.success("Login successful!");
+    return response.data.___;
+  } catch (error) {
+    toast.error("Login failed!");
+    console.log(error);
+    throw error;
+  }
+};

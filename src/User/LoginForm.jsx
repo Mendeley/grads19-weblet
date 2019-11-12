@@ -1,20 +1,22 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import styled from "styled-components";
+import { useHistory, Link } from "react-router-dom";
 import Input from "../Input";
-import { createNewUser } from "../api";
+import { loginUser } from "../api";
 import {
   StyledCardHeading,
   StyledForm,
   StyledCard
 } from "../StyledFormComponents";
 
-const RegistrationForm = () => {
+export const StyledLink = styled(Link)`
+  color: #7a517d;
+  padding: 10px;
+`;
+
+const LoginForm = () => {
   let history = useHistory();
   const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    occupation: "",
     username: "",
     password: ""
   });
@@ -30,7 +32,7 @@ const RegistrationForm = () => {
     };
 
     try {
-      await createNewUser(newUser);
+      await loginUser(newUser);
       history.push("/");
     } catch (error) {
       console.log(error);
@@ -43,44 +45,9 @@ const RegistrationForm = () => {
   return (
     <StyledForm>
       <StyledCard>
-        <StyledCardHeading>add a new user:</StyledCardHeading>
+        <StyledCardHeading>Login here:</StyledCardHeading>
+        <StyledLink to={`/users/register`}>Register New User</StyledLink>
         <form onSubmit={onSubmit}>
-          <Input
-            label="First Name: "
-            type="text"
-            name="firstName"
-            value={user.firstName}
-            onChange={handleChange}
-            required
-            maxLength="100"
-          />
-          <Input
-            label="Surname: "
-            type="text"
-            name="lastName"
-            value={user.lastName}
-            onChange={handleChange}
-            required
-            maxLength="100"
-          />
-          <Input
-            label="Email Address: "
-            type="email"
-            name="email"
-            value={user.email}
-            onChange={handleChange}
-            required
-            maxLength="100"
-          />
-          <Input
-            label="Occupation: "
-            type="text"
-            name="occupation"
-            value={user.occupation}
-            onChange={handleChange}
-            required
-            maxLength="100"
-          />
           <Input
             label="Username: "
             type="text"
@@ -106,4 +73,4 @@ const RegistrationForm = () => {
   );
 };
 
-export default RegistrationForm;
+export default LoginForm;
