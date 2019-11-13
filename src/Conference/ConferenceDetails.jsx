@@ -14,6 +14,12 @@ export const StyledLink = styled(Link)`
   color: #7a517d;
 `;
 
+export const StyledDescription = styled.p`
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 50px;
+`;
+
 const ConferenceDetails = ({ conference, id, isLoading, errorCaught }) => {
   const history = useHistory();
 
@@ -44,13 +50,14 @@ const ConferenceDetails = ({ conference, id, isLoading, errorCaught }) => {
     <StyledForm>
       <StyledCard>
         <StyledCardHeading className="name">{name}</StyledCardHeading>
+        <StyledLink to={`/${id}/edit`}>Edit Conference</StyledLink>
         <p className="topic">{topic}</p>
         <p className="date">{getDatestring(date)}</p>
         <p className="time">{getTimestring(date)}</p>
         <p className="city">{city}</p>
-        <p className="description">{description}</p>
-        <StyledLink to={`/${id}/edit`}>Edit Conference</StyledLink>
-        <br />
+        <StyledDescription className="description">
+          {description}
+        </StyledDescription>
         <Button onClick={deleteThisConference}>Delete Conference</Button>
       </StyledCard>
     </StyledForm>
