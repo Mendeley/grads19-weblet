@@ -67,7 +67,7 @@ const RegistrationForm = () => {
             label="Email Address: "
             type="email"
             name="email"
-            pattern="[a-zA-Z0-9\.]+@[a-zA-Z0-9]+\.[\.A-Za-z]{1,10}"
+            pattern="[a-zA-Z0-9\.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[\.A-Za-z]{1,10}"
             title="Enter a valid email address such as example@email.com."
             value={user.email}
             onChange={handleChange}
