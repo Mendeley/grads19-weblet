@@ -67,6 +67,8 @@ const RegistrationForm = () => {
             label="Email Address: "
             type="email"
             name="email"
+            pattern="[a-zA-Z0-9\.]+@[a-zA-Z0-9]+\.[\.A-Za-z]{1,10}"
+            title="Enter a valid email address such as example@email.com."
             value={user.email}
             onChange={handleChange}
             required
@@ -85,6 +87,8 @@ const RegistrationForm = () => {
             label="Username: "
             type="text"
             name="username"
+            pattern="[a-zA-Z0-9]*"
+            title="Must not contain any spaces or special characters."
             value={user.username}
             onChange={handleChange}
             required
@@ -94,6 +98,8 @@ const RegistrationForm = () => {
             label="Password: "
             type="password"
             name="password"
+            pattern="((?=.*[a-z])(?=.*[0-9])(?=.*[!?\\#@^&£$*+;:~])(?=.*[A-Z]).{8,16})"
+            title="Must contain at least one number, one uppercase and lowercase letter, one special character and have between 8 and 16 characters."
             value={user.password}
             onChange={handleChange}
             required
