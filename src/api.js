@@ -77,7 +77,7 @@ export const loginUser = async user => {
   try {
     const response = await axios.post("http://localhost:8080/auth/login", user);
     toast.success("Login successful!");
-    return response.data.___;
+    return response.data;
   } catch (error) {
     toast.error("Login failed!");
     console.log(error);

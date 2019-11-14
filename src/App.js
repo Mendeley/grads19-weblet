@@ -7,6 +7,7 @@ import AddConference from "./Conference/AddConference";
 import Navbar from "./Navbar";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { CookiesProvider, useCookies } from "react-cookie";
 import "react-toastify/dist/ReactToastify.css";
 import RegistrationForm from "./User/RegistrationForm";
 import LoginForm from "./User/LoginForm";
@@ -19,30 +20,34 @@ const StyledApp = styled.div`
 `;
 
 function App() {
+  const [cookies, setCookie, removeCookie] = useCookies(["sessionToken"]);
+  console.log(cookies.sessionToken);
   return (
-    <BrowserRouter>
-      <StyledApp>
-        <Navbar />
-        <Switch>
-          <Route exact path="/">
-            <ConferenceList />
-          </Route>
-          <Route path="/add">
-            <AddConference />
-          </Route>
-          <Route path="/users/register">
-            <RegistrationForm />
-          </Route>
-          <Route path="/users/login">
-            <LoginForm />
-          </Route>
-          <Route path="/:id">
-            <ConferenceContainer />
-          </Route>
-        </Switch>
-      </StyledApp>
-      <ToastContainer position="bottom-right" autoClose={5000} pauseOnHover />
-    </BrowserRouter>
+    <CookiesProvider>
+      <BrowserRouter>
+        <StyledApp>
+          <Navbar />
+          <Switch>
+            <Route exact path="/">
+              <ConferenceList />
+            </Route>
+            <Route path="/add">
+              <AddConference />
+            </Route>
+            <Route path="/users/register">
+              <RegistrationForm />
+            </Route>
+            <Route path="/users/login">
+              <LoginForm setCookie={setCookie} cookies={cookies} />
+            </Route>
+            <Route path="/:id">
+              <ConferenceContainer />
+            </Route>
+          </Switch>
+        </StyledApp>
+        <ToastContainer position="bottom-right" autoClose={5000} pauseOnHover />
+      </BrowserRouter>
+    </CookiesProvider>
   );
 }
 
