@@ -80,6 +80,7 @@ describe("ConferenceDetails", () => {
     expect(wrapper.find(".date").length).toBe(1);
     expect(wrapper.find(".time").length).toBe(1);
     expect(wrapper.find(".city").length).toBe(1);
-    expect(wrapper.find(".description").length).toBe(1);
+    expect(wrapper.find(".description").length).toBe(2);
+    //Description is length 2 because of the Styled Component used on it
   });
 });
