@@ -12,9 +12,19 @@ const UpdateForm = ({
   updatedConference,
   id,
   setConference,
-  setUpdatedConference
+  setUpdatedConference,
+  isLoading,
+  error
 }) => {
   const history = useHistory();
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>An error has occurred...</p>;
+  }
 
   const handleChange = event => {
     const { name, value } = event.target;

@@ -14,14 +14,14 @@ export const StyledLink = styled(Link)`
   color: #7a517d;
 `;
 
-const ConferenceDetails = ({ conference, id, isLoading, errorCaught }) => {
+const ConferenceDetails = ({ conference, id, isLoading, error }) => {
   const history = useHistory();
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
-  if (errorCaught) {
+  if (error) {
     return <p>An error has occurred...</p>;
   }
 

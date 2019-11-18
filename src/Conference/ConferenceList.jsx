@@ -15,7 +15,7 @@ const StyledConferenceList = styled.ul`
 const ConferenceList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [conferences, setConferences] = useState([]);
-  const [errorCaught, setErrorCaught] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -25,7 +25,7 @@ const ConferenceList = () => {
         const conferenceList = await getConferenceList();
         setConferences(conferenceList);
       } catch (error) {
-        setErrorCaught(true);
+        setError(true);
       }
 
       setIsLoading(false);
@@ -41,7 +41,7 @@ const ConferenceList = () => {
         conferences.map(conference => (
           <ConferenceItem key={conference.id} conference={conference} />
         ))}
-      {errorCaught && <p>An error has occurred...</p>}
+      {error && <p>An error has occurred...</p>}
     </StyledConferenceList>
   );
 };
