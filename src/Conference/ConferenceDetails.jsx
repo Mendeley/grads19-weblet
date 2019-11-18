@@ -15,9 +15,7 @@ export const StyledLink = styled(Link)`
 `;
 
 export const StyledDescription = styled.p`
-  padding-left: 100px;
-  padding-right: 100px;
-  padding-bottom: 50px;
+  padding: 0 100px 50px 100px;
 `;
 
 const ConferenceDetails = ({ conference, id, isLoading, errorCaught }) => {
