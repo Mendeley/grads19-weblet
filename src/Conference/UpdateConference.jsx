@@ -14,7 +14,7 @@ const UpdateForm = ({
   setConference,
   setUpdatedConference,
   isLoading,
-  errorCaught
+  error
 }) => {
   const history = useHistory();
 
@@ -22,7 +22,7 @@ const UpdateForm = ({
     return <p>Loading...</p>;
   }
 
-  if (errorCaught) {
+  if (error) {
     return <p>An error has occurred...</p>;
   }
 
