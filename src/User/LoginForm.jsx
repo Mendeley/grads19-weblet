@@ -14,7 +14,7 @@ export const StyledLink = styled(Link)`
   padding: 10px;
 `;
 
-const LoginForm = ({ cookies, setCookie, removeCookie }) => {
+const LoginForm = ({ setCookie }) => {
   let history = useHistory();
   const [user, setUser] = useState({
     username: "",
@@ -32,11 +32,8 @@ const LoginForm = ({ cookies, setCookie, removeCookie }) => {
     };
 
     try {
-      //console.log(cookies.sessionToken);
       const token = await loginUser(newUser);
-      console.log(token);
       setCookie("sessionToken", token, { path: "/" });
-      //console.log(cookies.sessionToken);
       history.push("/");
     } catch (error) {
       console.log(error);
