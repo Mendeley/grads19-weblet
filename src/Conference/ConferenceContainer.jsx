@@ -47,6 +47,8 @@ const ConferenceContainer = () => {
           id={id}
           setConference={setConference}
           setUpdatedConference={setUpdatedConference}
+          isLoading={isLoading}
+          errorCaught={errorCaught}
         />
       </Route>
       <Route path="/:id">
