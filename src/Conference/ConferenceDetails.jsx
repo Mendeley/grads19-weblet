@@ -18,14 +18,14 @@ export const StyledDescription = styled.p`
   padding: 0 100px 50px 100px;
 `;
 
-const ConferenceDetails = ({ conference, id, isLoading, errorCaught }) => {
+const ConferenceDetails = ({ conference, id, isLoading, error }) => {
   const history = useHistory();
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
-  if (errorCaught) {
+  if (error) {
     return <p>An error has occurred...</p>;
   }
 

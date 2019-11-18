@@ -8,7 +8,7 @@ const ConferenceContainer = () => {
   const [conference, setConference] = useState(null);
   const [updatedConference, setUpdatedConference] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [errorCaught, setErrorCaught] = useState(false);
+  const [error, setError] = useState(false);
   const { id } = useParams();
 
   const fetchData = async conferenceId => {
@@ -28,7 +28,7 @@ const ConferenceContainer = () => {
         topic: conference.topic
       });
     } catch (error) {
-      setErrorCaught(true);
+      setError(true);
     }
     setIsLoading(false);
   };
@@ -47,6 +47,8 @@ const ConferenceContainer = () => {
           id={id}
           setConference={setConference}
           setUpdatedConference={setUpdatedConference}
+          isLoading={isLoading}
+          error={error}
         />
       </Route>
       <Route path="/:id">
@@ -54,7 +56,7 @@ const ConferenceContainer = () => {
           conference={conference}
           id={id}
           isLoading={isLoading}
-          errorCaught={errorCaught}
+          error={error}
         />
       </Route>
     </Switch>
