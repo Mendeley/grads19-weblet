@@ -21,6 +21,9 @@ const StyledApp = styled.div`
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["sessionToken"]);
+  const setToken = token => {
+    setCookie("sessionToken", token, { path: "/" });
+  };
 
   return (
     <CookiesProvider>
@@ -38,7 +41,7 @@ function App() {
               <RegistrationForm />
             </Route>
             <Route path="/users/login">
-              <LoginForm setCookie={setCookie} />
+              <LoginForm setToken={setToken} />
             </Route>
             <Route path="/:id">
               <ConferenceContainer />
