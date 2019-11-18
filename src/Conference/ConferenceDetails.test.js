@@ -3,7 +3,6 @@ import { configure, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { Router } from "react-router-dom";
 import React from "react";
-import { getConferenceById } from "../api";
 import { createMemoryHistory } from "history";
 import { act } from "react-dom/test-utils";
 
@@ -11,38 +10,11 @@ jest.mock("react-router-dom", () => {
   const originalReactRouter = jest.requireActual("react-router-dom");
   return {
     ...originalReactRouter,
-    useParams: jest.fn(() => ({ id: "1" })),
     Link: () => "hey I'm a link"
   };
 });
 
-jest.mock("../api", () => ({
-  getConferenceById: jest.fn()
-}));
-
 configure({ adapter: new Adapter() });
-
-/* This is a temporary workaround for enzyme/react bug #14769 (github.com/facebook/react/issues/14769):
-
-Enzyme throws an warning when used with useEffect hook. We're surpressing this warning as it's not informative
-and will be removed in future releases.
-*/
-const consoleError = console.error;
-beforeAll(() => {
-  jest.spyOn(console, "error").mockImplementation((...args) => {
-    if (
-      !args[0].includes(
-        "Warning: An update to %s inside a test was not wrapped in act"
-      )
-    ) {
-      consoleError(...args);
-    }
-  });
-});
-
-afterEach(() => {
-  jest.clearAllMocks();
-});
 
 describe("ConferenceDetails", () => {
   const mockData = {
@@ -61,26 +33,22 @@ describe("ConferenceDetails", () => {
     const history = createMemoryHistory();
     history.push("/1");
 
-    const apiReturnValue = Promise.resolve(mockData);
-    getConferenceById.mockImplementation(() => apiReturnValue);
-
     let wrapper;
-    await act(async () => {
+    act(() => {
       wrapper = mount(
         <Router history={history}>
-          <ConferenceDetails />
+          <ConferenceDetails conference={mockData} id="1" />
         </Router>
       );
-
-      await apiReturnValue;
     });
     wrapper.update();
-    expect(wrapper.find("h3.name").length).toBe(1);
-    expect(wrapper.find(".topic").length).toBe(1);
-    expect(wrapper.find(".date").length).toBe(1);
-    expect(wrapper.find(".time").length).toBe(1);
-    expect(wrapper.find(".city").length).toBe(1);
-    expect(wrapper.find(".description").length).toBe(2);
-    //Description is length 2 because of the Styled Component used on it
+    expect(wrapper.find(".name").get(0).props.children).toBe(mockData.name);
+    expect(wrapper.find(".topic").get(0).props.children).toBe(mockData.topic);
+    expect(wrapper.find(".date").get(0).props.children).toBe("12/11/2019");
+    expect(wrapper.find(".time").get(0).props.children).toBe("12:34");
+    expect(wrapper.find(".city").get(0).props.children).toBe(mockData.city);
+    expect(wrapper.find(".description").get(0).props.children).toBe(
+      mockData.description
+    );
   });
 });
