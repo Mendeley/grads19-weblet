@@ -27,12 +27,8 @@ const LoginForm = ({ setCookie }) => {
   };
 
   const submitForm = async () => {
-    const newUser = {
-      ...user
-    };
-
     try {
-      const token = await loginUser(newUser);
+      const token = await loginUser(user);
       setCookie("sessionToken", token, { path: "/" });
       history.push("/");
     } catch (error) {
