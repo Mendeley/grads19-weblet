@@ -17,6 +17,20 @@ exports[`Navbar renders a navbar with text 1`] = `
         Add Conference
       </Styled(Link)>
     </styled.li>
+    <styled.li>
+      <Styled(Link)
+        to="/users/register"
+      >
+        Register
+      </Styled(Link)>
+    </styled.li>
+    <styled.li>
+      <Styled(Link)
+        to="/users/login"
+      >
+        Login
+      </Styled(Link)>
+    </styled.li>
   </styled.ul>
 </styled.nav>
 `;

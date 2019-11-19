@@ -37,6 +37,9 @@ const Navbar = () => {
         <StyledListItem>
           <StyledLink to="/users/register">Register</StyledLink>
         </StyledListItem>
+        <StyledListItem>
+          <StyledLink to="/users/login">Login</StyledLink>
+        </StyledListItem>
       </StyledList>
     </StyledNavbar>
   );

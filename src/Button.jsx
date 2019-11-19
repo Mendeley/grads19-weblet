@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const StyledButton = styled.button`
   text-align: center;
-  background: lightgrey;
+  background: white;
 `;
 
 const Button = ({ children, onClick, ...props }) => {
