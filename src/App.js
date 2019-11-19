@@ -21,11 +21,13 @@ const StyledApp = styled.div`
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["sessionToken"]);
+  const cookieName = "sessionToken";
+  const cookieOptions = { path: "/" };
   const setToken = token => {
-    setCookie("sessionToken", token, { path: "/" });
+    setCookie(cookieName, token, cookieOptions);
   };
   const deleteToken = () => {
-    removeCookie("sessionToken", { path: "/" });
+    removeCookie(cookieName, cookieOptions);
   };
 
   return (
