@@ -84,3 +84,17 @@ export const loginUser = async user => {
     throw error;
   }
 };
+export const logoutUser = async token => {
+  try {
+    const response = await axios.delete(
+      "http://localhost:8080/auth/logout",
+      token
+    );
+    toast.success("Logout successful!");
+    return response.status;
+  } catch (error) {
+    toast.error("Logout failed!");
+    console.log(error);
+    throw error;
+  }
+};

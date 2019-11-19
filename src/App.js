@@ -24,12 +24,15 @@ function App() {
   const setToken = token => {
     setCookie("sessionToken", token, { path: "/" });
   };
+  const deleteToken = () => {
+    removeCookie("sessionToken", { path: "/" });
+  };
 
   return (
     <CookiesProvider>
       <BrowserRouter>
         <StyledApp>
-          <Navbar />
+          <Navbar token={cookies.sessionToken} deleteToken={deleteToken} />
           <Switch>
             <Route exact path="/">
               <ConferenceList />

@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import { getTimestring, getDatestring } from "../utils";
 import { deleteConferenceById } from "../api.js";
-import Button from "../Button";
 import {
   StyledCardHeading,
   StyledForm,
@@ -56,7 +55,7 @@ const ConferenceDetails = ({ conference, id, isLoading, error }) => {
         <StyledDescription className="description">
           {description}
         </StyledDescription>
-        <Button onClick={deleteThisConference}>Delete Conference</Button>
+        <button onClick={deleteThisConference}>Delete Conference</button>
       </StyledCard>
     </StyledForm>
   );
