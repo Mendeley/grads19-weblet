@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
+import Button from "../Button";
 import { getTimestring, getDatestring } from "../utils";
 import { deleteConferenceById } from "../api.js";
 import {
@@ -55,7 +56,7 @@ const ConferenceDetails = ({ conference, id, isLoading, error }) => {
         <StyledDescription className="description">
           {description}
         </StyledDescription>
-        <button onClick={deleteThisConference}>Delete Conference</button>
+        <Button onClick={deleteThisConference}>Delete Conference</Button>
       </StyledCard>
     </StyledForm>
   );

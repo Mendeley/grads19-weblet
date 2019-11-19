@@ -53,6 +53,7 @@ const Navbar = ({ token, deleteToken }) => {
         <StyledListItem>
           {token ? (
             <Button
+              navLink
               onClick={() => {
                 logout();
               }}
