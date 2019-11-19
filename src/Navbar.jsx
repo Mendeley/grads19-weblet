@@ -38,22 +38,6 @@ const Navbar = ({ token, deleteToken }) => {
     }
   };
 
-  const changeLoginStatus = () => {
-    if (token) {
-      return (
-        <Button
-          onClick={() => {
-            logout();
-          }}
-        >
-          Logout
-        </Button>
-      );
-    } else {
-      return <StyledLink to="/users/login">Login</StyledLink>;
-    }
-  };
-
   return (
     <StyledNavbar>
       <StyledList>
@@ -66,7 +50,19 @@ const Navbar = ({ token, deleteToken }) => {
         <StyledListItem>
           <StyledLink to="/users/register">Register</StyledLink>
         </StyledListItem>
-        <StyledListItem>{changeLoginStatus()}</StyledListItem>
+        <StyledListItem>
+          {token ? (
+            <Button
+              onClick={() => {
+                logout();
+              }}
+            >
+              Logout
+            </Button>
+          ) : (
+            <StyledLink to="/users/login">Login</StyledLink>
+          )}
+        </StyledListItem>
       </StyledList>
     </StyledNavbar>
   );
