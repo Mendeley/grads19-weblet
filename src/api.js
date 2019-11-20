@@ -84,3 +84,13 @@ export const loginUser = async user => {
     throw error;
   }
 };
+
+export const getUserById = async id => {
+  try {
+    const response = await axios.get(`http://localhost:8080/users/${id}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};

@@ -24,7 +24,7 @@ export const StyledLink = styled(Link)`
   color: white;
 `;
 
-const Navbar = () => {
+const Navbar = token => {
   return (
     <StyledNavbar>
       <StyledList>
@@ -39,6 +39,9 @@ const Navbar = () => {
         </StyledListItem>
         <StyledListItem>
           <StyledLink to="/users/login">Login</StyledLink>
+        </StyledListItem>
+        <StyledListItem>
+          <StyledLink to={`/users/${token.userId}`}>Profile</StyledLink>
         </StyledListItem>
       </StyledList>
     </StyledNavbar>

@@ -11,6 +11,7 @@ import { CookiesProvider, useCookies } from "react-cookie";
 import "react-toastify/dist/ReactToastify.css";
 import RegistrationForm from "./User/RegistrationForm";
 import LoginForm from "./User/LoginForm";
+import UserContainer from "./User/UserContainer";
 
 const StyledApp = styled.div`
   text-align: center;
@@ -29,7 +30,7 @@ function App() {
     <CookiesProvider>
       <BrowserRouter>
         <StyledApp>
-          <Navbar />
+          <Navbar token={cookies.sessionToken} />
           <Switch>
             <Route exact path="/">
               <ConferenceList />
@@ -42,6 +43,9 @@ function App() {
             </Route>
             <Route path="/users/login">
               <LoginForm setToken={setToken} />
+            </Route>
+            <Route path="/users">
+              <UserContainer />
             </Route>
             <Route path="/:id">
               <ConferenceContainer />
