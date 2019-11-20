@@ -30,7 +30,7 @@ const Navbar = ({ token, deleteToken }) => {
   const history = useHistory();
   const logout = async () => {
     try {
-      await logoutUser(token);
+      await logoutUser(token.token);
       deleteToken();
       history.push("/");
     } catch (error) {
@@ -47,26 +47,32 @@ const Navbar = ({ token, deleteToken }) => {
         <StyledListItem>
           <StyledLink to="/add">Add Conference</StyledLink>
         </StyledListItem>
-        <StyledListItem>
-          <StyledLink to="/users/register">Register</StyledLink>
-        </StyledListItem>
-        <StyledListItem>
-          {token ? (
-            <Button
-              navLink
-              onClick={() => {
-                logout();
-              }}
-            >
-              Logout
-            </Button>
-          ) : (
-            <StyledLink to="/users/login">Login</StyledLink>
-          )}
-        </StyledListItem>
-        <StyledListItem>
-          <StyledLink to={`/users/${token.userId}`}>Profile</StyledLink>
-        </StyledListItem>
+        {token ? (
+          <>
+            <StyledListItem>
+              <StyledLink to={`/users/${token.userId}`}>Profile</StyledLink>
+            </StyledListItem>
+            <StyledListItem>
+              <Button
+                navLink
+                onClick={() => {
+                  logout();
+                }}
+              >
+                Logout
+              </Button>
+            </StyledListItem>
+          </>
+        ) : (
+          <>
+            <StyledListItem>
+              <StyledLink to="/users/register">Register</StyledLink>
+            </StyledListItem>
+            <StyledListItem>
+              <StyledLink to="/users/login">Login</StyledLink>
+            </StyledListItem>
+          </>
+        )}
       </StyledList>
     </StyledNavbar>
   );

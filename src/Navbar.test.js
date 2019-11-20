@@ -23,7 +23,30 @@ afterEach(() => {
 });
 
 describe("Navbar", () => {
-  it("renders a navbar with text", () => {
+  const mockToken = {
+    userId: 1,
+    token: "3ecb9d1d-863f-4207-b076-d868e6544c3b"
+  };
+
+  it("renders a logged-in navbar with text", () => {
+    expect.assertions(1);
+
+    const history = createMemoryHistory();
+    history.push("/");
+
+    let wrapper;
+    act(() => {
+      wrapper = mount(
+        <Router history={history}>
+          <Navbar token={mockToken} />
+        </Router>
+      );
+    });
+
+    expect(wrapper.debug()).toMatchSnapshot();
+  });
+
+  it("renders a logged-out navbar with text", () => {
     expect.assertions(1);
 
     const history = createMemoryHistory();
