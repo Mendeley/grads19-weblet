@@ -1,36 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Navbar renders a navbar with text 1`] = `
-<styled.nav>
-  <styled.ul>
-    <styled.li>
-      <Styled(Link)
-        to="/"
-      >
-        Home
-      </Styled(Link)>
-    </styled.li>
-    <styled.li>
-      <Styled(Link)
-        to="/add"
-      >
-        Add Conference
-      </Styled(Link)>
-    </styled.li>
-    <styled.li>
-      <Styled(Link)
-        to="/users/register"
-      >
-        Register
-      </Styled(Link)>
-    </styled.li>
-    <styled.li>
-      <Styled(Link)
-        to="/users/login"
-      >
-        Login
-      </Styled(Link)>
-    </styled.li>
-  </styled.ul>
-</styled.nav>
+"<Router history={{...}}>
+  <Navbar>
+    <styled.nav>
+      <nav className=\\"sc-AykKD efbWzt\\">
+        <styled.ul>
+          <ul className=\\"sc-AykKE bwFPTU\\">
+            <styled.li>
+              <li className=\\"sc-AykKF btWmVE\\">
+                <Styled(Link) to=\\"/\\">
+                  <Link to=\\"/\\" className=\\"sc-AykKG jJIHsa\\">
+                    hey I&#39;m a link
+                  </Link>
+                </Styled(Link)>
+              </li>
+            </styled.li>
+            <styled.li>
+              <li className=\\"sc-AykKF btWmVE\\">
+                <Styled(Link) to=\\"/add\\">
+                  <Link to=\\"/add\\" className=\\"sc-AykKG jJIHsa\\">
+                    hey I&#39;m a link
+                  </Link>
+                </Styled(Link)>
+              </li>
+            </styled.li>
+            <styled.li>
+              <li className=\\"sc-AykKF btWmVE\\">
+                <Styled(Link) to=\\"/users/register\\">
+                  <Link to=\\"/users/register\\" className=\\"sc-AykKG jJIHsa\\">
+                    hey I&#39;m a link
+                  </Link>
+                </Styled(Link)>
+              </li>
+            </styled.li>
+            <styled.li>
+              <li className=\\"sc-AykKF btWmVE\\">
+                <Styled(Link) to=\\"/users/login\\">
+                  <Link to=\\"/users/login\\" className=\\"sc-AykKG jJIHsa\\">
+                    hey I&#39;m a link
+                  </Link>
+                </Styled(Link)>
+              </li>
+            </styled.li>
+          </ul>
+        </styled.ul>
+      </nav>
+    </styled.nav>
+  </Navbar>
+</Router>"
 `;
