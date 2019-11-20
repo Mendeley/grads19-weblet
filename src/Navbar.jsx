@@ -53,12 +53,7 @@ const Navbar = ({ token, deleteToken }) => {
               <StyledLink to={`/users/${token.userId}`}>Profile</StyledLink>
             </StyledListItem>
             <StyledListItem>
-              <Button
-                navLink
-                onClick={() => {
-                  logout();
-                }}
-              >
+              <Button navLink onClick={logout}>
                 Logout
               </Button>
             </StyledListItem>

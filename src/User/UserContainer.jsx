@@ -29,7 +29,7 @@ const UserContainer = () => {
 
   return (
     <Switch>
-      <Route path="/user/:id">
+      <Route path="/users/:id">
         <ProfilePage user={user} isLoading={isLoading} error={error} />
       </Route>
     </Switch>
