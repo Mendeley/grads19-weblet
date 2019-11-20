@@ -23,11 +23,7 @@ export const getConferenceById = async id => {
 
 export const createNewConference = async conference => {
   try {
-    const response = await axios.post(
-      "http://localhost:8080/conferences",
-      conference
-    );
-    return response.status;
+    await axios.post("http://localhost:8080/conferences", conference);
   } catch (error) {
     console.log(error);
     throw error;
@@ -36,11 +32,8 @@ export const createNewConference = async conference => {
 
 export const deleteConferenceById = async id => {
   try {
-    const response = await axios.delete(
-      `http://localhost:8080/conferences/${id}`
-    );
+    await axios.delete(`http://localhost:8080/conferences/${id}`);
     toast.success("Conference successfully deleted!");
-    return response.status;
   } catch (error) {
     toast.error("Conference not deleted!");
     console.log(error);
@@ -50,12 +43,8 @@ export const deleteConferenceById = async id => {
 
 export const updateConferenceById = async (id, conference) => {
   try {
-    const response = await axios.patch(
-      `http://localhost:8080/conferences/${id}`,
-      conference
-    );
+    await axios.patch(`http://localhost:8080/conferences/${id}`, conference);
     toast.success("Conference details have been updated!");
-    return response.status;
   } catch (error) {
     toast.error("Conference details have not been updated!");
     console.log(error);
@@ -64,9 +53,8 @@ export const updateConferenceById = async (id, conference) => {
 };
 export const createNewUser = async user => {
   try {
-    const response = await axios.post("http://localhost:8080/users", user);
+    await axios.post("http://localhost:8080/users", user);
     toast.success("User successfully registered!");
-    return response.status;
   } catch (error) {
     toast.error("User registration failed!");
     console.log(error);
@@ -86,12 +74,8 @@ export const loginUser = async user => {
 };
 export const logoutUser = async token => {
   try {
-    const response = await axios.delete(
-      "http://localhost:8080/auth/logout",
-      token
-    );
+    await axios.delete("http://localhost:8080/auth/logout", token);
     toast.success("Logout successful!");
-    return response.status;
   } catch (error) {
     toast.error("Logout failed!");
     console.log(error);
