@@ -20,9 +20,9 @@ const StyledApp = styled.div`
 `;
 
 function App() {
-  const [cookies, setCookie, removeCookie] = useCookies(["sessionToken"]);
   const cookieName = "sessionToken";
   const cookieOptions = { path: "/" };
+  const [cookies, setCookie, removeCookie] = useCookies([cookieName]);
   const setToken = token => {
     setCookie(cookieName, token, cookieOptions);
   };
