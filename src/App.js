@@ -20,16 +20,21 @@ const StyledApp = styled.div`
 `;
 
 function App() {
-  const [cookies, setCookie, removeCookie] = useCookies(["sessionToken"]);
+  const cookieName = "sessionToken";
+  const cookieOptions = { path: "/" };
+  const [cookies, setCookie, removeCookie] = useCookies([cookieName]);
   const setToken = token => {
-    setCookie("sessionToken", token, { path: "/" });
+    setCookie(cookieName, token, cookieOptions);
+  };
+  const deleteToken = () => {
+    removeCookie(cookieName, cookieOptions);
   };
 
   return (
     <CookiesProvider>
       <BrowserRouter>
         <StyledApp>
-          <Navbar />
+          <Navbar token={cookies.sessionToken} deleteToken={deleteToken} />
           <Switch>
             <Route exact path="/">
               <ConferenceList />

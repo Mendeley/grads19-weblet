@@ -1,31 +1,43 @@
 import Navbar from "./Navbar";
-import { configure, shallow } from "enzyme";
+import { configure, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import React from "react";
+import { Router } from "react-router-dom";
+import { createMemoryHistory } from "history";
+import { act } from "react-dom/test-utils";
 
 configure({ adapter: new Adapter() });
 //adapter adapts enzyme for our version of react
 
-jest.mock('react-router-dom', () => {
-    return {
-        Link: () => "hey I'm a link"
-        //defines a mock link for testing purposes
-
-     
-    }
+jest.mock("react-router-dom", () => {
+  const originalReactRouter = jest.requireActual("react-router-dom");
+  return {
+    ...originalReactRouter,
+    Link: () => "hey I'm a link"
+  };
 });
 
 afterEach(() => {
-    jest.clearAllMocks()
-    //clearing all the mocks we are creating after each test
+  jest.clearAllMocks();
+  //clearing all the mocks we are creating after each test
 });
 
 describe("Navbar", () => {
-    it("renders a navbar with text", () => {
-        expect.assertions(1);
+  it("renders a navbar with text", () => {
+    expect.assertions(1);
 
-        const component = shallow(<Navbar />);
+    const history = createMemoryHistory();
+    history.push("/");
 
-        expect(component).toMatchSnapshot();
+    let wrapper;
+    act(() => {
+      wrapper = mount(
+        <Router history={history}>
+          <Navbar />
+        </Router>
+      );
     });
+
+    expect(wrapper.debug()).toMatchSnapshot();
+  });
 });
