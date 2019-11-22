@@ -46,7 +46,7 @@ describe("Navbar", () => {
     expect(wrapper.find(".register").length).toBe(0);
     expect(wrapper.find(".login").length).toBe(0);
     expect(wrapper.find(".profilePage").get(0).props.children).toBe("Profile");
-    expect(wrapper.find("button").text()).toBe("Logout");
+    expect(wrapper.find(".logout").get(0).props.children).toBe("Logout");
   });
 
   it("renders a logged-out navbar with text", () => {
@@ -68,6 +68,6 @@ describe("Navbar", () => {
     expect(wrapper.find(".register").get(0).props.children).toBe("Register");
     expect(wrapper.find(".login").get(0).props.children).toBe("Login");
     expect(wrapper.find(".profilePage").length).toBe(0);
-    expect(wrapper.find("button").length).toBe(0);
+    expect(wrapper.find(".logout").length).toBe(0);
   });
 });

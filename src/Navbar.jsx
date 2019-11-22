@@ -58,7 +58,7 @@ const Navbar = ({ sessionToken, deleteSessionToken }) => {
               </StyledLink>
             </StyledListItem>
             <StyledListItem>
-              <Button classname="logout" navLink onClick={logout}>
+              <Button className="logout" navLink onClick={logout}>
                 Logout
               </Button>
             </StyledListItem>

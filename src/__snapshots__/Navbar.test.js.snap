@@ -48,9 +48,9 @@ exports[`Navbar renders a logged-in navbar with text 1`] = `
             </styled.li>
             <styled.li>
               <li className=\\"sc-AykKF btWmVE\\">
-                <Button classname=\\"logout\\" navLink={true} onClick={[Function: logout]}>
-                  <styled.button onClick={[Function: logout]} classname=\\"logout\\" navLink={true}>
-                    <button onClick={[Function: logout]} className=\\"sc-AykKC kmEWeK\\">
+                <Button className=\\"logout\\" navLink={true} onClick={[Function: logout]}>
+                  <styled.button onClick={[Function: logout]} className=\\"logout\\" navLink={true}>
+                    <button onClick={[Function: logout]} className=\\"sc-AykKC kmEWeK logout\\">
                       Logout
                     </button>
                   </styled.button>
