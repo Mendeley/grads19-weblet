@@ -12,8 +12,7 @@ configure({ adapter: new Adapter() });
 jest.mock("react-router-dom", () => {
   const originalReactRouter = jest.requireActual("react-router-dom");
   return {
-    ...originalReactRouter,
-    Link: () => "hey I'm a link"
+    ...originalReactRouter
   };
 });
 
@@ -23,13 +22,13 @@ afterEach(() => {
 });
 
 describe("Navbar", () => {
-  const mockToken = {
+  const mockSessionToken = {
     userId: 1,
     token: "3ecb9d1d-863f-4207-b076-d868e6544c3b"
   };
 
   it("renders a logged-in navbar with text", () => {
-    expect.assertions(1);
+    expect.assertions(5);
 
     const history = createMemoryHistory();
     history.push("/");
@@ -38,16 +37,20 @@ describe("Navbar", () => {
     act(() => {
       wrapper = mount(
         <Router history={history}>
-          <Navbar token={mockToken} />
+          <Navbar sessionToken={mockSessionToken} />
         </Router>
       );
     });
 
     expect(wrapper.debug()).toMatchSnapshot();
+    expect(wrapper.find(".register").length).toBe(0);
+    expect(wrapper.find(".login").length).toBe(0);
+    expect(wrapper.find(".profilePage").get(0).props.children).toBe("Profile");
+    expect(wrapper.find("button").text()).toBe("Logout");
   });
 
   it("renders a logged-out navbar with text", () => {
-    expect.assertions(1);
+    expect.assertions(5);
 
     const history = createMemoryHistory();
     history.push("/");
@@ -62,5 +65,9 @@ describe("Navbar", () => {
     });
 
     expect(wrapper.debug()).toMatchSnapshot();
+    expect(wrapper.find(".register").get(0).props.children).toBe("Register");
+    expect(wrapper.find(".login").get(0).props.children).toBe("Login");
+    expect(wrapper.find(".profilePage").length).toBe(0);
+    expect(wrapper.find("button").length).toBe(0);
   });
 });

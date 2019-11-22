@@ -50,12 +50,15 @@ const Navbar = ({ sessionToken, deleteSessionToken }) => {
         {sessionToken ? (
           <>
             <StyledListItem>
-              <StyledLink to={`/users/${sessionToken.userId}`}>
+              <StyledLink
+                className="profilePage"
+                to={`/users/${sessionToken.userId}`}
+              >
                 Profile
               </StyledLink>
             </StyledListItem>
             <StyledListItem>
-              <Button navLink onClick={logout}>
+              <Button classname="logout" navLink onClick={logout}>
                 Logout
               </Button>
             </StyledListItem>
@@ -63,10 +66,14 @@ const Navbar = ({ sessionToken, deleteSessionToken }) => {
         ) : (
           <>
             <StyledListItem>
-              <StyledLink to="/users/register">Register</StyledLink>
+              <StyledLink className="register" to="/users/register">
+                Register
+              </StyledLink>
             </StyledListItem>
             <StyledListItem>
-              <StyledLink to="/users/login">Login</StyledLink>
+              <StyledLink className="login" to="/users/login">
+                Login
+              </StyledLink>
             </StyledListItem>
           </>
         )}

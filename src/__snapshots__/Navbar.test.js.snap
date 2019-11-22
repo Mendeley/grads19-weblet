@@ -2,7 +2,7 @@
 
 exports[`Navbar renders a logged-in navbar with text 1`] = `
 "<Router history={{...}}>
-  <Navbar token={{...}}>
+  <Navbar sessionToken={{...}}>
     <styled.nav>
       <nav className=\\"sc-AykKD efbWzt\\">
         <styled.ul>
@@ -11,7 +11,11 @@ exports[`Navbar renders a logged-in navbar with text 1`] = `
               <li className=\\"sc-AykKF btWmVE\\">
                 <Styled(Link) to=\\"/\\">
                   <Link to=\\"/\\" className=\\"sc-AykKG jJIHsa\\">
-                    hey I&#39;m a link
+                    <LinkAnchor className=\\"sc-AykKG jJIHsa\\" href=\\"/\\" navigate={[Function: navigate]}>
+                      <a className=\\"sc-AykKG jJIHsa\\" href=\\"/\\" onClick={[Function: onClick]}>
+                        Home
+                      </a>
+                    </LinkAnchor>
                   </Link>
                 </Styled(Link)>
               </li>
@@ -20,25 +24,33 @@ exports[`Navbar renders a logged-in navbar with text 1`] = `
               <li className=\\"sc-AykKF btWmVE\\">
                 <Styled(Link) to=\\"/add\\">
                   <Link to=\\"/add\\" className=\\"sc-AykKG jJIHsa\\">
-                    hey I&#39;m a link
+                    <LinkAnchor className=\\"sc-AykKG jJIHsa\\" href=\\"/add\\" navigate={[Function: navigate]}>
+                      <a className=\\"sc-AykKG jJIHsa\\" href=\\"/add\\" onClick={[Function: onClick]}>
+                        Add Conference
+                      </a>
+                    </LinkAnchor>
                   </Link>
                 </Styled(Link)>
               </li>
             </styled.li>
             <styled.li>
               <li className=\\"sc-AykKF btWmVE\\">
-                <Styled(Link) to=\\"/users/1\\">
-                  <Link to=\\"/users/1\\" className=\\"sc-AykKG jJIHsa\\">
-                    hey I&#39;m a link
+                <Styled(Link) className=\\"profilePage\\" to=\\"/users/1\\">
+                  <Link className=\\"sc-AykKG jJIHsa profilePage\\" to=\\"/users/1\\">
+                    <LinkAnchor className=\\"sc-AykKG jJIHsa profilePage\\" href=\\"/users/1\\" navigate={[Function: navigate]}>
+                      <a className=\\"sc-AykKG jJIHsa profilePage\\" href=\\"/users/1\\" onClick={[Function: onClick]}>
+                        Profile
+                      </a>
+                    </LinkAnchor>
                   </Link>
                 </Styled(Link)>
               </li>
             </styled.li>
             <styled.li>
               <li className=\\"sc-AykKF btWmVE\\">
-                <Button navLink={true} onClick={[Function: onClick]}>
-                  <styled.button onClick={[Function: onClick]} navLink={true}>
-                    <button onClick={[Function: onClick]} className=\\"sc-AykKC kmEWeK\\">
+                <Button classname=\\"logout\\" navLink={true} onClick={[Function: logout]}>
+                  <styled.button onClick={[Function: logout]} classname=\\"logout\\" navLink={true}>
+                    <button onClick={[Function: logout]} className=\\"sc-AykKC kmEWeK\\">
                       Logout
                     </button>
                   </styled.button>
@@ -64,7 +76,11 @@ exports[`Navbar renders a logged-out navbar with text 1`] = `
               <li className=\\"sc-AykKF btWmVE\\">
                 <Styled(Link) to=\\"/\\">
                   <Link to=\\"/\\" className=\\"sc-AykKG jJIHsa\\">
-                    hey I&#39;m a link
+                    <LinkAnchor className=\\"sc-AykKG jJIHsa\\" href=\\"/\\" navigate={[Function: navigate]}>
+                      <a className=\\"sc-AykKG jJIHsa\\" href=\\"/\\" onClick={[Function: onClick]}>
+                        Home
+                      </a>
+                    </LinkAnchor>
                   </Link>
                 </Styled(Link)>
               </li>
@@ -73,25 +89,37 @@ exports[`Navbar renders a logged-out navbar with text 1`] = `
               <li className=\\"sc-AykKF btWmVE\\">
                 <Styled(Link) to=\\"/add\\">
                   <Link to=\\"/add\\" className=\\"sc-AykKG jJIHsa\\">
-                    hey I&#39;m a link
+                    <LinkAnchor className=\\"sc-AykKG jJIHsa\\" href=\\"/add\\" navigate={[Function: navigate]}>
+                      <a className=\\"sc-AykKG jJIHsa\\" href=\\"/add\\" onClick={[Function: onClick]}>
+                        Add Conference
+                      </a>
+                    </LinkAnchor>
                   </Link>
                 </Styled(Link)>
               </li>
             </styled.li>
             <styled.li>
               <li className=\\"sc-AykKF btWmVE\\">
-                <Styled(Link) to=\\"/users/register\\">
-                  <Link to=\\"/users/register\\" className=\\"sc-AykKG jJIHsa\\">
-                    hey I&#39;m a link
+                <Styled(Link) className=\\"register\\" to=\\"/users/register\\">
+                  <Link className=\\"sc-AykKG jJIHsa register\\" to=\\"/users/register\\">
+                    <LinkAnchor className=\\"sc-AykKG jJIHsa register\\" href=\\"/users/register\\" navigate={[Function: navigate]}>
+                      <a className=\\"sc-AykKG jJIHsa register\\" href=\\"/users/register\\" onClick={[Function: onClick]}>
+                        Register
+                      </a>
+                    </LinkAnchor>
                   </Link>
                 </Styled(Link)>
               </li>
             </styled.li>
             <styled.li>
               <li className=\\"sc-AykKF btWmVE\\">
-                <Styled(Link) to=\\"/users/login\\">
-                  <Link to=\\"/users/login\\" className=\\"sc-AykKG jJIHsa\\">
-                    hey I&#39;m a link
+                <Styled(Link) className=\\"login\\" to=\\"/users/login\\">
+                  <Link className=\\"sc-AykKG jJIHsa login\\" to=\\"/users/login\\">
+                    <LinkAnchor className=\\"sc-AykKG jJIHsa login\\" href=\\"/users/login\\" navigate={[Function: navigate]}>
+                      <a className=\\"sc-AykKG jJIHsa login\\" href=\\"/users/login\\" onClick={[Function: onClick]}>
+                        Login
+                      </a>
+                    </LinkAnchor>
                   </Link>
                 </Styled(Link)>
               </li>
