@@ -3,7 +3,7 @@ import { Switch, Route, useParams } from "react-router-dom";
 import ProfilePage from "./ProfilePage";
 import { getUserById } from "../api.js";
 
-const UserContainer = token => {
+const UserContainer = ({ token }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);

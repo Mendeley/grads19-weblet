@@ -47,7 +47,7 @@ const Navbar = ({ sessionToken, deleteSessionToken }) => {
         <StyledListItem>
           <StyledLink to="/add">Add Conference</StyledLink>
         </StyledListItem>
-        {token ? (
+        {sessionToken ? (
           <>
             <StyledListItem>
               <StyledLink to={`/users/${sessionToken.userId}`}>

@@ -53,7 +53,7 @@ function App() {
               <LoginForm setSessionToken={setSessionToken} />
             </Route>
             <Route path="/users">
-              <UserContainer token={cookies.sessionToken.token} />
+              <UserContainer token={cookies.sessionToken} />
             </Route>
             <Route path="/:id">
               <ConferenceContainer />
