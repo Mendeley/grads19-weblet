@@ -58,14 +58,18 @@ export const loginUser = async user => {
   }
 };
 
-export const getUserById = async id => {
-  const response = await axios.get(`http://localhost:8080/users/${id}`);
+export const getUserById = async ({ id, token }) => {
+  const response = await axios.get(`http://localhost:8080/users/${id}`, {
+    headers: { Authorization: token }
+  });
   return response.data;
 };
 
 export const logoutUser = async token => {
   try {
-    await axios.delete("http://localhost:8080/auth/logout", token);
+    await axios.delete("http://localhost:8080/auth/logout", {
+      headers: { Authorization: token }
+    });
     toast.success("Logout successful!");
   } catch (error) {
     toast.error("Logout failed!");

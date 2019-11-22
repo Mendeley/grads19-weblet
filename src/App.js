@@ -24,10 +24,10 @@ function App() {
   const cookieName = "sessionToken";
   const cookieOptions = { path: "/" };
   const [cookies, setCookie, removeCookie] = useCookies([cookieName]);
-  const setToken = token => {
-    setCookie(cookieName, token, cookieOptions);
+  const setSessionToken = sessionTokenData => {
+    setCookie(cookieName, sessionTokenData, cookieOptions);
   };
-  const deleteToken = () => {
+  const deleteSessionToken = () => {
     removeCookie(cookieName, cookieOptions);
   };
 
@@ -35,7 +35,10 @@ function App() {
     <CookiesProvider>
       <BrowserRouter>
         <StyledApp>
-          <Navbar token={cookies.sessionToken} deleteToken={deleteToken} />
+          <Navbar
+            sessionToken={cookies.sessionToken}
+            deleteSessionToken={deleteSessionToken}
+          />
           <Switch>
             <Route exact path="/">
               <ConferenceList />
@@ -47,10 +50,10 @@ function App() {
               <RegistrationForm />
             </Route>
             <Route path="/users/login">
-              <LoginForm setToken={setToken} />
+              <LoginForm setSessionToken={setSessionToken} />
             </Route>
             <Route path="/users">
-              <UserContainer />
+              <UserContainer token={cookies.sessionToken.token} />
             </Route>
             <Route path="/:id">
               <ConferenceContainer />

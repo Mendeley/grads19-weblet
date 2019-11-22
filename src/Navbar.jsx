@@ -26,12 +26,12 @@ export const StyledLink = styled(Link)`
   color: white;
 `;
 
-const Navbar = ({ token, deleteToken }) => {
+const Navbar = ({ sessionToken, deleteSessionToken }) => {
   const history = useHistory();
   const logout = async () => {
     try {
-      await logoutUser(token.token);
-      deleteToken();
+      await logoutUser(sessionToken.token);
+      deleteSessionToken();
       history.push("/");
     } catch (error) {
       console.log(error);
@@ -50,7 +50,9 @@ const Navbar = ({ token, deleteToken }) => {
         {token ? (
           <>
             <StyledListItem>
-              <StyledLink to={`/users/${token.userId}`}>Profile</StyledLink>
+              <StyledLink to={`/users/${sessionToken.userId}`}>
+                Profile
+              </StyledLink>
             </StyledListItem>
             <StyledListItem>
               <Button navLink onClick={logout}>
