@@ -2,8 +2,7 @@ import Navbar from "./Navbar";
 import { configure, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import React from "react";
-import { Router } from "react-router-dom";
-import { createMemoryHistory } from "history";
+import { MemoryRouter } from "react-router-dom";
 import { act } from "react-dom/test-utils";
 
 configure({ adapter: new Adapter() });
@@ -30,19 +29,16 @@ describe("Navbar", () => {
   it("renders a logged-in navbar with text", () => {
     expect.assertions(5);
 
-    const history = createMemoryHistory();
-    history.push("/");
-
     let wrapper;
     act(() => {
       wrapper = mount(
-        <Router history={history}>
+        <MemoryRouter initialEntries={[{ pathname: "/", key: "testKey" }]}>
           <Navbar sessionToken={mockSessionToken} />
-        </Router>
+        </MemoryRouter>
       );
     });
 
-    expect(wrapper.debug()).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
     expect(wrapper.find(".register").length).toBe(0);
     expect(wrapper.find(".login").length).toBe(0);
     expect(wrapper.find(".profilePage").get(0).props.children).toBe("Profile");
@@ -52,19 +48,16 @@ describe("Navbar", () => {
   it("renders a logged-out navbar with text", () => {
     expect.assertions(5);
 
-    const history = createMemoryHistory();
-    history.push("/");
-
     let wrapper;
     act(() => {
       wrapper = mount(
-        <Router history={history}>
+        <MemoryRouter initialEntries={[{ pathname: "/", key: "testKey" }]}>
           <Navbar />
-        </Router>
+        </MemoryRouter>
       );
     });
 
-    expect(wrapper.debug()).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
     expect(wrapper.find(".register").get(0).props.children).toBe("Register");
     expect(wrapper.find(".login").get(0).props.children).toBe("Login");
     expect(wrapper.find(".profilePage").length).toBe(0);
