@@ -26,12 +26,12 @@ export const StyledLink = styled(Link)`
   color: white;
 `;
 
-const Navbar = ({ token, deleteToken }) => {
+const Navbar = ({ sessionToken, deleteSessionToken }) => {
   const history = useHistory();
   const logout = async () => {
     try {
-      await logoutUser(token);
-      deleteToken();
+      await logoutUser(sessionToken.token);
+      deleteSessionToken();
       history.push("/");
     } catch (error) {
       console.log(error);
@@ -47,23 +47,36 @@ const Navbar = ({ token, deleteToken }) => {
         <StyledListItem>
           <StyledLink to="/add">Add Conference</StyledLink>
         </StyledListItem>
-        <StyledListItem>
-          <StyledLink to="/users/register">Register</StyledLink>
-        </StyledListItem>
-        <StyledListItem>
-          {token ? (
-            <Button
-              navLink
-              onClick={() => {
-                logout();
-              }}
-            >
-              Logout
-            </Button>
-          ) : (
-            <StyledLink to="/users/login">Login</StyledLink>
-          )}
-        </StyledListItem>
+        {sessionToken ? (
+          <>
+            <StyledListItem>
+              <StyledLink
+                className="profilePage"
+                to={`/users/${sessionToken.userId}`}
+              >
+                Profile
+              </StyledLink>
+            </StyledListItem>
+            <StyledListItem>
+              <Button className="logout" navLink onClick={logout}>
+                Logout
+              </Button>
+            </StyledListItem>
+          </>
+        ) : (
+          <>
+            <StyledListItem>
+              <StyledLink className="register" to="/users/register">
+                Register
+              </StyledLink>
+            </StyledListItem>
+            <StyledListItem>
+              <StyledLink className="login" to="/users/login">
+                Login
+              </StyledLink>
+            </StyledListItem>
+          </>
+        )}
       </StyledList>
     </StyledNavbar>
   );

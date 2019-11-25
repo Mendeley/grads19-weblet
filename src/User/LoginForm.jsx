@@ -14,7 +14,7 @@ export const StyledLink = styled(Link)`
   padding: 10px;
 `;
 
-const LoginForm = ({ setToken }) => {
+const LoginForm = ({ setSessionToken }) => {
   let history = useHistory();
   const [user, setUser] = useState({
     username: "",
@@ -28,8 +28,8 @@ const LoginForm = ({ setToken }) => {
 
   const submitForm = async () => {
     try {
-      const token = await loginUser(user);
-      setToken(token);
+      const sessionTokenData = await loginUser(user);
+      setSessionToken(sessionTokenData);
       history.push("/");
     } catch (error) {
       console.log(error);

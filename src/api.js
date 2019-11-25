@@ -2,32 +2,17 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 export const getConferenceList = async () => {
-  try {
-    const response = await axios.get("http://localhost:8080/conferences");
-    return response.data;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  const response = await axios.get("http://localhost:8080/conferences");
+  return response.data;
 };
 
 export const getConferenceById = async id => {
-  try {
-    const response = await axios.get(`http://localhost:8080/conferences/${id}`);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  const response = await axios.get(`http://localhost:8080/conferences/${id}`);
+  return response.data;
 };
 
 export const createNewConference = async conference => {
-  try {
-    await axios.post("http://localhost:8080/conferences", conference);
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  await axios.post("http://localhost:8080/conferences", conference);
 };
 
 export const deleteConferenceById = async id => {
@@ -72,9 +57,19 @@ export const loginUser = async user => {
     throw error;
   }
 };
+
+export const getUserById = async (id, token) => {
+  const response = await axios.get(`http://localhost:8080/users/${id}`, {
+    headers: { Authorization: token }
+  });
+  return response.data;
+};
+
 export const logoutUser = async token => {
   try {
-    await axios.delete("http://localhost:8080/auth/logout", token);
+    await axios.delete("http://localhost:8080/auth/logout", {
+      headers: { Authorization: token }
+    });
     toast.success("Logout successful!");
   } catch (error) {
     toast.error("Logout failed!");
