@@ -18,7 +18,14 @@ export const StyledDescription = styled.p`
   padding: 0 100px 50px 100px;
 `;
 
-const ConferenceDetails = ({ conference, id, isLoading, error }) => {
+const ConferenceDetails = ({
+  conference,
+  id,
+  isLoading,
+  error,
+  sessionToken,
+  sessionToken: { token }
+}) => {
   const history = useHistory();
 
   if (isLoading) {
@@ -34,7 +41,7 @@ const ConferenceDetails = ({ conference, id, isLoading, error }) => {
 
   const deleteConference = async id => {
     try {
-      await deleteConferenceById(id);
+      await deleteConferenceById(id, token);
       history.push("/");
     } catch (error) {
       console.log(error);
@@ -48,7 +55,13 @@ const ConferenceDetails = ({ conference, id, isLoading, error }) => {
     <StyledForm>
       <StyledCard>
         <StyledCardHeading className="name">{name}</StyledCardHeading>
-        <StyledLink to={`/${id}/edit`}>Edit Conference</StyledLink>
+        {sessionToken ? (
+          <StyledLink className="editLink" to={`/${id}/edit`}>
+            Edit Conference
+          </StyledLink>
+        ) : (
+          ""
+        )}
         <p className="topic">{topic}</p>
         <p className="date">{getDatestring(date)}</p>
         <p className="time">{getTimestring(date)}</p>
@@ -56,7 +69,13 @@ const ConferenceDetails = ({ conference, id, isLoading, error }) => {
         <StyledDescription className="description">
           {description}
         </StyledDescription>
-        <Button onClick={deleteThisConference}>Delete Conference</Button>
+        {sessionToken ? (
+          <Button className="deleteButton" onClick={deleteThisConference}>
+            Delete Conference
+          </Button>
+        ) : (
+          ""
+        )}
       </StyledCard>
     </StyledForm>
   );

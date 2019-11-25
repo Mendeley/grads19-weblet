@@ -14,7 +14,8 @@ const UpdateForm = ({
   setConference,
   setUpdatedConference,
   isLoading,
-  error
+  error,
+  token
 }) => {
   const history = useHistory();
 
@@ -37,7 +38,7 @@ const UpdateForm = ({
       dateTime: `${updatedConference.dateTime}:00Z`
     };
     try {
-      await updateConferenceById(id, newConference);
+      await updateConferenceById(id, newConference, token);
       setConference(newConference);
       history.push(`/${id}`);
     } catch (error) {

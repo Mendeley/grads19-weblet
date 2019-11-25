@@ -9,8 +9,7 @@ import { act } from "react-dom/test-utils";
 jest.mock("react-router-dom", () => {
   const originalReactRouter = jest.requireActual("react-router-dom");
   return {
-    ...originalReactRouter,
-    Link: () => "hey I'm a link"
+    ...originalReactRouter
   };
 });
 
@@ -26,9 +25,48 @@ describe("ConferenceDetails", () => {
       "From Festivalofmarketing.com: The Festival of Marketing is a unique experience where ambitious marketers can discover, learn, celebrate and shape the future together. As the largest global event dedicated to brand marketers, the Festival reflects the very nature of ...",
     topic: "Marketing"
   };
+  const mockSessionToken = {
+    userId: 1,
+    token: "3ecb9d1d-863f-4207-b076-d868e6544c3b"
+  };
 
-  it("renders conference details", async () => {
-    expect.assertions(6);
+  it("renders a logged-in conference details page", async () => {
+    expect.assertions(8);
+
+    const history = createMemoryHistory();
+    history.push("/1");
+
+    let wrapper;
+    act(() => {
+      wrapper = mount(
+        <Router history={history}>
+          <ConferenceDetails
+            conference={mockData}
+            id="1"
+            sessionToken={mockSessionToken}
+          />
+        </Router>
+      );
+    });
+    wrapper.update();
+    expect(wrapper.find(".name").get(0).props.children).toBe(mockData.name);
+    expect(wrapper.find(".topic").get(0).props.children).toBe(mockData.topic);
+    expect(wrapper.find(".date").get(0).props.children).toBe("12/11/2019");
+    expect(wrapper.find(".time").get(0).props.children).toBe("12:34");
+    expect(wrapper.find(".city").get(0).props.children).toBe(mockData.city);
+    expect(wrapper.find(".description").get(0).props.children).toBe(
+      mockData.description
+    );
+    expect(wrapper.find(".editLink").get(0).props.children).toBe(
+      "Edit Conference"
+    );
+    expect(wrapper.find(".deleteButton").get(0).props.children).toBe(
+      "Delete Conference"
+    );
+  });
+
+  it("renders a logged-out conference details page", async () => {
+    expect.assertions(8);
 
     const history = createMemoryHistory();
     history.push("/1");
@@ -50,5 +88,7 @@ describe("ConferenceDetails", () => {
     expect(wrapper.find(".description").get(0).props.children).toBe(
       mockData.description
     );
+    expect(wrapper.find(".editLink").length).toBe(0);
+    expect(wrapper.find(".deleteButton").length).toBe(0);
   });
 });

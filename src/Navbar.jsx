@@ -44,11 +44,13 @@ const Navbar = ({ sessionToken, deleteSessionToken }) => {
         <StyledListItem>
           <StyledLink to="/">Home</StyledLink>
         </StyledListItem>
-        <StyledListItem>
-          <StyledLink to="/add">Add Conference</StyledLink>
-        </StyledListItem>
         {sessionToken ? (
           <>
+            <StyledListItem>
+              <StyledLink className="addConference" to="/add">
+                Add Conference
+              </StyledLink>
+            </StyledListItem>
             <StyledListItem>
               <StyledLink
                 className="profilePage"

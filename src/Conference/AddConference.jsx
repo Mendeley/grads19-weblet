@@ -6,12 +6,12 @@ import {
   StyledCard
 } from "../StyledFormComponents";
 
-const AddConference = () => {
+const AddConference = sessionToken => {
   return (
     <StyledForm>
       <StyledCard>
         <StyledCardHeading>Add a new conference:</StyledCardHeading>
-        <Form />
+        <Form sessionToken={sessionToken} />
       </StyledCard>
     </StyledForm>
   );

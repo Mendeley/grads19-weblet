@@ -4,7 +4,7 @@ import ConferenceDetails from "./ConferenceDetails";
 import UpdateConference from "./UpdateConference";
 import { getConferenceById } from "../api.js";
 
-const ConferenceContainer = () => {
+const ConferenceContainer = sessionToken => {
   const [conference, setConference] = useState(null);
   const [updatedConference, setUpdatedConference] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -49,6 +49,7 @@ const ConferenceContainer = () => {
           setUpdatedConference={setUpdatedConference}
           isLoading={isLoading}
           error={error}
+          sessionToken={sessionToken}
         />
       </Route>
       <Route path="/:id">
@@ -57,6 +58,7 @@ const ConferenceContainer = () => {
           id={id}
           isLoading={isLoading}
           error={error}
+          sessionToken={sessionToken}
         />
       </Route>
     </Switch>

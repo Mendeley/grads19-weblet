@@ -3,7 +3,7 @@ import Input from "./Input";
 import { createNewConference } from "./api";
 import { useHistory } from "react-router-dom";
 
-const Form = () => {
+const Form = ({ token }) => {
   let history = useHistory();
   const [conference, setConference] = useState({
     name: "",
@@ -24,7 +24,7 @@ const Form = () => {
       dateTime: conference.dateTime + ":00Z"
     };
     try {
-      await createNewConference(newConference);
+      await createNewConference(newConference, token);
       history.push("/");
     } catch (error) {
       console.log(error);

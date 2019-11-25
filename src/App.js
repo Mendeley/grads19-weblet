@@ -44,7 +44,7 @@ function App() {
               <ConferenceList />
             </Route>
             <Route path="/add">
-              <AddConference />
+              <AddConference sessionToken={cookies.sessionToken} />
             </Route>
             <Route path="/users/register">
               <RegistrationForm />
@@ -56,7 +56,7 @@ function App() {
               <UserContainer sessionToken={cookies.sessionToken} />
             </Route>
             <Route path="/:id">
-              <ConferenceContainer />
+              <ConferenceContainer sessionToken={cookies.sessionToken} />
             </Route>
           </Switch>
         </StyledApp>
