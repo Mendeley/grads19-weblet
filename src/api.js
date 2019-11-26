@@ -36,6 +36,7 @@ export const updateConferenceById = async (id, conference) => {
     throw error;
   }
 };
+
 export const createNewUser = async user => {
   try {
     await axios.post("http://localhost:8080/users", user);
@@ -46,6 +47,7 @@ export const createNewUser = async user => {
     throw error;
   }
 };
+
 export const loginUser = async user => {
   try {
     const response = await axios.post("http://localhost:8080/auth/login", user);
