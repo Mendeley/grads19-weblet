@@ -3,7 +3,7 @@ import { Switch, Route, useParams } from "react-router-dom";
 import ProfilePage from "./ProfilePage";
 import { getUserById } from "../api.js";
 
-const UserContainer = ({ token }) => {
+const UserContainer = ({ sessionToken }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -13,7 +13,7 @@ const UserContainer = ({ token }) => {
     setIsLoading(true);
 
     try {
-      const user = await getUserById(userId, token);
+      const user = await getUserById(userId, sessionToken.token);
       setUser(user);
     } catch (error) {
       setError(true);
