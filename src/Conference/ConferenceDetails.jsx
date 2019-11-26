@@ -54,12 +54,10 @@ const ConferenceDetails = ({
     <StyledForm>
       <StyledCard>
         <StyledCardHeading className="name">{name}</StyledCardHeading>
-        {sessionToken ? (
+        {sessionToken && (
           <StyledLink className="editLink" to={`/${id}/edit`}>
             Edit Conference
           </StyledLink>
-        ) : (
-          ""
         )}
         <p className="topic">{topic}</p>
         <p className="date">{getDatestring(date)}</p>
@@ -68,12 +66,10 @@ const ConferenceDetails = ({
         <StyledDescription className="description">
           {description}
         </StyledDescription>
-        {sessionToken ? (
+        {sessionToken && (
           <Button className="deleteButton" onClick={deleteThisConference}>
             Delete Conference
           </Button>
-        ) : (
-          ""
         )}
       </StyledCard>
     </StyledForm>

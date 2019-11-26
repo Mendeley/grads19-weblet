@@ -6,7 +6,7 @@ import {
   StyledCard
 } from "../StyledFormComponents";
 
-const AddConference = sessionToken => {
+const AddConference = ({ sessionToken }) => {
   return (
     <StyledForm>
       <StyledCard>
