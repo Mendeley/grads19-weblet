@@ -18,6 +18,8 @@ describe("submitForm", () => {
     ev = { preventDefault: jest.fn() };
   });
 
+  const mockToken = "3ecb9d1d-863f-4207-b076-d868e6544c3b";
+
   it("should send axios request", async () => {
     expect.assertions(2);
 
@@ -29,20 +31,23 @@ describe("submitForm", () => {
 
     const wrapper = mount(
       <Router history={history}>
-        <Form />
+        <Form token={mockToken} />
       </Router>
     );
 
     wrapper.find(Form).simulate("submit", ev);
 
     expect(createNewConference).toHaveBeenCalledTimes(1);
-    expect(createNewConference).toHaveBeenCalledWith({
-      city: "",
-      dateTime: ":00Z",
-      description: "",
-      name: "",
-      topic: ""
-    });
+    expect(createNewConference).toHaveBeenCalledWith(
+      {
+        city: "",
+        dateTime: ":00Z",
+        description: "",
+        name: "",
+        topic: ""
+      },
+      mockToken
+    );
   });
   it("should navigate to home if axios request sucessful", async () => {
     expect.assertions(1);

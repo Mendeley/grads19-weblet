@@ -23,8 +23,7 @@ const ConferenceDetails = ({
   id,
   isLoading,
   error,
-  sessionToken,
-  sessionToken: { token }
+  sessionToken
 }) => {
   const history = useHistory();
 
@@ -41,7 +40,7 @@ const ConferenceDetails = ({
 
   const deleteConference = async id => {
     try {
-      await deleteConferenceById(id, token);
+      await deleteConferenceById(id, sessionToken.token);
       history.push("/");
     } catch (error) {
       console.log(error);

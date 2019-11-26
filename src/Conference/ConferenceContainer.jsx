@@ -4,7 +4,7 @@ import ConferenceDetails from "./ConferenceDetails";
 import UpdateConference from "./UpdateConference";
 import { getConferenceById } from "../api.js";
 
-const ConferenceContainer = sessionToken => {
+const ConferenceContainer = ({ sessionToken }) => {
   const [conference, setConference] = useState(null);
   const [updatedConference, setUpdatedConference] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
