@@ -1,17 +1,17 @@
 import React from "react";
-import Form from "../Form";
+import Form from "./AddConferenceForm";
 import {
   StyledCardHeading,
   StyledForm,
   StyledCard
 } from "../StyledFormComponents";
 
-const AddConference = ({ sessionToken }) => {
+const AddConference = () => {
   return (
     <StyledForm>
       <StyledCard>
         <StyledCardHeading>Add a new conference:</StyledCardHeading>
-        <Form sessionToken={sessionToken} />
+        <Form />
       </StyledCard>
     </StyledForm>
   );

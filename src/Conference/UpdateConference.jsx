@@ -1,6 +1,8 @@
 import React from "react";
-import Input from "../Input";
 import { useHistory } from "react-router-dom";
+import { withCookies, useCookies } from "react-cookie";
+import { cookieName } from "../Constants/Cookies";
+import Input from "../Input";
 import { updateConferenceById } from "../api";
 import {
   StyledCardHeading,
@@ -14,10 +16,10 @@ const UpdateForm = ({
   setConference,
   setUpdatedConference,
   isLoading,
-  error,
-  sessionToken
+  error
 }) => {
   const history = useHistory();
+  const [cookies] = useCookies([cookieName]);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -38,7 +40,7 @@ const UpdateForm = ({
       dateTime: `${updatedConference.dateTime}:00Z`
     };
     try {
-      await updateConferenceById(id, newConference, sessionToken.token);
+      await updateConferenceById(id, newConference, cookies.sessionToken.token);
       setConference(newConference);
       history.push(`/${id}`);
     } catch (error) {
@@ -106,4 +108,4 @@ const UpdateForm = ({
     </StyledForm>
   );
 };
-export default UpdateForm;
+export default withCookies(UpdateForm);

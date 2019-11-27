@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import Button from "./Button";
 import { logoutUser } from "./api";
+import { withCookies, useCookies } from "react-cookie";
+import { cookieOptions, cookieName } from "./Constants/Cookies";
 
 export const StyledNavbar = styled.nav`
   background: #322d38;
@@ -26,16 +28,21 @@ export const StyledLink = styled(Link)`
   color: white;
 `;
 
-const Navbar = ({ sessionToken, deleteSessionToken }) => {
+const Navbar = () => {
   const history = useHistory();
   const logout = async () => {
     try {
-      await logoutUser(sessionToken.token);
+      await logoutUser(cookies.sessionToken.token);
       deleteSessionToken();
       history.push("/");
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const [cookies, setCookie, removeCookie] = useCookies([cookieName]);
+  const deleteSessionToken = () => {
+    removeCookie(cookieName, cookieOptions);
   };
 
   return (
@@ -44,7 +51,7 @@ const Navbar = ({ sessionToken, deleteSessionToken }) => {
         <StyledListItem>
           <StyledLink to="/">Home</StyledLink>
         </StyledListItem>
-        {sessionToken ? (
+        {cookies.sessionToken ? (
           <>
             <StyledListItem>
               <StyledLink className="addConference" to="/add">
@@ -54,7 +61,7 @@ const Navbar = ({ sessionToken, deleteSessionToken }) => {
             <StyledListItem>
               <StyledLink
                 className="profilePage"
-                to={`/users/${sessionToken.userId}`}
+                to={`/users/${cookies.sessionToken.userId}`}
               >
                 Profile
               </StyledLink>
@@ -84,4 +91,4 @@ const Navbar = ({ sessionToken, deleteSessionToken }) => {
   );
 };
 
-export default Navbar;
+export default withCookies(Navbar);

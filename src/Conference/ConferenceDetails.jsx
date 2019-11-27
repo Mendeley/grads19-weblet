@@ -4,6 +4,8 @@ import { Link, useHistory } from "react-router-dom";
 import Button from "../Button";
 import { getTimestring, getDatestring } from "../utils";
 import { deleteConferenceById } from "../api.js";
+import { withCookies, useCookies } from "react-cookie";
+import { cookieName } from "../Constants/Cookies";
 import {
   StyledCardHeading,
   StyledForm,
@@ -18,14 +20,9 @@ export const StyledDescription = styled.p`
   padding: 0 100px 50px 100px;
 `;
 
-const ConferenceDetails = ({
-  conference,
-  id,
-  isLoading,
-  error,
-  sessionToken
-}) => {
+const ConferenceDetails = ({ conference, id, isLoading, error }) => {
   const history = useHistory();
+  const [cookies] = useCookies([cookieName]);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -40,7 +37,7 @@ const ConferenceDetails = ({
 
   const deleteConference = async id => {
     try {
-      await deleteConferenceById(id, sessionToken.token);
+      await deleteConferenceById(id, cookies.sessionToken.token);
       history.push("/");
     } catch (error) {
       console.log(error);
@@ -54,7 +51,7 @@ const ConferenceDetails = ({
     <StyledForm>
       <StyledCard>
         <StyledCardHeading className="name">{name}</StyledCardHeading>
-        {sessionToken && (
+        {cookies.sessionToken && (
           <StyledLink className="editLink" to={`/${id}/edit`}>
             Edit Conference
           </StyledLink>
@@ -66,7 +63,7 @@ const ConferenceDetails = ({
         <StyledDescription className="description">
           {description}
         </StyledDescription>
-        {sessionToken && (
+        {cookies.sessionToken && (
           <Button className="deleteButton" onClick={deleteThisConference}>
             Delete Conference
           </Button>
@@ -75,4 +72,5 @@ const ConferenceDetails = ({
     </StyledForm>
   );
 };
-export default ConferenceDetails;
+export default withCookies(ConferenceDetails);
+export { ConferenceDetails as WrappedComponent };

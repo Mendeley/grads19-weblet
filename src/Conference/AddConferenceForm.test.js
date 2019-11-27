@@ -4,7 +4,7 @@ import { mount, configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
-import { createNewConference } from "./api";
+import { createNewConference } from "../api";
 
 configure({ adapter: new Adapter() });
 

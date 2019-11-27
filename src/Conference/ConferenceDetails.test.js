@@ -1,10 +1,11 @@
-import ConferenceDetails from "./ConferenceDetails";
+import React from "react";
+import { Router } from "react-router-dom";
+import { WrappedComponent as ConferenceDetails } from "./ConferenceDetails";
 import { configure, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import { Router } from "react-router-dom";
-import React from "react";
 import { createMemoryHistory } from "history";
 import { act } from "react-dom/test-utils";
+import { useCookies, CookiesProvider, Cookies } from "react-cookie";
 
 jest.mock("react-router-dom", () => {
   const originalReactRouter = jest.requireActual("react-router-dom");
@@ -12,6 +13,12 @@ jest.mock("react-router-dom", () => {
     ...originalReactRouter
   };
 });
+
+// jest.mock("react-cookie", () => ({
+//   useCookies: {
+//     getAll: () => (sessionToken = "3ecb9d1d-863f-4207-b076-d868e6544c3b")
+//   }
+// }));
 
 configure({ adapter: new Adapter() });
 
@@ -25,12 +32,15 @@ describe("ConferenceDetails", () => {
       "From Festivalofmarketing.com: The Festival of Marketing is a unique experience where ambitious marketers can discover, learn, celebrate and shape the future together. As the largest global event dedicated to brand marketers, the Festival reflects the very nature of ...",
     topic: "Marketing"
   };
-  const mockSessionToken = {
-    userId: 1,
-    token: "3ecb9d1d-863f-4207-b076-d868e6544c3b"
+
+  const mockCookie = {
+    sessionToken: {
+      userId: 1,
+      token: "3ecb9d1d-863f-4207-b076-d868e6544c3b"
+    }
   };
 
-  it("renders a logged-in conference details page", async () => {
+  it.only("renders a logged-in conference details page", async () => {
     expect.assertions(8);
 
     const history = createMemoryHistory();
@@ -43,12 +53,13 @@ describe("ConferenceDetails", () => {
           <ConferenceDetails
             conference={mockData}
             id="1"
-            sessionToken={mockSessionToken}
+            cookies={mockCookie}
           />
         </Router>
       );
     });
     wrapper.update();
+    console.log(wrapper.debug());
     expect(wrapper.find(".name").get(0).props.children).toBe(mockData.name);
     expect(wrapper.find(".topic").get(0).props.children).toBe(mockData.topic);
     expect(wrapper.find(".date").get(0).props.children).toBe("12/11/2019");
@@ -75,7 +86,7 @@ describe("ConferenceDetails", () => {
     act(() => {
       wrapper = mount(
         <Router history={history}>
-          <ConferenceDetails conference={mockData} id="1" />
+          <WrappedComponent conference={mockData} id="1" />
         </Router>
       );
     });

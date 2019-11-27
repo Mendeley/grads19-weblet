@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import Input from "./Input";
-import { createNewConference } from "./api";
+import Input from "../Input";
+import { createNewConference } from "../api";
 import { useHistory } from "react-router-dom";
+import { withCookies, useCookies } from "react-cookie";
+import { cookieName } from "../Constants/Cookies";
 
-const Form = ({ sessionToken }) => {
+const Form = () => {
   let history = useHistory();
   const [conference, setConference] = useState({
     name: "",
@@ -12,6 +14,7 @@ const Form = ({ sessionToken }) => {
     description: "",
     topic: ""
   });
+  const [cookies] = useCookies([cookieName]);
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -24,7 +27,7 @@ const Form = ({ sessionToken }) => {
       dateTime: conference.dateTime + ":00Z"
     };
     try {
-      await createNewConference(newConference, sessionToken.token);
+      await createNewConference(newConference, cookies.sessionToken.token);
       history.push("/");
     } catch (error) {
       console.log(error);
@@ -86,4 +89,4 @@ const Form = ({ sessionToken }) => {
     </form>
   );
 };
-export default Form;
+export default withCookies(Form);
