@@ -4,6 +4,7 @@ import { withCookies, useCookies } from "react-cookie";
 import { cookieName } from "../Constants/Cookies";
 import { getUserById } from "../api.js";
 import ProfilePage from "./ProfilePage";
+import UpdateProfile from "./UpdateProfile";
 
 const UserContainer = () => {
   const [user, setUser] = useState(null);
@@ -33,6 +34,9 @@ const UserContainer = () => {
 
   return (
     <Switch>
+      <Route path="/users/edit/:id">
+        <UpdateProfile />
+      </Route>
       <Route path="/users/:id">
         <ProfilePage user={user} isLoading={isLoading} error={error} />
       </Route>
