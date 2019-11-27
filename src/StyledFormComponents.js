@@ -29,6 +29,7 @@ const StyledCard = styled.div`
   }
   vertical-align: middle;
   margin: 0 auto;
+  position: relative;
 `;
 
 export { StyledCardHeading, StyledForm, StyledCard };

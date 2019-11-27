@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Switch, Route, useParams } from "react-router-dom";
 import ProfilePage from "./ProfilePage";
 import { getUserById } from "../api.js";
+import UpdateProfile from "./UpdateProfile";
 
 const UserContainer = ({ token }) => {
   const [user, setUser] = useState(null);
@@ -29,6 +30,9 @@ const UserContainer = ({ token }) => {
 
   return (
     <Switch>
+      <Route path="/users/edit/:id">
+        <UpdateProfile />
+      </Route>
       <Route path="/users/:id">
         <ProfilePage user={user} isLoading={isLoading} error={error} />
       </Route>

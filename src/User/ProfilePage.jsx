@@ -1,11 +1,26 @@
 import React from "react";
 import {
   StyledCardHeading,
-  StyledForm,
   StyledCard
 } from "../StyledFormComponents";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const ProfilePage = ({ user, isLoading, error }) => {
+export const StyledLink = styled(Link)`
+  display: block;
+  height: 40px;
+  width: 100px;
+  text-decoration: none;
+  background-color: papayawhip;
+  line-height: 40px;
+  border-radius: 11px;
+  border: 3px solid black;
+  position: absolute;
+  top: 18px;
+  right: 18px;
+`;
+
+const ProfilePage = ({ error, isLoading, user }) => {
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -14,19 +29,19 @@ const ProfilePage = ({ user, isLoading, error }) => {
     return <p>An error has occurred...</p>;
   }
 
-  const { username, firstName, lastName, email, occupation } = user || {};
+  const { id, username, firstName, lastName, email, occupation } = user || {};
 
   return (
-    <StyledForm>
-      <StyledCard>
-        <StyledCardHeading className="name">
-          Hello {firstName} {lastName}
-        </StyledCardHeading>
-        <p className="username">Username: {username}</p>
-        <p className="email">Email: {email}</p>
-        <p className="occupation">Occupation: {occupation}</p>
-      </StyledCard>
-    </StyledForm>
+    <StyledCard>
+      <StyledLink className="editLink" to={`/users/edit/${id}`}>Edit</StyledLink>        
+      <StyledCardHeading className="name">
+        {`Hello, ${firstName} ${lastName}!`}
+      </StyledCardHeading>
+      <p className="username">{`Username: ${username}`}</p>
+      <p className="email">{`Email: ${email}`}</p>
+      <p className="occupation">{`Occupation: ${occupation}`}</p>
+    </StyledCard>
   );
 };
+
 export default ProfilePage;
