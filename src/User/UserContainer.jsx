@@ -3,7 +3,6 @@ import { Switch, Route, useParams } from "react-router-dom";
 import ProfilePage from "./ProfilePage";
 import UpdateProfile from "./UpdateProfile";
 import { getUserById } from "../api.js";
-import UpdateProfile from "./UpdateProfile";
 
 const UserContainer = ({ sessionToken }) => {
   const [user, setUser] = useState(null);
@@ -32,7 +31,7 @@ const UserContainer = ({ sessionToken }) => {
 
   return (
     <Switch>
-      <Route path="/users/edit/:id">
+      <Route path="/users/:id/edit">
         <UpdateProfile user={user}/>
       </Route>
       <Route path="/users/:id">
