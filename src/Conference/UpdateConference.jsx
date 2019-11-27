@@ -102,7 +102,7 @@ const UpdateForm = ({
             required
             maxLength="20"
           />
-          <Input type="submit" value="save" />
+          <Input type="submit" value="Save" />
         </form>
       </StyledCard>
     </StyledForm>

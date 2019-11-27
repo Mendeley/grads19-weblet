@@ -1,11 +1,10 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { withCookies } from "react-cookie";
 import Input from "../Input";
 import { createNewConference } from "../api";
-import { useHistory } from "react-router-dom";
-import { withCookies, useCookies } from "react-cookie";
-import { cookieName } from "../Constants/Cookies";
 
-const Form = () => {
+const AddConferenceForm = ({ allCookies = {} }) => {
   let history = useHistory();
   const [conference, setConference] = useState({
     name: "",
@@ -14,7 +13,6 @@ const Form = () => {
     description: "",
     topic: ""
   });
-  const [cookies] = useCookies([cookieName]);
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -27,7 +25,7 @@ const Form = () => {
       dateTime: conference.dateTime + ":00Z"
     };
     try {
-      await createNewConference(newConference, cookies.sessionToken.token);
+      await createNewConference(newConference, allCookies.sessionToken.token);
       history.push("/");
     } catch (error) {
       console.log(error);
@@ -85,8 +83,9 @@ const Form = () => {
         required
         maxLength="20"
       />
-      <Input type="submit" value="submit" />
+      <Input type="submit" value="Submit" />
     </form>
   );
 };
-export default withCookies(Form);
+export default withCookies(AddConferenceForm);
+export { AddConferenceForm as WrappedAddConferenceForm };

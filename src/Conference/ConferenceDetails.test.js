@@ -1,11 +1,10 @@
 import React from "react";
 import { Router } from "react-router-dom";
-import { WrappedComponent as ConferenceDetails } from "./ConferenceDetails";
+import { WrappedConferenceDetails as ConferenceDetails } from "./ConferenceDetails";
 import { configure, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { createMemoryHistory } from "history";
 import { act } from "react-dom/test-utils";
-import { useCookies, CookiesProvider, Cookies } from "react-cookie";
 
 jest.mock("react-router-dom", () => {
   const originalReactRouter = jest.requireActual("react-router-dom");
@@ -13,12 +12,6 @@ jest.mock("react-router-dom", () => {
     ...originalReactRouter
   };
 });
-
-// jest.mock("react-cookie", () => ({
-//   useCookies: {
-//     getAll: () => (sessionToken = "3ecb9d1d-863f-4207-b076-d868e6544c3b")
-//   }
-// }));
 
 configure({ adapter: new Adapter() });
 
@@ -40,7 +33,7 @@ describe("ConferenceDetails", () => {
     }
   };
 
-  it.only("renders a logged-in conference details page", async () => {
+  it("renders a logged-in conference details page", async () => {
     expect.assertions(8);
 
     const history = createMemoryHistory();
@@ -53,7 +46,7 @@ describe("ConferenceDetails", () => {
           <ConferenceDetails
             conference={mockData}
             id="1"
-            cookies={mockCookie}
+            allCookies={mockCookie}
           />
         </Router>
       );
@@ -86,7 +79,7 @@ describe("ConferenceDetails", () => {
     act(() => {
       wrapper = mount(
         <Router history={history}>
-          <WrappedComponent conference={mockData} id="1" />
+          <ConferenceDetails conference={mockData} id="1" />
         </Router>
       );
     });

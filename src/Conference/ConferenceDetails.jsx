@@ -1,11 +1,10 @@
 import React from "react";
-import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
+import { withCookies } from "react-cookie";
 import Button from "../Button";
 import { getTimestring, getDatestring } from "../utils";
 import { deleteConferenceById } from "../api.js";
-import { withCookies, useCookies } from "react-cookie";
-import { cookieName } from "../Constants/Cookies";
+import styled from "styled-components";
 import {
   StyledCardHeading,
   StyledForm,
@@ -20,9 +19,14 @@ export const StyledDescription = styled.p`
   padding: 0 100px 50px 100px;
 `;
 
-const ConferenceDetails = ({ conference, id, isLoading, error }) => {
+const ConferenceDetails = ({
+  conference,
+  id,
+  isLoading,
+  error,
+  allCookies = {}
+}) => {
   const history = useHistory();
-  const [cookies] = useCookies([cookieName]);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -37,7 +41,7 @@ const ConferenceDetails = ({ conference, id, isLoading, error }) => {
 
   const deleteConference = async id => {
     try {
-      await deleteConferenceById(id, cookies.sessionToken.token);
+      await deleteConferenceById(id, allCookies.sessionToken.token);
       history.push("/");
     } catch (error) {
       console.log(error);
@@ -51,7 +55,7 @@ const ConferenceDetails = ({ conference, id, isLoading, error }) => {
     <StyledForm>
       <StyledCard>
         <StyledCardHeading className="name">{name}</StyledCardHeading>
-        {cookies.sessionToken && (
+        {allCookies.sessionToken && (
           <StyledLink className="editLink" to={`/${id}/edit`}>
             Edit Conference
           </StyledLink>
@@ -63,7 +67,7 @@ const ConferenceDetails = ({ conference, id, isLoading, error }) => {
         <StyledDescription className="description">
           {description}
         </StyledDescription>
-        {cookies.sessionToken && (
+        {allCookies.sessionToken && (
           <Button className="deleteButton" onClick={deleteThisConference}>
             Delete Conference
           </Button>
@@ -73,4 +77,4 @@ const ConferenceDetails = ({ conference, id, isLoading, error }) => {
   );
 };
 export default withCookies(ConferenceDetails);
-export { ConferenceDetails as WrappedComponent };
+export { ConferenceDetails as WrappedConferenceDetails };

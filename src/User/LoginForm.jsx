@@ -17,7 +17,7 @@ export const StyledLink = styled(Link)`
 `;
 
 const LoginForm = () => {
-  const [cookies, setCookie] = useCookies([cookieName]);
+  const [, setCookie] = useCookies([cookieName]);
   const setSessionToken = sessionTokenData => {
     setCookie(cookieName, sessionTokenData, cookieOptions);
   };

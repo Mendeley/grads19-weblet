@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Switch, Route, useParams } from "react-router-dom";
 import { withCookies, useCookies } from "react-cookie";
 import { cookieName } from "../Constants/Cookies";
-import ProfilePage from "./ProfilePage";
 import { getUserById } from "../api.js";
+import ProfilePage from "./ProfilePage";
 
 const UserContainer = () => {
   const [user, setUser] = useState(null);
@@ -28,6 +28,7 @@ const UserContainer = () => {
     if (id) {
       fetchData(id);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (

@@ -43,153 +43,139 @@ exports[`Navbar renders a logged-in navbar with text 1`] = `
       }
     }
   >
-    <withCookies(Navbar)
-      sessionToken={
+    <Navbar
+      allCookies={
         Object {
-          "token": "3ecb9d1d-863f-4207-b076-d868e6544c3b",
-          "userId": 1,
+          "sessionToken": Object {
+            "token": "3ecb9d1d-863f-4207-b076-d868e6544c3b",
+            "userId": 1,
+          },
         }
       }
     >
-      <withCookies(Navbar)
-        cookies={
-          Cookies {
-            "HAS_DOCUMENT_COOKIE": false,
-            "changeListeners": Array [
-              [Function],
-              [Function],
-            ],
-            "cookies": Object {},
-          }
-        }
-        forwardedRef={null}
-        sessionToken={
-          Object {
-            "token": "3ecb9d1d-863f-4207-b076-d868e6544c3b",
-            "userId": 1,
-          }
-        }
-      >
-        <Navbar
-          allCookies={Object {}}
-          cookies={
-            Cookies {
-              "HAS_DOCUMENT_COOKIE": false,
-              "changeListeners": Array [
-                [Function],
-                [Function],
-              ],
-              "cookies": Object {},
-            }
-          }
-          sessionToken={
-            Object {
-              "token": "3ecb9d1d-863f-4207-b076-d868e6544c3b",
-              "userId": 1,
-            }
-          }
+      <styled.nav>
+        <nav
+          className="sc-AykKD efbWzt"
         >
-          <styled.nav>
-            <nav
-              className="sc-AykKD efbWzt"
+          <styled.ul>
+            <ul
+              className="sc-AykKE bwFPTU"
             >
-              <styled.ul>
-                <ul
-                  className="sc-AykKE bwFPTU"
+              <styled.li>
+                <li
+                  className="sc-AykKF btWmVE"
                 >
-                  <styled.li>
-                    <li
-                      className="sc-AykKF btWmVE"
+                  <Styled(Link)
+                    to="/"
+                  >
+                    <Link
+                      className="sc-AykKG jJIHsa"
+                      to="/"
                     >
-                      <Styled(Link)
-                        to="/"
+                      <LinkAnchor
+                        className="sc-AykKG jJIHsa"
+                        href="/"
+                        navigate={[Function]}
                       >
-                        <Link
+                        <a
                           className="sc-AykKG jJIHsa"
-                          to="/"
+                          href="/"
+                          onClick={[Function]}
                         >
-                          <LinkAnchor
-                            className="sc-AykKG jJIHsa"
-                            href="/"
-                            navigate={[Function]}
-                          >
-                            <a
-                              className="sc-AykKG jJIHsa"
-                              href="/"
-                              onClick={[Function]}
-                            >
-                              Home
-                            </a>
-                          </LinkAnchor>
-                        </Link>
-                      </Styled(Link)>
-                    </li>
-                  </styled.li>
-                  <styled.li>
-                    <li
-                      className="sc-AykKF btWmVE"
+                          Home
+                        </a>
+                      </LinkAnchor>
+                    </Link>
+                  </Styled(Link)>
+                </li>
+              </styled.li>
+              <styled.li>
+                <li
+                  className="sc-AykKF btWmVE"
+                >
+                  <Styled(Link)
+                    className="addConference"
+                    to="/add"
+                  >
+                    <Link
+                      className="sc-AykKG jJIHsa addConference"
+                      to="/add"
                     >
-                      <Styled(Link)
-                        className="register"
-                        to="/users/register"
+                      <LinkAnchor
+                        className="sc-AykKG jJIHsa addConference"
+                        href="/add"
+                        navigate={[Function]}
                       >
-                        <Link
-                          className="sc-AykKG jJIHsa register"
-                          to="/users/register"
+                        <a
+                          className="sc-AykKG jJIHsa addConference"
+                          href="/add"
+                          onClick={[Function]}
                         >
-                          <LinkAnchor
-                            className="sc-AykKG jJIHsa register"
-                            href="/users/register"
-                            navigate={[Function]}
-                          >
-                            <a
-                              className="sc-AykKG jJIHsa register"
-                              href="/users/register"
-                              onClick={[Function]}
-                            >
-                              Register
-                            </a>
-                          </LinkAnchor>
-                        </Link>
-                      </Styled(Link)>
-                    </li>
-                  </styled.li>
-                  <styled.li>
-                    <li
-                      className="sc-AykKF btWmVE"
+                          Add Conference
+                        </a>
+                      </LinkAnchor>
+                    </Link>
+                  </Styled(Link)>
+                </li>
+              </styled.li>
+              <styled.li>
+                <li
+                  className="sc-AykKF btWmVE"
+                >
+                  <Styled(Link)
+                    className="profilePage"
+                    to="/users/1"
+                  >
+                    <Link
+                      className="sc-AykKG jJIHsa profilePage"
+                      to="/users/1"
                     >
-                      <Styled(Link)
-                        className="login"
-                        to="/users/login"
+                      <LinkAnchor
+                        className="sc-AykKG jJIHsa profilePage"
+                        href="/users/1"
+                        navigate={[Function]}
                       >
-                        <Link
-                          className="sc-AykKG jJIHsa login"
-                          to="/users/login"
+                        <a
+                          className="sc-AykKG jJIHsa profilePage"
+                          href="/users/1"
+                          onClick={[Function]}
                         >
-                          <LinkAnchor
-                            className="sc-AykKG jJIHsa login"
-                            href="/users/login"
-                            navigate={[Function]}
-                          >
-                            <a
-                              className="sc-AykKG jJIHsa login"
-                              href="/users/login"
-                              onClick={[Function]}
-                            >
-                              Login
-                            </a>
-                          </LinkAnchor>
-                        </Link>
-                      </Styled(Link)>
-                    </li>
-                  </styled.li>
-                </ul>
-              </styled.ul>
-            </nav>
-          </styled.nav>
-        </Navbar>
-      </withCookies(Navbar)>
-    </withCookies(Navbar)>
+                          Profile
+                        </a>
+                      </LinkAnchor>
+                    </Link>
+                  </Styled(Link)>
+                </li>
+              </styled.li>
+              <styled.li>
+                <li
+                  className="sc-AykKF btWmVE"
+                >
+                  <Button
+                    className="logout"
+                    navLink={true}
+                    onClick={[Function]}
+                  >
+                    <styled.button
+                      className="logout"
+                      navLink={true}
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="sc-AykKC kmEWeK logout"
+                        onClick={[Function]}
+                      >
+                        Logout
+                      </button>
+                    </styled.button>
+                  </Button>
+                </li>
+              </styled.li>
+            </ul>
+          </styled.ul>
+        </nav>
+      </styled.nav>
+    </Navbar>
   </Router>
 </MemoryRouter>
 `;
@@ -237,138 +223,106 @@ exports[`Navbar renders a logged-out navbar with text 1`] = `
       }
     }
   >
-    <withCookies(Navbar)>
-      <withCookies(Navbar)
-        cookies={
-          Cookies {
-            "HAS_DOCUMENT_COOKIE": false,
-            "changeListeners": Array [
-              [Function],
-              [Function],
-              [Function],
-              [Function],
-            ],
-            "cookies": Object {},
-          }
-        }
-        forwardedRef={null}
-      >
-        <Navbar
-          allCookies={Object {}}
-          cookies={
-            Cookies {
-              "HAS_DOCUMENT_COOKIE": false,
-              "changeListeners": Array [
-                [Function],
-                [Function],
-                [Function],
-                [Function],
-              ],
-              "cookies": Object {},
-            }
-          }
+    <Navbar>
+      <styled.nav>
+        <nav
+          className="sc-AykKD efbWzt"
         >
-          <styled.nav>
-            <nav
-              className="sc-AykKD efbWzt"
+          <styled.ul>
+            <ul
+              className="sc-AykKE bwFPTU"
             >
-              <styled.ul>
-                <ul
-                  className="sc-AykKE bwFPTU"
+              <styled.li>
+                <li
+                  className="sc-AykKF btWmVE"
                 >
-                  <styled.li>
-                    <li
-                      className="sc-AykKF btWmVE"
+                  <Styled(Link)
+                    to="/"
+                  >
+                    <Link
+                      className="sc-AykKG jJIHsa"
+                      to="/"
                     >
-                      <Styled(Link)
-                        to="/"
+                      <LinkAnchor
+                        className="sc-AykKG jJIHsa"
+                        href="/"
+                        navigate={[Function]}
                       >
-                        <Link
+                        <a
                           className="sc-AykKG jJIHsa"
-                          to="/"
+                          href="/"
+                          onClick={[Function]}
                         >
-                          <LinkAnchor
-                            className="sc-AykKG jJIHsa"
-                            href="/"
-                            navigate={[Function]}
-                          >
-                            <a
-                              className="sc-AykKG jJIHsa"
-                              href="/"
-                              onClick={[Function]}
-                            >
-                              Home
-                            </a>
-                          </LinkAnchor>
-                        </Link>
-                      </Styled(Link)>
-                    </li>
-                  </styled.li>
-                  <styled.li>
-                    <li
-                      className="sc-AykKF btWmVE"
+                          Home
+                        </a>
+                      </LinkAnchor>
+                    </Link>
+                  </Styled(Link)>
+                </li>
+              </styled.li>
+              <styled.li>
+                <li
+                  className="sc-AykKF btWmVE"
+                >
+                  <Styled(Link)
+                    className="register"
+                    to="/users/register"
+                  >
+                    <Link
+                      className="sc-AykKG jJIHsa register"
+                      to="/users/register"
                     >
-                      <Styled(Link)
-                        className="register"
-                        to="/users/register"
+                      <LinkAnchor
+                        className="sc-AykKG jJIHsa register"
+                        href="/users/register"
+                        navigate={[Function]}
                       >
-                        <Link
+                        <a
                           className="sc-AykKG jJIHsa register"
-                          to="/users/register"
+                          href="/users/register"
+                          onClick={[Function]}
                         >
-                          <LinkAnchor
-                            className="sc-AykKG jJIHsa register"
-                            href="/users/register"
-                            navigate={[Function]}
-                          >
-                            <a
-                              className="sc-AykKG jJIHsa register"
-                              href="/users/register"
-                              onClick={[Function]}
-                            >
-                              Register
-                            </a>
-                          </LinkAnchor>
-                        </Link>
-                      </Styled(Link)>
-                    </li>
-                  </styled.li>
-                  <styled.li>
-                    <li
-                      className="sc-AykKF btWmVE"
+                          Register
+                        </a>
+                      </LinkAnchor>
+                    </Link>
+                  </Styled(Link)>
+                </li>
+              </styled.li>
+              <styled.li>
+                <li
+                  className="sc-AykKF btWmVE"
+                >
+                  <Styled(Link)
+                    className="login"
+                    to="/users/login"
+                  >
+                    <Link
+                      className="sc-AykKG jJIHsa login"
+                      to="/users/login"
                     >
-                      <Styled(Link)
-                        className="login"
-                        to="/users/login"
+                      <LinkAnchor
+                        className="sc-AykKG jJIHsa login"
+                        href="/users/login"
+                        navigate={[Function]}
                       >
-                        <Link
+                        <a
                           className="sc-AykKG jJIHsa login"
-                          to="/users/login"
+                          href="/users/login"
+                          onClick={[Function]}
                         >
-                          <LinkAnchor
-                            className="sc-AykKG jJIHsa login"
-                            href="/users/login"
-                            navigate={[Function]}
-                          >
-                            <a
-                              className="sc-AykKG jJIHsa login"
-                              href="/users/login"
-                              onClick={[Function]}
-                            >
-                              Login
-                            </a>
-                          </LinkAnchor>
-                        </Link>
-                      </Styled(Link)>
-                    </li>
-                  </styled.li>
-                </ul>
-              </styled.ul>
-            </nav>
-          </styled.nav>
-        </Navbar>
-      </withCookies(Navbar)>
-    </withCookies(Navbar)>
+                          Login
+                        </a>
+                      </LinkAnchor>
+                    </Link>
+                  </Styled(Link)>
+                </li>
+              </styled.li>
+            </ul>
+          </styled.ul>
+        </nav>
+      </styled.nav>
+    </Navbar>
   </Router>
 </MemoryRouter>
 `;
