@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, useParams } from "react-router-dom";
 import ProfilePage from "./ProfilePage";
+import UpdateProfile from "./UpdateProfile";
 import { getUserById } from "../api.js";
 import UpdateProfile from "./UpdateProfile";
 
-const UserContainer = ({ token }) => {
+const UserContainer = ({ sessionToken }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -14,7 +15,7 @@ const UserContainer = ({ token }) => {
     setIsLoading(true);
 
     try {
-      const user = await getUserById(userId, token);
+      const user = await getUserById(userId, sessionToken.token);
       setUser(user);
     } catch (error) {
       setError(true);
@@ -23,6 +24,7 @@ const UserContainer = ({ token }) => {
   };
 
   useEffect(() => {
+    console.log(id);
     if (id) {
       fetchData(id);
     }
@@ -31,7 +33,7 @@ const UserContainer = ({ token }) => {
   return (
     <Switch>
       <Route path="/users/edit/:id">
-        <UpdateProfile />
+        <UpdateProfile user={user}/>
       </Route>
       <Route path="/users/:id">
         <ProfilePage user={user} isLoading={isLoading} error={error} />

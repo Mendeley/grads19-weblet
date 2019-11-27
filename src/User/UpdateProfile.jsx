@@ -1,17 +1,41 @@
 import React from "react";
-import {
-  StyledForm,
-  StyledCard
-} from "../StyledFormComponents";
+import Input from "../Input";
+import { StyledForm, StyledCard, StyledCardHeading } from "../StyledFormComponents";
 
-const UpdateProfile = () => {
-  return (
-      <StyledForm>
-          <StyledCard>
-              Edit Profile
-        </StyledCard>
-    </StyledForm>
-  );
+const UpdateProfile = ({ user}) => {
+
+    const { firstName, lastName, occupation } = user || {};
+    
+    return (
+        <StyledForm>
+            <StyledCard>
+                <StyledCardHeading>Edit Profile:</StyledCardHeading>
+                    <Input
+                        label="First Name:"
+                        type="text"
+                        name="firstName"
+                        value={firstName}
+                        required
+                    />
+                    <Input
+                        label="Last Name:"
+                        type="text"
+                        name="lastName"
+                        value={lastName}
+                        required
+                    />
+                    <Input
+                        label="Occupation:"
+                        type="text"
+                        name="occupation"
+                        value={occupation}
+                        required
+                    />
+                    <Input type="submit" value="save" />
+                    <Input type="button" value="cancel" />
+            </StyledCard>
+        </StyledForm>
+    );
 };
 
 export default UpdateProfile;
