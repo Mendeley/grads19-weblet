@@ -4,7 +4,6 @@ import Adapter from "enzyme-adapter-react-16";
 import { Router } from "react-router-dom";
 import React from "react";
 import { createMemoryHistory } from "history";
-import { act } from "react-dom/test-utils";
 
 jest.mock("react-router-dom", () => {
   const originalReactRouter = jest.requireActual("react-router-dom");
@@ -32,14 +31,12 @@ describe("ProfilePage", () => {
     const history = createMemoryHistory();
     history.push("/users/11");
 
-    let wrapper;
-    act(() => {
-      wrapper = mount(
+   const wrapper = mount(
         <Router history={history}>
           <ProfilePage user={mockData} />
         </Router>
       );
-    });
+
       wrapper.update();
     expect(wrapper.find(".editLink").get(0).props.to).toBe(`/users/edit/${mockData.id}`);     
     expect(wrapper.find(".name").get(0).props.children).toBe(`Hello, ${mockData.firstName} ${mockData.lastName}!`);

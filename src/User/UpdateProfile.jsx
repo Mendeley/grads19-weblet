@@ -4,7 +4,7 @@ import {
   StyledCard
 } from "../StyledFormComponents";
 
-const UpdateProfile = ({  }) => {
+const UpdateProfile = () => {
   return (
       <StyledForm>
           <StyledCard>
