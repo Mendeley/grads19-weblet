@@ -48,6 +48,11 @@ export const createNewUser = async user => {
   }
 };
 
+export const getUserList = async () => {
+  const response = await axios.get("http://localhost:8080/users");
+  return response.data;
+};
+
 export const loginUser = async user => {
   try {
     const response = await axios.post("http://localhost:8080/auth/login", user);

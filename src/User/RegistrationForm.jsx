@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Input from "../Input";
-import { createNewUser } from "../api";
+import { createNewUser, getUserList } from "../api";
 import {
   StyledCardHeading,
   StyledForm,
@@ -15,9 +15,24 @@ const RegistrationForm = () => {
     lastName: "",
     email: "",
     occupation: "",
+    managerId: "",
     username: "",
     password: ""
   });
+  const [managers, setManagers] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const userList = await getUserList();
+      setManagers(userList);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -36,6 +51,7 @@ const RegistrationForm = () => {
       console.log(error);
     }
   };
+
   const onSubmit = ev => {
     ev.preventDefault();
     submitForm();
@@ -83,6 +99,15 @@ const RegistrationForm = () => {
             required
             maxLength="100"
           />
+          <label>Manager: </label>
+          <select onChange={handleChange} name="managerId" defaultValue="">
+            <option value="">---- select ----</option>
+            {managers.map(manager => (
+              <option key={manager.id} value={manager.id}>
+                {manager.firstName} {manager.lastName}
+              </option>
+            ))}
+          </select>
           <Input
             label="Username: "
             type="text"
