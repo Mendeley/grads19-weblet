@@ -1,17 +1,16 @@
-import React from "react";
-import { Router, MemoryRouter } from "react-router-dom";
-import { act } from "react-dom/test-utils";
-import { mount, configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-import { createMemoryHistory } from "history";
-import { WrappedAddConferenceForm as AddConferenceForm } from "./AddConferenceForm";
-import { createNewConference } from "../api";
-
-configure({ adapter: new Adapter() });
-
 jest.mock("../api", () => ({
   createNewConference: jest.fn()
 }));
+
+import React from "react";
+import { Router, MemoryRouter } from "react-router-dom";
+import { mount, configure } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import { createMemoryHistory } from "history";
+import { AddConferenceForm } from "./AddConferenceForm";
+import { createNewConference } from "../api";
+
+configure({ adapter: new Adapter() });
 
 describe("submitForm", () => {
   let ev;
@@ -35,14 +34,11 @@ describe("submitForm", () => {
     const apiReturnValue = Promise.resolve(200);
     createNewConference.mockImplementation(() => apiReturnValue);
 
-    let wrapper;
-    act(() => {
-      wrapper = mount(
-        <MemoryRouter initialEntries={[{ pathname: "/add", key: "testKey" }]}>
-          <AddConferenceForm allCookies={mockCookie} />
-        </MemoryRouter>
-      );
-    });
+    const wrapper = mount(
+      <MemoryRouter initialEntries={[{ pathname: "/add", key: "testKey" }]}>
+        <AddConferenceForm allCookies={mockCookie} />
+      </MemoryRouter>
+    );
 
     wrapper.find(AddConferenceForm).simulate("submit", ev);
 
@@ -67,14 +63,11 @@ describe("submitForm", () => {
     const history = createMemoryHistory();
     history.push("/add");
 
-    let wrapper;
-    act(() => {
-      wrapper = mount(
-        <Router history={history}>
-          <AddConferenceForm allCookies={mockCookie} />
-        </Router>
-      );
-    });
+    const wrapper = mount(
+      <Router history={history}>
+        <AddConferenceForm allCookies={mockCookie} />
+      </Router>
+    );
 
     wrapper.find(AddConferenceForm).simulate("submit", ev);
 
@@ -82,10 +75,9 @@ describe("submitForm", () => {
 
     expect(ev.preventDefault).toHaveBeenCalledTimes(1);
     expect(createNewConference).toHaveBeenCalledTimes(1);
-
     expect(history.location.pathname).toBe("/");
   });
-  it("should stay on page if axios request unsucessful", async () => {
+  it("should stay on page if axios request unsuccessful", async () => {
     expect.assertions(1);
 
     const apiReturnValue = Promise.reject(400);
@@ -94,14 +86,11 @@ describe("submitForm", () => {
     const history = createMemoryHistory();
     history.push("/add");
 
-    let wrapper;
-    act(() => {
-      wrapper = mount(
-        <Router history={history}>
-          <AddConferenceForm allCookies={mockCookie} />
-        </Router>
-      );
-    });
+    const wrapper = mount(
+      <Router history={history}>
+        <AddConferenceForm allCookies={mockCookie} />
+      </Router>
+    );
 
     wrapper.find(AddConferenceForm).simulate("submit", ev);
 

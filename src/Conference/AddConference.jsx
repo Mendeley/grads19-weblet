@@ -1,5 +1,5 @@
 import React from "react";
-import Form from "./AddConferenceForm";
+import CookieAddConferenceForm from "./AddConferenceForm";
 import {
   StyledCardHeading,
   StyledForm,
@@ -11,7 +11,7 @@ const AddConference = () => {
     <StyledForm>
       <StyledCard>
         <StyledCardHeading>Add a new conference:</StyledCardHeading>
-        <Form />
+        <CookieAddConferenceForm />
       </StyledCard>
     </StyledForm>
   );

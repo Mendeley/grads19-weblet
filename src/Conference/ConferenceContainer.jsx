@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, useParams } from "react-router-dom";
 import { getConferenceById } from "../api.js";
-import ConferenceDetails from "./ConferenceDetails";
+import CookieConferenceDetails from "./ConferenceDetails";
 import UpdateConference from "./UpdateConference";
 
 const ConferenceContainer = () => {
@@ -52,7 +52,7 @@ const ConferenceContainer = () => {
         />
       </Route>
       <Route path="/:id">
-        <ConferenceDetails
+        <CookieConferenceDetails
           conference={conference}
           id={id}
           isLoading={isLoading}

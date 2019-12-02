@@ -19,7 +19,7 @@ export const StyledDescription = styled.p`
   padding: 0 100px 50px 100px;
 `;
 
-const ConferenceDetails = ({
+export const ConferenceDetails = ({
   conference,
   id,
   isLoading,
@@ -27,6 +27,7 @@ const ConferenceDetails = ({
   allCookies = {}
 }) => {
   const history = useHistory();
+  const sessionToken = allCookies.sessionToken;
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -41,7 +42,7 @@ const ConferenceDetails = ({
 
   const deleteConference = async id => {
     try {
-      await deleteConferenceById(id, allCookies.sessionToken.token);
+      await deleteConferenceById(id, sessionToken.token);
       history.push("/");
     } catch (error) {
       console.log(error);
@@ -55,7 +56,7 @@ const ConferenceDetails = ({
     <StyledForm>
       <StyledCard>
         <StyledCardHeading className="name">{name}</StyledCardHeading>
-        {allCookies.sessionToken && (
+        {sessionToken && (
           <StyledLink className="editLink" to={`/${id}/edit`}>
             Edit Conference
           </StyledLink>
@@ -67,7 +68,7 @@ const ConferenceDetails = ({
         <StyledDescription className="description">
           {description}
         </StyledDescription>
-        {allCookies.sessionToken && (
+        {sessionToken && (
           <Button className="deleteButton" onClick={deleteThisConference}>
             Delete Conference
           </Button>
@@ -76,5 +77,5 @@ const ConferenceDetails = ({
     </StyledForm>
   );
 };
-export default withCookies(ConferenceDetails);
-export { ConferenceDetails as WrappedConferenceDetails };
+const CookieConferenceDetails = withCookies(ConferenceDetails);
+export default CookieConferenceDetails;

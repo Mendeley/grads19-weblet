@@ -4,8 +4,9 @@ import { withCookies } from "react-cookie";
 import Input from "../Input";
 import { createNewConference } from "../api";
 
-const AddConferenceForm = ({ allCookies = {} }) => {
+export const AddConferenceForm = ({ allCookies = {} }) => {
   let history = useHistory();
+  const token = allCookies.sessionToken.token;
   const [conference, setConference] = useState({
     name: "",
     dateTime: "",
@@ -25,7 +26,7 @@ const AddConferenceForm = ({ allCookies = {} }) => {
       dateTime: conference.dateTime + ":00Z"
     };
     try {
-      await createNewConference(newConference, allCookies.sessionToken.token);
+      await createNewConference(newConference, token);
       history.push("/");
     } catch (error) {
       console.log(error);
@@ -87,5 +88,5 @@ const AddConferenceForm = ({ allCookies = {} }) => {
     </form>
   );
 };
-export default withCookies(AddConferenceForm);
-export { AddConferenceForm as WrappedAddConferenceForm };
+const CookieAddConferenceForm = withCookies(AddConferenceForm);
+export default CookieAddConferenceForm;

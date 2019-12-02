@@ -1,17 +1,17 @@
-import React from "react";
-import { Router } from "react-router-dom";
-import { WrappedConferenceDetails as ConferenceDetails } from "./ConferenceDetails";
-import { configure, mount } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-import { createMemoryHistory } from "history";
-import { act } from "react-dom/test-utils";
-
 jest.mock("react-router-dom", () => {
   const originalReactRouter = jest.requireActual("react-router-dom");
   return {
     ...originalReactRouter
   };
 });
+
+import React from "react";
+import { Router } from "react-router-dom";
+import { ConferenceDetails } from "./ConferenceDetails";
+import { configure, mount } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import { createMemoryHistory } from "history";
+import { act } from "react-dom/test-utils";
 
 configure({ adapter: new Adapter() });
 
@@ -52,7 +52,6 @@ describe("ConferenceDetails", () => {
       );
     });
     wrapper.update();
-    console.log(wrapper.debug());
     expect(wrapper.find(".name").get(0).props.children).toBe(mockData.name);
     expect(wrapper.find(".topic").get(0).props.children).toBe(mockData.topic);
     expect(wrapper.find(".date").get(0).props.children).toBe("12/11/2019");

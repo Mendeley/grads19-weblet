@@ -20,6 +20,7 @@ const UpdateForm = ({
 }) => {
   const history = useHistory();
   const [cookies] = useCookies([cookieName]);
+  const token = cookies.sessionToken.token;
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -40,7 +41,7 @@ const UpdateForm = ({
       dateTime: `${updatedConference.dateTime}:00Z`
     };
     try {
-      await updateConferenceById(id, newConference, cookies.sessionToken.token);
+      await updateConferenceById(id, newConference, token);
       setConference(newConference);
       history.push(`/${id}`);
     } catch (error) {
