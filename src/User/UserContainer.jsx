@@ -5,13 +5,14 @@ import { cookieName } from "../Constants/Cookies";
 import { noManager } from "../Constants/Constants";
 import ProfilePage from "./ProfilePage";
 import UpdateProfile from "./UpdateProfile";
-import { getUserById } from "../api.js";
+import { getUserById, getFavouritedConferenceById } from "../api.js";
 
 const UserContainer = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [managerName, setManagerName] = useState("");
+  const [favouriteConferences, setFavouriteConferences] = useState([]);
   const { id } = useParams();
   const [cookies] = useCookies([cookieName]);
   const userId = user ? user.id : null;
@@ -38,17 +39,20 @@ const UserContainer = () => {
     }
   };
 
-  const fetchData = async userId => {
+  const fetchData = async (userId, conferenceId) => {
     setIsLoading(true);
 
     try {
+      const favouriteConferences = await getFavouritedConferenceById(
+        conferenceId,
+        token
+      );
+      setFavouriteConferences(favouriteConferences);
       const user = await getUserById(userId, cookies.sessionToken.token);
       setUser(user);
-      setError(false);
     } catch (error) {
       setError(true);
     }
-
     setIsLoading(false);
   };
 
@@ -56,7 +60,6 @@ const UserContainer = () => {
     if (id) {
       fetchData(id);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   useEffect(() => {
@@ -65,7 +68,6 @@ const UserContainer = () => {
     } else {
       setManagerName("");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isCurrentUser(), userId]);
 
   return (
@@ -91,6 +93,7 @@ const UserContainer = () => {
           error={error}
           isCurrentUser={isCurrentUser()}
           managerName={managerName}
+          favouriteConferences={favouriteConferences}
         />
       </Route>
     </Switch>
