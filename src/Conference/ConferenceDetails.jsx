@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import Button from "../Button";
 import { getTimestring, getDatestring } from "../utils";
-import { deleteConferenceById } from "../api.js";
+import { deleteConferenceById, favouriteConference } from "../api.js";
 import {
   StyledCardHeading,
   StyledForm,
@@ -44,6 +44,14 @@ const ConferenceDetails = ({ conference, id, isLoading, error }) => {
     deleteConference(id);
   };
 
+  const expressInterest = async () => {
+    try {
+      await favouriteConference(conference, token);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <StyledForm>
       <StyledCard>
@@ -57,6 +65,7 @@ const ConferenceDetails = ({ conference, id, isLoading, error }) => {
           {description}
         </StyledDescription>
         <Button onClick={deleteThisConference}>Delete Conference</Button>
+        <Button onClick={expressInterest}>Express Interest</Button>
       </StyledCard>
     </StyledForm>
   );
