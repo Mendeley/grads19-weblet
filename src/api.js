@@ -95,14 +95,32 @@ export const logoutUser = async token => {
 
 export const updateUserById = async (id, user, token) => {
   try {
-    await axios.patch(
-      `http://localhost:8080/users/${id}`, 
-      user,
-      { headers: { Authorization: token}}
-      );
-  toast.success("Profile details have been updated!");
+    await axios.patch(`http://localhost:8080/users/${id}`, user, {
+      headers: { Authorization: token }
+    });
+    toast.success("Profile details have been updated!");
   } catch (error) {
-  toast.error("Profile details have not been updated!");
-  throw error;
+    toast.error("Profile details have not been updated!");
+    throw error;
   }
-  };
+};
+export const getFavouritedConferenceById = async (id, token) => {
+  const response = await axios.get(
+    `http://localhost:8080/userConferences/${id}`,
+    { headers: { Authorization: token } }
+  );
+  return response.data;
+};
+
+export const favouriteConference = async (conference, token) => {
+  try {
+    await axios.post("http://localhost:8080/userConferences", conference, {
+      headers: { Authorization: token }
+    });
+    toast.success("Conference has been favourited!");
+  } catch (error) {
+    toast.error("Conference has not been favourited!");
+    console.log(error);
+    throw error;
+  }
+};

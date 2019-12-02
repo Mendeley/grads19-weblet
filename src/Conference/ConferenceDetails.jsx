@@ -5,6 +5,7 @@ import Button from "../Button";
 import { getTimestring, getDatestring } from "../utils";
 import { deleteConferenceById } from "../api.js";
 import styled from "styled-components";
+import { deleteConferenceById, favouriteConference } from "../api.js";
 import {
   StyledCardHeading,
   StyledForm,
@@ -52,6 +53,14 @@ export const ConferenceDetails = ({
     deleteConference(id);
   };
 
+  const expressInterest = async () => {
+    try {
+      await favouriteConference(conference, token);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <StyledForm>
       <StyledCard>
@@ -69,9 +78,12 @@ export const ConferenceDetails = ({
           {description}
         </StyledDescription>
         {sessionToken && (
-          <Button className="deleteButton" onClick={deleteThisConference}>
-            Delete Conference
-          </Button>
+          <>
+            <Button className="deleteButton" onClick={deleteThisConference}>
+              Delete Conference
+            </Button>
+            <Button onClick={expressInterest}>Express Interest</Button>
+          </>
         )}
       </StyledCard>
     </StyledForm>
