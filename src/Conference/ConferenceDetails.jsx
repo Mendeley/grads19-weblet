@@ -4,9 +4,18 @@ import { Link, useHistory } from "react-router-dom";
 import { withCookies, useCookies } from "react-cookie";
 import Button from "../Button";
 import { getTimestring, getDatestring } from "../utils";
+<<<<<<< HEAD
 import { deleteConferenceById, addFavouriteConference } from "../api.js";
 import { StyledCardHeading, StyledForm, Card } from "../StyledFormComponents";
 import { cookieName } from "../Constants/Cookies";
+=======
+import { deleteConferenceById, favouriteConference } from "../api.js";
+import {
+  StyledCardHeading,
+  StyledForm,
+  StyledCard
+} from "../StyledFormComponents";
+>>>>>>> add express interest button and list favourited conferences on profile page
 
 export const StyledLink = styled(Link)`
   color: #7a517d;
@@ -51,7 +60,15 @@ export const ConferenceDetails = ({
   };
 
   const expressInterest = async () => {
+<<<<<<< HEAD
     await addFavouriteConference(conference, token);
+=======
+    try {
+      await favouriteConference(conference, token);
+    } catch (error) {
+      console.log(error);
+    }
+>>>>>>> add express interest button and list favourited conferences on profile page
   };
 
   return (
@@ -70,6 +87,7 @@ export const ConferenceDetails = ({
         <StyledDescription className="description">
           {description}
         </StyledDescription>
+<<<<<<< HEAD
         {token && (
           <>
             <Button className="deleteButton" onClick={deleteThisConference}>
@@ -79,6 +97,11 @@ export const ConferenceDetails = ({
           </>
         )}
       </Card>
+=======
+        <Button onClick={deleteThisConference}>Delete Conference</Button>
+        <Button onClick={expressInterest}>Express Interest</Button>
+      </StyledCard>
+>>>>>>> add express interest button and list favourited conferences on profile page
     </StyledForm>
   );
 };

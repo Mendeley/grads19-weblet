@@ -119,3 +119,24 @@ export const addFavouriteConference = async (conference, token) => {
     throw error;
   }
 };
+
+export const getFavouritedConferenceById = async (id, token) => {
+  const response = await axios.get(
+    `http://localhost:8080/userConferences/${id}`,
+    { headers: { Authorization: token } }
+  );
+  return response.data;
+};
+
+export const favouriteConference = async (conference, token) => {
+  try {
+    await axios.post("http://localhost:8080/userConferences", conference, {
+      headers: { Authorization: token }
+    });
+    toast.success("Conference has been favourited!");
+  } catch (error) {
+    toast.error("Conference has not been favourited!");
+    console.log(error);
+    throw error;
+  }
+};

@@ -9,6 +9,7 @@ import { getUserById, getFavouritedConferencesByUserId } from "../api.js";
 
 const UserContainer = () => {
   const [user, setUser] = useState(null);
+  const [favouriteConferences, setFavouriteConferences] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [managerName, setManagerName] = useState("");
@@ -39,7 +40,7 @@ const UserContainer = () => {
     }
   };
 
-  const fetchData = async userId => {
+  const fetchData = async (userId, conferenceId) => {
     setIsLoading(true);
 
     try {
