@@ -5,7 +5,7 @@ import { cookieName } from "../Constants/Cookies";
 import { noManager } from "../Constants/Constants";
 import ProfilePage from "./ProfilePage";
 import UpdateProfile from "./UpdateProfile";
-import { getUserById, getFavouritedConferenceById } from "../api.js";
+import { getUserById, getFavouritedConferencesByUserId } from "../api.js";
 
 const UserContainer = () => {
   const [user, setUser] = useState(null);
@@ -39,12 +39,12 @@ const UserContainer = () => {
     }
   };
 
-  const fetchData = async (userId, conferenceId) => {
+  const fetchData = async userId => {
     setIsLoading(true);
 
     try {
-      const favouriteConferences = await getFavouritedConferenceById(
-        conferenceId,
+      const favouriteConferences = await getFavouritedConferencesByUserId(
+        userId,
         token
       );
       setFavouriteConferences(favouriteConferences);

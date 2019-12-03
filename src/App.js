@@ -21,11 +21,20 @@ const StyledApp = styled.div`
   min-height: 100vh;
 `;
 function App() {
+  const cookieName = "sessionToken";
+  const cookieOptions = { path: "/" };
+  const [cookies, setCookie, removeCookie] = useCookies([cookieName]);
+  const setSessionToken = sessionTokenData => {
+    setCookie(cookieName, sessionTokenData, cookieOptions);
+  };
+  const deleteSessionToken = () => {
+    removeCookie(cookieName, cookieOptions);
+  };
   return (
     <CookiesProvider>
       <BrowserRouter>
         <StyledApp>
-          <Navbar />
+          <Navbar deleteSessionToken={deleteSessionToken} />
           <Switch>
             <Route exact path="/">
               <ConferenceList />
@@ -39,12 +48,10 @@ function App() {
               <RegistrationForm />
             </Route>
             <Route path="/users/login">
-              <LoginForm />
+              <LoginForm setSessionToken={setSessionToken} />
             </Route>
             <Route path="/users/:id">
-              <AuthRedirect redirectPath="/users/login">
-                <UserContainer />
-              </AuthRedirect>
+              <UserContainer />
             </Route>
             <Route path="/:id">
               <ConferenceContainer />

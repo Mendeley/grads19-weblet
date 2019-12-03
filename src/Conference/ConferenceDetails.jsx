@@ -3,7 +3,6 @@ import { Link, useHistory } from "react-router-dom";
 import { withCookies } from "react-cookie";
 import Button from "../Button";
 import { getTimestring, getDatestring } from "../utils";
-import { deleteConferenceById } from "../api.js";
 import styled from "styled-components";
 import { deleteConferenceById, favouriteConference } from "../api.js";
 import {
@@ -53,12 +52,8 @@ export const ConferenceDetails = ({
     deleteConference(id);
   };
 
-  const expressInterest = async () => {
-    try {
-      await favouriteConference(conference, token);
-    } catch (error) {
-      console.log(error);
-    }
+  const expressInterest = async ({ sessionToken }) => {
+    await addFavouriteConference(conference, sessionToken.token);
   };
 
   return (

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { noManager } from "../Constants/Constants";
+import FavouriteConferenceList from "../Conference/FavouriteConferenceList";
 
 export const StyledLink = styled(Link)`
   color: #7a517d;
@@ -27,7 +28,7 @@ const StyledProfile = styled.div`
   padding: 20px;
 `;
 
-const StyledCard = styled.ul`
+const StyledProfileCard = styled.ul`
   border-style: solid;
   border-color: black;
   border-radius: 25px;
@@ -101,7 +102,7 @@ const ProfilePage = ({
 
   return (
     <StyledProfile>
-      <StyledCard>
+      <StyledProfileCard>
         {isCurrentUser && (
           <StyledEditLink className="editLink" to={`/users/${id}/edit`}>
             Edit
@@ -114,8 +115,8 @@ const ProfilePage = ({
         <p className="email">{`Email: ${email}`}</p>
         <p className="occupation">{`Occupation: ${occupation}`}</p>
         {isCurrentUser && displayManager()}
-      </StyledCard>
-      <StyledCard>
+      </StyledProfileCard>
+      <StyledProfileCard>
         <StyledCardHeading className="favourite-conferences">
           Favourited conferences
         </StyledCardHeading>
@@ -128,7 +129,7 @@ const ProfilePage = ({
             </StyledFavouritesListItem>
           ))}
         </StyledFavouritesList>
-      </StyledCard>
+      </StyledProfileCard>
     </StyledProfile>
   );
 };
