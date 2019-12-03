@@ -49,18 +49,10 @@ export const createNewUser = async user => {
 };
 
 export const getSearchResults = async input => {
-  // const response = await axios.get(
-  //   `http://localhost:8080/users/search/${input}`
-  // );
-  //return response.data;
-  return [
-    { id: 1, firstName: "James", lastName: "Kirk" },
-    { id: 2, firstName: "Leonard", lastName: "Mcoy" },
-    { id: 3, firstName: "Montgomery", lastName: "Scott" },
-    { id: 4, firstName: "Hikaru", lastName: "Sulu" },
-    { id: 5, firstName: "Nyota", lastName: "Uhura" },
-    { id: 6, firstName: "Pavel", lastName: "Chekov" }
-  ];
+  const response = await axios.get(
+    `http://localhost:8080/users/search/${input}`
+  );
+  return response.data;
 };
 
 export const loginUser = async user => {
