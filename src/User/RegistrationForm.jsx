@@ -109,7 +109,7 @@ const RegistrationForm = () => {
           />
           <label>Manager: </label>
           <DebounceInput
-            minLength={0}
+            minLength={3}
             debounceTimeout={500}
             onChange={handleSearch}
           />
