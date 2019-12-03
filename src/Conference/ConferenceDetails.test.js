@@ -33,13 +33,17 @@ describe("ConferenceDetails", () => {
     }
   };
 
+  let wrapper;
+  const findElement = identifier => {
+    return wrapper.find(identifier).get(0).props.children;
+  };
+
   it("renders a logged-in conference details page", async () => {
     expect.assertions(8);
 
     const history = createMemoryHistory();
     history.push("/1");
 
-    let wrapper;
     act(() => {
       wrapper = mount(
         <Router history={history}>
@@ -51,21 +55,16 @@ describe("ConferenceDetails", () => {
         </Router>
       );
     });
+
     wrapper.update();
-    expect(wrapper.find(".name").get(0).props.children).toBe(mockData.name);
-    expect(wrapper.find(".topic").get(0).props.children).toBe(mockData.topic);
-    expect(wrapper.find(".date").get(0).props.children).toBe("12/11/2019");
-    expect(wrapper.find(".time").get(0).props.children).toBe("12:34");
-    expect(wrapper.find(".city").get(0).props.children).toBe(mockData.city);
-    expect(wrapper.find(".description").get(0).props.children).toBe(
-      mockData.description
-    );
-    expect(wrapper.find(".editLink").get(0).props.children).toBe(
-      "Edit Conference"
-    );
-    expect(wrapper.find(".deleteButton").get(0).props.children).toBe(
-      "Delete Conference"
-    );
+    expect(findElement(".name")).toBe(mockData.name);
+    expect(findElement(".topic")).toBe(mockData.topic);
+    expect(findElement(".date")).toBe("12/11/2019");
+    expect(findElement(".time")).toBe("12:34");
+    expect(findElement(".city")).toBe(mockData.city);
+    expect(findElement(".description")).toBe(mockData.description);
+    expect(findElement(".editLink")).toBe("Edit Conference");
+    expect(findElement(".deleteButton")).toBe("Delete Conference");
   });
 
   it("renders a logged-out conference details page", async () => {
@@ -74,7 +73,6 @@ describe("ConferenceDetails", () => {
     const history = createMemoryHistory();
     history.push("/1");
 
-    let wrapper;
     act(() => {
       wrapper = mount(
         <Router history={history}>
@@ -82,15 +80,14 @@ describe("ConferenceDetails", () => {
         </Router>
       );
     });
+
     wrapper.update();
-    expect(wrapper.find(".name").get(0).props.children).toBe(mockData.name);
-    expect(wrapper.find(".topic").get(0).props.children).toBe(mockData.topic);
-    expect(wrapper.find(".date").get(0).props.children).toBe("12/11/2019");
-    expect(wrapper.find(".time").get(0).props.children).toBe("12:34");
-    expect(wrapper.find(".city").get(0).props.children).toBe(mockData.city);
-    expect(wrapper.find(".description").get(0).props.children).toBe(
-      mockData.description
-    );
+    expect(findElement(".name")).toBe(mockData.name);
+    expect(findElement(".topic")).toBe(mockData.topic);
+    expect(findElement(".date")).toBe("12/11/2019");
+    expect(findElement(".time")).toBe("12:34");
+    expect(findElement(".city")).toBe(mockData.city);
+    expect(findElement(".description")).toBe(mockData.description);
     expect(wrapper.find(".editLink").length).toBe(0);
     expect(wrapper.find(".deleteButton").length).toBe(0);
   });
