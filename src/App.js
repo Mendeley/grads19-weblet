@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import ConferenceContainer from "./Conference/ConferenceContainer";
 import ConferenceList from "./Conference/ConferenceList";
 import AddConference from "./Conference/AddConference";
-import Navbar from "./Navbar";
+import CookieNavbar from "./Navbar";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { CookiesProvider } from "react-cookie";
@@ -25,7 +25,7 @@ function App() {
     <CookiesProvider>
       <BrowserRouter>
         <StyledApp>
-          <Navbar />
+          <CookieNavbar />
           <Switch>
             <Route exact path="/">
               <ConferenceList />

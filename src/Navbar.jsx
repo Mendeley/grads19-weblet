@@ -28,11 +28,12 @@ export const StyledLink = styled(Link)`
   color: white;
 `;
 
-const Navbar = ({ cookies, allCookies = {} }) => {
+export const Navbar = ({ cookies, allCookies = {} }) => {
   const history = useHistory();
+  const sessionToken = allCookies.sessionToken;
   const logout = async () => {
     try {
-      await logoutUser(allCookies.sessionToken.token);
+      await logoutUser(sessionToken.token);
       deleteSessionToken();
       history.push("/");
     } catch (error) {
@@ -50,7 +51,7 @@ const Navbar = ({ cookies, allCookies = {} }) => {
         <StyledListItem>
           <StyledLink to="/">Home</StyledLink>
         </StyledListItem>
-        {allCookies.sessionToken ? (
+        {sessionToken ? (
           <>
             <StyledListItem>
               <StyledLink className="addConference" to="/add">
@@ -60,7 +61,7 @@ const Navbar = ({ cookies, allCookies = {} }) => {
             <StyledListItem>
               <StyledLink
                 className="profilePage"
-                to={`/users/${allCookies.sessionToken.userId}`}
+                to={`/users/${sessionToken.userId}`}
               >
                 Profile
               </StyledLink>
@@ -90,5 +91,5 @@ const Navbar = ({ cookies, allCookies = {} }) => {
   );
 };
 
-export default withCookies(Navbar);
-export { Navbar as WrappedNavbar };
+const CookieNavbar = withCookies(Navbar);
+export default CookieNavbar;

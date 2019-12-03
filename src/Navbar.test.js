@@ -1,18 +1,18 @@
-import React from "react";
-import { MemoryRouter } from "react-router-dom";
-import { act } from "react-dom/test-utils";
-import { configure, mount } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-import { WrappedNavbar as Navbar } from "./Navbar";
-
-configure({ adapter: new Adapter() });
-
 jest.mock("react-router-dom", () => {
   const originalReactRouter = jest.requireActual("react-router-dom");
   return {
     ...originalReactRouter
   };
 });
+
+import React from "react";
+import { MemoryRouter } from "react-router-dom";
+import { act } from "react-dom/test-utils";
+import { configure, mount } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import { Navbar } from "./Navbar";
+
+configure({ adapter: new Adapter() });
 
 afterEach(() => {
   jest.clearAllMocks();

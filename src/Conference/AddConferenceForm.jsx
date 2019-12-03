@@ -6,7 +6,7 @@ import { createNewConference } from "../api";
 
 export const AddConferenceForm = ({ allCookies = {} }) => {
   let history = useHistory();
-  const token = allCookies.sessionToken.token;
+  const token = allCookies.sessionToken ? allCookies.sessionToken.token : null;
   const [conference, setConference] = useState({
     name: "",
     dateTime: "",
