@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Input from "../Input";
-import { createNewUser, getUserList } from "../api";
+import { createNewUser, getSearchResults } from "../api";
+import { DebounceInput } from "react-debounce-input";
 import {
   StyledCardHeading,
   StyledForm,
@@ -19,20 +20,27 @@ const RegistrationForm = () => {
     username: "",
     password: ""
   });
-  const [managers, setManagers] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
-  const fetchData = async () => {
+  const handleSearch = event => {
+    setSearchInput(event.target.value);
+  };
+
+  const searchUsers = async searchInput => {
     try {
-      const userList = await getUserList();
-      setManagers(userList);
+      const userList = await getSearchResults(searchInput);
+      setSearchResults(userList);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (searchInput) {
+      searchUsers(searchInput);
+    }
+  }, [searchInput]);
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -100,11 +108,16 @@ const RegistrationForm = () => {
             maxLength="100"
           />
           <label>Manager: </label>
+          <DebounceInput
+            minLength={0}
+            debounceTimeout={500}
+            onChange={handleSearch}
+          />
           <select onChange={handleChange} name="managerId" defaultValue="">
-            <option value="">---- select ----</option>
-            {managers.map(manager => (
-              <option key={manager.id} value={manager.id}>
-                {manager.firstName} {manager.lastName}
+            <option value="">---- select manager ----</option>
+            {searchResults.map(user => (
+              <option key={user.id} value={user.id}>
+                {user.firstName} {user.lastName}
               </option>
             ))}
           </select>
