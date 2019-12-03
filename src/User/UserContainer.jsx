@@ -3,7 +3,7 @@ import { Switch, Route, useParams } from "react-router-dom";
 import ProfilePage from "./ProfilePage";
 import { getUserById, getFavouritedConferencesByUserId } from "../api.js";
 
-const UserContainer = ({ token }) => {
+const UserContainer = ({ sessionToken }) => {
   const [user, setUser] = useState(null);
   const [favouriteConferences, setFavouriteConferences] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -16,10 +16,10 @@ const UserContainer = ({ token }) => {
     try {
       const favouriteConferences = await getFavouritedConferencesByUserId(
         userId,
-        token
+        sessionToken.token
       );
       setFavouriteConferences(favouriteConferences);
-      const user = await getUserById(userId, token);
+      const user = await getUserById(userId, sessionToken.token);
       setUser(user);
     } catch (error) {
       setError(true);
