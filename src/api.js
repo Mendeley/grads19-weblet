@@ -21,7 +21,6 @@ export const deleteConferenceById = async id => {
     toast.success("Conference successfully deleted!");
   } catch (error) {
     toast.error("Conference not deleted!");
-    console.log(error);
     throw error;
   }
 };
@@ -32,7 +31,6 @@ export const updateConferenceById = async (id, conference) => {
     toast.success("Conference details have been updated!");
   } catch (error) {
     toast.error("Conference details have not been updated!");
-    console.log(error);
     throw error;
   }
 };
@@ -42,7 +40,6 @@ export const createNewUser = async user => {
     toast.success("User successfully registered!");
   } catch (error) {
     toast.error("User registration failed!");
-    console.log(error);
     throw error;
   }
 };
@@ -53,7 +50,6 @@ export const loginUser = async user => {
     return response.data;
   } catch (error) {
     toast.error("Login failed!");
-    console.log(error);
     throw error;
   }
 };
@@ -73,12 +69,11 @@ export const logoutUser = async token => {
     toast.success("Logout successful!");
   } catch (error) {
     toast.error("Logout failed!");
-    console.log(error);
     throw error;
   }
 };
 
-export const getFavouritedConferenceById = async (id, token) => {
+export const getFavouritedConferencesByUserId = async (id, token) => {
   const response = await axios.get(
     `http://localhost:8080/userConferences/${id}`,
     { headers: { Authorization: token } }
@@ -86,7 +81,7 @@ export const getFavouritedConferenceById = async (id, token) => {
   return response.data;
 };
 
-export const favouriteConference = async (conference, token) => {
+export const addFavouriteConference = async (conference, token) => {
   try {
     await axios.post("http://localhost:8080/userConferences", conference, {
       headers: { Authorization: token }
@@ -94,7 +89,6 @@ export const favouriteConference = async (conference, token) => {
     toast.success("Conference has been favourited!");
   } catch (error) {
     toast.error("Conference has not been favourited!");
-    console.log(error);
     throw error;
   }
 };

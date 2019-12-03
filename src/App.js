@@ -52,11 +52,11 @@ function App() {
             <Route path="/users/login">
               <LoginForm setSessionToken={setSessionToken} />
             </Route>
-            <Route path="/users">
+            <Route path="/users/:id">
               <UserContainer sessionToken={cookies.sessionToken} />
             </Route>
             <Route path="/:id">
-              <ConferenceContainer />
+              <ConferenceContainer sessionToken={cookies.sessionToken} />
             </Route>
           </Switch>
         </StyledApp>

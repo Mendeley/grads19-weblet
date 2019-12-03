@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, useParams } from "react-router-dom";
 import ProfilePage from "./ProfilePage";
-import { getUserById, getFavouritedConferenceById } from "../api.js";
+import { getUserById, getFavouritedConferencesByUserId } from "../api.js";
 
 const UserContainer = ({ token }) => {
   const [user, setUser] = useState(null);
@@ -10,12 +10,12 @@ const UserContainer = ({ token }) => {
   const [error, setError] = useState(false);
   const { id } = useParams();
 
-  const fetchData = async (userId, conferenceId) => {
+  const fetchData = async userId => {
     setIsLoading(true);
 
     try {
-      const favouriteConferences = await getFavouritedConferenceById(
-        conferenceId,
+      const favouriteConferences = await getFavouritedConferencesByUserId(
+        userId,
         token
       );
       setFavouriteConferences(favouriteConferences);

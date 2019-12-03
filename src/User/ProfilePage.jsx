@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { StyledCardHeading } from "../StyledFormComponents";
+import FavouriteConferenceList from "../Conference/FavouriteConferenceList";
 
-const StyledCard = styled.ul`
+const StyledProfileCard = styled.ul`
   border-style: solid;
   border-color: black;
   border-radius: 25px;
@@ -19,27 +19,7 @@ const StyledCard = styled.ul`
   display: inline-block;
 `;
 
-const StyledFavouritesList = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-`;
-
-const StyledFavouritesListItem = styled.li`
-  :hover {
-    background-color: papayawhip;
-    cursor: pointer;
-    display: inline;
-  }
-`;
-
-const StyledConferenceLink = styled(Link)`
-  display: inline-block;
-  text-decoration: none;
-  color: #322d38;
-`;
-
-const ProfilePage = ({ user, favouriteConferences, isLoading, error }) => {
+const ProfilePage = ({ user, isLoading, error }) => {
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -52,28 +32,20 @@ const ProfilePage = ({ user, favouriteConferences, isLoading, error }) => {
 
   return (
     <>
-      <StyledCard>
+      <StyledProfileCard>
         <StyledCardHeading className="name">
           Hello {firstName} {lastName}
         </StyledCardHeading>
         <p className="username">Username: {username}</p>
         <p className="email">Email: {email}</p>
         <p className="occupation">Occupation: {occupation}</p>
-      </StyledCard>
-      <StyledCard>
+      </StyledProfileCard>
+      <StyledProfileCard>
         <StyledCardHeading className="favourite-conferences">
           Favourited conferences
         </StyledCardHeading>
-        <StyledFavouritesList>
-          {favouriteConferences.map(conference => (
-            <StyledFavouritesListItem key={conference.id}>
-              <StyledConferenceLink to={`/${conference.id}`}>
-                {conference.name}
-              </StyledConferenceLink>
-            </StyledFavouritesListItem>
-          ))}
-        </StyledFavouritesList>
-      </StyledCard>
+        <FavouriteConferenceList />
+      </StyledProfileCard>
     </>
   );
 };

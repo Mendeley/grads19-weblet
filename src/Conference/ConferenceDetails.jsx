@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import Button from "../Button";
 import { getTimestring, getDatestring } from "../utils";
-import { deleteConferenceById, favouriteConference } from "../api.js";
+import { deleteConferenceById, addFavouriteConference } from "../api.js";
 import {
   StyledCardHeading,
   StyledForm,
@@ -44,12 +44,8 @@ const ConferenceDetails = ({ conference, id, isLoading, error }) => {
     deleteConference(id);
   };
 
-  const expressInterest = async () => {
-    try {
-      await favouriteConference(conference, token);
-    } catch (error) {
-      console.log(error);
-    }
+  const expressInterest = async ({ sessionToken }) => {
+    await addFavouriteConference(conference, sessionToken.token);
   };
 
   return (
