@@ -2,6 +2,7 @@ import { StyledCardHeading, StyledCard } from "../StyledFormComponents";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import FavouriteConferenceList from "../Conference/FavouriteConferenceList";
 
 export const StyledLink = styled(Link)`
   display: block;
@@ -22,7 +23,7 @@ const StyledProfile = styled.div`
   padding: 20px;
 `;
 
-const StyledCard = styled.ul`
+const StyledProfileCard = styled.ul`
   border-style: solid;
   border-color: black;
   border-radius: 25px;
@@ -38,27 +39,7 @@ const StyledCard = styled.ul`
   display: inline-block;
 `;
 
-const StyledFavouritesList = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-`;
-
-const StyledFavouritesListItem = styled.li`
-  :hover {
-    background-color: papayawhip;
-    cursor: pointer;
-    display: inline;
-  }
-`;
-
-const StyledConferenceLink = styled(Link)`
-  display: inline-block;
-  text-decoration: none;
-  color: #322d38;
-`;
-
-const ProfilePage = ({ user, favouriteConferences, isLoading, error }) => {
+const ProfilePage = ({ user, isLoading, error }) => {
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -71,18 +52,19 @@ const ProfilePage = ({ user, favouriteConferences, isLoading, error }) => {
 
   return (
     <StyledProfile>
-      <StyledCard>
-        <StyledLink className="editLink" to={`/users/${id}/edit`}>
-          Edit
-        </StyledLink>
+      <StyledLink className="editLink" to={`/users/${id}/edit`}>
+        Edit
+      </StyledLink>
+
+      <StyledProfileCard>
         <StyledCardHeading className="name">
           {`Hello, ${firstName} ${lastName}!`}
         </StyledCardHeading>
         <p className="username">Username: {username}</p>
         <p className="email">Email: {email}</p>
         <p className="occupation">Occupation: {occupation}</p>
-      </StyledCard>
-      <StyledCard>
+      </StyledProfileCard>
+      <StyledProfileCard>
         <StyledCardHeading className="favourite-conferences">
           Favourited conferences
         </StyledCardHeading>
@@ -95,7 +77,7 @@ const ProfilePage = ({ user, favouriteConferences, isLoading, error }) => {
             </StyledFavouritesListItem>
           ))}
         </StyledFavouritesList>
-      </StyledCard>
+      </StyledProfileCard>
     </StyledProfile>
   );
 };

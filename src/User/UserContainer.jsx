@@ -4,7 +4,7 @@ import { withCookies, useCookies } from "react-cookie";
 import { cookieName } from "../Constants/Cookies";
 import ProfilePage from "./ProfilePage";
 import UpdateProfile from "./UpdateProfile";
-import { getUserById, getFavouritedConferenceById } from "../api.js";
+import { getUserById, getFavouritedConferencesByUserId } from "../api.js";
 
 const UserContainer = ({ sessionToken }) => {
   const [user, setUser] = useState(null);
@@ -14,12 +14,12 @@ const UserContainer = ({ sessionToken }) => {
   const { id } = useParams();
   const [cookies] = useCookies([cookieName]);
 
-  const fetchData = async (userId, conferenceId) => {
+  const fetchData = async userId => {
     setIsLoading(true);
 
     try {
-      const favouriteConferences = await getFavouritedConferenceById(
-        conferenceId,
+      const favouriteConferences = await getFavouritedConferencesByUserId(
+        userId,
         token
       );
       setFavouriteConferences(favouriteConferences);
