@@ -5,11 +5,15 @@ import { withCookies, useCookies } from "react-cookie";
 import Button from "../Button";
 import { getTimestring, getDatestring } from "../utils";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { deleteConferenceById, addFavouriteConference } from "../api.js";
 import { StyledCardHeading, StyledForm, Card } from "../StyledFormComponents";
 import { cookieName } from "../Constants/Cookies";
 =======
 import { deleteConferenceById, favouriteConference } from "../api.js";
+=======
+import { deleteConferenceById, addFavouriteConference } from "../api.js";
+>>>>>>> GP19-104/5: rename functions, remove console logs, update userContainer functions and create FavouriteConference component
 import {
   StyledCardHeading,
   StyledForm,
@@ -59,6 +63,7 @@ export const ConferenceDetails = ({
     deleteConference(id);
   };
 
+<<<<<<< HEAD
   const expressInterest = async () => {
 <<<<<<< HEAD
     await addFavouriteConference(conference, token);
@@ -69,6 +74,10 @@ export const ConferenceDetails = ({
       console.log(error);
     }
 >>>>>>> add express interest button and list favourited conferences on profile page
+=======
+  const expressInterest = async ({ sessionToken }) => {
+    await addFavouriteConference(conference, sessionToken.token);
+>>>>>>> GP19-104/5: rename functions, remove console logs, update userContainer functions and create FavouriteConference component
   };
 
   return (

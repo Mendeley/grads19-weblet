@@ -40,7 +40,7 @@ const UserContainer = () => {
     }
   };
 
-  const fetchData = async (userId, conferenceId) => {
+  const fetchData = async userId => {
     setIsLoading(true);
 
     try {

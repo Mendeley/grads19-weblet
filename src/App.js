@@ -54,7 +54,7 @@ function App() {
               <UserContainer />
             </Route>
             <Route path="/:id">
-              <ConferenceContainer />
+              <ConferenceContainer sessionToken={cookies.sessionToken} />
             </Route>
           </Switch>
         </StyledApp>
