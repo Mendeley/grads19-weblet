@@ -6,6 +6,7 @@ import { getUserById } from "../api.js";
 
 const UserContainer = ({ sessionToken }) => {
   const [user, setUser] = useState(null);
+  const [updatedUser, setUpdatedUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const { id } = useParams();
@@ -16,6 +17,9 @@ const UserContainer = ({ sessionToken }) => {
     try {
       const user = await getUserById(userId, sessionToken.token);
       setUser(user);
+      setUpdatedUser({
+        ...user
+      });
     } catch (error) {
       setError(true);
     }
@@ -23,7 +27,6 @@ const UserContainer = ({ sessionToken }) => {
   };
 
   useEffect(() => {
-    console.log(id);
     if (id) {
       fetchData(id);
     }
@@ -32,10 +35,23 @@ const UserContainer = ({ sessionToken }) => {
   return (
     <Switch>
       <Route path="/users/:id/edit">
-        <UpdateProfile user={user}/>
+        <UpdateProfile
+          user={user}
+          updatedUser={updatedUser}
+          id={id}
+          setUser={setUser}
+          setUpdatedUser={setUpdatedUser}
+          isLoading={isLoading}
+          error={error}
+          sessionToken={sessionToken}
+        />
       </Route>
       <Route path="/users/:id">
-        <ProfilePage user={user} isLoading={isLoading} error={error} />
+        <ProfilePage
+          user={user}
+          isLoading={isLoading}
+          error={error}
+        />
       </Route>
     </Switch>
   );

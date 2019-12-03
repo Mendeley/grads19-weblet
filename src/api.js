@@ -61,11 +61,9 @@ export const loginUser = async user => {
 };
 
 export const getUserById = async (id, token) => {
-  console.log(token)
   const response = await axios.get(`http://localhost:8080/users/${id}`, {
     headers: { Authorization: token }
   });
-  console.log(response)
   return response.data;
 };
 
@@ -82,13 +80,16 @@ export const logoutUser = async token => {
   }
 };
 
-export const updateProfileById = async (id, user, token) => {
+export const updateUserById = async (id, user, token) => {
   try {
-    await axios.patch(`http://localhost:8080/users/edit/${id}`, user , { headers: { Authorization: token }});
+    await axios.patch(
+      `http://localhost:8080/users/${id}`, 
+      user,
+      { headers: { Authorization: token}}
+      );
   toast.success("Profile details have been updated!");
   } catch (error) {
   toast.error("Profile details have not been updated!");
-  console.log(error);
   throw error;
   }
   };
