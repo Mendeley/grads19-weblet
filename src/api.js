@@ -61,7 +61,6 @@ export const loginUser = async user => {
 };
 
 export const getUserById = async (id, token) => {
-  console.log(token)
   const response = await axios.get(`http://localhost:8080/users/${id}`, {
     headers: { Authorization: token }
   });

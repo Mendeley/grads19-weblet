@@ -27,7 +27,6 @@ const UserContainer = ({ sessionToken }) => {
   };
 
   useEffect(() => {
-    console.log(id);
     if (id) {
       fetchData(id);
     }
