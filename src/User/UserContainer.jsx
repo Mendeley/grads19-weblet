@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, useParams } from "react-router-dom";
-import ProfilePage from "./ProfilePage";
+import { withCookies, useCookies } from "react-cookie";
+import { cookieName } from "../Constants/Cookies";
 import { getUserById } from "../api.js";
+import ProfilePage from "./ProfilePage";
 import UpdateProfile from "./UpdateProfile";
 
-const UserContainer = ({ token }) => {
+const UserContainer = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const { id } = useParams();
+  const [cookies] = useCookies([cookieName]);
 
   const fetchData = async userId => {
     setIsLoading(true);
 
     try {
-      const user = await getUserById(userId, token);
+      const user = await getUserById(userId, cookies.sessionToken.token);
       setUser(user);
     } catch (error) {
       setError(true);
@@ -26,6 +29,7 @@ const UserContainer = ({ token }) => {
     if (id) {
       fetchData(id);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (
@@ -40,4 +44,4 @@ const UserContainer = ({ token }) => {
   );
 };
 
-export default UserContainer;
+export default withCookies(UserContainer);

@@ -1,6 +1,8 @@
 import React from "react";
-import Input from "../Input";
 import { useHistory } from "react-router-dom";
+import { withCookies, useCookies } from "react-cookie";
+import { cookieName } from "../Constants/Cookies";
+import Input from "../Input";
 import { updateConferenceById } from "../api";
 import {
   StyledCardHeading,
@@ -17,6 +19,8 @@ const UpdateForm = ({
   error
 }) => {
   const history = useHistory();
+  const [cookies] = useCookies([cookieName]);
+  const token = cookies.sessionToken.token;
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -37,7 +41,7 @@ const UpdateForm = ({
       dateTime: `${updatedConference.dateTime}:00Z`
     };
     try {
-      await updateConferenceById(id, newConference);
+      await updateConferenceById(id, newConference, token);
       setConference(newConference);
       history.push(`/${id}`);
     } catch (error) {
@@ -99,10 +103,10 @@ const UpdateForm = ({
             required
             maxLength="20"
           />
-          <Input type="submit" value="save" />
+          <Input type="submit" value="Save" />
         </form>
       </StyledCard>
     </StyledForm>
   );
 };
-export default UpdateForm;
+export default withCookies(UpdateForm);
