@@ -5,9 +5,10 @@ import { cookieOptions, cookieName } from "./Constants/Cookies";
 import styled from "styled-components";
 import Button from "./Button";
 import { logoutUser } from "./api";
+import logov14 from "./logov14.png";
 
 export const StyledNavbar = styled.nav`
-  background: #322d38;
+  background: #024e88;
   width: auto;
   height: 4vh;
   text-align: left;
@@ -48,6 +49,17 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
   return (
     <StyledNavbar>
       <StyledList>
+        <li>
+          <img
+            src={logov14}
+            alt="confound logo"
+            width="12%"
+            height="12%"
+            align="right"
+            hspace="10"
+            padding-top=""
+          />
+        </li>
         <StyledListItem>
           <StyledLink to="/">Home</StyledLink>
         </StyledListItem>
