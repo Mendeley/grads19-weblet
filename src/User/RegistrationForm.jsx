@@ -16,7 +16,7 @@ const RegistrationForm = () => {
     lastName: "",
     email: "",
     occupation: "",
-    managerId: "",
+    managerId: null,
     username: "",
     password: ""
   });
@@ -113,8 +113,8 @@ const RegistrationForm = () => {
             debounceTimeout={500}
             onChange={handleSearch}
           />
-          <select onChange={handleChange} name="managerId" defaultValue="">
-            <option value="">---- select manager ----</option>
+          <select onChange={handleChange} name="managerId" defaultValue={null}>
+            <option value={null}>---- select manager ----</option>
             {searchResults.map(user => (
               <option key={user.id} value={user.id}>
                 {user.firstName} {user.lastName}
