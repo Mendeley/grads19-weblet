@@ -38,7 +38,7 @@ describe("ProfilePage", () => {
       );
 
       wrapper.update();
-    expect(wrapper.find(".editLink").get(0).props.to).toBe(`/users/edit/${mockData.id}`);     
+    expect(wrapper.find(".editLink").get(0).props.to).toBe(`/users/${mockData.id}/edit`);     
     expect(wrapper.find(".name").get(0).props.children).toBe(`Hello, ${mockData.firstName} ${mockData.lastName}!`);
     expect(wrapper.find(".username").get(0).props.children).toBe(`Username: ${mockData.username}`);
     expect(wrapper.find(".email").get(0).props.children).toBe(`Email: ${mockData.email}`);

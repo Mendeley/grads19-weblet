@@ -34,17 +34,17 @@ const ProfilePage = ({ error, isLoading, user }) => {
   const { id, username, firstName, lastName, email, occupation } = user || {};
 
   return (
-    <StyledProfile>
+  <StyledProfile>
     <StyledCard>
       <StyledLink className="editLink" to={`/users/${id}/edit`}>Edit</StyledLink>        
-      <StyledCardHeading className="name">
-        {`Hello, ${firstName} ${lastName}!`}
-      </StyledCardHeading>
+        <StyledCardHeading className="name">
+          {`Hello, ${firstName} ${lastName}!`}
+        </StyledCardHeading>
       <p className="username">{`Username: ${username}`}</p>
       <p className="email">{`Email: ${email}`}</p>
       <p className="occupation">{`Occupation: ${occupation}`}</p>
-      </StyledCard>
-      </StyledProfile>
+    </StyledCard>
+  </StyledProfile>
   );
 };
 
