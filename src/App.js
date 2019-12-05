@@ -39,7 +39,7 @@ function App() {
             <Route path="/users/login">
               <LoginForm />
             </Route>
-            <Route path="/users">
+            <Route path="/users/:id">
               <UserContainer />
             </Route>
             <Route path="/:id">

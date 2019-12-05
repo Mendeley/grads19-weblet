@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  StyledCardHeading,
-  StyledCard
-} from "../StyledFormComponents";
+import { StyledCardHeading, StyledCard } from "../StyledFormComponents";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -33,7 +30,9 @@ const ProfilePage = ({ error, isLoading, user }) => {
 
   return (
     <StyledCard>
-      <StyledLink className="editLink" to={`/users/edit/${id}`}>Edit</StyledLink>        
+      <StyledLink className="editLink" to={`/users/${id}/edit`}>
+        Edit
+      </StyledLink>
       <StyledCardHeading className="name">
         {`Hello, ${firstName} ${lastName}!`}
       </StyledCardHeading>
