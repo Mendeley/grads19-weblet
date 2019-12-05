@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Input from "../Input";
-import { createNewUser } from "../api";
+import { createNewUser, getSearchResults } from "../api";
+import { DebounceInput } from "react-debounce-input";
 import {
   StyledCardHeading,
   StyledForm,
@@ -15,9 +16,31 @@ const RegistrationForm = () => {
     lastName: "",
     email: "",
     occupation: "",
+    managerId: null,
     username: "",
     password: ""
   });
+  const [searchInput, setSearchInput] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleSearch = event => {
+    setSearchInput(event.target.value);
+  };
+
+  const searchUsers = async searchInput => {
+    try {
+      const userList = await getSearchResults(searchInput);
+      setSearchResults(userList);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (searchInput) {
+      searchUsers(searchInput);
+    }
+  }, [searchInput]);
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -36,6 +59,7 @@ const RegistrationForm = () => {
       console.log(error);
     }
   };
+
   const onSubmit = ev => {
     ev.preventDefault();
     submitForm();
@@ -83,6 +107,20 @@ const RegistrationForm = () => {
             required
             maxLength="100"
           />
+          <label>Manager: </label>
+          <DebounceInput
+            minLength={3}
+            debounceTimeout={500}
+            onChange={handleSearch}
+          />
+          <select onChange={handleChange} name="managerId" defaultValue={null}>
+            <option value={null}>---- select manager ----</option>
+            {searchResults.map(user => (
+              <option key={user.id} value={user.id}>
+                {user.firstName} {user.lastName}
+              </option>
+            ))}
+          </select>
           <Input
             label="Username: "
             type="text"

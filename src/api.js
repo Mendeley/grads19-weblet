@@ -54,6 +54,13 @@ export const createNewUser = async user => {
   }
 };
 
+export const getSearchResults = async input => {
+  const response = await axios.get(
+    `http://localhost:8080/users/search?query=${input}`
+  );
+  return response.data;
+};
+
 export const loginUser = async user => {
   try {
     const response = await axios.post("http://localhost:8080/auth/login", user);
