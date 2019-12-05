@@ -16,7 +16,7 @@ const UserContainer = () => {
   const [cookies] = useCookies([cookieName]);
 
   const checkIfCurrentUser = (fetchedId, currentUserId) => {
-    if (fetchedId == currentUserId) {
+    if (Number(fetchedId) === currentUserId) {
       setIsCurrentUser(true);
     }
   };
