@@ -41,21 +41,12 @@ const ProfilePage = ({
   const { id, username, firstName, lastName, email, occupation, managerId } =
     user || {};
 
-  return (
-    <StyledCard>
-      {isCurrentUser && (
-        <StyledEditLink className="editLink" to={`/users/${id}/edit`}>
-          Edit
-        </StyledEditLink>
-      )}
-      <StyledCardHeading className="name">
-        {`Hello, ${firstName} ${lastName}!`}
-      </StyledCardHeading>
-      <p className="username">{`Username: ${username}`}</p>
-      <p className="email">{`Email: ${email}`}</p>
-      <p className="occupation">{`Occupation: ${occupation}`}</p>
-      <p className="manager">
-        {managerName && (
+  const displayManager = () => {
+    if (String(managerName) === "None Assigned") {
+      return <p className="manager">{`Manager: ${managerName}`}</p>;
+    } else {
+      return (
+        <p className="manager">
           <>
             {"Manager: "}
             <StyledLink
@@ -69,8 +60,25 @@ const ProfilePage = ({
               {managerName}
             </StyledLink>
           </>
-        )}
-      </p>
+        </p>
+      );
+    }
+  };
+
+  return (
+    <StyledCard>
+      {isCurrentUser && (
+        <StyledEditLink className="editLink" to={`/users/${id}/edit`}>
+          Edit
+        </StyledEditLink>
+      )}
+      <StyledCardHeading className="name">
+        {`Hello, ${firstName} ${lastName}!`}
+      </StyledCardHeading>
+      <p className="username">{`Username: ${username}`}</p>
+      <p className="email">{`Email: ${email}`}</p>
+      <p className="occupation">{`Occupation: ${occupation}`}</p>
+      {managerName && displayManager()}
     </StyledCard>
   );
 };

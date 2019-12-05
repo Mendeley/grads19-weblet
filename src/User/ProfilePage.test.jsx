@@ -32,10 +32,13 @@ describe("ProfilePage", () => {
     firstName: "Ross",
     lastName: "Morey",
     email: "Ross.Morey@live.co.uk",
-    occupation: "Fun"
+    occupation: "Fun",
+    managerId: null
   };
 
   const mockManagerName = "Joe Bloggs";
+
+  const mockNoManagerName = "None Assigned";
 
   let wrapper;
   const findElement = identifier => {
@@ -43,7 +46,7 @@ describe("ProfilePage", () => {
   };
 
   it("renders current user's profile information with manager", async () => {
-    expect.assertions(6);
+    expect.assertions(7);
 
     const history = createMemoryHistory();
     history.push("/users/11");
@@ -72,20 +75,25 @@ describe("ProfilePage", () => {
     expect(findElement(".occupation")).toBe(
       `Occupation: ${mockDataWithManager.occupation}`
     );
+    expect(findElement(".managerLink")).toBe(mockManagerName);
     expect(wrapper.find(".managerLink").get(0).props.to).toBe(
       `/users/${mockDataWithManager.managerId}`
     );
   });
 
   it("renders current user's profile information without manager", async () => {
-    expect.assertions(6);
+    expect.assertions(7);
 
     const history = createMemoryHistory();
     history.push("/users/11");
 
     wrapper = mount(
       <Router history={history}>
-        <ProfilePage user={mockDataWithoutManager} isCurrentUser={true} />
+        <ProfilePage
+          user={mockDataWithoutManager}
+          isCurrentUser={true}
+          managerName={mockNoManagerName}
+        />
       </Router>
     );
 
@@ -105,14 +113,12 @@ describe("ProfilePage", () => {
     expect(findElement(".occupation")).toBe(
       `Occupation: ${mockDataWithoutManager.occupation}`
     );
-    expect(findElement(".manager")).toStrictEqual([
-      "Manager: ",
-      "None Assigned"
-    ]);
+    expect(findElement(".manager")).toBe(`Manager: ${mockNoManagerName}`);
+    expect(wrapper.find(".managerLink").length).toBe(0);
   });
 
   it("renders profile information of user who is not the current one", async () => {
-    expect.assertions(6);
+    expect.assertions(7);
 
     const history = createMemoryHistory();
     history.push("/users/11");
@@ -137,9 +143,7 @@ describe("ProfilePage", () => {
     expect(findElement(".occupation")).toBe(
       `Occupation: ${mockDataWithoutManager.occupation}`
     );
-    expect(findElement(".manager")).toStrictEqual([
-      "Manager: ",
-      "None Assigned"
-    ]);
+    expect(wrapper.find(".manager").length).toBe(0);
+    expect(wrapper.find(".managerLink").length).toBe(0);
   });
 });

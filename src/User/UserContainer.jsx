@@ -32,6 +32,8 @@ const UserContainer = () => {
       } catch (error) {
         setError(true);
       }
+    } else {
+      setManagerName("None Assigned");
     }
   };
 
