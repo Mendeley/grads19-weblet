@@ -10,8 +10,30 @@ const UserContainer = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [isCurrentUser, setIsCurrentUser] = useState(false);
+  const [managerName, setManagerName] = useState("");
   const { id } = useParams();
   const [cookies] = useCookies([cookieName]);
+
+  const checkIfCurrentUser = (fetchedId, currentUserId) => {
+    if (fetchedId == currentUserId) {
+      setIsCurrentUser(true);
+    }
+  };
+
+  const getManagerName = async managerId => {
+    if (managerId) {
+      try {
+        const manager = await getUserById(
+          managerId,
+          cookies.sessionToken.token
+        );
+        setManagerName(`${manager.firstName} ${manager.lastName}`);
+      } catch (error) {
+        setError(true);
+      }
+    }
+  };
 
   const fetchData = async userId => {
     setIsLoading(true);
@@ -19,6 +41,8 @@ const UserContainer = () => {
     try {
       const user = await getUserById(userId, cookies.sessionToken.token);
       setUser(user);
+      checkIfCurrentUser(userId, cookies.sessionToken.userId);
+      getManagerName(user.managerId);
     } catch (error) {
       setError(true);
     }
@@ -39,7 +63,14 @@ const UserContainer = () => {
         <UpdateProfile />
       </Route>
       <Route path="/users/:id">
-        <ProfilePage user={user} isLoading={isLoading} error={error} />
+        <ProfilePage
+          user={user}
+          isLoading={isLoading}
+          error={error}
+          isCurrentUser={isCurrentUser}
+          setIsCurrentUser={setIsCurrentUser}
+          managerName={managerName}
+        />
       </Route>
     </Switch>
   );
