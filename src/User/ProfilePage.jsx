@@ -27,7 +27,8 @@ const ProfilePage = ({
   user,
   isCurrentUser,
   setIsCurrentUser,
-  managerName
+  managerName,
+  setManagerName
 }) => {
   if (isLoading) {
     return <p>Loading...</p>;
@@ -54,17 +55,20 @@ const ProfilePage = ({
       <p className="email">{`Email: ${email}`}</p>
       <p className="occupation">{`Occupation: ${occupation}`}</p>
       <p className="manager">
-        {"Manager: "}
-        {managerId ? (
-          <StyledLink
-            className="managerLink"
-            onClick={() => setIsCurrentUser(false)}
-            to={`/users/${managerId}`}
-          >
-            {managerName}
-          </StyledLink>
-        ) : (
-          "None Assigned"
+        {managerName && (
+          <>
+            {"Manager: "}
+            <StyledLink
+              className="managerLink"
+              onClick={() => {
+                setIsCurrentUser(false);
+                setManagerName("");
+              }}
+              to={`/users/${managerId}`}
+            >
+              {managerName}
+            </StyledLink>
+          </>
         )}
       </p>
     </StyledCard>

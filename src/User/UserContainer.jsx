@@ -42,7 +42,6 @@ const UserContainer = () => {
       const user = await getUserById(userId, cookies.sessionToken.token);
       setUser(user);
       checkIfCurrentUser(userId, cookies.sessionToken.userId);
-      getManagerName(user.managerId);
     } catch (error) {
       setError(true);
     }
@@ -54,8 +53,11 @@ const UserContainer = () => {
     if (id) {
       fetchData(id);
     }
+    if (isCurrentUser) {
+      getManagerName(user.managerId);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, [id, isCurrentUser]);
 
   return (
     <Switch>
@@ -70,6 +72,7 @@ const UserContainer = () => {
           isCurrentUser={isCurrentUser}
           setIsCurrentUser={setIsCurrentUser}
           managerName={managerName}
+          setManagerName={setManagerName}
         />
       </Route>
     </Switch>
