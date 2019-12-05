@@ -1,14 +1,18 @@
 import React from "react";
-import UpdateProfile from "./UpdateProfile";
+import { Router } from "react-router-dom";
 import { configure, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import { Router } from "react-router-dom";
+import { createMemoryHistory } from "history";
+import UpdateProfile from "./UpdateProfile";
 import { updateUserById } from "../api";
 
-import { createMemoryHistory } from "history";
-import { create } from "istanbul-reports";
-
 configure({ adapter: new Adapter() });
+
+jest.mock("../api", () => ({
+    updateUserById: jest.fn()
+}));
+  
+afterEach(() => jest.clearAllMocks());
 
 describe("UpdateProfile", () => {
 	const mockData = {
@@ -18,9 +22,8 @@ describe("UpdateProfile", () => {
 		lastName: "TestLast",
 		email: "Test.Email@live.co.uk",
 		occupation: "TestOccupation"
-	};
+    };
 
-	//TEST 1: UpdateProfile renders with correct user information
 	it("should renders updateProfile with correct profile information", () => {      
         const history =  createMemoryHistory();
 
@@ -40,39 +43,62 @@ describe("UpdateProfile", () => {
 			mockData.occupation
 		);
     });
-    // //TEST 2: Only correct alterations saved if a field is altered by a user
-    it("should on submit, save alterations for only fields that have been changed by a user", () => {
+
+    it("should on submit, save alterations for only fields that have been changed by a user", async () => {
         const history = createMemoryHistory();
-        const updateUserById = jest.fn();
         const apiReturnValue = Promise.resolve(200);
         updateUserById.mockImplementation(() => apiReturnValue);
 
         const wrapper = mount(
             <Router history={history}>
-                <UpdateProfile user={mockData} sessionToken={{ token: "TestToken" }}/>
+                <UpdateProfile user={mockData} sessionToken={{ token: "TestToken" }} id="1" setUser={jest.fn()}/>
             </Router>
         );
 
-        wrapper.find('input[name="firstName"]').simulate("change", { target: { name: "firstName", value: "changedName" } });
-        // console.log(wrapper.find('form').debug());
-        wrapper.find('form').simulate("submit", { preventDefault: jest.fn() });
-        wrapper.update()
+        wrapper.find('input[name="firstName"]').simulate("change", { target: { name: "firstName", value: "changedFirstName" } });
+        wrapper.find('input[name="lastName"]').simulate("change", { target: { name: "lastName", value: "changedLastName" } });
+        wrapper.find('input[name="occupation"]').simulate("change", { target: { name: "occupation", value: "changedOccupation" } });
+        await wrapper.find('form').simulate("submit", { preventDefault: jest.fn() });
+
         expect(updateUserById).toHaveBeenCalledTimes(1);
-        expect(updateUserById).toHaveBeenCalledWith({
-          city: "",
-          dateTime: ":00Z",
-          description: "",
-          name: "",
-          topic: ""
-        });
-
-        //add tests for lastname and occupation
+        expect(updateUserById).toHaveBeenCalledWith("1",{
+            firstName: "changedFirstName",
+            lastName: "changedLastName",
+            occupation: "changedOccupation"
+        }, "TestToken");
+        expect(history.location.pathname).toBe("/users/1");
     });
-    // //TEST 3: Check correct ID (from start) pushed when user selects "cancel"
-    //it("should navigate to profile page for correct ID if user selects cancel");
 
+    it("should not submit when user does not change any input fields", async () => {
+        const history = createMemoryHistory();
+        const apiReturnValue = Promise.resolve(200);
+        updateUserById.mockImplementation(() => apiReturnValue);
 
+        const wrapper = mount(
+            <Router history={history}>
+                <UpdateProfile user={mockData} sessionToken={{ token: "TestToken" }} id="1" setUser={jest.fn()}/>
+            </Router>
+        );
 
+        await wrapper.find('form').simulate("submit", { preventDefault: jest.fn() });
+        
+        expect(updateUserById).toHaveBeenCalledTimes(0);
+        expect(history.location.pathname).toBe("/users/1");
+    });
+
+    it("should navigate to profile page for correct ID if user selects cancel", () => {
+        const history = createMemoryHistory();
+
+        const wrapper = mount(
+            <Router history={history}>
+                <UpdateProfile user={mockData} sessionToken={{ token: "TestToken" }} id="1" setUser={jest.fn()}/>
+            </Router>
+        );
+
+        wrapper.find('input[name="firstName"]').simulate("change", { target: { name: "firstName", value: "changedFirstName" } });
+        wrapper.find('input[value="Cancel"]').simulate("click");
+
+        expect(updateUserById).toHaveBeenCalledTimes(0);
+        expect(history.location.pathname).toBe("/users/1");
+    });
 });
-
-
