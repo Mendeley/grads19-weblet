@@ -17,30 +17,19 @@ const UserContainer = () => {
     setIsLoading(true);
 
     try {
-      console.log(`trying to get user with id of ${id}`);
-      console.log(cookies.sessionToken.token);
       const user = await getUserById(userId, cookies.sessionToken.token);
-      console.log(`found user with id of ${id}`);
       setUser(user);
-      console.log(`user with id of ${id} has details of ${user}`);
     } catch (error) {
-      console.log(
-        `request for user with id of ${id} failed for the following reason:`
-      );
-      console.log(error.message);
       setError(true);
     }
+
     setIsLoading(false);
   };
 
   useEffect(() => {
-    console.log("start");
-    //if (id) {
-    console.log("fetching");
-    fetchData(id);
-    console.log("fetched");
-    //}
-    console.log("end");
+    if (id) {
+      fetchData(id);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
