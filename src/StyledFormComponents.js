@@ -29,6 +29,7 @@ const StyledCard = styled.div`
   }
   vertical-align: middle;
   margin: 0 auto;
+  margin-top: 1px;
   position: relative;
 `;
 

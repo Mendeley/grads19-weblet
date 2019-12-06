@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import RegistrationForm from "./User/RegistrationForm";
 import LoginForm from "./User/LoginForm";
 import UserContainer from "./User/UserContainer";
+import WebscrapePage from "./Webscrape/WebscrapePage";
 
 const StyledApp = styled.div`
   text-align: center;
@@ -32,6 +33,9 @@ function App() {
             </Route>
             <Route path="/add">
               <AddConference />
+            </Route>
+            <Route path="/addURL">
+              <WebscrapePage />
             </Route>
             <Route path="/users/register">
               <RegistrationForm />
