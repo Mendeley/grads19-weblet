@@ -17,12 +17,11 @@ const UpdateProfile = ({
     user
 }) => {
 	const [updatedUser, setUpdatedUser] = useState({});
+	const history = useHistory();
 	const resetUser = () => {
         history.push(`/users/${id}`);
     };
     
-    const history = useHistory();
-
 	if (isLoading) {
 		return <p>Loading...</p>;
 	}

@@ -9,14 +9,13 @@ const UserContainer = ({ sessionToken }) => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(false);
 	const { id } = useParams();
-  
+
 	const fetchData = async () => {
 		setIsLoading(true);
 
 		try {
 			const user = await getUserById(id, sessionToken.token);
 			setUser(user);
-
 		} catch (error) {
 			setError(true);
 		}
@@ -42,10 +41,7 @@ const UserContainer = ({ sessionToken }) => {
 				/>
 			</Route>
 			<Route path="/users/:id">
-				<ProfilePage
-					user={user}
-					isLoading={isLoading}
-					error={error} />
+				<ProfilePage user={user} isLoading={isLoading} error={error} />
 			</Route>
 		</Switch>
 	);
