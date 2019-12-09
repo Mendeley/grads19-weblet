@@ -26,9 +26,7 @@ const ProfilePage = ({
   isLoading,
   user,
   isCurrentUser,
-  setIsCurrentUser,
-  managerName,
-  setManagerName
+  managerName
 }) => {
   if (isLoading) {
     return <p>Loading...</p>;
@@ -42,21 +40,14 @@ const ProfilePage = ({
     user || {};
 
   const displayManager = () => {
-    if (managerName === "None Assigned") {
-      return <p className="manager">{`Manager: ${managerName}`}</p>;
+    if (managerName === "No_Manager") {
+      return <p className="manager">{`Manager: None Assigned`}</p>;
     } else {
       return (
         <p className="manager">
           <>
             {"Manager: "}
-            <StyledLink
-              className="managerLink"
-              onClick={() => {
-                setIsCurrentUser(false);
-                setManagerName("");
-              }}
-              to={`/users/${managerId}`}
-            >
+            <StyledLink className="managerLink" to={`/users/${managerId}`}>
               {managerName}
             </StyledLink>
           </>
@@ -67,7 +58,7 @@ const ProfilePage = ({
 
   return (
     <StyledCard>
-      {isCurrentUser && (
+      {isCurrentUser() && (
         <StyledEditLink className="editLink" to={`/users/${id}/edit`}>
           Edit
         </StyledEditLink>
@@ -78,7 +69,7 @@ const ProfilePage = ({
       <p className="username">{`Username: ${username}`}</p>
       <p className="email">{`Email: ${email}`}</p>
       <p className="occupation">{`Occupation: ${occupation}`}</p>
-      {managerName && displayManager()}
+      {isCurrentUser() && displayManager()}
     </StyledCard>
   );
 };

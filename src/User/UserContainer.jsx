@@ -10,30 +10,29 @@ const UserContainer = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [isCurrentUser, setIsCurrentUser] = useState(false);
   const [managerName, setManagerName] = useState("");
   const { id } = useParams();
   const [cookies] = useCookies([cookieName]);
 
-  const checkIfCurrentUser = (fetchedId, currentUserId) => {
-    if (Number(fetchedId) === currentUserId) {
-      setIsCurrentUser(true);
-    }
+  const isCurrentUser = () => {
+    return Number(id) === cookies.sessionToken.userId;
   };
 
-  const getManagerName = async managerId => {
-    if (managerId) {
-      try {
-        const manager = await getUserById(
-          managerId,
-          cookies.sessionToken.token
-        );
-        setManagerName(`${manager.firstName} ${manager.lastName}`);
-      } catch (error) {
-        setError(true);
+  const getManagerName = async user => {
+    if (user) {
+      if (user.managerId) {
+        try {
+          const manager = await getUserById(
+            user.managerId,
+            cookies.sessionToken.token
+          );
+          setManagerName(`${manager.firstName} ${manager.lastName}`);
+        } catch (error) {
+          setError(true);
+        }
+      } else {
+        setManagerName("No_Manager");
       }
-    } else {
-      setManagerName("None Assigned");
     }
   };
 
@@ -43,7 +42,7 @@ const UserContainer = () => {
     try {
       const user = await getUserById(userId, cookies.sessionToken.token);
       setUser(user);
-      checkIfCurrentUser(userId, cookies.sessionToken.userId);
+      setError(false);
     } catch (error) {
       setError(true);
     }
@@ -55,16 +54,24 @@ const UserContainer = () => {
     if (id) {
       fetchData(id);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
+  useEffect(() => {
     if (isCurrentUser) {
-      getManagerName(user.managerId);
+      getManagerName(user);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, isCurrentUser]);
+  }, [isCurrentUser, user]);
 
   return (
     <Switch>
       <Route path="/users/:id/edit">
-        {isCurrentUser ? <UpdateProfile /> : <Redirect to="/" />}
+        {isCurrentUser() ? (
+          <UpdateProfile />
+        ) : (
+          <Redirect to={`/users/${cookies.sessionToken.userId}`} />
+        )}
       </Route>
       <Route path="/users/:id">
         <ProfilePage
@@ -72,9 +79,7 @@ const UserContainer = () => {
           isLoading={isLoading}
           error={error}
           isCurrentUser={isCurrentUser}
-          setIsCurrentUser={setIsCurrentUser}
           managerName={managerName}
-          setManagerName={setManagerName}
         />
       </Route>
     </Switch>

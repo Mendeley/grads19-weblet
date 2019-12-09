@@ -39,7 +39,7 @@ describe("ProfilePage", () => {
 
   const mockManagerName = "Joe Bloggs";
 
-  const mockNoManagerName = "None Assigned";
+  const mockNoManagerName = "No_Manager";
 
   it("renders current user's profile information with manager", async () => {
     expect.assertions(7);
@@ -52,7 +52,9 @@ describe("ProfilePage", () => {
         <Router history={history}>
           <ProfilePage
             user={mockDataWithManager}
-            isCurrentUser={true}
+            isCurrentUser={() => {
+              return true;
+            }}
             managerName={mockManagerName}
           />
         </Router>
@@ -90,7 +92,9 @@ describe("ProfilePage", () => {
         <Router history={history}>
           <ProfilePage
             user={mockDataWithoutManager}
-            isCurrentUser={true}
+            isCurrentUser={() => {
+              return true;
+            }}
             managerName={mockNoManagerName}
           />
         </Router>
@@ -113,7 +117,7 @@ describe("ProfilePage", () => {
     expect(findElement(".occupation")).toBe(
       `Occupation: ${mockDataWithoutManager.occupation}`
     );
-    expect(findElement(".manager")).toBe(`Manager: ${mockNoManagerName}`);
+    expect(findElement(".manager")).toBe("Manager: None Assigned");
     expect(wrapper.find(".managerLink").length).toBe(0);
   });
 
@@ -126,7 +130,12 @@ describe("ProfilePage", () => {
     setWrapper(
       mount(
         <Router history={history}>
-          <ProfilePage user={mockDataWithoutManager} isCurrentUser={false} />
+          <ProfilePage
+            user={mockDataWithoutManager}
+            isCurrentUser={() => {
+              return false;
+            }}
+          />
         </Router>
       )
     );
