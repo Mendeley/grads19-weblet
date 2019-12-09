@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory, Link } from "react-router-dom";
+import { withCookies, useCookies } from "react-cookie";
+import { cookieOptions, cookieName } from "../Constants/Cookies";
 import Input from "../Input";
 import { loginUser } from "../api";
 import {
@@ -14,7 +16,12 @@ export const StyledLink = styled(Link)`
   padding: 10px;
 `;
 
-const LoginForm = ({ setSessionToken }) => {
+const LoginForm = () => {
+  const [, setCookie] = useCookies([cookieName]);
+  const setSessionToken = sessionTokenData => {
+    setCookie(cookieName, sessionTokenData, cookieOptions);
+  };
+
   let history = useHistory();
   const [user, setUser] = useState({
     username: "",
@@ -35,10 +42,12 @@ const LoginForm = ({ setSessionToken }) => {
       console.log(error);
     }
   };
+
   const onSubmit = ev => {
     ev.preventDefault();
     submitForm();
   };
+
   return (
     <StyledForm>
       <StyledCard>
@@ -70,4 +79,4 @@ const LoginForm = ({ setSessionToken }) => {
   );
 };
 
-export default LoginForm;
+export default withCookies(LoginForm);

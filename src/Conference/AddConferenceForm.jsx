@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import Input from "./Input";
-import { createNewConference } from "./api";
 import { useHistory } from "react-router-dom";
+import { withCookies } from "react-cookie";
+import Input from "../Input";
+import { createNewConference } from "../api";
 
-const Form = () => {
+export const AddConferenceForm = ({ allCookies = {} }) => {
   let history = useHistory();
+  const token = allCookies.sessionToken ? allCookies.sessionToken.token : null;
   const [conference, setConference] = useState({
     name: "",
     dateTime: "",
@@ -24,7 +26,7 @@ const Form = () => {
       dateTime: conference.dateTime + ":00Z"
     };
     try {
-      await createNewConference(newConference);
+      await createNewConference(newConference, token);
       history.push("/");
     } catch (error) {
       console.log(error);
@@ -82,8 +84,9 @@ const Form = () => {
         required
         maxLength="20"
       />
-      <Input type="submit" value="submit" />
+      <Input type="submit" value="Submit" />
     </form>
   );
 };
-export default Form;
+const CookieAddConferenceForm = withCookies(AddConferenceForm);
+export default CookieAddConferenceForm;

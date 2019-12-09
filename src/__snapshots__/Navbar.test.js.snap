@@ -44,10 +44,12 @@ exports[`Navbar renders a logged-in navbar with text 1`] = `
     }
   >
     <Navbar
-      sessionToken={
+      allCookies={
         Object {
-          "token": "3ecb9d1d-863f-4207-b076-d868e6544c3b",
-          "userId": 1,
+          "sessionToken": Object {
+            "token": "3ecb9d1d-863f-4207-b076-d868e6544c3b",
+            "userId": 1,
+          },
         }
       }
     >
@@ -92,19 +94,20 @@ exports[`Navbar renders a logged-in navbar with text 1`] = `
                   className="sc-AykKF btWmVE"
                 >
                   <Styled(Link)
+                    className="addConference"
                     to="/add"
                   >
                     <Link
-                      className="sc-AykKG jJIHsa"
+                      className="sc-AykKG jJIHsa addConference"
                       to="/add"
                     >
                       <LinkAnchor
-                        className="sc-AykKG jJIHsa"
+                        className="sc-AykKG jJIHsa addConference"
                         href="/add"
                         navigate={[Function]}
                       >
                         <a
-                          className="sc-AykKG jJIHsa"
+                          className="sc-AykKG jJIHsa addConference"
                           href="/add"
                           onClick={[Function]}
                         >
@@ -251,34 +254,6 @@ exports[`Navbar renders a logged-out navbar with text 1`] = `
                           onClick={[Function]}
                         >
                           Home
-                        </a>
-                      </LinkAnchor>
-                    </Link>
-                  </Styled(Link)>
-                </li>
-              </styled.li>
-              <styled.li>
-                <li
-                  className="sc-AykKF btWmVE"
-                >
-                  <Styled(Link)
-                    to="/add"
-                  >
-                    <Link
-                      className="sc-AykKG jJIHsa"
-                      to="/add"
-                    >
-                      <LinkAnchor
-                        className="sc-AykKG jJIHsa"
-                        href="/add"
-                        navigate={[Function]}
-                      >
-                        <a
-                          className="sc-AykKG jJIHsa"
-                          href="/add"
-                          onClick={[Function]}
-                        >
-                          Add Conference
                         </a>
                       </LinkAnchor>
                     </Link>

@@ -1,3 +1,7 @@
+jest.mock("../api", () => ({
+  getConferenceList: jest.fn()
+}));
+
 import Adapter from "enzyme-adapter-react-16";
 import React from "react";
 import { mount, configure } from "enzyme";
@@ -9,10 +13,6 @@ import { act } from "react-dom/test-utils";
 import { createMemoryHistory } from "history";
 
 configure({ adapter: new Adapter() });
-
-jest.mock("../api", () => ({
-  getConferenceList: jest.fn()
-}));
 
 describe("ConferenceList", () => {
   const mockData = [

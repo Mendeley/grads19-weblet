@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, useParams } from "react-router-dom";
-import ConferenceDetails from "./ConferenceDetails";
-import UpdateConference from "./UpdateConference";
 import { getConferenceById } from "../api.js";
+import CookieConferenceDetails from "./ConferenceDetails";
+import UpdateConference from "./UpdateConference";
 
 const ConferenceContainer = () => {
   const [conference, setConference] = useState(null);
@@ -52,7 +52,7 @@ const ConferenceContainer = () => {
         />
       </Route>
       <Route path="/:id">
-        <ConferenceDetails
+        <CookieConferenceDetails
           conference={conference}
           id={id}
           isLoading={isLoading}

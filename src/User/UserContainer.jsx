@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, useParams } from "react-router-dom";
+import { withCookies, useCookies } from "react-cookie";
+import { cookieName } from "../Constants/Cookies";
 import ProfilePage from "./ProfilePage";
 import UpdateProfile from "./UpdateProfile";
 import { getUserById } from "../api.js";
@@ -9,12 +11,13 @@ const UserContainer = ({ sessionToken }) => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(false);
 	const { id } = useParams();
-
+  const [cookies] = useCookies([cookieName]);
+    
 	const fetchData = async () => {
 		setIsLoading(true);
 
 		try {
-			const user = await getUserById(id, sessionToken.token);
+			const user = await getUserById(id, cookies.sessionToken.token);
 			setUser(user);
 		} catch (error) {
 			setError(true);
@@ -24,7 +27,7 @@ const UserContainer = ({ sessionToken }) => {
 
 	useEffect(() => {
 		if (id) {
-			fetchData();
+			fetchData(id);
 		}
 	}, [id]);
 
@@ -47,4 +50,4 @@ const UserContainer = ({ sessionToken }) => {
 	);
 };
 
-export default UserContainer;
+export default withCookies(UserContainer);

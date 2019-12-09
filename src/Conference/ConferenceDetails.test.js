@@ -1,18 +1,17 @@
-import ConferenceDetails from "./ConferenceDetails";
-import { configure, mount } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-import { Router } from "react-router-dom";
-import React from "react";
-import { createMemoryHistory } from "history";
-import { act } from "react-dom/test-utils";
-
 jest.mock("react-router-dom", () => {
   const originalReactRouter = jest.requireActual("react-router-dom");
   return {
-    ...originalReactRouter,
-    Link: () => "hey I'm a link"
+    ...originalReactRouter
   };
 });
+
+import React from "react";
+import { Router } from "react-router-dom";
+import { ConferenceDetails } from "./ConferenceDetails";
+import { configure, mount } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import { createMemoryHistory } from "history";
+import { act } from "react-dom/test-utils";
 
 configure({ adapter: new Adapter() });
 
@@ -27,13 +26,53 @@ describe("ConferenceDetails", () => {
     topic: "Marketing"
   };
 
-  it("renders conference details", async () => {
-    expect.assertions(6);
+  const mockCookie = {
+    sessionToken: {
+      userId: 1,
+      token: "3ecb9d1d-863f-4207-b076-d868e6544c3b"
+    }
+  };
+
+  let wrapper;
+  const findElement = identifier => {
+    return wrapper.find(identifier).get(0).props.children;
+  };
+
+  it("renders a logged-in conference details page", async () => {
+    expect.assertions(8);
 
     const history = createMemoryHistory();
     history.push("/1");
 
-    let wrapper;
+    act(() => {
+      wrapper = mount(
+        <Router history={history}>
+          <ConferenceDetails
+            conference={mockData}
+            id="1"
+            allCookies={mockCookie}
+          />
+        </Router>
+      );
+    });
+
+    wrapper.update();
+    expect(findElement(".name")).toBe(mockData.name);
+    expect(findElement(".topic")).toBe(mockData.topic);
+    expect(findElement(".date")).toBe("12/11/2019");
+    expect(findElement(".time")).toBe("12:34");
+    expect(findElement(".city")).toBe(mockData.city);
+    expect(findElement(".description")).toBe(mockData.description);
+    expect(findElement(".editLink")).toBe("Edit Conference");
+    expect(findElement(".deleteButton")).toBe("Delete Conference");
+  });
+
+  it("renders a logged-out conference details page", async () => {
+    expect.assertions(8);
+
+    const history = createMemoryHistory();
+    history.push("/1");
+
     act(() => {
       wrapper = mount(
         <Router history={history}>
@@ -41,14 +80,15 @@ describe("ConferenceDetails", () => {
         </Router>
       );
     });
+
     wrapper.update();
-    expect(wrapper.find(".name").get(0).props.children).toBe(mockData.name);
-    expect(wrapper.find(".topic").get(0).props.children).toBe(mockData.topic);
-    expect(wrapper.find(".date").get(0).props.children).toBe("12/11/2019");
-    expect(wrapper.find(".time").get(0).props.children).toBe("12:34");
-    expect(wrapper.find(".city").get(0).props.children).toBe(mockData.city);
-    expect(wrapper.find(".description").get(0).props.children).toBe(
-      mockData.description
-    );
+    expect(findElement(".name")).toBe(mockData.name);
+    expect(findElement(".topic")).toBe(mockData.topic);
+    expect(findElement(".date")).toBe("12/11/2019");
+    expect(findElement(".time")).toBe("12:34");
+    expect(findElement(".city")).toBe(mockData.city);
+    expect(findElement(".description")).toBe(mockData.description);
+    expect(wrapper.find(".editLink").length).toBe(0);
+    expect(wrapper.find(".deleteButton").length).toBe(0);
   });
 });

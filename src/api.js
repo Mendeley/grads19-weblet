@@ -11,13 +11,17 @@ export const getConferenceById = async id => {
   return response.data;
 };
 
-export const createNewConference = async conference => {
-  await axios.post("http://localhost:8080/conferences", conference);
+export const createNewConference = async (conference, token) => {
+  await axios.post("http://localhost:8080/conferences", conference, {
+    headers: { Authorization: token }
+  });
 };
 
-export const deleteConferenceById = async id => {
+export const deleteConferenceById = async (id, token) => {
   try {
-    await axios.delete(`http://localhost:8080/conferences/${id}`);
+    await axios.delete(`http://localhost:8080/conferences/${id}`, {
+      headers: { Authorization: token }
+    });
     toast.success("Conference successfully deleted!");
   } catch (error) {
     toast.error("Conference not deleted!");
@@ -26,9 +30,11 @@ export const deleteConferenceById = async id => {
   }
 };
 
-export const updateConferenceById = async (id, conference) => {
+export const updateConferenceById = async (id, conference, token) => {
   try {
-    await axios.patch(`http://localhost:8080/conferences/${id}`, conference);
+    await axios.patch(`http://localhost:8080/conferences/${id}`, conference, {
+      headers: { Authorization: token }
+    });
     toast.success("Conference details have been updated!");
   } catch (error) {
     toast.error("Conference details have not been updated!");
@@ -46,6 +52,13 @@ export const createNewUser = async user => {
     console.log(error);
     throw error;
   }
+};
+
+export const getSearchResults = async input => {
+  const response = await axios.get(
+    `http://localhost:8080/users/search?query=${input}`
+  );
+  return response.data;
 };
 
 export const loginUser = async user => {
