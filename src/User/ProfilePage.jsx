@@ -73,7 +73,7 @@ const ProfilePage = ({
         </StyledEditLink>
       )}
       <StyledCardHeading className="name">
-        {`Hello, ${firstName} ${lastName}!`}
+        {`${firstName} ${lastName}`}
       </StyledCardHeading>
       <p className="username">{`Username: ${username}`}</p>
       <p className="email">{`Email: ${email}`}</p>

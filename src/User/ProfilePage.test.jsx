@@ -64,7 +64,7 @@ describe("ProfilePage", () => {
       `/users/${mockDataWithManager.id}/edit`
     );
     expect(findElement(".name")).toBe(
-      `Hello, ${mockDataWithManager.firstName} ${mockDataWithManager.lastName}!`
+      `${mockDataWithManager.firstName} ${mockDataWithManager.lastName}`
     );
     expect(findElement(".username")).toBe(
       `Username: ${mockDataWithManager.username}`
@@ -102,7 +102,7 @@ describe("ProfilePage", () => {
       `/users/${mockDataWithoutManager.id}/edit`
     );
     expect(findElement(".name")).toBe(
-      `Hello, ${mockDataWithoutManager.firstName} ${mockDataWithoutManager.lastName}!`
+      `${mockDataWithoutManager.firstName} ${mockDataWithoutManager.lastName}`
     );
     expect(findElement(".username")).toBe(
       `Username: ${mockDataWithoutManager.username}`
@@ -134,7 +134,7 @@ describe("ProfilePage", () => {
     wrapper.update();
     expect(wrapper.find(".editLink").length).toBe(0);
     expect(findElement(".name")).toBe(
-      `Hello, ${mockDataWithoutManager.firstName} ${mockDataWithoutManager.lastName}!`
+      `${mockDataWithoutManager.firstName} ${mockDataWithoutManager.lastName}`
     );
     expect(findElement(".username")).toBe(
       `Username: ${mockDataWithoutManager.username}`
