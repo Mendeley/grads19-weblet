@@ -92,3 +92,17 @@ export const logoutUser = async token => {
     throw error;
   }
 };
+
+export const updateUserById = async (id, user, token) => {
+  try {
+    await axios.patch(
+      `http://localhost:8080/users/${id}`, 
+      user,
+      { headers: { Authorization: token}}
+      );
+  toast.success("Profile details have been updated!");
+  } catch (error) {
+  toast.error("Profile details have not been updated!");
+  throw error;
+  }
+  };

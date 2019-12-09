@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  StyledCardHeading,
-  StyledCard
-} from "../StyledFormComponents";
+import { StyledCardHeading, StyledCard } from "../StyledFormComponents";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -20,6 +17,11 @@ export const StyledLink = styled(Link)`
   right: 18px;
 `;
 
+const StyledProfile = styled.div`
+  height: 400px;
+  padding: 20px;
+`;
+
 const ProfilePage = ({ error, isLoading, user }) => {
   if (isLoading) {
     return <p>Loading...</p>;
@@ -32,15 +34,17 @@ const ProfilePage = ({ error, isLoading, user }) => {
   const { id, username, firstName, lastName, email, occupation } = user || {};
 
   return (
+  <StyledProfile>
     <StyledCard>
-      <StyledLink className="editLink" to={`/users/edit/${id}`}>Edit</StyledLink>        
-      <StyledCardHeading className="name">
-        {`Hello, ${firstName} ${lastName}!`}
-      </StyledCardHeading>
+      <StyledLink className="editLink" to={`/users/${id}/edit`}>Edit</StyledLink>        
+        <StyledCardHeading className="name">
+          {`Hello, ${firstName} ${lastName}!`}
+        </StyledCardHeading>
       <p className="username">{`Username: ${username}`}</p>
       <p className="email">{`Email: ${email}`}</p>
       <p className="occupation">{`Occupation: ${occupation}`}</p>
     </StyledCard>
+  </StyledProfile>
   );
 };
 

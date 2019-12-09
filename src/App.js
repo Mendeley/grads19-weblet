@@ -39,8 +39,8 @@ function App() {
             <Route path="/users/login">
               <LoginForm />
             </Route>
-            <Route path="/users">
-              <UserContainer />
+            <Route path="/users/:id">
+              <UserContainer sessionToken={cookies.sessionToken} />
             </Route>
             <Route path="/:id">
               <ConferenceContainer />
