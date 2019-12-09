@@ -12,6 +12,7 @@ import { configure, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { createMemoryHistory } from "history";
 import { act } from "react-dom/test-utils";
+import { wrapper, setWrapper, findElement } from "../TestUtils";
 
 configure({ adapter: new Adapter() });
 
@@ -33,11 +34,6 @@ describe("ConferenceDetails", () => {
     }
   };
 
-  let wrapper;
-  const findElement = identifier => {
-    return wrapper.find(identifier).get(0).props.children;
-  };
-
   it("renders a logged-in conference details page", async () => {
     expect.assertions(8);
 
@@ -45,14 +41,16 @@ describe("ConferenceDetails", () => {
     history.push("/1");
 
     act(() => {
-      wrapper = mount(
-        <Router history={history}>
-          <ConferenceDetails
-            conference={mockData}
-            id="1"
-            allCookies={mockCookie}
-          />
-        </Router>
+      setWrapper(
+        mount(
+          <Router history={history}>
+            <ConferenceDetails
+              conference={mockData}
+              id="1"
+              allCookies={mockCookie}
+            />
+          </Router>
+        )
       );
     });
 
@@ -74,10 +72,12 @@ describe("ConferenceDetails", () => {
     history.push("/1");
 
     act(() => {
-      wrapper = mount(
-        <Router history={history}>
-          <ConferenceDetails conference={mockData} id="1" />
-        </Router>
+      setWrapper(
+        mount(
+          <Router history={history}>
+            <ConferenceDetails conference={mockData} id="1" />
+          </Router>
+        )
       );
     });
 
