@@ -7,6 +7,7 @@ import {
 	StyledCardHeading
 } from "../StyledFormComponents";
 import { updateUserById } from "../api";
+import { toast } from "react-toastify";
 
 const UpdateProfile = ({
 	setUser,
@@ -19,7 +20,8 @@ const UpdateProfile = ({
 	const [updatedUser, setUpdatedUser] = useState({});
 	const history = useHistory();
 	const cancelUserUpate = () => {
-        history.push(`/users/${id}`);
+		history.push(`/users/${id}`);
+		toast.info("Profile details have not been changed")
     };
     
 	if (isLoading) {
@@ -33,7 +35,7 @@ const UpdateProfile = ({
 	const handleChange = event => {
 		const { name, value } = event.target;
 		setUpdatedUser({ ...updatedUser, [name]: value });
-	};
+	}
 
 	const submitForm = async () => {
 		if (Object.keys(updatedUser).length > 0)
@@ -82,7 +84,7 @@ const UpdateProfile = ({
 						required
 					/>
 					<Input type="submit" value="Save" />
-					<Input type="button" value="Cancel" onClick={cancelUserUpate} />
+					<Input type="button" value="Cancel" onClick={cancelUserUpate}/>
 				</form>
 			</StyledCard>
 		</StyledForm>
