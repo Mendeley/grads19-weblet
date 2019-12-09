@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route, useParams } from "react-router-dom";
+import { Switch, Route, Redirect, useParams } from "react-router-dom";
 import { withCookies, useCookies } from "react-cookie";
 import { cookieName } from "../Constants/Cookies";
 import { getUserById } from "../api.js";
@@ -64,7 +64,7 @@ const UserContainer = () => {
   return (
     <Switch>
       <Route path="/users/:id/edit">
-        <UpdateProfile />
+        {isCurrentUser ? <UpdateProfile /> : <Redirect to="/" />}
       </Route>
       <Route path="/users/:id">
         <ProfilePage
