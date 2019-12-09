@@ -42,7 +42,7 @@ const ProfilePage = ({
     user || {};
 
   const displayManager = () => {
-    if (String(managerName) === "None Assigned") {
+    if (managerName === "None Assigned") {
       return <p className="manager">{`Manager: ${managerName}`}</p>;
     } else {
       return (
