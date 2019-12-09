@@ -18,7 +18,7 @@ const UpdateProfile = ({
 }) => {
 	const [updatedUser, setUpdatedUser] = useState({});
 	const history = useHistory();
-	const resetUser = () => {
+	const cancelUserUpate = () => {
         history.push(`/users/${id}`);
     };
     
@@ -44,7 +44,7 @@ const UpdateProfile = ({
 			} catch (error) {
 				console.log(error);
 			}
-		else resetUser();
+		else cancelUserUpate();
 	};
 
 	return (
@@ -82,7 +82,7 @@ const UpdateProfile = ({
 						required
 					/>
 					<Input type="submit" value="Save" />
-					<Input type="button" value="Cancel" onClick={resetUser} />
+					<Input type="button" value="Cancel" onClick={cancelUserUpate} />
 				</form>
 			</StyledCard>
 		</StyledForm>
