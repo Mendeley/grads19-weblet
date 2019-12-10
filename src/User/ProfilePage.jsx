@@ -21,6 +21,11 @@ export const StyledEditLink = styled(Link)`
   right: 18px;
 `;
 
+const StyledProfile = styled.div`
+  height: 400px;
+  padding: 20px;
+`;
+
 const ProfilePage = ({
   error,
   isLoading,
@@ -57,20 +62,22 @@ const ProfilePage = ({
   };
 
   return (
-    <StyledCard>
-      {isCurrentUser && (
-        <StyledEditLink className="editLink" to={`/users/${id}/edit`}>
-          Edit
-        </StyledEditLink>
-      )}
-      <StyledCardHeading className="name">
-        {`${firstName} ${lastName}`}
-      </StyledCardHeading>
-      <p className="username">{`Username: ${username}`}</p>
-      <p className="email">{`Email: ${email}`}</p>
-      <p className="occupation">{`Occupation: ${occupation}`}</p>
-      {isCurrentUser && displayManager()}
-    </StyledCard>
+    <StyledProfile>
+      <StyledCard>
+        {isCurrentUser && (
+          <StyledEditLink className="editLink" to={`/users/${id}/edit`}>
+            Edit
+          </StyledEditLink>
+        )}
+        <StyledCardHeading className="name">
+          {`${firstName} ${lastName}`}
+        </StyledCardHeading>
+        <p className="username">{`Username: ${username}`}</p>
+        <p className="email">{`Email: ${email}`}</p>
+        <p className="occupation">{`Occupation: ${occupation}`}</p>
+        {isCurrentUser && displayManager()}
+      </StyledCard>
+    </StyledProfile>
   );
 };
 

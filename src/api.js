@@ -54,6 +54,13 @@ export const createNewUser = async user => {
   }
 };
 
+export const getSearchResults = async input => {
+  const response = await axios.get(
+    `http://localhost:8080/users/search?query=${input}`
+  );
+  return response.data;
+};
+
 export const loginUser = async user => {
   try {
     const response = await axios.post("http://localhost:8080/auth/login", user);
@@ -82,6 +89,18 @@ export const logoutUser = async token => {
   } catch (error) {
     toast.error("Logout failed!");
     console.log(error);
+    throw error;
+  }
+};
+
+export const updateUserById = async (id, user, token) => {
+  try {
+    await axios.patch(`http://localhost:8080/users/${id}`, user, {
+      headers: { Authorization: token }
+    });
+    toast.success("Profile details have been updated!");
+  } catch (error) {
+    toast.error("Profile details have not been updated!");
     throw error;
   }
 };

@@ -4,7 +4,6 @@ import { Switch, Route } from "react-router-dom";
 import ConferenceContainer from "./Conference/ConferenceContainer";
 import ConferenceList from "./Conference/ConferenceList";
 import AddConference from "./Conference/AddConference";
-import CookieNavbar from "./Navbar";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { CookiesProvider } from "react-cookie";
@@ -12,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import RegistrationForm from "./User/RegistrationForm";
 import LoginForm from "./User/LoginForm";
 import UserContainer from "./User/UserContainer";
+import CookieNavbar from "./Navbar";
 
 const StyledApp = styled.div`
   text-align: center;
@@ -19,7 +19,6 @@ const StyledApp = styled.div`
   width: auto;
   min-height: 100vh;
 `;
-
 function App() {
   return (
     <CookiesProvider>
@@ -52,5 +51,4 @@ function App() {
     </CookiesProvider>
   );
 }
-
 export default App;

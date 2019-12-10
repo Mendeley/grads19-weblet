@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Switch, Route, Redirect, useParams } from "react-router-dom";
 import { withCookies, useCookies } from "react-cookie";
 import { cookieName } from "../Constants/Cookies";
-import { getUserById } from "../api.js";
 import ProfilePage from "./ProfilePage";
 import UpdateProfile from "./UpdateProfile";
+import { getUserById } from "../api.js";
 
 const UserContainer = () => {
   const [user, setUser] = useState(null);
@@ -54,7 +54,6 @@ const UserContainer = () => {
     if (id) {
       fetchData(id);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   useEffect(() => {
@@ -68,7 +67,14 @@ const UserContainer = () => {
     <Switch>
       <Route path="/users/:id/edit">
         {isCurrentUser() ? (
-          <UpdateProfile />
+          <UpdateProfile
+            user={user}
+            id={id}
+            setUser={setUser}
+            isLoading={isLoading}
+            error={error}
+            sessionToken={cookies.sessionToken}
+          />
         ) : (
           <Redirect to={`/users/${cookies.sessionToken.userId}`} />
         )}

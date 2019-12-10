@@ -34,8 +34,8 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
   const logout = async () => {
     try {
       await logoutUser(sessionToken.token);
-      deleteSessionToken();
       history.push("/");
+      deleteSessionToken();
     } catch (error) {
       console.log(error);
     }
