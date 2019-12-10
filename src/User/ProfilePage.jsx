@@ -58,7 +58,7 @@ const ProfilePage = ({
 
   return (
     <StyledCard>
-      {isCurrentUser() && (
+      {isCurrentUser && (
         <StyledEditLink className="editLink" to={`/users/${id}/edit`}>
           Edit
         </StyledEditLink>
@@ -69,7 +69,7 @@ const ProfilePage = ({
       <p className="username">{`Username: ${username}`}</p>
       <p className="email">{`Email: ${email}`}</p>
       <p className="occupation">{`Occupation: ${occupation}`}</p>
-      {isCurrentUser() && displayManager()}
+      {isCurrentUser && displayManager()}
     </StyledCard>
   );
 };

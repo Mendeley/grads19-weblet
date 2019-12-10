@@ -78,7 +78,7 @@ const UserContainer = () => {
           user={user}
           isLoading={isLoading}
           error={error}
-          isCurrentUser={isCurrentUser}
+          isCurrentUser={isCurrentUser()}
           managerName={managerName}
         />
       </Route>
