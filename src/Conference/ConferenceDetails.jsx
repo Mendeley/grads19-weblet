@@ -8,6 +8,7 @@ import { getTimestring, getDatestring } from "../utils";
 <<<<<<< HEAD
 import { deleteConferenceById, addFavouriteConference } from "../api.js";
 import { StyledCardHeading, StyledForm, Card } from "../StyledFormComponents";
+<<<<<<< HEAD
 import { cookieName } from "../Constants/Cookies";
 =======
 import { deleteConferenceById, favouriteConference } from "../api.js";
@@ -20,6 +21,8 @@ import {
   StyledCard
 } from "../StyledFormComponents";
 >>>>>>> add express interest button and list favourited conferences on profile page
+=======
+>>>>>>> GP19-15: WIP CSS changes, implementing reusable card
 
 export const StyledLink = styled(Link)`
   color: #7a517d;
@@ -109,8 +112,12 @@ export const ConferenceDetails = ({
 =======
         <Button onClick={deleteThisConference}>Delete Conference</Button>
         <Button onClick={expressInterest}>Express Interest</Button>
+<<<<<<< HEAD
       </StyledCard>
 >>>>>>> add express interest button and list favourited conferences on profile page
+=======
+      </Card>
+>>>>>>> GP19-15: WIP CSS changes, implementing reusable card
     </StyledForm>
   );
 };
