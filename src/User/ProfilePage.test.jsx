@@ -52,9 +52,7 @@ describe("ProfilePage", () => {
         <Router history={history}>
           <ProfilePage
             user={mockDataWithManager}
-            isCurrentUser={() => {
-              return true;
-            }}
+            isCurrentUser={true}
             managerName={mockManagerName}
           />
         </Router>
@@ -92,9 +90,7 @@ describe("ProfilePage", () => {
         <Router history={history}>
           <ProfilePage
             user={mockDataWithoutManager}
-            isCurrentUser={() => {
-              return true;
-            }}
+            isCurrentUser={true}
             managerName={mockNoManagerName}
           />
         </Router>
@@ -130,12 +126,7 @@ describe("ProfilePage", () => {
     setWrapper(
       mount(
         <Router history={history}>
-          <ProfilePage
-            user={mockDataWithoutManager}
-            isCurrentUser={() => {
-              return false;
-            }}
-          />
+          <ProfilePage user={mockDataWithoutManager} isCurrentUser={false} />
         </Router>
       )
     );
