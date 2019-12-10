@@ -54,6 +54,7 @@ const UserContainer = () => {
     if (id) {
       fetchData(id);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   useEffect(() => {
