@@ -2,11 +2,7 @@ import React from "react";
 import Input from "../Input";
 import { useHistory } from "react-router-dom";
 import { updateConferenceById } from "../api";
-import {
-  StyledCardHeading,
-  StyledForm,
-  StyledCard
-} from "../StyledFormComponents";
+import { StyledCardHeading, StyledForm, Card } from "../StyledFormComponents";
 
 const UpdateForm = ({
   updatedConference,
@@ -47,7 +43,7 @@ const UpdateForm = ({
 
   return (
     <StyledForm>
-      <StyledCard>
+      <Card>
         <StyledCardHeading>Edit a conference:</StyledCardHeading>
         <form
           onSubmit={ev => {
@@ -101,7 +97,7 @@ const UpdateForm = ({
           />
           <Input type="submit" value="save" />
         </form>
-      </StyledCard>
+      </Card>
     </StyledForm>
   );
 };

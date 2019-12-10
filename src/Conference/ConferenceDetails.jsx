@@ -4,11 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import Button from "../Button";
 import { getTimestring, getDatestring } from "../utils";
 import { deleteConferenceById, addFavouriteConference } from "../api.js";
-import {
-  StyledCardHeading,
-  StyledForm,
-  StyledCard
-} from "../StyledFormComponents";
+import { StyledCardHeading, StyledForm, Card } from "../StyledFormComponents";
 
 export const StyledLink = styled(Link)`
   color: #7a517d;
@@ -50,7 +46,7 @@ const ConferenceDetails = ({ conference, id, isLoading, error }) => {
 
   return (
     <StyledForm>
-      <StyledCard>
+      <Card>
         <StyledCardHeading className="name">{name}</StyledCardHeading>
         <StyledLink to={`/${id}/edit`}>Edit Conference</StyledLink>
         <p className="topic">{topic}</p>
@@ -62,7 +58,7 @@ const ConferenceDetails = ({ conference, id, isLoading, error }) => {
         </StyledDescription>
         <Button onClick={deleteThisConference}>Delete Conference</Button>
         <Button onClick={expressInterest}>Express Interest</Button>
-      </StyledCard>
+      </Card>
     </StyledForm>
   );
 };

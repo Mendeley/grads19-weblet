@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Input from "../Input";
 import { createNewUser } from "../api";
-import {
-  StyledCardHeading,
-  StyledForm,
-  StyledCard
-} from "../StyledFormComponents";
+import { StyledCardHeading, StyledForm, Card } from "../StyledFormComponents";
 
 const RegistrationForm = () => {
   let history = useHistory();
@@ -42,7 +38,7 @@ const RegistrationForm = () => {
   };
   return (
     <StyledForm>
-      <StyledCard>
+      <Card>
         <StyledCardHeading>add a new user:</StyledCardHeading>
         <form onSubmit={onSubmit}>
           <Input
@@ -107,7 +103,7 @@ const RegistrationForm = () => {
           />
           <Input type="submit" value="Submit" />
         </form>
-      </StyledCard>
+      </Card>
     </StyledForm>
   );
 };
