@@ -1,4 +1,4 @@
-import { StyledCardHeading, StyledCard } from "../StyledFormComponents";
+import { StyledCardHeading, Card } from "../StyledFormComponents";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -39,7 +39,7 @@ const StyledProfileCard = styled.ul`
   display: inline-block;
 `;
 
-const ProfilePage = ({ user, isLoading, error }) => {
+const ProfilePage = ({ user, isLoading, error, favouriteConferences }) => {
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -57,26 +57,30 @@ const ProfilePage = ({ user, isLoading, error }) => {
       </StyledLink>
 
       <StyledProfileCard>
-        <StyledCardHeading className="name">
-          {`Hello, ${firstName} ${lastName}!`}
-        </StyledCardHeading>
-        <p className="username">Username: {username}</p>
-        <p className="email">Email: {email}</p>
-        <p className="occupation">Occupation: {occupation}</p>
-      </StyledProfileCard>
-      <StyledProfileCard>
-        <StyledCardHeading className="favourite-conferences">
-          Favourited conferences
-        </StyledCardHeading>
-        <StyledFavouritesList>
-          {favouriteConferences.map(conference => (
-            <StyledFavouritesListItem key={conference.id}>
-              <StyledConferenceLink to={`/${conference.id}`}>
-                {conference.name}
-              </StyledConferenceLink>
-            </StyledFavouritesListItem>
-          ))}
-        </StyledFavouritesList>
+        <Card>
+          <StyledCardHeading className="name">
+            {`Hello, ${firstName} ${lastName}!`}
+          </StyledCardHeading>
+          <p className="username">Username: {username}</p>
+          <p className="email">Email: {email}</p>
+          <p className="occupation">Occupation: {occupation}</p>
+        </Card>
+        <Card>
+          <StyledCardHeading className="favourite-conferences">
+            Favourited conferences
+          </StyledCardHeading>
+          <StyledFavouritesList>
+            {favouriteConferences.map(conference => (
+              <StyledFavouritesListItem key={conference.id}>
+                <StyledConferenceLink to={`/${conference.id}`}>
+                  {conference.name}
+                </StyledConferenceLink>
+              </StyledFavouritesListItem>
+            ))}
+          </StyledFavouritesList>
+        </Card>
+
+        <FavouriteConferenceList favouriteConferences={favouriteConferences} />
       </StyledProfileCard>
     </StyledProfile>
   );

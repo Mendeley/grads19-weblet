@@ -3,13 +3,8 @@ import { Link, useHistory } from "react-router-dom";
 import { withCookies } from "react-cookie";
 import Button from "../Button";
 import { getTimestring, getDatestring } from "../utils";
-import styled from "styled-components";
-import { deleteConferenceById, favouriteConference } from "../api.js";
-import {
-  StyledCardHeading,
-  StyledForm,
-  StyledCard
-} from "../StyledFormComponents";
+import { deleteConferenceById, addFavouriteConference } from "../api.js";
+import { StyledCardHeading, StyledForm, Card } from "../StyledFormComponents";
 
 export const StyledLink = styled(Link)`
   color: #7a517d;
@@ -58,7 +53,7 @@ export const ConferenceDetails = ({
 
   return (
     <StyledForm>
-      <StyledCard>
+      <Card>
         <StyledCardHeading className="name">{name}</StyledCardHeading>
         {sessionToken && (
           <StyledLink className="editLink" to={`/${id}/edit`}>
@@ -80,7 +75,7 @@ export const ConferenceDetails = ({
             <Button onClick={expressInterest}>Express Interest</Button>
           </>
         )}
-      </StyledCard>
+      </Card>
     </StyledForm>
   );
 };

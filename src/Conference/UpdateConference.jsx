@@ -4,11 +4,7 @@ import { withCookies, useCookies } from "react-cookie";
 import { cookieName } from "../Constants/Cookies";
 import Input from "../Input";
 import { updateConferenceById } from "../api";
-import {
-  StyledCardHeading,
-  StyledForm,
-  StyledCard
-} from "../StyledFormComponents";
+import { StyledCardHeading, StyledForm, Card } from "../StyledFormComponents";
 
 const UpdateForm = ({
   updatedConference,
@@ -51,7 +47,7 @@ const UpdateForm = ({
 
   return (
     <StyledForm>
-      <StyledCard>
+      <Card>
         <StyledCardHeading>Edit a conference:</StyledCardHeading>
         <form
           onSubmit={ev => {
@@ -105,7 +101,7 @@ const UpdateForm = ({
           />
           <Input type="submit" value="Save" />
         </form>
-      </StyledCard>
+      </Card>
     </StyledForm>
   );
 };

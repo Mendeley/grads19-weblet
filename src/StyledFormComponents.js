@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import React from "react";
 
 const StyledForm = styled.div`
   height: 400px;
@@ -17,19 +18,35 @@ const StyledCardHeading = styled.h3`
 `;
 
 const StyledCard = styled.div`
+  ${props =>
+    props.profilePage
+      ? `
+  width: 45%;
+  height: 80vh;
+  margin: 10px;
+  display: inline-block;
+  `
+      : `width: 900px;
+  height: 450px;
+  margin: 0 auto;`}
   border-style: solid;
   border-color: black;
   border-radius: 25px;
   background: #dbd8db;
-  width: 900px;
-  height: 450px;
   transition: 0.3s;
   :hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
   vertical-align: middle;
+<<<<<<< HEAD
   margin: 0 auto;
   position: relative;
+=======
+>>>>>>> GP19-15: WIP CSS changes, implementing reusable card
 `;
 
-export { StyledCardHeading, StyledForm, StyledCard };
+const Card = ({ children, ...props }) => {
+  return <StyledCard {...props}>{children}</StyledCard>;
+};
+
+export { StyledCardHeading, StyledForm, Card };
