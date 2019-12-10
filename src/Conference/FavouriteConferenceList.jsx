@@ -22,7 +22,7 @@ const StyledConferenceLink = styled(Link)`
   color: #322d38;
 `;
 
-const FavouriteConferenceList = favouriteConferences => {
+const FavouriteConferenceList = ({ favouriteConferences }) => {
   return (
     <StyledFavouritesList>
       {favouriteConferences.map(conference => (

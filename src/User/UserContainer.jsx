@@ -48,11 +48,7 @@ const UserContainer = () => {
         sessionToken.token
       );
       setFavouriteConferences(favouriteConferences);
-<<<<<<< HEAD
       const user = await getUserById(userId, cookies.sessionToken.token);
-=======
-      const user = await getUserById(userId, sessionToken.token);
->>>>>>> GP19-104/5: fixed bug with tokens in userContainer
       setUser(user);
     } catch (error) {
       setError(true);

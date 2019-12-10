@@ -5,11 +5,7 @@ import { withCookies, useCookies } from "react-cookie";
 import { cookieOptions, cookieName } from "../Constants/Cookies";
 import Input from "../Input";
 import { loginUser } from "../api";
-import {
-  StyledCardHeading,
-  StyledForm,
-  StyledCard
-} from "../StyledFormComponents";
+import { StyledCardHeading, StyledForm, Card } from "../StyledFormComponents";
 
 export const StyledLink = styled(Link)`
   color: #7a517d;
@@ -50,7 +46,7 @@ const LoginForm = () => {
 
   return (
     <StyledForm>
-      <StyledCard>
+      <Card>
         <StyledCardHeading>Login here:</StyledCardHeading>
         <StyledLink to={`/users/register`}>Register New User</StyledLink>
         <form onSubmit={onSubmit}>
@@ -74,7 +70,7 @@ const LoginForm = () => {
           />
           <Input type="submit" value="Submit" />
         </form>
-      </StyledCard>
+      </Card>
     </StyledForm>
   );
 };

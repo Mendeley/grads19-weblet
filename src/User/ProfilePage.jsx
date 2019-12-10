@@ -1,4 +1,4 @@
-import { StyledCardHeading, StyledCard } from "../StyledFormComponents";
+import { StyledCardHeading, Card } from "../StyledFormComponents";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -109,7 +109,7 @@ const ProfilePage = ({
           </StyledEditLink>
         )}
         <StyledCardHeading className="name">
-          {`${firstName} ${lastName}`}
+          {`Hello, ${firstName} ${lastName}!`}
         </StyledCardHeading>
         <p className="username">{`Username: ${username}`}</p>
         <p className="email">{`Email: ${email}`}</p>
@@ -129,6 +129,7 @@ const ProfilePage = ({
             </StyledFavouritesListItem>
           ))}
         </StyledFavouritesList>
+        <FavouriteConferenceList favouriteConferences={favouriteConferences} />
       </StyledProfileCard>
     </StyledProfile>
   );
