@@ -1,7 +1,7 @@
 export let wrapper;
 
-export const setWrapper = componantToBeWrapped => {
-  wrapper = componantToBeWrapped;
+export const setWrapper = componentToBeWrapped => {
+  wrapper = componentToBeWrapped;
 };
 
 export const findElement = identifier => {
