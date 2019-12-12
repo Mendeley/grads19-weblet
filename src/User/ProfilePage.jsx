@@ -2,6 +2,7 @@ import React from "react";
 import { StyledCardHeading, StyledCard } from "../StyledFormComponents";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { noManager } from "../Constants/Constants";
 
 export const StyledLink = styled(Link)`
   color: #7a517d;
@@ -45,7 +46,7 @@ const ProfilePage = ({
     user || {};
 
   const displayManager = () => {
-    if (managerName === "No_Manager") {
+    if (managerName === noManager) {
       return <p className="manager">{`Manager: None Assigned`}</p>;
     } else {
       return (

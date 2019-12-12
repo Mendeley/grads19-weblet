@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Switch, Route, Redirect, useParams } from "react-router-dom";
 import { withCookies, useCookies } from "react-cookie";
 import { cookieName } from "../Constants/Cookies";
+import { noManager } from "../Constants/Constants";
 import ProfilePage from "./ProfilePage";
 import UpdateProfile from "./UpdateProfile";
 import { getUserById } from "../api.js";
@@ -31,7 +32,7 @@ const UserContainer = () => {
           setError(true);
         }
       } else {
-        setManagerName("No_Manager");
+        setManagerName(noManager);
       }
     }
   };
