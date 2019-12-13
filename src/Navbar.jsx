@@ -59,11 +59,6 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
               </StyledLink>
             </StyledListItem>
             <StyledListItem>
-              <StyledLink className="webscrape" to="/addURL">
-                Add Conference by URL
-              </StyledLink>
-            </StyledListItem>
-            <StyledListItem>
               <StyledLink
                 className="profilePage"
                 to={`/users/${sessionToken.userId}`}

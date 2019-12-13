@@ -92,3 +92,9 @@ export const logoutUser = async token => {
     throw error;
   }
 };
+
+export const submitNewURL = async (URL, token) => {
+  await axios.post("http://localhost:8080/add", URL, {
+    headers: { Authorization: token }
+  });
+};

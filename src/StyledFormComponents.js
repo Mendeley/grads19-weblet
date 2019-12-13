@@ -3,6 +3,8 @@ import styled from "styled-components";
 const StyledForm = styled.div`
   height: 400px;
   padding: 20px;
+  display:flex; 
+  flex-direction:row;
 `;
 
 const StyledCardHeading = styled.h3`
@@ -30,6 +32,7 @@ const StyledCard = styled.div`
   vertical-align: middle;
   margin: 0 auto;
   position: relative;
+  display: inline-block;
 `;
 
 export { StyledCardHeading, StyledForm, StyledCard };
