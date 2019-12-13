@@ -1,18 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Input from "../Input";
-<<<<<<< HEAD
 import { createNewUser, getSearchResults } from "../api";
 import { DebounceInput } from "react-debounce-input";
-import {
-  StyledCardHeading,
-  StyledForm,
-  StyledCard
-} from "../StyledFormComponents";
-=======
-import { createNewUser } from "../api";
 import { StyledCardHeading, StyledForm, Card } from "../StyledFormComponents";
->>>>>>> GP19-15: WIP CSS changes, implementing reusable card
 
 const RegistrationForm = () => {
   let history = useHistory();

@@ -14,56 +14,12 @@ import LoginForm from "./User/LoginForm";
 import UserContainer from "./User/UserContainer";
 
 const StyledApp = styled.div`
-	text-align: center;
-	background: #ccb7bb;
-	width: auto;
-	min-height: 100vh;
+  text-align: center;
+  background: #ccb7bb;
+  width: auto;
+  min-height: 100vh;
 `;
 function App() {
-<<<<<<< HEAD
-	const cookieName = "sessionToken";
-	const cookieOptions = { path: "/" };
-	const [cookies, setCookie, removeCookie] = useCookies([cookieName]);
-	const setSessionToken = sessionTokenData => {
-		setCookie(cookieName, sessionTokenData, cookieOptions);
-	};
-	const deleteSessionToken = () => {
-		removeCookie(cookieName, cookieOptions);
-	};
-	return (
-		<CookiesProvider>
-			<BrowserRouter>
-				<StyledApp>
-					<Navbar
-						sessionToken={cookies.sessionToken}
-						deleteSessionToken={deleteSessionToken}
-					/>
-					<Switch>
-						<Route exact path="/">
-							<ConferenceList />
-						</Route>
-						<Route path="/add">
-							<AddConference />
-						</Route>
-						<Route path="/users/register">
-							<RegistrationForm />
-						</Route>
-						<Route path="/users/login">
-							<LoginForm setSessionToken={setSessionToken} />
-						</Route>
-						<Route path="/users/:id">
-							<UserContainer sessionToken={cookies.sessionToken} />
-						</Route>
-						<Route path="/:id">
-							<ConferenceContainer sessionToken={cookies.sessionToken} />
-						</Route>
-					</Switch>
-				</StyledApp>
-				<ToastContainer position="bottom-right" autoClose={5000} pauseOnHover />
-			</BrowserRouter>
-		</CookiesProvider>
-	);
-=======
   const cookieName = "sessionToken";
   const cookieOptions = { path: "/" };
   const [cookies, setCookie, removeCookie] = useCookies([cookieName]);
@@ -107,6 +63,5 @@ function App() {
       </BrowserRouter>
     </CookiesProvider>
   );
->>>>>>> GP19-104/5: rename functions, remove console logs, update userContainer functions and create FavouriteConference component
 }
 export default App;

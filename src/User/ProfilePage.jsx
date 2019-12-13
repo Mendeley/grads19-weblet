@@ -1,5 +1,5 @@
 import { StyledCardHeading, Card } from "../StyledFormComponents";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import FavouriteConferenceList from "../Conference/FavouriteConferenceList";
@@ -69,15 +69,6 @@ const ProfilePage = ({ user, isLoading, error, favouriteConferences }) => {
           <StyledCardHeading className="favourite-conferences">
             Favourited conferences
           </StyledCardHeading>
-          <StyledFavouritesList>
-            {favouriteConferences.map(conference => (
-              <StyledFavouritesListItem key={conference.id}>
-                <StyledConferenceLink to={`/${conference.id}`}>
-                  {conference.name}
-                </StyledConferenceLink>
-              </StyledFavouritesListItem>
-            ))}
-          </StyledFavouritesList>
         </Card>
 
         <FavouriteConferenceList favouriteConferences={favouriteConferences} />
