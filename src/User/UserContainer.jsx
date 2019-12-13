@@ -59,11 +59,13 @@ const UserContainer = () => {
   }, [id]);
 
   useEffect(() => {
-    if (isCurrentUser) {
+    if (isCurrentUser()) {
       getManagerName(user);
+    } else {
+      setManagerName("");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isCurrentUser, user]);
+  }, [isCurrentUser(), user ? user.id : null]);
 
   return (
     <Switch>
