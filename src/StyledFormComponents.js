@@ -38,11 +38,8 @@ const StyledCard = styled.div`
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
   vertical-align: middle;
-<<<<<<< HEAD
   margin: 0 auto;
   position: relative;
-=======
->>>>>>> GP19-15: WIP CSS changes, implementing reusable card
 `;
 
 const Card = ({ children, ...props }) => {

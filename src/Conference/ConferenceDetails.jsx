@@ -1,10 +1,12 @@
 import React from "react";
+import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
-import { withCookies } from "react-cookie";
+import { withCookies, useCookies } from "react-cookie";
 import Button from "../Button";
 import { getTimestring, getDatestring } from "../utils";
 import { deleteConferenceById, addFavouriteConference } from "../api.js";
 import { StyledCardHeading, StyledForm, Card } from "../StyledFormComponents";
+import { cookieName } from "../Constants/Cookies";
 
 export const StyledLink = styled(Link)`
   color: #7a517d;
@@ -22,8 +24,9 @@ export const ConferenceDetails = ({
   allCookies = {}
 }) => {
   const history = useHistory();
-  const sessionToken = allCookies.sessionToken;
-
+  //const sessionToken = allCookies.sessionToken;
+  const [cookies] = useCookies([cookieName]);
+  const token = cookies.sessionToken.token;
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -37,7 +40,7 @@ export const ConferenceDetails = ({
 
   const deleteConference = async id => {
     try {
-      await deleteConferenceById(id, sessionToken.token);
+      await deleteConferenceById(id, token);
       history.push("/");
     } catch (error) {
       console.log(error);
@@ -47,15 +50,15 @@ export const ConferenceDetails = ({
     deleteConference(id);
   };
 
-  const expressInterest = async ({ sessionToken }) => {
-    await addFavouriteConference(conference, sessionToken.token);
+  const expressInterest = async () => {
+    await addFavouriteConference(conference, token);
   };
 
   return (
     <StyledForm>
       <Card>
         <StyledCardHeading className="name">{name}</StyledCardHeading>
-        {sessionToken && (
+        {token && (
           <StyledLink className="editLink" to={`/${id}/edit`}>
             Edit Conference
           </StyledLink>
@@ -67,7 +70,7 @@ export const ConferenceDetails = ({
         <StyledDescription className="description">
           {description}
         </StyledDescription>
-        {sessionToken && (
+        {token && (
           <>
             <Button className="deleteButton" onClick={deleteThisConference}>
               Delete Conference
