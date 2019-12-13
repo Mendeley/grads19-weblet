@@ -29,9 +29,10 @@ export const ConferenceDetails = ({
   allCookies = {}
 }) => {
   const history = useHistory();
-  //const sessionToken = allCookies.sessionToken;
   const [cookies] = useCookies([cookieName]);
   const token = cookies.sessionToken.token;
+  const userId = cookies.sessionToken.userId;
+  const conferenceId = parseInt(id);
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -55,8 +56,8 @@ export const ConferenceDetails = ({
     deleteConference(id);
   };
 
-  const expressInterest = async ({ sessionToken }) => {
-    await addFavouriteConference(conference, sessionToken.token);
+  const expressInterest = async () => {
+    await addFavouriteConference(userId, conferenceId, token);
   };
 
   return (
