@@ -4,25 +4,14 @@ import { Link, useHistory } from "react-router-dom";
 import { withCookies, useCookies } from "react-cookie";
 import Button from "../Button";
 import { getTimestring, getDatestring } from "../utils";
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { deleteConferenceById, addFavouriteConference } from "../api.js";
 import { StyledCardHeading, StyledForm, Card } from "../StyledFormComponents";
-<<<<<<< HEAD
 import { cookieName } from "../Constants/Cookies";
-=======
-import { deleteConferenceById, favouriteConference } from "../api.js";
-=======
-import { deleteConferenceById, addFavouriteConference } from "../api.js";
->>>>>>> GP19-104/5: rename functions, remove console logs, update userContainer functions and create FavouriteConference component
 import {
   StyledCardHeading,
   StyledForm,
   StyledCard
 } from "../StyledFormComponents";
->>>>>>> add express interest button and list favourited conferences on profile page
-=======
->>>>>>> GP19-15: WIP CSS changes, implementing reusable card
 
 export const StyledLink = styled(Link)`
   color: #7a517d;
@@ -66,26 +55,13 @@ export const ConferenceDetails = ({
     deleteConference(id);
   };
 
-<<<<<<< HEAD
-  const expressInterest = async () => {
-<<<<<<< HEAD
-    await addFavouriteConference(conference, token);
-=======
-    try {
-      await favouriteConference(conference, token);
-    } catch (error) {
-      console.log(error);
-    }
->>>>>>> add express interest button and list favourited conferences on profile page
-=======
   const expressInterest = async ({ sessionToken }) => {
     await addFavouriteConference(conference, sessionToken.token);
->>>>>>> GP19-104/5: rename functions, remove console logs, update userContainer functions and create FavouriteConference component
   };
 
   return (
     <StyledForm>
-      <Card>
+      <StyledCard>
         <StyledCardHeading className="name">{name}</StyledCardHeading>
         {token && (
           <StyledLink className="editLink" to={`/${id}/edit`}>
@@ -99,7 +75,6 @@ export const ConferenceDetails = ({
         <StyledDescription className="description">
           {description}
         </StyledDescription>
-<<<<<<< HEAD
         {token && (
           <>
             <Button className="deleteButton" onClick={deleteThisConference}>
@@ -108,16 +83,7 @@ export const ConferenceDetails = ({
             <Button onClick={expressInterest}>Express Interest</Button>
           </>
         )}
-      </Card>
-=======
-        <Button onClick={deleteThisConference}>Delete Conference</Button>
-        <Button onClick={expressInterest}>Express Interest</Button>
-<<<<<<< HEAD
       </StyledCard>
->>>>>>> add express interest button and list favourited conferences on profile page
-=======
-      </Card>
->>>>>>> GP19-15: WIP CSS changes, implementing reusable card
     </StyledForm>
   );
 };
