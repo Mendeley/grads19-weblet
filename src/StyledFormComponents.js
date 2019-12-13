@@ -38,8 +38,11 @@ const StyledCard = styled.div`
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
   vertical-align: middle;
+<<<<<<< HEAD
   margin: 0 auto;
   position: relative;
+=======
+>>>>>>> 20f73c37538327db1122e69d0465e597dcca719a
 `;
 
 const Card = ({ children, ...props }) => {
