@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Input from "../Input";
-<<<<<<< HEAD
 import { createNewUser, getSearchResults } from "../api";
 import { DebounceInput } from "react-debounce-input";
-=======
-import { createNewUser } from "../api";
->>>>>>> 20f73c37538327db1122e69d0465e597dcca719a
 import { StyledCardHeading, StyledForm, Card } from "../StyledFormComponents";
 
 const RegistrationForm = () => {

@@ -6,10 +6,7 @@ import Button from "../Button";
 import { getTimestring, getDatestring } from "../utils";
 import { deleteConferenceById, addFavouriteConference } from "../api.js";
 import { StyledCardHeading, StyledForm, Card } from "../StyledFormComponents";
-<<<<<<< HEAD
 import { cookieName } from "../Constants/Cookies";
-=======
->>>>>>> 20f73c37538327db1122e69d0465e597dcca719a
 
 export const StyledLink = styled(Link)`
   color: #7a517d;
@@ -53,13 +50,8 @@ export const ConferenceDetails = ({
     deleteConference(id);
   };
 
-<<<<<<< HEAD
   const expressInterest = async () => {
     await addFavouriteConference(conference, token);
-=======
-  const expressInterest = async ({ sessionToken }) => {
-    await addFavouriteConference(conference, sessionToken.token);
->>>>>>> 20f73c37538327db1122e69d0465e597dcca719a
   };
 
   return (
@@ -78,7 +70,6 @@ export const ConferenceDetails = ({
         <StyledDescription className="description">
           {description}
         </StyledDescription>
-<<<<<<< HEAD
         {token && (
           <>
             <Button className="deleteButton" onClick={deleteThisConference}>
@@ -87,10 +78,6 @@ export const ConferenceDetails = ({
             <Button onClick={expressInterest}>Express Interest</Button>
           </>
         )}
-=======
-        <Button onClick={deleteThisConference}>Delete Conference</Button>
-        <Button onClick={expressInterest}>Express Interest</Button>
->>>>>>> 20f73c37538327db1122e69d0465e597dcca719a
       </Card>
     </StyledForm>
   );

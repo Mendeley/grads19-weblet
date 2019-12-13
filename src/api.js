@@ -88,7 +88,6 @@ export const logoutUser = async token => {
   }
 };
 
-<<<<<<< HEAD
 export const updateUserById = async (id, user, token) => {
   try {
     await axios.patch(`http://localhost:8080/users/${id}`, user, {
@@ -101,8 +100,6 @@ export const updateUserById = async (id, user, token) => {
   }
 };
 
-=======
->>>>>>> 20f73c37538327db1122e69d0465e597dcca719a
 export const getFavouritedConferencesByUserId = async (id, token) => {
   const response = await axios.get(
     `http://localhost:8080/user-conferences/${id}`,
