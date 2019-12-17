@@ -14,6 +14,7 @@ const UserContainer = () => {
   const [managerName, setManagerName] = useState("");
   const { id } = useParams();
   const [cookies] = useCookies([cookieName]);
+  const userId = user ? user.id : null;
 
   const isCurrentUser = () => {
     return Number(id) === cookies.sessionToken.userId;
@@ -65,7 +66,7 @@ const UserContainer = () => {
       setManagerName("");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isCurrentUser(), user ? user.id : null]);
+  }, [isCurrentUser(), userId]);
 
   return (
     <Switch>

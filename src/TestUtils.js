@@ -1,7 +1,9 @@
+import { mount } from "enzyme";
+
 export let wrapper;
 
-export const setWrapper = componentToBeWrapped => {
-  wrapper = componentToBeWrapped;
+export const setMountedWrapper = componentToBeWrapped => {
+  wrapper = mount(componentToBeWrapped);
 };
 
 export const findElement = identifier => {

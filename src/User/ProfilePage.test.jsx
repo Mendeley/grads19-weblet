@@ -4,7 +4,8 @@ import Adapter from "enzyme-adapter-react-16";
 import { Router } from "react-router-dom";
 import React from "react";
 import { createMemoryHistory } from "history";
-import { wrapper, setWrapper, findElement } from "../TestUtils";
+import { wrapper, setMountedWrapper, findElement } from "../TestUtils";
+import { noManager } from "../Constants/Constants";
 
 jest.mock("react-router-dom", () => {
   const originalReactRouter = jest.requireActual("react-router-dom");
@@ -39,24 +40,20 @@ describe("ProfilePage", () => {
 
   const mockManagerName = "Joe Bloggs";
 
-  const mockNoManagerName = "No_Manager";
-
   it("renders current user's profile information with manager", async () => {
     expect.assertions(7);
 
     const history = createMemoryHistory();
     history.push("/users/11");
 
-    setWrapper(
-      mount(
-        <Router history={history}>
-          <ProfilePage
-            user={mockDataWithManager}
-            isCurrentUser={true}
-            managerName={mockManagerName}
-          />
-        </Router>
-      )
+    setMountedWrapper(
+      <Router history={history}>
+        <ProfilePage
+          user={mockDataWithManager}
+          isCurrentUser={true}
+          managerName={mockManagerName}
+        />
+      </Router>
     );
 
     wrapper.update();
@@ -85,16 +82,14 @@ describe("ProfilePage", () => {
     const history = createMemoryHistory();
     history.push("/users/11");
 
-    setWrapper(
-      mount(
-        <Router history={history}>
-          <ProfilePage
-            user={mockDataWithoutManager}
-            isCurrentUser={true}
-            managerName={mockNoManagerName}
-          />
-        </Router>
-      )
+    setMountedWrapper(
+      <Router history={history}>
+        <ProfilePage
+          user={mockDataWithoutManager}
+          isCurrentUser={true}
+          managerName={noManager}
+        />
+      </Router>
     );
 
     wrapper.update();
@@ -123,12 +118,10 @@ describe("ProfilePage", () => {
     const history = createMemoryHistory();
     history.push("/users/11");
 
-    setWrapper(
-      mount(
-        <Router history={history}>
-          <ProfilePage user={mockDataWithoutManager} isCurrentUser={false} />
-        </Router>
-      )
+    setMountedWrapper(
+      <Router history={history}>
+        <ProfilePage user={mockDataWithoutManager} isCurrentUser={false} />
+      </Router>
     );
 
     wrapper.update();

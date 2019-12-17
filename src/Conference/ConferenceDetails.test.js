@@ -12,7 +12,7 @@ import { configure, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { createMemoryHistory } from "history";
 import { act } from "react-dom/test-utils";
-import { wrapper, setWrapper, findElement } from "../TestUtils";
+import { wrapper, setMountedWrapper, findElement } from "../TestUtils";
 
 configure({ adapter: new Adapter() });
 
@@ -41,16 +41,14 @@ describe("ConferenceDetails", () => {
     history.push("/1");
 
     act(() => {
-      setWrapper(
-        mount(
-          <Router history={history}>
-            <ConferenceDetails
-              conference={mockData}
-              id="1"
-              allCookies={mockCookie}
-            />
-          </Router>
-        )
+      setMountedWrapper(
+        <Router history={history}>
+          <ConferenceDetails
+            conference={mockData}
+            id="1"
+            allCookies={mockCookie}
+          />
+        </Router>
       );
     });
 
@@ -72,12 +70,10 @@ describe("ConferenceDetails", () => {
     history.push("/1");
 
     act(() => {
-      setWrapper(
-        mount(
-          <Router history={history}>
-            <ConferenceDetails conference={mockData} id="1" />
-          </Router>
-        )
+      setMountedWrapper(
+        <Router history={history}>
+          <ConferenceDetails conference={mockData} id="1" />
+        </Router>
       );
     });
 

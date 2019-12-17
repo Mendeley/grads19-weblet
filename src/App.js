@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import RegistrationForm from "./User/RegistrationForm";
 import LoginForm from "./User/LoginForm";
 import UserContainer from "./User/UserContainer";
-import CookieNavbar from "./Navbar";
+import Navbar from "./Navbar";
 
 const StyledApp = styled.div`
   text-align: center;
@@ -24,7 +24,7 @@ function App() {
     <CookiesProvider>
       <BrowserRouter>
         <StyledApp>
-          <CookieNavbar />
+          <Navbar />
           <Switch>
             <Route exact path="/">
               <ConferenceList />
