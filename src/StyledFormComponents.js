@@ -19,7 +19,7 @@ const StyledCardHeading = styled.h3`
 
 const StyledCard = styled.div`
   ${props =>
-    props.profilePage
+    props.favouritesCard
       ? `
   width: 45%;
   height: 80vh;

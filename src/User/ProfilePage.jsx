@@ -19,8 +19,8 @@ export const StyledEditLink = styled(Link)`
   border-radius: 11px;
   border: 3px solid black;
   position: absolute;
-  top: 18px;
-  right: 18px;
+  bottom: 18px;
+  left: 18px;
 `;
 
 const StyledProfile = styled.div`
