@@ -14,29 +14,13 @@ export const StyledLink = styled(Link)`
   border-radius: 11px;
   border: 3px solid black;
   position: absolute;
-  top: 18px;
-  right: 18px;
+  bottom: 18px;
+  left: 18px;
 `;
 
 const StyledProfile = styled.div`
   height: 400px;
   padding: 20px;
-`;
-
-const StyledProfileCard = styled.ul`
-  border-style: solid;
-  border-color: black;
-  border-radius: 25px;
-  background: #dbd8db;
-  width: 45%;
-  height: 80vh;
-  transition: 0.3s;
-  :hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  }
-  vertical-align: middle;
-  margin: 10px;
-  display: inline-block;
 `;
 
 const ProfilePage = ({ user, isLoading, error, favouriteConferences }) => {
@@ -52,27 +36,24 @@ const ProfilePage = ({ user, isLoading, error, favouriteConferences }) => {
 
   return (
     <StyledProfile>
-      <StyledLink className="editLink" to={`/users/${id}/edit`}>
-        Edit
-      </StyledLink>
+      <Card favouritesCard>
+        <StyledCardHeading className="name">
+          {`Hello, ${firstName} ${lastName}!`}
+        </StyledCardHeading>
+        <p className="username">Username: {username}</p>
+        <p className="email">Email: {email}</p>
+        <p className="occupation">Occupation: {occupation}</p>
 
-      <StyledProfileCard>
-        <Card>
-          <StyledCardHeading className="name">
-            {`Hello, ${firstName} ${lastName}!`}
-          </StyledCardHeading>
-          <p className="username">Username: {username}</p>
-          <p className="email">Email: {email}</p>
-          <p className="occupation">Occupation: {occupation}</p>
-        </Card>
-        <Card>
-          <StyledCardHeading className="favourite-conferences">
-            Favourited conferences
-          </StyledCardHeading>
-        </Card>
-
+        <StyledLink className="editLink" to={`/users/${id}/edit`}>
+          Edit
+        </StyledLink>
+      </Card>
+      <Card favouritesCard>
+        <StyledCardHeading className="favourite-conferences">
+          Favourited conferences
+        </StyledCardHeading>
         <FavouriteConferenceList favouriteConferences={favouriteConferences} />
-      </StyledProfileCard>
+      </Card>
     </StyledProfile>
   );
 };

@@ -78,6 +78,7 @@ export const ConferenceDetails = ({
             <Button className="deleteButton" onClick={deleteThisConference}>
               Delete Conference
             </Button>
+
             <Button onClick={expressInterest}>Express Interest</Button>
           </>
         )}
