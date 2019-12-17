@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
-import { withCookies, useCookies } from "react-cookie";
+import { withCookies } from "react-cookie";
 import Button from "../Button";
 import { getTimestring, getDatestring } from "../utils";
 import { deleteConferenceById, addFavouriteConference } from "../api.js";
@@ -29,9 +29,12 @@ export const ConferenceDetails = ({
   allCookies = {}
 }) => {
   const history = useHistory();
-  const [cookies] = useCookies([cookieName]);
-  const token = cookies.sessionToken.token;
-  const userId = cookies.sessionToken.userId;
+
+  const token = allCookies.sessionToken ? allCookies.sessionToken.token : null;
+  const userId = allCookies.sessionToken
+    ? allCookies.sessionToken.userId
+    : null;
+
   const conferenceId = parseInt(id);
   if (isLoading) {
     return <p>Loading...</p>;
@@ -56,8 +59,8 @@ export const ConferenceDetails = ({
     deleteConference(id);
   };
 
-  const expressInterest = async () => {
-    await addFavouriteConference(userId, conferenceId, token);
+  const expressInterest = () => {
+    addFavouriteConference(userId, conferenceId, token);
   };
 
   return (
@@ -88,5 +91,5 @@ export const ConferenceDetails = ({
     </StyledForm>
   );
 };
-const CookieConferenceDetails = withCookies(ConferenceDetails);
-export default CookieConferenceDetails;
+
+export default withCookies(ConferenceDetails);
