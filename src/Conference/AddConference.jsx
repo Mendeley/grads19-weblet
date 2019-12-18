@@ -1,14 +1,18 @@
 import React from "react";
-import CookieAddConferenceForm from "./AddConferenceForm";
-import { StyledCardHeading, StyledForm, Card } from "../StyledFormComponents";
+import AddConferenceForm from "./AddConferenceForm";
+import {
+  StyledCardHeading,
+  StyledForm,
+  StyledCard
+} from "../StyledFormComponents";
 
 const AddConference = () => {
   return (
     <StyledForm>
-      <Card>
+      <StyledCard>
         <StyledCardHeading>Add a new conference:</StyledCardHeading>
-        <CookieAddConferenceForm />
-      </Card>
+        <AddConferenceForm />
+      </StyledCard>
     </StyledForm>
   );
 };

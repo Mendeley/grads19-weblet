@@ -1,7 +1,7 @@
-import { StyledCardHeading, Card } from "../StyledFormComponents";
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { StyledCardHeading, StyledCard } from "../StyledFormComponents";
 import FavouriteConferenceList from "../Conference/FavouriteConferenceList";
 
 export const StyledLink = styled(Link)`
@@ -36,7 +36,7 @@ const ProfilePage = ({ user, isLoading, error, favouriteConferences }) => {
 
   return (
     <StyledProfile>
-      <Card favouritesCard>
+      <StyledCard favouritesCard>
         <StyledCardHeading className="name">
           {`Hello, ${firstName} ${lastName}!`}
         </StyledCardHeading>
@@ -47,13 +47,13 @@ const ProfilePage = ({ user, isLoading, error, favouriteConferences }) => {
         <StyledLink className="editLink" to={`/users/${id}/edit`}>
           Edit
         </StyledLink>
-      </Card>
-      <Card favouritesCard>
+      </StyledCard>
+      <StyledCard favouritesCard>
         <StyledCardHeading className="favourite-conferences">
           Favourited conferences
         </StyledCardHeading>
         <FavouriteConferenceList favouriteConferences={favouriteConferences} />
-      </Card>
+      </StyledCard>
     </StyledProfile>
   );
 };

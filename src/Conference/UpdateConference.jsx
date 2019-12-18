@@ -1,10 +1,14 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { withCookies, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 import { cookieName } from "../Constants/Cookies";
 import Input from "../Input";
 import { updateConferenceById } from "../api";
-import { StyledCardHeading, StyledForm, Card } from "../StyledFormComponents";
+import {
+  StyledCardHeading,
+  StyledForm,
+  StyledCard
+} from "../StyledFormComponents";
 
 const UpdateForm = ({
   updatedConference,
@@ -47,7 +51,7 @@ const UpdateForm = ({
 
   return (
     <StyledForm>
-      <Card>
+      <StyledCard>
         <StyledCardHeading>Edit a conference:</StyledCardHeading>
         <form
           onSubmit={ev => {
@@ -101,8 +105,8 @@ const UpdateForm = ({
           />
           <Input type="submit" value="Save" />
         </form>
-      </Card>
+      </StyledCard>
     </StyledForm>
   );
 };
-export default withCookies(UpdateForm);
+export default UpdateForm;

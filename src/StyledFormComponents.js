@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import React from "react";
 
 const StyledForm = styled.div`
   height: 400px;
@@ -18,17 +17,10 @@ const StyledCardHeading = styled.h3`
 `;
 
 const StyledCard = styled.div`
-  ${props =>
-    props.favouritesCard
-      ? `
-  width: 45%;
-  height: 80vh;
-  margin: 10px;
-  display: inline-block;
-  `
-      : `width: 900px;
-  height: 450px;
-  margin: 0 auto;`}
+  width: ${({ favouritesCard }) => (favouritesCard ? `45%` : `900px`)};
+  height: ${({ favouritesCard }) => (favouritesCard ? `80vh` : `450px`)};
+  margin: ${({ favouritesCard }) => (favouritesCard ? `10px` : `0 auto`)};
+  display: ${({ favouritesCard }) => (favouritesCard ? `inline-block` : ``)};
   border-style: solid;
   border-color: black;
   border-radius: 25px;
@@ -42,8 +34,4 @@ const StyledCard = styled.div`
   position: relative;
 `;
 
-const Card = ({ children, ...props }) => {
-  return <StyledCard {...props}>{children}</StyledCard>;
-};
-
-export { StyledCardHeading, StyledForm, Card };
+export { StyledCardHeading, StyledForm, StyledCard };

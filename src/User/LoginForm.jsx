@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory, Link } from "react-router-dom";
-import { withCookies, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 import { cookieOptions, cookieName } from "../Constants/Cookies";
 import Input from "../Input";
 import { loginUser } from "../api";
-import { StyledCardHeading, StyledForm, Card } from "../StyledFormComponents";
+import {
+  StyledCardHeading,
+  StyledForm,
+  StyledCard
+} from "../StyledFormComponents";
 
 export const StyledLink = styled(Link)`
   color: #7a517d;
@@ -46,7 +50,7 @@ const LoginForm = () => {
 
   return (
     <StyledForm>
-      <Card>
+      <StyledCard>
         <StyledCardHeading>Login here:</StyledCardHeading>
         <StyledLink to={`/users/register`}>Register New User</StyledLink>
         <form onSubmit={onSubmit}>
@@ -70,9 +74,9 @@ const LoginForm = () => {
           />
           <Input type="submit" value="Submit" />
         </form>
-      </Card>
+      </StyledCard>
     </StyledForm>
   );
 };
 
-export default withCookies(LoginForm);
+export default LoginForm;

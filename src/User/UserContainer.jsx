@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, useParams } from "react-router-dom";
-import { withCookies, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 import { cookieName } from "../Constants/Cookies";
 import ProfilePage from "./ProfilePage";
 import UpdateProfile from "./UpdateProfile";
@@ -61,4 +61,4 @@ const UserContainer = ({ sessionToken }) => {
   );
 };
 
-export default withCookies(UserContainer);
+export default UserContainer;

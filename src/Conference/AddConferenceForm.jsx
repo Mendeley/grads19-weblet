@@ -88,5 +88,4 @@ export const AddConferenceForm = ({ allCookies = {} }) => {
     </form>
   );
 };
-const CookieAddConferenceForm = withCookies(AddConferenceForm);
-export default CookieAddConferenceForm;
+export default withCookies(AddConferenceForm);

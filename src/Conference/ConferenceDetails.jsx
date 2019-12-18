@@ -5,7 +5,11 @@ import { withCookies } from "react-cookie";
 import Button from "../Button";
 import { getTimestring, getDatestring } from "../utils";
 import { deleteConferenceById, addFavouriteConference } from "../api.js";
-import { StyledCardHeading, StyledForm, Card } from "../StyledFormComponents";
+import {
+  StyledCardHeading,
+  StyledForm,
+  StyledCard
+} from "../StyledFormComponents";
 
 export const StyledLink = styled(Link)`
   color: #7a517d;
@@ -59,7 +63,7 @@ export const ConferenceDetails = ({
 
   return (
     <StyledForm>
-      <Card>
+      <StyledCard>
         <StyledCardHeading className="name">{name}</StyledCardHeading>
         {token && (
           <StyledLink className="editLink" to={`/${id}/edit`}>
@@ -82,7 +86,7 @@ export const ConferenceDetails = ({
             <Button onClick={expressInterest}>Express Interest</Button>
           </>
         )}
-      </Card>
+      </StyledCard>
     </StyledForm>
   );
 };
