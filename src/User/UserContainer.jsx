@@ -42,12 +42,13 @@ const UserContainer = () => {
 
   const fetchData = async userId => {
     setIsLoading(true);
-
+    console.log(cookies.sessionToken.token, userId);
     try {
       const favouriteConferences = await getFavouritedConferencesByUserId(
         userId,
-        sessionToken.token
+        cookies.sessionToken.token
       );
+      console.log(favouriteConferences);
       setFavouriteConferences(favouriteConferences);
       const user = await getUserById(userId, cookies.sessionToken.token);
       setUser(user);

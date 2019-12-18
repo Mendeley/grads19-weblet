@@ -25,7 +25,7 @@ const StyledApp = styled.div`
 function App() {
   const cookieName = "sessionToken";
   const cookieOptions = { path: "/" };
-  const [cookies, setCookie, removeCookie] = useCookies([cookieName]);
+  const [, setCookie, removeCookie] = useCookies([cookieName]);
   const setSessionToken = sessionTokenData => {
     setCookie(cookieName, sessionTokenData, cookieOptions);
   };

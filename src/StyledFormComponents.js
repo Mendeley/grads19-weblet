@@ -17,10 +17,10 @@ const StyledCardHeading = styled.h3`
 `;
 
 const StyledCard = styled.div`
-  width: ${({ favouritesCard }) => (favouritesCard ? `45%` : `900px`)};
-  height: ${({ favouritesCard }) => (favouritesCard ? `80vh` : `450px`)};
-  margin: ${({ favouritesCard }) => (favouritesCard ? `10px` : `0 auto`)};
-  display: ${({ favouritesCard }) => (favouritesCard ? `inline-block` : ``)};
+  width: ${({ profileCard }) => (profileCard ? `45%` : `900px`)};
+  height: ${({ profileCard }) => (profileCard ? `80vh` : `450px`)};
+  margin: ${({ profileCard }) => (profileCard ? `10px` : `0 auto`)};
+  display: ${({ profileCard }) => profileCard && `inline-block`};
   border-style: solid;
   border-color: black;
   border-radius: 25px;
@@ -30,7 +30,6 @@ const StyledCard = styled.div`
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
   vertical-align: middle;
-  margin: 0 auto;
   position: relative;
 `;
 

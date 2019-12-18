@@ -28,22 +28,6 @@ const StyledProfile = styled.div`
   padding: 20px;
 `;
 
-const StyledProfileCard = styled.ul`
-  border-style: solid;
-  border-color: black;
-  border-radius: 25px;
-  background: #dbd8db;
-  width: 45%;
-  height: 80vh;
-  transition: 0.3s;
-  :hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  }
-  vertical-align: middle;
-  margin: 10px;
-  display: inline-block;
-`;
-
 const StyledFavouritesList = styled.ul`
   margin: 0;
   padding: 0;
@@ -102,7 +86,7 @@ const ProfilePage = ({
 
   return (
     <StyledProfile>
-      <StyledProfileCard>
+      <StyledCard profileCard>
         {isCurrentUser && (
           <StyledEditLink className="editLink" to={`/users/${id}/edit`}>
             Edit
@@ -115,8 +99,8 @@ const ProfilePage = ({
         <p className="email">{`Email: ${email}`}</p>
         <p className="occupation">{`Occupation: ${occupation}`}</p>
         {isCurrentUser && displayManager()}
-      </StyledProfileCard>
-      <StyledProfileCard>
+      </StyledCard>
+      <StyledCard profileCard>
         <StyledCardHeading className="favourite-conferences">
           Favourited conferences
         </StyledCardHeading>
@@ -130,7 +114,7 @@ const ProfilePage = ({
           ))}
         </StyledFavouritesList>
         <FavouriteConferenceList favouriteConferences={favouriteConferences} />
-      </StyledProfileCard>
+      </StyledCard>
     </StyledProfile>
   );
 };
