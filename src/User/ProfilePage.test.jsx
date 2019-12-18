@@ -39,6 +39,7 @@ describe("ProfilePage", () => {
   };
 
   const mockManagerName = "Joe Bloggs";
+  const noEmployees = [];
 
   it("renders current user's profile information with manager", async () => {
     expect.assertions(7);
@@ -52,6 +53,7 @@ describe("ProfilePage", () => {
           user={mockDataWithManager}
           isCurrentUser={true}
           managerName={mockManagerName}
+          employees={noEmployees}
         />
       </Router>
     );
@@ -88,6 +90,7 @@ describe("ProfilePage", () => {
           user={mockDataWithoutManager}
           isCurrentUser={true}
           managerName={noManager}
+          employees={noEmployees}
         />
       </Router>
     );
