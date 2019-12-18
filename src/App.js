@@ -1,18 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import ConferenceContainer from "./Conference/ConferenceContainer";
 import ConferenceList from "./Conference/ConferenceList";
-import AddConference from "./Conference/AddConference";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { CookiesProvider, useCookies } from "react-cookie";
-import { cookieName } from "./Constants/Cookies";
+import { CookiesProvider } from "react-cookie";
 import "react-toastify/dist/ReactToastify.css";
 import RegistrationForm from "./User/RegistrationForm";
 import LoginForm from "./User/LoginForm";
-import UserContainer from "./User/UserContainer";
 import Navbar from "./Navbar";
+import AuthRedirect from "./AuthRedirect";
+import AddConference from "./Conference/AddConference";
+import UserContainer from "./User/UserContainer";
 
 const StyledApp = styled.div`
   text-align: center;
@@ -21,8 +21,6 @@ const StyledApp = styled.div`
   min-height: 100vh;
 `;
 function App() {
-  const [cookies] = useCookies([cookieName]);
-
   return (
     <CookiesProvider>
       <BrowserRouter>
@@ -33,11 +31,9 @@ function App() {
               <ConferenceList />
             </Route>
             <Route path="/add">
-              {cookies.sessionToken ? (
+              <AuthRedirect redirectPath="/users/login">
                 <AddConference />
-              ) : (
-                <Redirect to="/users/login" />
-              )}
+              </AuthRedirect>
             </Route>
             <Route path="/users/register">
               <RegistrationForm />
@@ -46,11 +42,9 @@ function App() {
               <LoginForm />
             </Route>
             <Route path="/users/:id">
-              {cookies.sessionToken ? (
+              <AuthRedirect redirectPath="/users/login">
                 <UserContainer />
-              ) : (
-                <Redirect to="/users/login" />
-              )}
+              </AuthRedirect>
             </Route>
             <Route path="/:id">
               <ConferenceContainer />
