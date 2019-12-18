@@ -5,7 +5,6 @@ import { withCookies } from "react-cookie";
 import Button from "../Button";
 import { getTimestring, getDatestring } from "../utils";
 import { deleteConferenceById, addFavouriteConference } from "../api.js";
-import { StyledCardHeading, StyledForm, Card } from "../StyledFormComponents";
 import { cookieName } from "../Constants/Cookies";
 import {
   StyledCardHeading,

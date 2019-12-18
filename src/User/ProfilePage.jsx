@@ -1,8 +1,8 @@
-import { StyledCardHeading, Card } from "../StyledFormComponents";
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { noManager } from "../Constants/Constants";
+import { StyledCardHeading, StyledCard } from "../StyledFormComponents";
 import FavouriteConferenceList from "../Conference/FavouriteConferenceList";
 
 export const StyledLink = styled(Link)`

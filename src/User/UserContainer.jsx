@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, Redirect, useParams } from "react-router-dom";
-import { withCookies, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 import { cookieName } from "../Constants/Cookies";
 import { noManager } from "../Constants/Constants";
 import ProfilePage from "./ProfilePage";
@@ -101,4 +101,4 @@ const UserContainer = () => {
   );
 };
 
-export default withCookies(UserContainer);
+export default UserContainer;

@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import Input from "../Input";
 import { useHistory } from "react-router-dom";
-import { StyledForm, Card, StyledCardHeading } from "../StyledFormComponents";
-import { updateUserById } from "../api";
 import { toast } from "react-toastify";
+import Input from "../Input";
+import {
+  StyledForm,
+  StyledCard,
+  StyledCardHeading
+} from "../StyledFormComponents";
+import { updateUserById } from "../api";
 
 const UpdateProfile = ({
   setUser,
@@ -47,7 +51,7 @@ const UpdateProfile = ({
 
   return (
     <StyledForm>
-      <Card>
+      <StyledCard>
         <StyledCardHeading>Edit Profile:</StyledCardHeading>
         <form
           onSubmit={ev => {
@@ -82,7 +86,7 @@ const UpdateProfile = ({
           <Input type="submit" value="Save" />
           <Input type="button" value="Cancel" onClick={cancelUserUpate} />
         </form>
-      </Card>
+      </StyledCard>
     </StyledForm>
   );
 };

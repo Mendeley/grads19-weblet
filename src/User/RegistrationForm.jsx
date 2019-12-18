@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { DebounceInput } from "react-debounce-input";
 import Input from "../Input";
 import { createNewUser, getSearchResults } from "../api";
 import { DebounceInput } from "react-debounce-input";
 import { createNewUser } from "../api";
-import { StyledCardHeading, StyledForm, Card } from "../StyledFormComponents";
+import {
+  StyledCardHeading,
+  StyledForm,
+  StyledCard
+} from "../StyledFormComponents";
 
 const RegistrationForm = () => {
   let history = useHistory();
@@ -63,7 +68,7 @@ const RegistrationForm = () => {
   };
   return (
     <StyledForm>
-      <Card>
+      <StyledCard>
         <StyledCardHeading>add a new user:</StyledCardHeading>
         <form onSubmit={onSubmit}>
           <Input
@@ -142,7 +147,7 @@ const RegistrationForm = () => {
           />
           <Input type="submit" value="Submit" />
         </form>
-      </Card>
+      </StyledCard>
     </StyledForm>
   );
 };

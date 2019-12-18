@@ -1,11 +1,11 @@
-import ProfilePage from "./ProfilePage";
+import React from "react";
 import { configure, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { Router } from "react-router-dom";
-import React from "react";
 import { createMemoryHistory } from "history";
 import { wrapper, setMountedWrapper, findElement } from "../TestUtils";
 import { noManager } from "../Constants/Constants";
+import ProfilePage from "./ProfilePage";
 
 jest.mock("react-router-dom", () => {
   const originalReactRouter = jest.requireActual("react-router-dom");

@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { Switch, Route } from "react-router-dom";
-import ConferenceContainer from "./Conference/ConferenceContainer";
-import ConferenceList from "./Conference/ConferenceList";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { CookiesProvider } from "react-cookie";
 import "react-toastify/dist/ReactToastify.css";
+import ConferenceContainer from "./Conference/ConferenceContainer";
+import ConferenceList from "./Conference/ConferenceList";
+import AddConference from "./Conference/AddConference";
+import Navbar from "./Navbar";
 import RegistrationForm from "./User/RegistrationForm";
 import LoginForm from "./User/LoginForm";
 import Navbar from "./Navbar";
@@ -54,7 +56,7 @@ function App() {
               <UserContainer />
             </Route>
             <Route path="/:id">
-              <ConferenceContainer sessionToken={cookies.sessionToken} />
+              <ConferenceContainer />
             </Route>
           </Switch>
         </StyledApp>
