@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import RegistrationForm from "./User/RegistrationForm";
 import LoginForm from "./User/LoginForm";
 import Navbar from "./Navbar";
-import CookieOrRedirect from "./CookieOrRedirect";
+import AuthRedirect from "./AuthRedirect";
 import AddConference from "./Conference/AddConference";
 import UserContainer from "./User/UserContainer";
 
@@ -31,9 +31,9 @@ function App() {
               <ConferenceList />
             </Route>
             <Route path="/add">
-              <CookieOrRedirect redirectPath="/users/login">
+              <AuthRedirect redirectPath="/users/login">
                 <AddConference />
-              </CookieOrRedirect>
+              </AuthRedirect>
             </Route>
             <Route path="/users/register">
               <RegistrationForm />
@@ -42,9 +42,9 @@ function App() {
               <LoginForm />
             </Route>
             <Route path="/users/:id">
-              <CookieOrRedirect redirectPath="/users/login">
+              <AuthRedirect redirectPath="/users/login">
                 <UserContainer />
-              </CookieOrRedirect>
+              </AuthRedirect>
             </Route>
             <Route path="/:id">
               <ConferenceContainer />
