@@ -8,6 +8,25 @@ export const StyledLink = styled(Link)`
   color: #7a517d;
 `;
 
+const StyledEmployeesList = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+`;
+const StyledEmployeesListItem = styled.li`
+  padding: 5px;
+  :hover {
+    background-color: papayawhip;
+    cursor: pointer;
+    display: inline;
+  }
+`;
+const StyledEmployeesLink = styled(Link)`
+  display: inline-block;
+  text-decoration: none;
+  color: #322d38;
+`;
+
 export const StyledEditLink = styled(Link)`
   display: block;
   height: 40px;
@@ -32,7 +51,8 @@ const ProfilePage = ({
   isLoading,
   user,
   isCurrentUser,
-  managerName
+  managerName,
+  employees
 }) => {
   if (isLoading) {
     return <p>Loading...</p>;
@@ -78,6 +98,29 @@ const ProfilePage = ({
         <p className="occupation">{`Occupation: ${occupation}`}</p>
         {isCurrentUser && displayManager()}
       </StyledCard>
+      {isCurrentUser && (
+        <StyledCard>
+          <StyledCardHeading className="employeeList">
+            Employees:
+          </StyledCardHeading>
+          {employees.length > 0 && (
+            <StyledEmployeesList>
+              {employees.map(employee => (
+                <StyledEmployeesListItem>
+                  <StyledEmployeesLink
+                    className="employeeLink"
+                    to={`/users/${employee.id}`}
+                    key={employee.id}
+                    employee={employee}
+                  >
+                    {`${employee.firstName} ${employee.lastName}`}
+                  </StyledEmployeesLink>
+                </StyledEmployeesListItem>
+              ))}
+            </StyledEmployeesList>
+          )}
+        </StyledCard>
+      )}
     </StyledProfile>
   );
 };

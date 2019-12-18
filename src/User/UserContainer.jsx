@@ -5,7 +5,7 @@ import { cookieName } from "../Constants/Cookies";
 import { noManager } from "../Constants/Constants";
 import ProfilePage from "./ProfilePage";
 import UpdateProfile from "./UpdateProfile";
-import { getUserById } from "../api.js";
+import { getUserById, getEmployeeList } from "../api.js";
 
 const UserContainer = () => {
   const [user, setUser] = useState(null);
@@ -15,6 +15,7 @@ const UserContainer = () => {
   const { id } = useParams();
   const [cookies] = useCookies([cookieName]);
   const userId = user ? user.id : null;
+  const [employees, setEmployees] = useState([]);
 
   const isCurrentUser = () => {
     return Number(id) === cookies.sessionToken.userId;
@@ -38,11 +39,11 @@ const UserContainer = () => {
     }
   };
 
-  const fetchData = async userId => {
+  const fetchData = async () => {
     setIsLoading(true);
 
     try {
-      const user = await getUserById(userId, cookies.sessionToken.token);
+      const user = await getUserById(id, cookies.sessionToken.token);
       setUser(user);
       setError(false);
     } catch (error) {
@@ -52,9 +53,19 @@ const UserContainer = () => {
     setIsLoading(false);
   };
 
+  console.log(user);
+
+  const getEmployees = async () => {
+    try {
+      const employees = await getEmployeeList(id, cookies.sessionToken.token);
+      setEmployees(employees);
+    } finally {
+    }
+  };
+
   useEffect(() => {
     if (id) {
-      fetchData(id);
+      fetchData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
@@ -62,8 +73,10 @@ const UserContainer = () => {
   useEffect(() => {
     if (isCurrentUser()) {
       getManagerName(user);
+      getEmployees();
     } else {
       setManagerName("");
+      setEmployees([]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isCurrentUser(), userId]);
@@ -91,6 +104,7 @@ const UserContainer = () => {
           error={error}
           isCurrentUser={isCurrentUser()}
           managerName={managerName}
+          employees={employees}
         />
       </Route>
     </Switch>

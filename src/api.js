@@ -104,3 +104,13 @@ export const updateUserById = async (id, user, token) => {
     throw error;
   }
 };
+
+export const getEmployeeList = async (userId, token) => {
+  const response = await axios.get(
+    `http://localhost:8080/users/employee/${userId}`,
+    {
+      headers: { Authorization: token }
+    }
+  );
+  return response.data;
+};
