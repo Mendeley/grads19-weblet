@@ -8,7 +8,7 @@ jest.mock("react-router-dom", () => {
 import React from "react";
 import { Router } from "react-router-dom";
 import { ConferenceDetails } from "./ConferenceDetails";
-import { configure, mount } from "enzyme";
+import { configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { createMemoryHistory } from "history";
 import { act } from "react-dom/test-utils";

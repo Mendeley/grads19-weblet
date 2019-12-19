@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { getTimestring, getDatestring } from "../utils";
 import { Link } from "react-router-dom";
+import { getTimestring, getDatestring } from "../utils";
 
 const StyledCardHeading = styled.div`
   background: #dbd8db;

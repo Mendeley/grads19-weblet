@@ -1,10 +1,10 @@
 import React from "react";
+import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import { withCookies } from "react-cookie";
 import Button from "../Button";
 import { getTimestring, getDatestring } from "../utils";
-import { deleteConferenceById } from "../api.js";
-import styled from "styled-components";
+import { deleteConferenceById, addFavouriteConference } from "../api.js";
 import {
   StyledCardHeading,
   StyledForm,
@@ -27,8 +27,13 @@ export const ConferenceDetails = ({
   allCookies = {}
 }) => {
   const history = useHistory();
-  const sessionToken = allCookies.sessionToken;
 
+  const token = allCookies.sessionToken ? allCookies.sessionToken.token : null;
+  const userId = allCookies.sessionToken
+    ? allCookies.sessionToken.userId
+    : null;
+
+  const conferenceId = parseInt(id);
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -42,7 +47,7 @@ export const ConferenceDetails = ({
 
   const deleteConference = async id => {
     try {
-      await deleteConferenceById(id, sessionToken.token);
+      await deleteConferenceById(id, token);
       history.push("/");
     } catch (error) {
       console.log(error);
@@ -52,11 +57,15 @@ export const ConferenceDetails = ({
     deleteConference(id);
   };
 
+  const expressInterest = () => {
+    addFavouriteConference(userId, conferenceId, token);
+  };
+
   return (
     <StyledForm>
       <StyledCard>
         <StyledCardHeading className="name">{name}</StyledCardHeading>
-        {sessionToken && (
+        {token && (
           <StyledLink className="editLink" to={`/${id}/edit`}>
             Edit Conference
           </StyledLink>
@@ -68,14 +77,18 @@ export const ConferenceDetails = ({
         <StyledDescription className="description">
           {description}
         </StyledDescription>
-        {sessionToken && (
-          <Button className="deleteButton" onClick={deleteThisConference}>
-            Delete Conference
-          </Button>
+        {token && (
+          <>
+            <Button className="deleteButton" onClick={deleteThisConference}>
+              Delete Conference
+            </Button>
+
+            <Button onClick={expressInterest}>Express Interest</Button>
+          </>
         )}
       </StyledCard>
     </StyledForm>
   );
 };
-const CookieConferenceDetails = withCookies(ConferenceDetails);
-export default CookieConferenceDetails;
+
+export default withCookies(ConferenceDetails);
