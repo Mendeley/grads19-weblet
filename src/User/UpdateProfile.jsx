@@ -21,6 +21,7 @@ const UpdateProfile = ({
   const history = useHistory();
   const cancelUserUpate = () => {
     history.push(`/users/${id}`);
+
     toast.info("Profile details have not been changed");
   };
 
@@ -38,13 +39,13 @@ const UpdateProfile = ({
   };
 
   const submitForm = async () => {
-    if (Object.keys(updatedUser).length > 0)
+    if (Object.keys(updatedUser).length > 0) {
       try {
         await updateUserById(id, updatedUser, sessionToken.token);
-        setUser({ ...user, ...updatedUser });
         history.push(`/users/${id}`);
+        setUser({ ...user, ...updatedUser });
       } catch (error) {}
-    else cancelUserUpate();
+    } else cancelUserUpate();
   };
 
   return (

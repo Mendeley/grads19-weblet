@@ -28,26 +28,6 @@ const StyledProfile = styled.div`
   padding: 20px;
 `;
 
-const StyledFavouritesList = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-`;
-
-const StyledFavouritesListItem = styled.li`
-  :hover {
-    background-color: papayawhip;
-    cursor: pointer;
-    display: inline;
-  }
-`;
-
-const StyledConferenceLink = styled(Link)`
-  display: inline-block;
-  text-decoration: none;
-  color: #322d38;
-`;
-
 const ProfilePage = ({
   user,
   isLoading,
@@ -104,15 +84,7 @@ const ProfilePage = ({
         <StyledCardHeading className="favourite-conferences">
           Favourited conferences
         </StyledCardHeading>
-        <StyledFavouritesList>
-          {favouriteConferences.map(conference => (
-            <StyledFavouritesListItem key={conference.id}>
-              <StyledConferenceLink to={`/${conference.id}`}>
-                {conference.name}
-              </StyledConferenceLink>
-            </StyledFavouritesListItem>
-          ))}
-        </StyledFavouritesList>
+        <FavouriteConferenceList favouriteConferences={favouriteConferences} />
       </StyledCard>
     </StyledProfile>
   );
