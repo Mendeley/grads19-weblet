@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, useParams, Redirect } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import { getConferenceById } from "../api.js";
 import ConferenceDetails from "./ConferenceDetails";
 import UpdateConference from "./UpdateConference";
-import { useCookies } from "react-cookie";
 import { cookieName } from "../Constants/Cookies";
 
 const ConferenceContainer = () => {

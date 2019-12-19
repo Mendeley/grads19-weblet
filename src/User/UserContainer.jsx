@@ -13,7 +13,6 @@ const UserContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [managerName, setManagerName] = useState("");
-  const [favouriteConferences, setFavouriteConferences] = useState([]);
   const { id } = useParams();
   const [cookies] = useCookies([cookieName]);
   const userId = user ? user.id : null;
@@ -42,13 +41,11 @@ const UserContainer = () => {
 
   const fetchData = async userId => {
     setIsLoading(true);
-    console.log(cookies.sessionToken.token, userId);
     try {
       const favouriteConferences = await getFavouritedConferencesByUserId(
         userId,
         cookies.sessionToken.token
       );
-      console.log(favouriteConferences);
       setFavouriteConferences(favouriteConferences);
       const user = await getUserById(userId, cookies.sessionToken.token);
       setUser(user);

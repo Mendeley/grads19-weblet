@@ -1,17 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import { Switch, Route } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { useCookies, CookiesProvider } from "react-cookie";
 import { ToastContainer } from "react-toastify";
-import { CookiesProvider } from "react-cookie";
 import "react-toastify/dist/ReactToastify.css";
 import ConferenceContainer from "./Conference/ConferenceContainer";
 import ConferenceList from "./Conference/ConferenceList";
-import AddConference from "./Conference/AddConference";
 import Navbar from "./Navbar";
 import RegistrationForm from "./User/RegistrationForm";
 import LoginForm from "./User/LoginForm";
-import Navbar from "./Navbar";
 import AuthRedirect from "./AuthRedirect";
 import AddConference from "./Conference/AddConference";
 import UserContainer from "./User/UserContainer";
@@ -25,18 +22,18 @@ const StyledApp = styled.div`
 function App() {
   const cookieName = "sessionToken";
   const cookieOptions = { path: "/" };
-  const [, setCookie, removeCookie] = useCookies([cookieName]);
+
+  const [, setCookie] = useCookies([cookieName]);
+
   const setSessionToken = sessionTokenData => {
     setCookie(cookieName, sessionTokenData, cookieOptions);
   };
-  const deleteSessionToken = () => {
-    removeCookie(cookieName, cookieOptions);
-  };
+
   return (
     <CookiesProvider>
       <BrowserRouter>
         <StyledApp>
-          <Navbar deleteSessionToken={deleteSessionToken} />
+          <Navbar />
           <Switch>
             <Route exact path="/">
               <ConferenceList />

@@ -36,9 +36,7 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
       await logoutUser(sessionToken.token);
       history.push("/");
       deleteSessionToken();
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const deleteSessionToken = () => {

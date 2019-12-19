@@ -38,9 +38,7 @@ const LoginForm = () => {
       const sessionTokenData = await loginUser(user);
       setSessionToken(sessionTokenData);
       history.push("/");
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const onSubmit = ev => {

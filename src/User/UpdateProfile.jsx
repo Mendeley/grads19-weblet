@@ -43,9 +43,7 @@ const UpdateProfile = ({
         await updateUserById(id, updatedUser, sessionToken.token);
         setUser({ ...user, ...updatedUser });
         history.push(`/users/${id}`);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     else cancelUserUpate();
   };
 
