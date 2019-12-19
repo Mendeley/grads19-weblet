@@ -113,7 +113,6 @@ const ProfilePage = ({
             </StyledFavouritesListItem>
           ))}
         </StyledFavouritesList>
-        <FavouriteConferenceList favouriteConferences={favouriteConferences} />
       </StyledCard>
     </StyledProfile>
   );
