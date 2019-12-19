@@ -4,13 +4,14 @@ jest.mock("../api", () => ({
 
 import Adapter from "enzyme-adapter-react-16";
 import React from "react";
-import { mount, configure } from "enzyme";
+import { configure } from "enzyme";
 import ConferenceItem from "./ConferenceItem";
 import ConferenceList from "./ConferenceList";
 import { getConferenceList } from "../api";
 import { Router } from "react-router-dom";
 import { act } from "react-dom/test-utils";
 import { createMemoryHistory } from "history";
+import { wrapper, setMountedWrapper } from "../TestUtils";
 
 configure({ adapter: new Adapter() });
 
@@ -44,9 +45,8 @@ describe("ConferenceList", () => {
     const apiReturnValue = Promise.resolve(mockData);
     getConferenceList.mockImplementation(() => apiReturnValue);
 
-    let wrapper;
     await act(async () => {
-      wrapper = mount(
+      setMountedWrapper(
         <Router history={history}>
           <ConferenceList />
         </Router>
@@ -65,9 +65,8 @@ describe("ConferenceList", () => {
     const apiReturnValue = Promise.resolve([]);
     getConferenceList.mockImplementation(() => apiReturnValue);
 
-    let wrapper;
     await act(async () => {
-      wrapper = mount(<ConferenceList />);
+      setMountedWrapper(<ConferenceList />);
 
       await apiReturnValue;
     });
