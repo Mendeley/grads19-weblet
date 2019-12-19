@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, Redirect, useParams } from "react-router-dom";
-import { withCookies, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 import { cookieName } from "../Constants/Cookies";
 import { noManager } from "../Constants/Constants";
 import ProfilePage from "./ProfilePage";
 import UpdateProfile from "./UpdateProfile";
-import { getUserById } from "../api.js";
+import { getUserById, getFavouritedConferencesByUserId } from "../api.js";
 
 const UserContainer = () => {
   const [user, setUser] = useState(null);
+  const [favouriteConferences, setFavouriteConferences] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [managerName, setManagerName] = useState("");
@@ -40,15 +41,17 @@ const UserContainer = () => {
 
   const fetchData = async userId => {
     setIsLoading(true);
-
     try {
+      const favouriteConferences = await getFavouritedConferencesByUserId(
+        userId,
+        cookies.sessionToken.token
+      );
+      setFavouriteConferences(favouriteConferences);
       const user = await getUserById(userId, cookies.sessionToken.token);
       setUser(user);
-      setError(false);
     } catch (error) {
       setError(true);
     }
-
     setIsLoading(false);
   };
 
@@ -56,7 +59,6 @@ const UserContainer = () => {
     if (id) {
       fetchData(id);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   useEffect(() => {
@@ -65,7 +67,6 @@ const UserContainer = () => {
     } else {
       setManagerName("");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isCurrentUser(), userId]);
 
   return (
@@ -91,10 +92,11 @@ const UserContainer = () => {
           error={error}
           isCurrentUser={isCurrentUser()}
           managerName={managerName}
+          favouriteConferences={favouriteConferences}
         />
       </Route>
     </Switch>
   );
 };
 
-export default withCookies(UserContainer);
+export default UserContainer;

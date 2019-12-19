@@ -1,8 +1,9 @@
 import React from "react";
-import { StyledCardHeading, StyledCard } from "../StyledFormComponents";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { noManager } from "../Constants/Constants";
+import { StyledCardHeading, StyledCard } from "../StyledFormComponents";
+import FavouriteConferenceList from "../Conference/FavouriteConferenceList";
 
 export const StyledLink = styled(Link)`
   color: #7a517d;
@@ -18,8 +19,8 @@ export const StyledEditLink = styled(Link)`
   border-radius: 11px;
   border: 3px solid black;
   position: absolute;
-  top: 18px;
-  right: 18px;
+  bottom: 18px;
+  left: 18px;
 `;
 
 const StyledProfile = styled.div`
@@ -28,9 +29,10 @@ const StyledProfile = styled.div`
 `;
 
 const ProfilePage = ({
-  error,
-  isLoading,
   user,
+  isLoading,
+  error,
+  favouriteConferences,
   isCurrentUser,
   managerName
 }) => {
@@ -64,7 +66,7 @@ const ProfilePage = ({
 
   return (
     <StyledProfile>
-      <StyledCard>
+      <StyledCard profileCard>
         {isCurrentUser && (
           <StyledEditLink className="editLink" to={`/users/${id}/edit`}>
             Edit
@@ -77,6 +79,12 @@ const ProfilePage = ({
         <p className="email">{`Email: ${email}`}</p>
         <p className="occupation">{`Occupation: ${occupation}`}</p>
         {isCurrentUser && displayManager()}
+      </StyledCard>
+      <StyledCard profileCard>
+        <StyledCardHeading className="favourite-conferences">
+          Favourited conferences
+        </StyledCardHeading>
+        <FavouriteConferenceList favouriteConferences={favouriteConferences} />
       </StyledCard>
     </StyledProfile>
   );

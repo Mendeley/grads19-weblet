@@ -1,8 +1,8 @@
 import React from "react";
+import styled from "styled-components";
 import { withCookies } from "react-cookie";
 import { Link, useHistory } from "react-router-dom";
 import { cookieOptions, cookieName } from "./Constants/Cookies";
-import styled from "styled-components";
 import Button from "./Button";
 import { logoutUser } from "./api";
 
@@ -36,9 +36,7 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
       await logoutUser(sessionToken.token);
       history.push("/");
       deleteSessionToken();
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const deleteSessionToken = () => {
@@ -91,5 +89,4 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
   );
 };
 
-const CookieNavbar = withCookies(Navbar);
-export default CookieNavbar;
+export default withCookies(Navbar);

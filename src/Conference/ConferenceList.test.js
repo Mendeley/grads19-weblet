@@ -5,12 +5,12 @@ jest.mock("../api", () => ({
 import Adapter from "enzyme-adapter-react-16";
 import React from "react";
 import { mount, configure } from "enzyme";
-import ConferenceItem from "./ConferenceItem";
-import ConferenceList from "./ConferenceList";
-import { getConferenceList } from "../api";
 import { Router } from "react-router-dom";
 import { act } from "react-dom/test-utils";
 import { createMemoryHistory } from "history";
+import { getConferenceList } from "../api";
+import ConferenceItem from "./ConferenceItem";
+import ConferenceList from "./ConferenceList";
 
 configure({ adapter: new Adapter() });
 

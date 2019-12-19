@@ -1,11 +1,11 @@
-import ProfilePage from "./ProfilePage";
-import { configure, mount } from "enzyme";
+import React from "react";
+import { configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { Router } from "react-router-dom";
-import React from "react";
 import { createMemoryHistory } from "history";
 import { wrapper, setMountedWrapper, findElement } from "../TestUtils";
 import { noManager } from "../Constants/Constants";
+import ProfilePage from "./ProfilePage";
 
 jest.mock("react-router-dom", () => {
   const originalReactRouter = jest.requireActual("react-router-dom");
@@ -38,6 +38,18 @@ describe("ProfilePage", () => {
     managerId: null
   };
 
+  const mockFavouriteConferenceList = [
+    {
+      id: 1,
+      name: "Festival of Marketing",
+      dateTime: "2019-11-12T12:34:11Z",
+      city: "London",
+      description:
+        "From Festivalofmarketing.com: The Festival of Marketing is a unique experience where ambitious marketers can discover, learn, celebrate and shape the future together. As the largest global event dedicated to brand marketers, the Festival reflects the very nature of ...",
+      topic: "Marketing"
+    }
+  ];
+
   const mockManagerName = "Joe Bloggs";
 
   it("renders current user's profile information with manager", async () => {
@@ -52,6 +64,7 @@ describe("ProfilePage", () => {
           user={mockDataWithManager}
           isCurrentUser={true}
           managerName={mockManagerName}
+          favouriteConferences={mockFavouriteConferenceList}
         />
       </Router>
     );
@@ -88,6 +101,7 @@ describe("ProfilePage", () => {
           user={mockDataWithoutManager}
           isCurrentUser={true}
           managerName={noManager}
+          favouriteConferences={mockFavouriteConferenceList}
         />
       </Router>
     );
@@ -120,7 +134,11 @@ describe("ProfilePage", () => {
 
     setMountedWrapper(
       <Router history={history}>
-        <ProfilePage user={mockDataWithoutManager} isCurrentUser={false} />
+        <ProfilePage
+          user={mockDataWithoutManager}
+          isCurrentUser={false}
+          favouriteConferences={mockFavouriteConferenceList}
+        />
       </Router>
     );
 
