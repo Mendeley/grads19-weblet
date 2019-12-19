@@ -1,7 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Input from "../Input";
 import { submitNewURL } from "../api";
-import { withCookies } from "react-cookie";
 import { useHistory } from "react-router-dom";
 
 const WebscrapePage = ({ allCookies = {} }) => {
@@ -11,7 +10,7 @@ const WebscrapePage = ({ allCookies = {} }) => {
 		URL: ""
 	});
 
-	const handleChanges = event => {
+	const handleChange = event => {
 		const { name, value } = event.target;
 		setURL({ ...URL, [name]: value });
 	};
@@ -19,17 +18,28 @@ const WebscrapePage = ({ allCookies = {} }) => {
 	const submitURL = async () => {
 		try {
 			await submitNewURL(URL, token);
-			history.pushState('/')
+			history.pushState("/");
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
 	return (
-				<form>
-					<Input label="URL:" type="text" name="URL" />
-					<Input type="submit" value="submit" />
-				</form>
+		<form
+			onSubmit={ev => {
+				ev.preventDefault();
+				submitURL();
+			}}
+		>
+			<Input
+				label="URL:"
+				type="text"
+				name="URL"
+				value={URL.URL}
+				onChange={handleChange}
+			/>
+			<Input type="submit" value="Submit" />
+		</form>
 	);
 };
 

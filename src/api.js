@@ -94,7 +94,12 @@ export const logoutUser = async token => {
 };
 
 export const submitNewURL = async (URL, token) => {
-  await axios.post("http://localhost:8080/add", URL, {
-    headers: { Authorization: token }
+
+  console.log(token)
+  await axios.post("http://localhost:8080/add", URL.URL, {
+    headers: {
+      Authorization: token,
+      "Content-Type": "text/plain"
+    }
   });
 };
