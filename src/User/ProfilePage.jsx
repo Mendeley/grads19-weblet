@@ -2,8 +2,13 @@ import React from "react";
 import { StyledCardHeading, StyledCard } from "../StyledFormComponents";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { noManager } from "../Constants/Constants";
 
 export const StyledLink = styled(Link)`
+  color: #7a517d;
+`;
+
+export const StyledEditLink = styled(Link)`
   display: block;
   height: 40px;
   width: 100px;
@@ -22,7 +27,13 @@ const StyledProfile = styled.div`
   padding: 20px;
 `;
 
-const ProfilePage = ({ error, isLoading, user }) => {
+const ProfilePage = ({
+  error,
+  isLoading,
+  user,
+  isCurrentUser,
+  managerName
+}) => {
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -31,20 +42,43 @@ const ProfilePage = ({ error, isLoading, user }) => {
     return <p>An error has occurred...</p>;
   }
 
-  const { id, username, firstName, lastName, email, occupation } = user || {};
+  const { id, username, firstName, lastName, email, occupation, managerId } =
+    user || {};
+
+  const displayManager = () => {
+    if (managerName === noManager) {
+      return <p className="manager">{`Manager: None Assigned`}</p>;
+    } else {
+      return (
+        <p className="manager">
+          <>
+            {"Manager: "}
+            <StyledLink className="managerLink" to={`/users/${managerId}`}>
+              {managerName}
+            </StyledLink>
+          </>
+        </p>
+      );
+    }
+  };
 
   return (
-  <StyledProfile>
-    <StyledCard>
-      <StyledLink className="editLink" to={`/users/${id}/edit`}>Edit</StyledLink>        
+    <StyledProfile>
+      <StyledCard>
+        {isCurrentUser && (
+          <StyledEditLink className="editLink" to={`/users/${id}/edit`}>
+            Edit
+          </StyledEditLink>
+        )}
         <StyledCardHeading className="name">
-          {`Hello, ${firstName} ${lastName}!`}
+          {`${firstName} ${lastName}`}
         </StyledCardHeading>
-      <p className="username">{`Username: ${username}`}</p>
-      <p className="email">{`Email: ${email}`}</p>
-      <p className="occupation">{`Occupation: ${occupation}`}</p>
-    </StyledCard>
-  </StyledProfile>
+        <p className="username">{`Username: ${username}`}</p>
+        <p className="email">{`Email: ${email}`}</p>
+        <p className="occupation">{`Occupation: ${occupation}`}</p>
+        {isCurrentUser && displayManager()}
+      </StyledCard>
+    </StyledProfile>
   );
 };
 
