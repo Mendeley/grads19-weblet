@@ -86,9 +86,7 @@ const ProfilePage = ({
           <StyledCardHeading className="employeeListHeader">
             Employees:
           </StyledCardHeading>
-          {employees.length > 0 && (
-            <EmployeeList className="employeeList" employees={employees} />
-          )}
+          {employees.length > 0 && <EmployeeList employees={employees} />}
         </StyledCard>
       )}
     </StyledProfile>
