@@ -15,11 +15,6 @@ const StyledEmployeesList = styled.ul`
 `;
 const StyledEmployeesListItem = styled.li`
   padding: 5px;
-  :hover {
-    background-color: papayawhip;
-    cursor: pointer;
-    display: inline;
-  }
 `;
 const StyledEmployeesLink = styled(Link)`
   display: inline-block;
@@ -99,19 +94,17 @@ const ProfilePage = ({
         {isCurrentUser && displayManager()}
       </StyledCard>
       {isCurrentUser && (
-        <StyledCard>
-          <StyledCardHeading className="employeeList">
+        <StyledCard className="employeesCard">
+          <StyledCardHeading className="employeeListHeader">
             Employees:
           </StyledCardHeading>
           {employees.length > 0 && (
-            <StyledEmployeesList>
+            <StyledEmployeesList className="employeeList">
               {employees.map(employee => (
-                <StyledEmployeesListItem>
+                <StyledEmployeesListItem key={employee.id}>
                   <StyledEmployeesLink
                     className="employeeLink"
                     to={`/users/${employee.id}`}
-                    key={employee.id}
-                    employee={employee}
                   >
                     {`${employee.firstName} ${employee.lastName}`}
                   </StyledEmployeesLink>

@@ -53,8 +53,6 @@ const UserContainer = () => {
     setIsLoading(false);
   };
 
-  console.log(user);
-
   const getEmployees = async () => {
     try {
       const employees = await getEmployeeList(id, cookies.sessionToken.token);

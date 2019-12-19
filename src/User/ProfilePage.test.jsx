@@ -39,10 +39,46 @@ describe("ProfilePage", () => {
   };
 
   const mockManagerName = "Joe Bloggs";
-  const noEmployees = [];
 
-  it("renders current user's profile information with manager", async () => {
-    expect.assertions(7);
+  const mockEmployees = [
+    {
+      id: 12,
+      username: "Employee1",
+      firstName: "Employee",
+      lastName: "One",
+      email: "Employee.One@live.co.uk",
+      occupation: "Test Employee",
+      managerId: 11
+    },
+    {
+      id: 13,
+      username: "Employee2",
+      firstName: "Employee",
+      lastName: "Two",
+      email: "Employee.Two@live.co.uk",
+      occupation: "Test Employee",
+      managerId: 11
+    },
+    {
+      id: 14,
+      username: "Employee3",
+      firstName: "Employee",
+      lastName: "Three",
+      email: "Employee.Three@live.co.uk",
+      occupation: "Test Employee",
+      managerId: 11
+    }
+  ];
+
+  const employeeName = (employeeList, employeeIndex) => {
+    const employee = employeeList[employeeIndex];
+    return `${employee.firstName} ${employee.lastName}`;
+  };
+
+  const mockNoEmployees = [];
+
+  it("renders current user's profile information with manager and employees", async () => {
+    expect.assertions(17);
 
     const history = createMemoryHistory();
     history.push("/users/11");
@@ -53,7 +89,7 @@ describe("ProfilePage", () => {
           user={mockDataWithManager}
           isCurrentUser={true}
           managerName={mockManagerName}
-          employees={noEmployees}
+          employees={mockEmployees}
         />
       </Router>
     );
@@ -76,10 +112,32 @@ describe("ProfilePage", () => {
     expect(wrapper.find(".managerLink").get(0).props.to).toBe(
       `/users/${mockDataWithManager.managerId}`
     );
+    expect(wrapper.find(".employeesCard").length).toBe(2);
+    expect(wrapper.find(".employeeListHeader").length).toBe(2);
+    expect(wrapper.find(".employeeList").length).toBe(2);
+    expect(wrapper.find(".employeeLink").length).toBe(6);
+    expect(wrapper.find(".employeeLink").get(0).props.to).toBe(
+      `/users/${mockEmployees[0].id}`
+    );
+    expect(wrapper.find(".employeeLink").get(2).props.to).toBe(
+      `/users/${mockEmployees[1].id}`
+    );
+    expect(wrapper.find(".employeeLink").get(4).props.to).toBe(
+      `/users/${mockEmployees[2].id}`
+    );
+    expect(wrapper.find(".employeeLink").get(0).props.children).toBe(
+      employeeName(mockEmployees, 0)
+    );
+    expect(wrapper.find(".employeeLink").get(2).props.children).toBe(
+      employeeName(mockEmployees, 1)
+    );
+    expect(wrapper.find(".employeeLink").get(4).props.children).toBe(
+      employeeName(mockEmployees, 2)
+    );
   });
 
-  it("renders current user's profile information without manager", async () => {
-    expect.assertions(7);
+  it("renders current user's profile information without manager or employees", async () => {
+    expect.assertions(11);
 
     const history = createMemoryHistory();
     history.push("/users/11");
@@ -90,7 +148,7 @@ describe("ProfilePage", () => {
           user={mockDataWithoutManager}
           isCurrentUser={true}
           managerName={noManager}
-          employees={noEmployees}
+          employees={mockNoEmployees}
         />
       </Router>
     );
@@ -113,10 +171,14 @@ describe("ProfilePage", () => {
     );
     expect(findElement(".manager")).toBe("Manager: None Assigned");
     expect(wrapper.find(".managerLink").length).toBe(0);
+    expect(wrapper.find(".employeesCard").length).toBe(2);
+    expect(wrapper.find(".employeeListHeader").length).toBe(2);
+    expect(wrapper.find(".employeeList").length).toBe(0);
+    expect(wrapper.find(".employeeLink").length).toBe(0);
   });
 
   it("renders profile information of user who is not the current one", async () => {
-    expect.assertions(7);
+    expect.assertions(11);
 
     const history = createMemoryHistory();
     history.push("/users/11");
@@ -143,5 +205,9 @@ describe("ProfilePage", () => {
     );
     expect(wrapper.find(".manager").length).toBe(0);
     expect(wrapper.find(".managerLink").length).toBe(0);
+    expect(wrapper.find(".employeesCard").length).toBe(0);
+    expect(wrapper.find(".employeeListHeader").length).toBe(0);
+    expect(wrapper.find(".employeeList").length).toBe(0);
+    expect(wrapper.find(".employeeLink").length).toBe(0);
   });
 });
