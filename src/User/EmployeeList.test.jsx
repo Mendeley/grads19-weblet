@@ -53,7 +53,7 @@ describe("EmployeeList", () => {
   };
 
   it("renders List of employees", async () => {
-    expect.assertions(8);
+    expect.assertions(7);
 
     const history = createMemoryHistory();
     history.push("/users/11");
@@ -65,24 +65,23 @@ describe("EmployeeList", () => {
     );
 
     wrapper.update();
-    expect(wrapper.find(".employeeList").length).toBe(2);
-    expect(wrapper.find(".employeeLink").length).toBe(6);
-    expect(wrapper.find(".employeeLink").get(0).props.to).toBe(
+    expect(wrapper.find(".employeeLink").length).toBe(3);
+    expect(wrapper.find(".employeeLink").get(0).props.link).toBe(
       `/users/${mockEmployees[0].id}`
     );
-    expect(wrapper.find(".employeeLink").get(2).props.to).toBe(
+    expect(wrapper.find(".employeeLink").get(1).props.link).toBe(
       `/users/${mockEmployees[1].id}`
     );
-    expect(wrapper.find(".employeeLink").get(4).props.to).toBe(
+    expect(wrapper.find(".employeeLink").get(2).props.link).toBe(
       `/users/${mockEmployees[2].id}`
     );
-    expect(wrapper.find(".employeeLink").get(0).props.children).toBe(
+    expect(wrapper.find(".employeeLink").get(0).props.displayText).toBe(
       employeeName(mockEmployees, 0)
     );
-    expect(wrapper.find(".employeeLink").get(2).props.children).toBe(
+    expect(wrapper.find(".employeeLink").get(1).props.displayText).toBe(
       employeeName(mockEmployees, 1)
     );
-    expect(wrapper.find(".employeeLink").get(4).props.children).toBe(
+    expect(wrapper.find(".employeeLink").get(2).props.displayText).toBe(
       employeeName(mockEmployees, 2)
     );
   });

@@ -91,7 +91,7 @@ const ProfilePage = ({
                 <StyledCardHeading className="employeeListHeader">
                   Employees:
                 </StyledCardHeading>
-                <EmployeeList employees={employees} />
+                <EmployeeList className="employeeList" employees={employees} />
               </>
             ) : (
               <StyledCardHeading className="employeeListHeader">
@@ -100,12 +100,21 @@ const ProfilePage = ({
             )}
           </StyledCard>
           <StyledCard profileCard>
-            <StyledCardHeading className="favourite-conferences">
-              Favourited conferences
-            </StyledCardHeading>
-            <FavouriteConferenceList
-              favouriteConferences={favouriteConferences}
-            />
+            {favouriteConferences.length > 0 ? (
+              <>
+                <StyledCardHeading className="favouriteConferencesHeader">
+                  Favourited Conferences:
+                </StyledCardHeading>
+                <FavouriteConferenceList
+                  className="favouriteConferencesList"
+                  favouriteConferences={favouriteConferences}
+                />
+              </>
+            ) : (
+              <StyledCardHeading className="favouriteConferencesHeader">
+                No Favourited Conferences
+              </StyledCardHeading>
+            )}
           </StyledCard>
         </>
       )}
