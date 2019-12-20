@@ -1,11 +1,3 @@
-import React from "react";
-import Adapter from "enzyme-adapter-react-16";
-import { configure } from "enzyme";
-import { Router } from "react-router-dom";
-import { createMemoryHistory } from "history";
-import { wrapper, setMountedWrapper } from "../TestUtils";
-import EmployeeList from "./EmployeeList";
-
 jest.mock("react-router-dom", () => {
   const originalReactRouter = jest.requireActual("react-router-dom");
   return {
@@ -13,6 +5,14 @@ jest.mock("react-router-dom", () => {
     Link: () => "hey I'm a link"
   };
 });
+
+import React from "react";
+import Adapter from "enzyme-adapter-react-16";
+import { configure } from "enzyme";
+import { Router } from "react-router-dom";
+import { createMemoryHistory } from "history";
+import { wrapper, setMountedWrapper } from "../TestUtils";
+import EmployeeList from "./EmployeeList";
 
 configure({ adapter: new Adapter() });
 
