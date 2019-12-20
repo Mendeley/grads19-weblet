@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Input from "../Input";
 import { submitNewURL } from "../api";
 import { useHistory } from "react-router-dom";
+import { withCookies } from "react-cookie";
 
 const WebscrapePage = ({ allCookies = {} }) => {
 	let history = useHistory();
@@ -18,7 +19,7 @@ const WebscrapePage = ({ allCookies = {} }) => {
 	const submitURL = async () => {
 		try {
 			await submitNewURL(URL, token);
-			history.pushState("/");
+			history.push("/add");
 		} catch (error) {
 			console.log(error);
 		}
@@ -42,5 +43,6 @@ const WebscrapePage = ({ allCookies = {} }) => {
 		</form>
 	);
 };
+const CookiesWebscrapePage = withCookies(WebscrapePage);
 
-export default WebscrapePage;
+export default CookiesWebscrapePage;
