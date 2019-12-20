@@ -102,7 +102,7 @@ export const updateUserById = async (id, user, token) => {
 
 export const getEmployeeList = async (userId, token) => {
   const response = await axios.get(
-    `http://localhost:8080/users/employee/${userId}`,
+    `http://localhost:8080/users?manager_id=${userId}`,
     {
       headers: { Authorization: token }
     }
