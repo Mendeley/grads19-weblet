@@ -84,27 +84,31 @@ const ProfilePage = ({
         {isCurrentUser && displayManager()}
       </StyledCard>
       {isCurrentUser && (
-        <StyledCard className="employeesCard">
-          {employees.length > 0 ? (
-            <>
+        <>
+          <StyledCard className="employeesCard">
+            {employees.length > 0 ? (
+              <>
+                <StyledCardHeading className="employeeListHeader">
+                  Employees:
+                </StyledCardHeading>
+                <EmployeeList employees={employees} />
+              </>
+            ) : (
               <StyledCardHeading className="employeeListHeader">
-                Employees:
+                No Linked Employees
               </StyledCardHeading>
-              <EmployeeList employees={employees} />
-            </>
-          ) : (
-            <StyledCardHeading className="employeeListHeader">
-              No Linked Employees
+            )}
+          </StyledCard>
+          <StyledCard profileCard>
+            <StyledCardHeading className="favourite-conferences">
+              Favourited conferences
             </StyledCardHeading>
-          )}
-        </StyledCard>
+            <FavouriteConferenceList
+              favouriteConferences={favouriteConferences}
+            />
+          </StyledCard>
+        </>
       )}
-      <StyledCard profileCard>
-        <StyledCardHeading className="favourite-conferences">
-          Favourited conferences
-        </StyledCardHeading>
-        <FavouriteConferenceList favouriteConferences={favouriteConferences} />
-      </StyledCard>
     </StyledProfile>
   );
 };
