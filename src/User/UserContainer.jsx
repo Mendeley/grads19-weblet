@@ -48,11 +48,10 @@ const UserContainer = () => {
     setIsLoading(true);
     try {
       const favouriteConferences = await getFavouritedConferencesByUserId(
-        userId,
         cookies.sessionToken.token
       );
       setFavouriteConferences(favouriteConferences);
-      const user = await getUserById(userId, cookies.sessionToken.token);
+      const user = await getUserById(id, cookies.sessionToken.token);
       setUser(user);
     } catch (error) {
       setError(true);

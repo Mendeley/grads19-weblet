@@ -110,11 +110,10 @@ export const getEmployeeList = async (userId, token) => {
   return response.data;
 };
 
-export const getFavouritedConferencesByUserId = async (id, token) => {
-  const response = await axios.get(
-    `http://localhost:8080/user-conferences/${id}`,
-    { headers: { Authorization: token } }
-  );
+export const getFavouritedConferencesByUserId = async token => {
+  const response = await axios.get(`http://localhost:8080/user-conferences`, {
+    headers: { Authorization: token }
+  });
   return response.data;
 };
 
