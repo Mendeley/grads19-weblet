@@ -85,20 +85,6 @@ const ProfilePage = ({
       </StyledCard>
       {isCurrentUser && (
         <>
-          <StyledCard className="employeesCard">
-            {employees.length > 0 ? (
-              <>
-                <StyledCardHeading className="employeeListHeader">
-                  Employees:
-                </StyledCardHeading>
-                <EmployeeList className="employeeList" employees={employees} />
-              </>
-            ) : (
-              <StyledCardHeading className="employeeListHeader">
-                No Linked Employees
-              </StyledCardHeading>
-            )}
-          </StyledCard>
           <StyledCard profileCard>
             {favouriteConferences.length > 0 ? (
               <>
@@ -113,6 +99,20 @@ const ProfilePage = ({
             ) : (
               <StyledCardHeading className="favouriteConferencesHeader">
                 No Favourited Conferences
+              </StyledCardHeading>
+            )}
+          </StyledCard>
+          <StyledCard className="employeesCard">
+            {employees.length > 0 ? (
+              <>
+                <StyledCardHeading className="employeeListHeader">
+                  Employees:
+                </StyledCardHeading>
+                <EmployeeList className="employeeList" employees={employees} />
+              </>
+            ) : (
+              <StyledCardHeading className="employeeListHeader">
+                No Linked Employees
               </StyledCardHeading>
             )}
           </StyledCard>
