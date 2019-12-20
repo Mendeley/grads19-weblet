@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, useParams, Redirect } from "react-router-dom";
-import { getConferenceById } from "../api.js";
-import CookieConferenceDetails from "./ConferenceDetails";
-import UpdateConference from "./UpdateConference";
 import { useCookies } from "react-cookie";
+import { getConferenceById } from "../api.js";
+import ConferenceDetails from "./ConferenceDetails";
+import UpdateConference from "./UpdateConference";
 import { cookieName } from "../Constants/Cookies";
 
 const ConferenceContainer = () => {
@@ -59,7 +59,7 @@ const ConferenceContainer = () => {
         )}
       </Route>
       <Route path="/:id">
-        <CookieConferenceDetails
+        <ConferenceDetails
           conference={conference}
           id={id}
           isLoading={isLoading}

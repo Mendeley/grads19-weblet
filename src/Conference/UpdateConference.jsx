@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { withCookies, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 import { cookieName } from "../Constants/Cookies";
 import Input from "../Input";
 import { updateConferenceById } from "../api";
@@ -109,4 +109,4 @@ const UpdateForm = ({
     </StyledForm>
   );
 };
-export default withCookies(UpdateForm);
+export default UpdateForm;

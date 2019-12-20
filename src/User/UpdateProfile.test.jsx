@@ -1,6 +1,6 @@
 import React from "react";
 import { Router } from "react-router-dom";
-import { configure, mount } from "enzyme";
+import { configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { createMemoryHistory } from "history";
 import UpdateProfile from "./UpdateProfile";
@@ -48,7 +48,7 @@ describe("UpdateProfile", () => {
   it("should on submit, save alterations for only fields that have been changed by a user", async () => {
     const history = createMemoryHistory();
     const apiReturnValue = Promise.resolve(200);
-    updateUserById.mockImplementation(() => apiReturnValue);
+    await updateUserById.mockImplementation(() => apiReturnValue);
 
     setMountedWrapper(
       <Router history={history}>
@@ -84,7 +84,11 @@ describe("UpdateProfile", () => {
       },
       "TestToken"
     );
-    expect(history.location.pathname).toBe("/users/1");
+
+    setTimeout(() => {
+      expect(history.location.pathname).toBe("/users/1");
+      done();
+    });
   });
 
   it("should not submit when user does not change any input fields", async () => {

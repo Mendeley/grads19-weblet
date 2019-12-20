@@ -1,10 +1,10 @@
-import EmployeeList from "./EmployeeList";
-import { configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-import { Router } from "react-router-dom";
 import React from "react";
+import Adapter from "enzyme-adapter-react-16";
+import { configure } from "enzyme";
+import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import { wrapper, setMountedWrapper } from "../TestUtils";
+import EmployeeList from "./EmployeeList";
 
 jest.mock("react-router-dom", () => {
   const originalReactRouter = jest.requireActual("react-router-dom");
