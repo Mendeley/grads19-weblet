@@ -40,6 +40,8 @@ describe("ProfilePage", () => {
 
   const mockManagerName = "Joe Bloggs";
 
+  const mockNoEmployees = [];
+
   const mockEmployees = [
     {
       id: 12,
@@ -70,15 +72,8 @@ describe("ProfilePage", () => {
     }
   ];
 
-  const employeeName = (employeeList, employeeIndex) => {
-    const employee = employeeList[employeeIndex];
-    return `${employee.firstName} ${employee.lastName}`;
-  };
-
-  const mockNoEmployees = [];
-
-  it("renders current user's profile information with manager and employees card", async () => {
-    expect.assertions(9);
+  it("renders current user's profile information with manager with employees in employee card", async () => {
+    expect.assertions(10);
 
     const history = createMemoryHistory();
     history.push("/users/11");
@@ -89,7 +84,7 @@ describe("ProfilePage", () => {
           user={mockDataWithManager}
           isCurrentUser={true}
           managerName={mockManagerName}
-          employees={mockNoEmployees}
+          employees={mockEmployees}
         />
       </Router>
     );
@@ -114,10 +109,11 @@ describe("ProfilePage", () => {
     );
     expect(wrapper.find(".employeesCard").length).toBe(2);
     expect(wrapper.find(".employeeListHeader").length).toBe(2);
+    expect(findElement(".employeeListHeader")).toBe("Employees:");
   });
 
-  it("renders current user's profile information without manager and with employees card", async () => {
-    expect.assertions(9);
+  it("renders current user's profile information without manager and with empty employees card", async () => {
+    expect.assertions(10);
 
     const history = createMemoryHistory();
     history.push("/users/11");
@@ -153,6 +149,7 @@ describe("ProfilePage", () => {
     expect(wrapper.find(".managerLink").length).toBe(0);
     expect(wrapper.find(".employeesCard").length).toBe(2);
     expect(wrapper.find(".employeeListHeader").length).toBe(2);
+    expect(findElement(".employeeListHeader")).toBe("No Linked Employees");
   });
 
   it("renders profile information of user who is not the current one", async () => {

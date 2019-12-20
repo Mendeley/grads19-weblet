@@ -83,10 +83,18 @@ const ProfilePage = ({
       </StyledCard>
       {isCurrentUser && (
         <StyledCard className="employeesCard">
-          <StyledCardHeading className="employeeListHeader">
-            Employees:
-          </StyledCardHeading>
-          {employees.length > 0 && <EmployeeList employees={employees} />}
+          {employees.length > 0 ? (
+            <>
+              <StyledCardHeading className="employeeListHeader">
+                Employees:
+              </StyledCardHeading>
+              <EmployeeList employees={employees} />
+            </>
+          ) : (
+            <StyledCardHeading className="employeeListHeader">
+              No Linked Employees
+            </StyledCardHeading>
+          )}
         </StyledCard>
       )}
     </StyledProfile>
