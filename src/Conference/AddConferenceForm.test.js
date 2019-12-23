@@ -4,11 +4,12 @@ jest.mock("../api", () => ({
 
 import React from "react";
 import { Router, MemoryRouter } from "react-router-dom";
-import { mount, configure } from "enzyme";
+import { configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { createMemoryHistory } from "history";
 import { AddConferenceForm } from "./AddConferenceForm";
 import { createNewConference } from "../api";
+import { wrapper, setMountedWrapper } from "../TestUtils";
 
 configure({ adapter: new Adapter() });
 
@@ -34,7 +35,7 @@ describe("submitForm", () => {
     const apiReturnValue = Promise.resolve(200);
     createNewConference.mockImplementation(() => apiReturnValue);
 
-    const wrapper = mount(
+    setMountedWrapper(
       <MemoryRouter initialEntries={[{ pathname: "/add", key: "testKey" }]}>
         <AddConferenceForm allCookies={mockCookie} />
       </MemoryRouter>
@@ -63,7 +64,7 @@ describe("submitForm", () => {
     const history = createMemoryHistory();
     history.push("/add");
 
-    const wrapper = mount(
+    setMountedWrapper(
       <Router history={history}>
         <AddConferenceForm allCookies={mockCookie} />
       </Router>
@@ -86,7 +87,7 @@ describe("submitForm", () => {
     const history = createMemoryHistory();
     history.push("/add");
 
-    const wrapper = mount(
+    setMountedWrapper(
       <Router history={history}>
         <AddConferenceForm allCookies={mockCookie} />
       </Router>

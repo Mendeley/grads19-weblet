@@ -2,10 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { noManager } from "../Constants/Constants";
+import EmployeeList from "./EmployeeList";
 import { StyledCardHeading, StyledCard } from "../StyledFormComponents";
 import FavouriteConferenceList from "../Conference/FavouriteConferenceList";
 
 export const StyledLink = styled(Link)`
+  text-decoration: none;
   color: #7a517d;
 `;
 
@@ -34,7 +36,8 @@ const ProfilePage = ({
   error,
   favouriteConferences,
   isCurrentUser,
-  managerName
+  managerName,
+  employees
 }) => {
   if (isLoading) {
     return <p>Loading...</p>;
@@ -80,12 +83,41 @@ const ProfilePage = ({
         <p className="occupation">{`Occupation: ${occupation}`}</p>
         {isCurrentUser && displayManager()}
       </StyledCard>
-      <StyledCard profileCard>
-        <StyledCardHeading className="favourite-conferences">
-          Favourited conferences
-        </StyledCardHeading>
-        <FavouriteConferenceList favouriteConferences={favouriteConferences} />
-      </StyledCard>
+      {isCurrentUser && (
+        <>
+          <StyledCard profileCard>
+            {favouriteConferences.length > 0 ? (
+              <>
+                <StyledCardHeading className="favouriteConferencesHeader">
+                  Favourited Conferences:
+                </StyledCardHeading>
+                <FavouriteConferenceList
+                  className="favouriteConferencesList"
+                  favouriteConferences={favouriteConferences}
+                />
+              </>
+            ) : (
+              <StyledCardHeading className="favouriteConferencesHeader">
+                No Favourited Conferences
+              </StyledCardHeading>
+            )}
+          </StyledCard>
+          <StyledCard className="employeesCard">
+            {employees.length > 0 ? (
+              <>
+                <StyledCardHeading className="employeeListHeader">
+                  Employees:
+                </StyledCardHeading>
+                <EmployeeList className="employeeList" employees={employees} />
+              </>
+            ) : (
+              <StyledCardHeading className="employeeListHeader">
+                No Linked Employees
+              </StyledCardHeading>
+            )}
+          </StyledCard>
+        </>
+      )}
     </StyledProfile>
   );
 };

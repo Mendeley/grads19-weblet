@@ -5,7 +5,11 @@ import { cookieName } from "../Constants/Cookies";
 import { noManager } from "../Constants/Constants";
 import ProfilePage from "./ProfilePage";
 import UpdateProfile from "./UpdateProfile";
-import { getUserById, getFavouritedConferencesByUserId } from "../api.js";
+import {
+  getUserById,
+  getEmployeeList,
+  getFavouritedConferencesByUserId
+} from "../api.js";
 
 const UserContainer = () => {
   const [user, setUser] = useState(null);
@@ -16,6 +20,7 @@ const UserContainer = () => {
   const { id } = useParams();
   const [cookies] = useCookies([cookieName]);
   const userId = user ? user.id : null;
+  const [employees, setEmployees] = useState([]);
 
   const isCurrentUser = () => {
     return Number(id) === cookies.sessionToken.userId;
@@ -39,15 +44,14 @@ const UserContainer = () => {
     }
   };
 
-  const fetchData = async userId => {
+  const fetchData = async () => {
     setIsLoading(true);
     try {
       const favouriteConferences = await getFavouritedConferencesByUserId(
-        userId,
         cookies.sessionToken.token
       );
       setFavouriteConferences(favouriteConferences);
-      const user = await getUserById(userId, cookies.sessionToken.token);
+      const user = await getUserById(id, cookies.sessionToken.token);
       setUser(user);
     } catch (error) {
       setError(true);
@@ -55,17 +59,27 @@ const UserContainer = () => {
     setIsLoading(false);
   };
 
+  const getEmployees = async () => {
+    try {
+      const employees = await getEmployeeList(id, cookies.sessionToken.token);
+      setEmployees(employees);
+    } finally {
+    }
+  };
+
   useEffect(() => {
     if (id) {
-      fetchData(id);
+      fetchData();
     }
   }, [id]);
 
   useEffect(() => {
     if (isCurrentUser()) {
       getManagerName(user);
+      getEmployees();
     } else {
       setManagerName("");
+      setEmployees([]);
     }
   }, [isCurrentUser(), userId]);
 
@@ -92,6 +106,7 @@ const UserContainer = () => {
           error={error}
           isCurrentUser={isCurrentUser()}
           managerName={managerName}
+          employees={employees}
           favouriteConferences={favouriteConferences}
         />
       </Route>

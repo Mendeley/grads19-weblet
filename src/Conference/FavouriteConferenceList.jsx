@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import LinkListItem from "../LinkListItem";
 
 const StyledFavouritesList = styled.ul`
   margin: 0;
@@ -8,29 +8,16 @@ const StyledFavouritesList = styled.ul`
   list-style-type: none;
 `;
 
-const StyledFavouritesListItem = styled.li`
-  :hover {
-    background-color: papayawhip;
-    cursor: pointer;
-    display: inline;
-  }
-`;
-
-const StyledConferenceLink = styled(Link)`
-  display: inline-block;
-  text-decoration: none;
-  color: #322d38;
-`;
-
 const FavouriteConferenceList = ({ favouriteConferences }) => {
   return (
     <StyledFavouritesList>
       {favouriteConferences.map(conference => (
-        <StyledFavouritesListItem key={conference.id}>
-          <StyledConferenceLink to={`/${conference.id}`}>
-            {conference.name}
-          </StyledConferenceLink>
-        </StyledFavouritesListItem>
+        <LinkListItem
+          key={conference.id}
+          link={`/${conference.id}`}
+          displayText={conference.name}
+          className="conferenceLink"
+        />
       ))}
     </StyledFavouritesList>
   );
