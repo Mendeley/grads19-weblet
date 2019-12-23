@@ -33,7 +33,7 @@ const WebscrapePage = ({ allCookies = {} }) => {
 				label="URL:"
 				type="text"
 				name="URL"
-				value={URL.URL}
+				value={URL}
 				onChange={handleChange}
 			/>
 			<Input type="submit" value="Submit" />
