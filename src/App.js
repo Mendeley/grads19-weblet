@@ -5,6 +5,7 @@ import { useCookies, CookiesProvider } from "react-cookie";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ConferenceContainer from "./Conference/ConferenceContainer";
+import ElasticsearchBar from "./Conference/ElasticsearchBar";
 import ConferenceList from "./Conference/ConferenceList";
 import Navbar from "./Navbar";
 import RegistrationForm from "./User/RegistrationForm";
@@ -36,6 +37,7 @@ function App() {
           <Navbar />
           <Switch>
             <Route exact path="/">
+              <ElasticsearchBar />
               <ConferenceList />
             </Route>
             <Route path="/add">
