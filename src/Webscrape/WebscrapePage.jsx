@@ -7,13 +7,10 @@ import { withCookies } from "react-cookie";
 const WebscrapePage = ({ allCookies = {} }) => {
 	let history = useHistory();
 	const token = allCookies.sessionToken ? allCookies.sessionToken.token : null;
-	const [URL, setURL] = useState({
-		URL: ""
-	});
+	const [URL, setURL] = useState("");
 
 	const handleChange = event => {
-		const { name, value } = event.target;
-		setURL({ ...URL, [name]: value });
+		setURL(event.target.value);
 	};
 
 	const submitURL = async () => {

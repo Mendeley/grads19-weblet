@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, useParams } from "react-router-dom";
-import { withCookies, useCookies } from "react-cookie";
+import {  useCookies } from "react-cookie";
 import { cookieName } from "../Constants/Cookies";
 import ProfilePage from "./ProfilePage";
 import UpdateProfile from "./UpdateProfile";
 import { getUserById } from "../api.js";
 
-const UserContainer = ({ sessionToken }) => {
+const UserContainer = () => {
 	const [user, setUser] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(false);
@@ -40,7 +40,7 @@ const UserContainer = ({ sessionToken }) => {
 					setUser={setUser}
 					isLoading={isLoading}
 					error={error}
-					sessionToken={sessionToken}
+					sessionToken={cookies.sessionToken}
 				/>
 			</Route>
 			<Route path="/users/:id">
@@ -50,4 +50,4 @@ const UserContainer = ({ sessionToken }) => {
 	);
 };
 
-export default withCookies(UserContainer);
+export default UserContainer;
