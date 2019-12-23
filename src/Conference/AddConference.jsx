@@ -1,6 +1,6 @@
 import React from "react";
 import CookieAddConferenceForm from "./AddConferenceForm";
-import CookiesWebscrapePage from "../Webscrape/WebscrapePage";
+import WebscrapePage from "../Webscrape/WebscrapePage";
 import {
   StyledCardHeading,
   StyledForm,
@@ -16,7 +16,7 @@ const AddConference = () => {
       </StyledCard>
       <StyledCard>
         <StyledCardHeading>Add a new conference:</StyledCardHeading>
-        <CookiesWebscrapePage/>
+        <WebscrapePage/>
       </StyledCard>
     </StyledForm>
   );
