@@ -13,11 +13,16 @@ const WebscrapePage = ({ allCookies = {} }) => {
 	};
 
 	const submitURL = async () => {
+		console.log("function is being called");
 		if (URL === "") {
 			toast.error("Please enter a URL");
+			console.log("function with empty string called");
+			console.log(URL);
 		} else {
 			try {
 				await submitNewURL(URL, token);
+				console.log("function with string called");
+				console.log(URL);
 // add setConference function with details from web scrape
 			} catch (error) {
 				console.log(error);
