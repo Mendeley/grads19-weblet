@@ -4,7 +4,7 @@ import { submitNewURL } from "../api";
 import { withCookies } from "react-cookie";
 import { toast } from "react-toastify";
 
-const WebscrapePage = ({ allCookies = {} }) => {
+export const WebscrapePage = ({ allCookies = {} }) => {
 	const token = allCookies.sessionToken ? allCookies.sessionToken.token : null;
 	const [URL, setURL] = useState("");
 
@@ -13,17 +13,12 @@ const WebscrapePage = ({ allCookies = {} }) => {
 	};
 
 	const submitURL = async () => {
-		console.log("function is being called");
 		if (URL === "") {
 			toast.error("Please enter a URL");
-			console.log("function with empty string called");
-			console.log(URL);
 		} else {
 			try {
 				await submitNewURL(URL, token);
-				console.log("function with string called");
-				console.log(URL);
-// add setConference function with details from web scrape
+				// add setConference function with details from web scrape
 			} catch (error) {
 				console.log(error);
 			}
