@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory, Link } from "react-router-dom";
-import { withCookies, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 import { cookieOptions, cookieName } from "../Constants/Cookies";
 import Input from "../Input";
 import { loginUser } from "../api";
@@ -38,9 +38,7 @@ const LoginForm = () => {
       const sessionTokenData = await loginUser(user);
       setSessionToken(sessionTokenData);
       history.push("/");
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const onSubmit = ev => {
@@ -79,4 +77,4 @@ const LoginForm = () => {
   );
 };
 
-export default withCookies(LoginForm);
+export default LoginForm;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { DebounceInput } from "react-debounce-input";
 import Input from "../Input";
 import { createNewUser, getSearchResults } from "../api";
-import { DebounceInput } from "react-debounce-input";
 import {
   StyledCardHeading,
   StyledForm,
@@ -31,9 +31,7 @@ const RegistrationForm = () => {
     try {
       const userList = await getSearchResults(searchInput);
       setSearchResults(userList);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -55,9 +53,7 @@ const RegistrationForm = () => {
     try {
       await createNewUser(newUser);
       history.push("/");
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const onSubmit = ev => {

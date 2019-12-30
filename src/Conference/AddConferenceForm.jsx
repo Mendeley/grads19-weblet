@@ -28,9 +28,7 @@ export const AddConferenceForm = ({ allCookies = {} }) => {
     try {
       await createNewConference(newConference, token);
       history.push("/");
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   return (
@@ -88,5 +86,4 @@ export const AddConferenceForm = ({ allCookies = {} }) => {
     </form>
   );
 };
-const CookieAddConferenceForm = withCookies(AddConferenceForm);
-export default CookieAddConferenceForm;
+export default withCookies(AddConferenceForm);

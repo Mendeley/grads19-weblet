@@ -25,7 +25,6 @@ export const deleteConferenceById = async (id, token) => {
     toast.success("Conference successfully deleted!");
   } catch (error) {
     toast.error("Conference not deleted!");
-    console.log(error);
     throw error;
   }
 };
@@ -38,7 +37,6 @@ export const updateConferenceById = async (id, conference, token) => {
     toast.success("Conference details have been updated!");
   } catch (error) {
     toast.error("Conference details have not been updated!");
-    console.log(error);
     throw error;
   }
 };
@@ -49,7 +47,6 @@ export const createNewUser = async user => {
     toast.success("User successfully registered!");
   } catch (error) {
     toast.error("User registration failed!");
-    console.log(error);
     throw error;
   }
 };
@@ -68,7 +65,6 @@ export const loginUser = async user => {
     return response.data;
   } catch (error) {
     toast.error("Login failed!");
-    console.log(error);
     throw error;
   }
 };
@@ -88,7 +84,51 @@ export const logoutUser = async token => {
     toast.success("Logout successful!");
   } catch (error) {
     toast.error("Logout failed!");
-    console.log(error);
+    throw error;
+  }
+};
+
+export const updateUserById = async (id, user, token) => {
+  try {
+    await axios.patch(`http://localhost:8080/users/${id}`, user, {
+      headers: { Authorization: token }
+    });
+    toast.success("Profile details have been updated!");
+  } catch (error) {
+    toast.error("Profile details have not been updated!");
+    throw error;
+  }
+};
+
+export const getEmployeeList = async (userId, token) => {
+  const response = await axios.get(
+    `http://localhost:8080/users?manager_id=${userId}`,
+    {
+      headers: { Authorization: token }
+    }
+  );
+  return response.data;
+};
+
+export const getFavouritedConferencesByUserId = async token => {
+  const response = await axios.get(`http://localhost:8080/user-conferences`, {
+    headers: { Authorization: token }
+  });
+  return response.data;
+};
+
+export const addFavouriteConference = async (userId, conferenceId, token) => {
+  try {
+    await axios.post(
+      "http://localhost:8080/user-conferences",
+      { userId, conferenceId },
+      {
+        headers: { Authorization: token }
+      }
+    );
+    toast.success("Conference has been favourited!");
+  } catch (error) {
+    toast.error("Conference has not been favourited!");
     throw error;
   }
 };

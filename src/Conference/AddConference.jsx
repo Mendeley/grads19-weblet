@@ -12,7 +12,7 @@ const AddConference = () => {
     <StyledForm>
       <StyledCard>
         <StyledCardHeading>Add a new conference:</StyledCardHeading>
-        <CookieAddConferenceForm />
+        <AddConferenceForm />
       </StyledCard>
       <StyledCard>
         <StyledCardHeading>Add a new conference:</StyledCardHeading>

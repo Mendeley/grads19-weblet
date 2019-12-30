@@ -8,10 +8,11 @@ jest.mock("react-router-dom", () => {
 import React from "react";
 import { Router } from "react-router-dom";
 import { ConferenceDetails } from "./ConferenceDetails";
-import { configure, mount } from "enzyme";
+import { configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { createMemoryHistory } from "history";
 import { act } from "react-dom/test-utils";
+import { wrapper, setMountedWrapper, findElement } from "../TestUtils";
 
 configure({ adapter: new Adapter() });
 
@@ -33,11 +34,6 @@ describe("ConferenceDetails", () => {
     }
   };
 
-  let wrapper;
-  const findElement = identifier => {
-    return wrapper.find(identifier).get(0).props.children;
-  };
-
   it("renders a logged-in conference details page", async () => {
     expect.assertions(8);
 
@@ -45,7 +41,7 @@ describe("ConferenceDetails", () => {
     history.push("/1");
 
     act(() => {
-      wrapper = mount(
+      setMountedWrapper(
         <Router history={history}>
           <ConferenceDetails
             conference={mockData}
@@ -74,7 +70,7 @@ describe("ConferenceDetails", () => {
     history.push("/1");
 
     act(() => {
-      wrapper = mount(
+      setMountedWrapper(
         <Router history={history}>
           <ConferenceDetails conference={mockData} id="1" />
         </Router>
