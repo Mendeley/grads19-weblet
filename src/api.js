@@ -132,3 +132,11 @@ export const addFavouriteConference = async (userId, conferenceId, token) => {
     throw error;
   }
 };
+
+export const submitNewURL = async (URL, token) => {
+  await axios.post("http://localhost:8080/add", URL, {
+    headers: {
+      Authorization: token, 'content-type': 'application/json'
+    }
+  });
+};
