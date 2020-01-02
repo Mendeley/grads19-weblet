@@ -12,11 +12,11 @@ const AddConference = () => {
     <StyledForm>
       <StyledCard>
         <StyledCardHeading>Add a new conference:</StyledCardHeading>
-        <AddConferenceForm />
+        <CookieAddConferenceForm />
       </StyledCard>
       <StyledCard>
         <StyledCardHeading>Add a new conference:</StyledCardHeading>
-        <WebscrapePage/>
+        <WebscrapePage />
       </StyledCard>
     </StyledForm>
   );
