@@ -96,8 +96,8 @@ const UserContainer = () => {
             sessionToken={cookies.sessionToken}
           />
         ) : (
-          <Redirect to={`/users/${cookies.sessionToken.userId}`} />
-        )}
+            <Redirect to={`/users/${cookies.sessionToken.userId}`} />
+          )}
       </Route>
       <Route path="/users/:id">
         <ProfilePage

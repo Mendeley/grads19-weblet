@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import { withCookies } from "react-cookie";
 import Button from "../Button";
 import { getTimestring, getDatestring } from "../utils";
-import { deleteConferenceById, addFavouriteConference } from "../api.js";
+import { deleteConferenceById, addFavouriteConference, removeFavouriteConference, getFavouritedConferencesByUserId } from "../api.js";
 import {
   StyledCardHeading,
   StyledForm,
@@ -27,6 +27,25 @@ export const ConferenceDetails = ({
   allCookies = {}
 }) => {
   const history = useHistory();
+
+  const [userInterested, setUserInterested] = useState(false);
+  const conferenceDoesntExistInFavList = async () => {
+    try {
+      const favConferenceList = await getFavouritedConferencesByUserId(token);
+      var i;
+      for (i = 0; i < favConferenceList.length; i++) {
+        if (favConferenceList[i].id === conferenceId) {
+          setUserInterested(true);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    conferenceDoesntExistInFavList();
+  }, [])
 
   const token = allCookies.sessionToken ? allCookies.sessionToken.token : null;
   const userId = allCookies.sessionToken
@@ -59,6 +78,12 @@ export const ConferenceDetails = ({
 
   const expressInterest = () => {
     addFavouriteConference(userId, conferenceId, token);
+    setUserInterested(true);
+  };
+
+  const deexpressInterest = () => {
+    removeFavouriteConference(conferenceId, token);
+    setUserInterested(false);
   };
 
   return (
@@ -82,8 +107,13 @@ export const ConferenceDetails = ({
             <Button className="deleteButton" onClick={deleteThisConference}>
               Delete Conference
             </Button>
+            {!userInterested ? (
+              <Button onClick={expressInterest}>Express Interest</Button>
+            ) : (
+                <Button onClick={deexpressInterest}>Unexpress Interest</Button>)}
 
-            <Button onClick={expressInterest}>Express Interest</Button>
+
+
           </>
         )}
       </StyledCard>

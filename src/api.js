@@ -133,6 +133,22 @@ export const addFavouriteConference = async (userId, conferenceId, token) => {
   }
 };
 
+
+export const removeFavouriteConference = async (conferenceId, token) => {
+  try {
+    await axios.delete(
+      `http://localhost:8080/user-conferences/${conferenceId}`,
+      {
+        headers: { Authorization: token }
+      }
+    );
+    toast.info("Conference has been unfavourited!");
+  } catch (error) {
+    toast.error("Conference has not been unfavourited!");
+    throw error;
+  }
+};
+
 export const submitNewURL = async (URL, token) => {
   await axios.post("http://localhost:8080/add", URL, {
     headers: {

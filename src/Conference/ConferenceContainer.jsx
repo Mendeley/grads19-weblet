@@ -55,8 +55,8 @@ const ConferenceContainer = () => {
             error={error}
           />
         ) : (
-          <Redirect to="/users/login" />
-        )}
+            <Redirect to="/users/login" />
+          )}
       </Route>
       <Route path="/:id">
         <ConferenceDetails
