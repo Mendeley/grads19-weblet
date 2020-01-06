@@ -18,9 +18,19 @@ const StyledCardHeading = styled.h3`
   text-transform: uppercase;
 `;
 
+const StyledCardText = styled.h3`
+  background: #dbd8db;
+  width: 100%;
+  height: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+`;
+
 const StyledCard = styled.div`
   width: ${({ profileCard }) => (profileCard ? `45%` : `900px`)};
-  height: ${({ profileCard }) => (profileCard ? `80vh` : `450px`)};
+  height: ${({ profileCard }) => (profileCard ? `180vh` : `550px`)};
   margin: ${({ profileCard }) => (profileCard ? `10px` : `0 auto`)};
   display: ${({ profileCard }) => profileCard && `inline-block`};
   border-style: solid;
@@ -36,4 +46,4 @@ const StyledCard = styled.div`
   display: inline-block;
 `;
 
-export { StyledCardHeading, StyledForm, StyledCard };
+export { StyledCardHeading, StyledCardText, StyledForm, StyledCard };

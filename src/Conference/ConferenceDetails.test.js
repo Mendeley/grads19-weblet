@@ -5,6 +5,12 @@ jest.mock("react-router-dom", () => {
   };
 });
 
+jest.mock("../api", () => ({
+  getFavouritedConferencesByUserId: jest.fn(() => {
+    return [];
+  })
+}));
+
 import React from "react";
 import { Router } from "react-router-dom";
 import { ConferenceDetails } from "./ConferenceDetails";
