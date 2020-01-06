@@ -52,8 +52,40 @@ describe("ProfilePage", () => {
 
   const mockManagerName = "Joe Bloggs";
 
-  it("renders current user's profile information with manager", async () => {
-    expect.assertions(7);
+  const mockNoEmployees = [];
+
+  const mockEmployees = [
+    {
+      id: 12,
+      username: "Employee1",
+      firstName: "Employee",
+      lastName: "One",
+      email: "Employee.One@live.co.uk",
+      occupation: "Test Employee",
+      managerId: 11
+    },
+    {
+      id: 13,
+      username: "Employee2",
+      firstName: "Employee",
+      lastName: "Two",
+      email: "Employee.Two@live.co.uk",
+      occupation: "Test Employee",
+      managerId: 11
+    },
+    {
+      id: 14,
+      username: "Employee3",
+      firstName: "Employee",
+      lastName: "Three",
+      email: "Employee.Three@live.co.uk",
+      occupation: "Test Employee",
+      managerId: 11
+    }
+  ];
+
+  it("renders current user's profile information with manager with employees in employee card", async () => {
+    expect.assertions(10);
 
     const history = createMemoryHistory();
     history.push("/users/11");
@@ -64,6 +96,7 @@ describe("ProfilePage", () => {
           user={mockDataWithManager}
           isCurrentUser={true}
           managerName={mockManagerName}
+          employees={mockEmployees}
           favouriteConferences={mockFavouriteConferenceList}
         />
       </Router>
@@ -87,10 +120,13 @@ describe("ProfilePage", () => {
     expect(wrapper.find(".managerLink").get(0).props.to).toBe(
       `/users/${mockDataWithManager.managerId}`
     );
+    expect(wrapper.find(".employeesCard").length).toBe(2);
+    expect(wrapper.find(".employeeListHeader").length).toBe(2);
+    expect(findElement(".employeeListHeader")).toBe("Employees:");
   });
 
-  it("renders current user's profile information without manager", async () => {
-    expect.assertions(7);
+  it("renders current user's profile information without manager and with empty employees card", async () => {
+    expect.assertions(10);
 
     const history = createMemoryHistory();
     history.push("/users/11");
@@ -101,6 +137,7 @@ describe("ProfilePage", () => {
           user={mockDataWithoutManager}
           isCurrentUser={true}
           managerName={noManager}
+          employees={mockNoEmployees}
           favouriteConferences={mockFavouriteConferenceList}
         />
       </Router>
@@ -124,10 +161,13 @@ describe("ProfilePage", () => {
     );
     expect(findElement(".manager")).toBe("Manager: None Assigned");
     expect(wrapper.find(".managerLink").length).toBe(0);
+    expect(wrapper.find(".employeesCard").length).toBe(2);
+    expect(wrapper.find(".employeeListHeader").length).toBe(2);
+    expect(findElement(".employeeListHeader")).toBe("No Linked Employees");
   });
 
   it("renders profile information of user who is not the current one", async () => {
-    expect.assertions(7);
+    expect.assertions(9);
 
     const history = createMemoryHistory();
     history.push("/users/11");
@@ -158,5 +198,7 @@ describe("ProfilePage", () => {
     );
     expect(wrapper.find(".manager").length).toBe(0);
     expect(wrapper.find(".managerLink").length).toBe(0);
+    expect(wrapper.find(".employeesCard").length).toBe(0);
+    expect(wrapper.find(".employeeListHeader").length).toBe(0);
   });
 });

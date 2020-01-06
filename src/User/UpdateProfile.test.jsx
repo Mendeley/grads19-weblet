@@ -1,11 +1,11 @@
 import React from "react";
 import { Router } from "react-router-dom";
-import { configure, mount } from "enzyme";
+import { configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { createMemoryHistory } from "history";
 import UpdateProfile from "./UpdateProfile";
 import { updateUserById } from "../api";
-import { doesNotReject } from "assert";
+import { wrapper, setMountedWrapper } from "../TestUtils";
 
 configure({ adapter: new Adapter() });
 
@@ -25,20 +25,10 @@ describe("UpdateProfile", () => {
     occupation: "TestOccupation"
   };
 
-  const mockFavouriteConferenceList = {
-    id: 1,
-    name: "Festival of Marketing",
-    dateTime: "2019-11-12T12:34:11Z",
-    city: "London",
-    description:
-      "From Festivalofmarketing.com: The Festival of Marketing is a unique experience where ambitious marketers can discover, learn, celebrate and shape the future together. As the largest global event dedicated to brand marketers, the Festival reflects the very nature of ...",
-    topic: "Marketing"
-  };
-
   it("should renders updateProfile with correct profile information", () => {
     const history = createMemoryHistory();
 
-    const wrapper = mount(
+    setMountedWrapper(
       <Router history={history}>
         <UpdateProfile user={mockData} />
       </Router>
@@ -55,17 +45,18 @@ describe("UpdateProfile", () => {
     );
   });
 
-  it.only("should on submit, save alterations for only fields that have been changed by a user", async done => {
+  it("should on submit, save alterations for only fields that have been changed by a user", async () => {
     const history = createMemoryHistory();
     const apiReturnValue = Promise.resolve(200);
     await updateUserById.mockImplementation(() => apiReturnValue);
 
-    const wrapper = mount(
+    setMountedWrapper(
       <Router history={history}>
         <UpdateProfile
           user={mockData}
           sessionToken={{ token: "TestToken" }}
           id="1"
+          setUser={jest.fn()}
         />
       </Router>
     );
@@ -93,7 +84,6 @@ describe("UpdateProfile", () => {
       },
       "TestToken"
     );
-    console.log(history.location);
 
     setTimeout(() => {
       expect(history.location.pathname).toBe("/users/1");
@@ -106,7 +96,7 @@ describe("UpdateProfile", () => {
     const apiReturnValue = Promise.resolve(200);
     updateUserById.mockImplementation(() => apiReturnValue);
 
-    const wrapper = mount(
+    setMountedWrapper(
       <Router history={history}>
         <UpdateProfile
           user={mockData}
@@ -122,15 +112,13 @@ describe("UpdateProfile", () => {
       .simulate("submit", { preventDefault: jest.fn() });
 
     expect(updateUserById).toHaveBeenCalledTimes(0);
-    console.log(history.location);
-
     expect(history.location.pathname).toBe("/users/1");
   });
 
   it("should navigate to profile page for correct ID if user selects cancel", () => {
     const history = createMemoryHistory();
 
-    const wrapper = mount(
+    setMountedWrapper(
       <Router history={history}>
         <UpdateProfile
           user={mockData}
