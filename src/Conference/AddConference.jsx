@@ -4,19 +4,18 @@ import WebscrapePage from "../Webscrape/WebscrapePage";
 import {
   StyledCardHeading,
   StyledForm,
-  StyledCard
+  StyledCard,
+  StyledCardText
 } from "../StyledFormComponents";
 
 const AddConference = () => {
   return (
     <StyledForm>
       <StyledCard>
-        <StyledCardHeading>Add a new conference:</StyledCardHeading>
-        <CookieAddConferenceForm />
-      </StyledCard>
-      <StyledCard>
-        <StyledCardHeading>Add a new conference:</StyledCardHeading>
+        <StyledCardHeading>Add a new conference</StyledCardHeading>
         <WebscrapePage />
+        <StyledCardText>Or:</StyledCardText>
+        <CookieAddConferenceForm />
       </StyledCard>
     </StyledForm>
   );
