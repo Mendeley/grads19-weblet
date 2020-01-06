@@ -1,16 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { useCookies, CookiesProvider } from "react-cookie";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ConferenceContainer from "./Conference/ConferenceContainer";
 import ConferenceList from "./Conference/ConferenceList";
-import AddConference from "./Conference/AddConference";
-import CookieNavbar from "./Navbar";
-import { BrowserRouter } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import { CookiesProvider } from "react-cookie";
-import "react-toastify/dist/ReactToastify.css";
+import Navbar from "./Navbar";
 import RegistrationForm from "./User/RegistrationForm";
 import LoginForm from "./User/LoginForm";
+import AuthRedirect from "./AuthRedirect";
+import AddConference from "./Conference/AddConference";
 import UserContainer from "./User/UserContainer";
 
 const StyledApp = styled.div`
@@ -19,27 +19,37 @@ const StyledApp = styled.div`
   width: auto;
   min-height: 100vh;
 `;
-
 function App() {
+  const cookieName = "sessionToken";
+  const cookieOptions = { path: "/" };
+
+  const [, setCookie] = useCookies([cookieName]);
+
+  const setSessionToken = sessionTokenData => {
+    setCookie(cookieName, sessionTokenData, cookieOptions);
+  };
+
   return (
     <CookiesProvider>
       <BrowserRouter>
         <StyledApp>
-          <CookieNavbar />
+          <Navbar />
           <Switch>
             <Route exact path="/">
               <ConferenceList />
             </Route>
             <Route path="/add">
-              <AddConference />
+              <AuthRedirect redirectPath="/users/login">
+                <AddConference />
+              </AuthRedirect>
             </Route>
             <Route path="/users/register">
               <RegistrationForm />
             </Route>
             <Route path="/users/login">
-              <LoginForm />
+              <LoginForm setSessionToken={setSessionToken} />
             </Route>
-            <Route path="/users">
+            <Route path="/users/:id">
               <UserContainer />
             </Route>
             <Route path="/:id">
@@ -52,5 +62,4 @@ function App() {
     </CookiesProvider>
   );
 }
-
 export default App;
