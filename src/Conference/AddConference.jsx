@@ -13,9 +13,9 @@ const AddConference = () => {
     <StyledForm>
       <StyledCard>
         <StyledCardHeading>Add a new conference</StyledCardHeading>
-        <WebscrapePage />
-        <StyledCardText>Or:</StyledCardText>
         <CookieAddConferenceForm />
+        <StyledCardText>Or:</StyledCardText>
+        <WebscrapePage />
       </StyledCard>
     </StyledForm>
   );

@@ -21,17 +21,16 @@ const StyledCardHeading = styled.h3`
 const StyledCardText = styled.h3`
   background: #dbd8db;
   width: 100%;
-  height: 55px;
+  height: 25px;
   font-size: 20px;
   font-weight: bold;
   text-align: center;
   vertical-align: middle;
-  text-transform: uppercase;
 `;
 
 const StyledCard = styled.div`
   width: ${({ profileCard }) => (profileCard ? `45%` : `900px`)};
-  height: ${({ profileCard }) => (profileCard ? `180vh` : `600px`)};
+  height: ${({ profileCard }) => (profileCard ? `180vh` : `550px`)};
   margin: ${({ profileCard }) => (profileCard ? `10px` : `0 auto`)};
   display: ${({ profileCard }) => profileCard && `inline-block`};
   border-style: solid;
