@@ -43,7 +43,7 @@ const ConferenceItem = ({ conference }) => {
       <StyledCard>
         <StyledCardHeading role="heading">{name}</StyledCardHeading>
         <p data-testid="topic">{topic}</p>
-        <p>{getDatestring(date)}</p>
+        <p data-testid="date">{getDatestring(date)}</p>
         <p>{getTimestring(date)}</p>
         <p data-testid="city">{city}</p>
         <StyledLink to={`/${id}`}>More details...</StyledLink>

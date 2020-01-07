@@ -20,7 +20,7 @@ test("displays conference item", async () => {
 
   expect(getByRole("heading").textContent).toBe(mockConference.name);
   expect(getByTestId("topic").textContent).toBe(mockConference.topic);
-  expect(getByText("/", { exact: false }).textContent).toBe("12/11/2020");
+  expect(getByTestId("date").textContent).toBe("12/11/2020");
   expect(getByText(":", { exact: false }).textContent).toBe("12:34");
   expect(getByTestId("city").textContent).toBe(mockConference.city);
   expect(getByText("More details...").href).toBe(
