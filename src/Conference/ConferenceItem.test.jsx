@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import ConferenceItem from "./ConferenceItem";
 
@@ -12,20 +12,18 @@ test("displays conference item", async () => {
     city: "Mock City"
   };
 
-  render(
+  const { getByRole, getByText, getByTestId } = render(
     <MemoryRouter initialEntries={[{ pathname: "/", key: "testKey" }]}>
       <ConferenceItem conference={mockConference} />
     </MemoryRouter>
   );
 
-  expect(screen.getByRole("header").textContent).toBe(mockConference.name);
-  expect(screen.getByTestId("topic").textContent).toBe(mockConference.topic);
-  expect(screen.getByText("/", { exact: false }).textContent).toBe(
-    "12/11/2020"
-  );
-  expect(screen.getByText(":", { exact: false }).textContent).toBe("12:34");
-  expect(screen.getByTestId("city").textContent).toBe(mockConference.city);
-  expect(screen.getByText("More details...").href).toBe(
+  expect(getByRole("heading").textContent).toBe(mockConference.name);
+  expect(getByTestId("topic").textContent).toBe(mockConference.topic);
+  expect(getByText("/", { exact: false }).textContent).toBe("12/11/2020");
+  expect(getByText(":", { exact: false }).textContent).toBe("12:34");
+  expect(getByTestId("city").textContent).toBe(mockConference.city);
+  expect(getByText("More details...").href).toBe(
     `http://localhost/${mockConference.id}`
   );
 });

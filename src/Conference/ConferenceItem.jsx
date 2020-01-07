@@ -41,7 +41,7 @@ const ConferenceItem = ({ conference }) => {
   return (
     <StyledConferenceItem>
       <StyledCard>
-        <StyledCardHeading role="header">{name}</StyledCardHeading>
+        <StyledCardHeading role="heading">{name}</StyledCardHeading>
         <p data-testid="topic">{topic}</p>
         <p>{getDatestring(date)}</p>
         <p>{getTimestring(date)}</p>
