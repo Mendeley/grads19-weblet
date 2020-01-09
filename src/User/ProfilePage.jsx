@@ -67,6 +67,35 @@ const ProfilePage = ({
     }
   };
 
+  const displayFavouriteConferences = () => {
+    if (favouriteConferences.length > 0) {
+      return (<>
+        <StyledCard profileCard>
+          <StyledCardHeading className="favouriteConferencesHeader">
+            Favourited Conferences:
+                </StyledCardHeading>
+          <FavouriteConferenceList
+            className="favouriteConferencesList"
+            favouriteConferences={favouriteConferences}
+          />
+        </StyledCard>
+      </>)
+    }
+  }
+
+  const displayEmployees = () => {
+    if (employees.length > 0) {
+      return (<>
+        <StyledCard className="employeesCard">
+          <StyledCardHeading className="employeeListHeader">
+            Employees:
+                </StyledCardHeading>
+          <EmployeeList className="employeeList" employees={employees} />
+        </StyledCard>
+      </>)
+    }
+  }
+
   return (
     <StyledProfile>
       <StyledCard profileCard>
@@ -83,42 +112,10 @@ const ProfilePage = ({
         <p className="occupation">{`Occupation: ${occupation}`}</p>
         {isCurrentUser && displayManager()}
       </StyledCard>
-      {isCurrentUser && (
-        <>
-          <StyledCard profileCard>
-            {favouriteConferences.length > 0 ? (
-              <>
-                <StyledCardHeading className="favouriteConferencesHeader">
-                  Favourited Conferences:
-                </StyledCardHeading>
-                <FavouriteConferenceList
-                  className="favouriteConferencesList"
-                  favouriteConferences={favouriteConferences}
-                />
-              </>
-            ) : (
-              <StyledCardHeading className="favouriteConferencesHeader">
-                No Favourited Conferences
-              </StyledCardHeading>
-            )}
-          </StyledCard>
-          <StyledCard className="employeesCard">
-            {employees.length > 0 ? (
-              <>
-                <StyledCardHeading className="employeeListHeader">
-                  Employees:
-                </StyledCardHeading>
-                <EmployeeList className="employeeList" employees={employees} />
-              </>
-            ) : (
-              <StyledCardHeading className="employeeListHeader">
-                No Linked Employees
-              </StyledCardHeading>
-            )}
-          </StyledCard>
-        </>
-      )}
-    </StyledProfile>
+      {isCurrentUser && (displayFavouriteConferences())}
+      {isCurrentUser && (displayEmployees())}
+
+    </StyledProfile >
   );
 };
 
