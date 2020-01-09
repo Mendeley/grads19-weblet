@@ -26,7 +26,7 @@ export const StyledEditLink = styled(Link)`
 `;
 
 const StyledProfile = styled.div`
-  height: 400px;
+  height: 100%;
   padding: 20px;
 `;
 
@@ -67,6 +67,8 @@ const ProfilePage = ({
     }
   };
 
+
+
   return (
     <StyledProfile>
       <StyledCard profileCard>
@@ -84,7 +86,21 @@ const ProfilePage = ({
         {isCurrentUser && displayManager()}
       </StyledCard>
       {isCurrentUser && (
-        <>
+        <> <StyledCard profileCard className="employeesCard">
+          {employees.length > 0 ? (
+            <>
+              <StyledCardHeading className="employeeListHeader">
+                Employees:
+                </StyledCardHeading>
+              <EmployeeList className="employeeList" employees={employees} />
+            </>
+          ) : (
+              <StyledCardHeading className="employeeListHeader">
+                No Linked Employees
+              </StyledCardHeading>
+            )}
+        </StyledCard>
+
           <StyledCard profileCard>
             {favouriteConferences.length > 0 ? (
               <>
@@ -97,24 +113,10 @@ const ProfilePage = ({
                 />
               </>
             ) : (
-              <StyledCardHeading className="favouriteConferencesHeader">
-                No Favourited Conferences
+                <StyledCardHeading className="favouriteConferencesHeader">
+                  No Favourited Conferences
               </StyledCardHeading>
-            )}
-          </StyledCard>
-          <StyledCard className="employeesCard">
-            {employees.length > 0 ? (
-              <>
-                <StyledCardHeading className="employeeListHeader">
-                  Employees:
-                </StyledCardHeading>
-                <EmployeeList className="employeeList" employees={employees} />
-              </>
-            ) : (
-              <StyledCardHeading className="employeeListHeader">
-                No Linked Employees
-              </StyledCardHeading>
-            )}
+              )}
           </StyledCard>
         </>
       )}
