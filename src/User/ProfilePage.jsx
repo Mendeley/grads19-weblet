@@ -68,31 +68,33 @@ const ProfilePage = ({
   };
 
   const displayFavouriteConferences = () => {
-    if (favouriteConferences.length > 0) {
-      return (<>
-        <StyledCard profileCard>
-          <StyledCardHeading className="favouriteConferencesHeader">
-            Favourited Conferences:
-                </StyledCardHeading>
-          <FavouriteConferenceList
-            className="favouriteConferencesList"
-            favouriteConferences={favouriteConferences}
-          />
-        </StyledCard>
-      </>)
+    if (favouriteConferences.length) {
+      return (
+        <>
+          <StyledCard profileCard>
+            <StyledCardHeading className="favouriteConferencesHeader">
+              Favourited Conferences:
+            </StyledCardHeading>
+            <FavouriteConferenceList
+              className="favouriteConferencesList"
+              favouriteConferences={favouriteConferences}
+            />
+          </StyledCard>
+        </>)
     }
   }
 
   const displayEmployees = () => {
-    if (employees.length > 0) {
-      return (<>
-        <StyledCard className="employeesCard">
-          <StyledCardHeading className="employeeListHeader">
-            Employees:
-                </StyledCardHeading>
-          <EmployeeList className="employeeList" employees={employees} />
-        </StyledCard>
-      </>)
+    if (employees.length) {
+      return (
+        <>
+          <StyledCard className="employeesCard">
+            <StyledCardHeading className="employeeListHeader">
+              Employees:
+            </StyledCardHeading>
+            <EmployeeList className="employeeList" employees={employees} />
+          </StyledCard>
+        </>)
     }
   }
 
@@ -114,7 +116,6 @@ const ProfilePage = ({
       </StyledCard>
       {isCurrentUser && (displayFavouriteConferences())}
       {isCurrentUser && (displayEmployees())}
-
     </StyledProfile >
   );
 };
