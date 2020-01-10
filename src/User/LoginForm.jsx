@@ -8,13 +8,26 @@ import { loginUser } from "../api";
 import {
   StyledCardHeading,
   StyledForm,
-  StyledCard
+  StyledCard,
+  StyledSubmit
 } from "../StyledFormComponents";
 
 export const StyledLink = styled(Link)`
-  color: #7a517d;
-  padding: 10px;
+  display: block;
+  height: 15%;
+  width: 10%;
+  color: black;
+  text-decoration: none;
+  background-color: #1F73B2;
+  color: white;
+  font-weight: bold;
+  line-height: 40px;
+  border-radius: 11px;
+  position: absolute;
+  top: 6%;
+  right: 2%;
 `;
+
 
 const LoginForm = () => {
   const [, setCookie] = useCookies([cookieName]);
@@ -38,7 +51,7 @@ const LoginForm = () => {
       const sessionTokenData = await loginUser(user);
       setSessionToken(sessionTokenData);
       history.push("/");
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const onSubmit = ev => {
@@ -70,7 +83,7 @@ const LoginForm = () => {
             required
             maxLength="16"
           />
-          <Input type="submit" value="Submit" />
+          <StyledSubmit type="submit" value="Submit" />
         </form>
       </StyledCard>
     </StyledForm>

@@ -4,8 +4,6 @@ import ConferenceItem from "./ConferenceItem";
 import { getConferenceList } from "../api";
 
 const StyledConferenceList = styled.ul`
-  margin: 0;
-  padding: 0;
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
@@ -32,6 +30,8 @@ const ConferenceList = () => {
     }
     fetchData();
   }, []);
+
+
 
   return (
     <StyledConferenceList>

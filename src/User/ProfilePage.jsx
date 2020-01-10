@@ -13,16 +13,18 @@ export const StyledLink = styled(Link)`
 
 export const StyledEditLink = styled(Link)`
   display: block;
-  height: 40px;
-  width: 100px;
+  height: 13%;
+  width: 7%;
+  color: black;
   text-decoration: none;
-  background-color: papayawhip;
+  background-color: #1F73B2;
+  color: white;
+  font-weight: bold;
   line-height: 40px;
   border-radius: 11px;
-  border: 3px solid black;
   position: absolute;
-  bottom: 18px;
-  left: 18px;
+  bottom: 12%;
+  right: 10%;
 `;
 
 const StyledProfile = styled.div`

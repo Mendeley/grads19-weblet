@@ -7,7 +7,8 @@ import { updateConferenceById } from "../api";
 import {
   StyledCardHeading,
   StyledForm,
-  StyledCard
+  StyledCard,
+  StyledSaveSubmit
 } from "../StyledFormComponents";
 
 const UpdateForm = ({
@@ -103,7 +104,7 @@ const UpdateForm = ({
             required
             maxLength="20"
           />
-          <Input type="submit" value="Save" />
+          <StyledSaveSubmit type="submit" value="Save" />
         </form>
       </StyledCard>
     </StyledForm>

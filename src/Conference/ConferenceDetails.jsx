@@ -16,12 +16,59 @@ import {
 	StyledCard
 } from "../StyledFormComponents";
 
-export const StyledLink = styled(Link)`
-	color: #7a517d;
-`;
+// export const StyledLink = styled(Link)`
+// 	color: #7a517d;
+// `;
 
 export const StyledDescription = styled.p`
 	padding: 0 100px 50px 100px;
+`;
+
+export const StyledLink = styled(Link)`
+  display: block;
+  height: 10%;
+  width: 7%;
+  color: black;
+  text-decoration: none;
+  background-color: #1F73B2;
+  color: white;
+  font-weight: bold;
+  line-height: 40px;
+  border-radius: 11px;
+  position: absolute;
+  bottom: 12%;
+  right: 20%;
+`;
+
+export const StyledDeleteButton = styled(Button)`
+  display: block;
+  height: 10%;
+  width: 7%;
+  font-weight: bold;
+  font-size: 15px;
+  background-color: #1F73B2;
+  color: white;
+  line-height: 40px;
+  border-radius: 11px;
+  position: absolute;
+  margin: auto;
+  bottom: 12%;
+  right: 10%;
+`;
+
+export const StyledInterestButton = styled(Button)`
+  display: block;
+  height: 10%;
+  width: 8%;
+  font-weight: bold;
+  font-size: 15px;
+  background-color: #1F73B2;
+  color: white;
+  line-height: 40px;
+  border-radius: 11px;
+  position: absolute;
+  bottom: 12%;
+  right: 30%;
 `;
 
 export const ConferenceDetails = ({
@@ -95,7 +142,7 @@ export const ConferenceDetails = ({
 				<StyledCardHeading className="name">{name}</StyledCardHeading>
 				{token && (
 					<StyledLink className="editLink" to={`/${id}/edit`}>
-						Edit Conference
+						Edit
 					</StyledLink>
 				)}
 				<p className="topic">{topic}</p>
@@ -105,14 +152,14 @@ export const ConferenceDetails = ({
 				<StyledDescription className="description">{description}</StyledDescription>
 				{token && (
 					<>
-						<Button className="deleteButton" onClick={deleteThisConference}>
-							Delete Conference
-						</Button>
+						<StyledDeleteButton className="deleteButton" onClick={deleteThisConference}>
+							Delete
+						</StyledDeleteButton>
 						{!userInterested ? (
-							<Button onClick={expressInterest}>Express Interest</Button>
+							<StyledInterestButton onClick={expressInterest}>Interested</StyledInterestButton>
 						) : (
-							<Button onClick={deexpressInterest}>Unexpress Interest</Button>
-						)}
+								<StyledInterestButton onClick={deexpressInterest}>Uninterested</StyledInterestButton>
+							)}
 					</>
 				)}
 			</StyledCard>

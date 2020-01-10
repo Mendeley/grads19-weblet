@@ -5,7 +5,9 @@ import Input from "../Input";
 import {
   StyledForm,
   StyledCard,
-  StyledCardHeading
+  StyledCardHeading,
+  StyledCancelSubmit,
+  StyledSaveSubmit
 } from "../StyledFormComponents";
 import { updateUserById } from "../api";
 
@@ -44,14 +46,14 @@ const UpdateProfile = ({
         await updateUserById(id, updatedUser, sessionToken.token);
         history.push(`/users/${id}`);
         setUser({ ...user, ...updatedUser });
-      } catch (error) {}
+      } catch (error) { }
     } else cancelUserUpate();
   };
 
   return (
     <StyledForm>
       <StyledCard>
-        <StyledCardHeading>Edit Profile:</StyledCardHeading>
+        <StyledCardHeading>Edit Profile</StyledCardHeading>
         <form
           onSubmit={ev => {
             ev.preventDefault();
@@ -59,7 +61,7 @@ const UpdateProfile = ({
           }}
         >
           <Input
-            label="First Name:"
+            label="First Name: "
             type="text"
             name="firstName"
             value={updatedUser.firstName || user.firstName}
@@ -67,7 +69,7 @@ const UpdateProfile = ({
             required
           />
           <Input
-            label="Last Name:"
+            label="Last Name: "
             type="text"
             name="lastName"
             value={updatedUser.lastName || user.lastName}
@@ -75,15 +77,15 @@ const UpdateProfile = ({
             required
           />
           <Input
-            label="Occupation:"
+            label="Occupation: "
             type="text"
             name="occupation"
             value={updatedUser.occupation || user.occupation}
             onChange={handleChange}
             required
           />
-          <Input type="submit" value="Save" />
-          <Input type="button" value="Cancel" onClick={cancelUserUpate} />
+          <StyledSaveSubmit type="submit" value="Save" />
+          <StyledCancelSubmit type="button" value="Cancel" onClick={cancelUserUpate} />
         </form>
       </StyledCard>
     </StyledForm>

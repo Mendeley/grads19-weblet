@@ -3,6 +3,7 @@ import Input from "../Input";
 import { submitNewURL } from "../api";
 import { withCookies } from "react-cookie";
 import { toast } from "react-toastify";
+import { StyledSubmit } from "../StyledFormComponents";
 
 export const WebscrapePage = ({ allCookies = {} }) => {
 	const token = allCookies.sessionToken ? allCookies.sessionToken.token : null;
@@ -38,7 +39,7 @@ export const WebscrapePage = ({ allCookies = {} }) => {
 				value={URL}
 				onChange={handleChange}
 			/>
-			<Input type="submit" value="Submit" />
+			<StyledSubmit type="submit" value="Submit" />
 		</form>
 	);
 };

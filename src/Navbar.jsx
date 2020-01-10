@@ -7,7 +7,7 @@ import Button from "./Button";
 import { logoutUser } from "./api";
 
 export const StyledNavbar = styled.nav`
-  background: #322d38;
+  background: #1F73B2;
   width: auto;
   height: 5%;
   text-align: left;
@@ -26,6 +26,13 @@ const StyledListItem = styled.li`
 
 export const StyledLink = styled(Link)`
   color: white;
+  background: #1F73B2;
+`;
+
+export const StyledButton = styled(Button)`
+  color: white;
+  background: #1F73B2;
+  border: none;
 `;
 
 export const Navbar = ({ cookies, allCookies = {} }) => {
@@ -65,9 +72,9 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
               </StyledLink>
             </StyledListItem>
             <StyledListItem>
-              <Button className="logout" navLink onClick={logout}>
+              <StyledButton className="logout" navLink onClick={logout}>
                 Logout
-              </Button>
+              </StyledButton>
             </StyledListItem>
           </>
         ) : (

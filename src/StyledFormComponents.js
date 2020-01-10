@@ -14,7 +14,7 @@ const StyledForm = styled.div`
 `;
 
 const StyledCardHeading = styled.h3`
-  background: #dbd8db;
+  background: white;
   width: 100%;
   height: 5%;
   font-size: 30px;
@@ -25,13 +25,11 @@ const StyledCardHeading = styled.h3`
 `;
 
 const StyledCardText = styled.h3`
-  background: #dbd8db;
+  background: white;
   width: 100%;
   height: 25px;
   font-size: 20px;
   font-weight: bold;
-  text-align: center;
-  vertical-align: middle;
 `;
 
 const StyledCard = styled.div`
@@ -42,7 +40,7 @@ const StyledCard = styled.div`
   border-style: solid;
   border-color: black;
   border-radius: 25px;
-  background: #dbd8db;
+  background: #FFFFFF;
   transition: 0.3s;
   :hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -56,4 +54,44 @@ const StyledCard = styled.div`
   padding-bottom: 50px;
 `;
 
-export { StyledCardHeading, StyledCardText, StyledForm, StyledCard };
+const StyledCancelSubmit = styled.input`
+  background-color: #1F73B2;
+  border-radius: 11px;
+  color: white;
+  padding: 8px 24px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 6px 4px;
+  position: absolute;
+  bottom: 8%;
+  right: 10%;
+  `
+const StyledSaveSubmit = styled.input`
+  background-color: #1F73B2;
+  border-radius: 11px;
+  color: white;
+  padding: 8px 24px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 6px 4px;
+  position: absolute;
+  bottom: 8%;
+  right: 20%;
+  `
+const StyledSubmit = styled.input`
+  background-color: #1F73B2;
+  border-radius: 11px;
+  color: white;
+  padding: 8px 24px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 6px 4px;
+  `
+
+// position: absolute;
+// bottom: 8 %;
+// right: 20 %;
+export { StyledCardHeading, StyledCardText, StyledForm, StyledCard, StyledCancelSubmit, StyledSaveSubmit, StyledSubmit };

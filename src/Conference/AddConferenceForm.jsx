@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { withCookies } from "react-cookie";
 import Input from "../Input";
 import { createNewConference } from "../api";
+import { StyledSubmit } from "../StyledFormComponents";
 
 export const AddConferenceForm = ({ allCookies = {} }) => {
   let history = useHistory();
@@ -28,7 +29,7 @@ export const AddConferenceForm = ({ allCookies = {} }) => {
     try {
       await createNewConference(newConference, token);
       history.push("/");
-    } catch (error) {}
+    } catch (error) { }
   };
 
   return (
@@ -82,7 +83,7 @@ export const AddConferenceForm = ({ allCookies = {} }) => {
         required
         maxLength="20"
       />
-      <Input type="submit" value="Submit" />
+      <StyledSubmit type="submit" value="Submit" />
     </form>
   );
 };

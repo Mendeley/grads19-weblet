@@ -6,7 +6,8 @@ import { createNewUser, getSearchResults } from "../api";
 import {
   StyledCardHeading,
   StyledForm,
-  StyledCard
+  StyledCard,
+  StyledSubmit
 } from "../StyledFormComponents";
 
 const RegistrationForm = () => {
@@ -31,7 +32,7 @@ const RegistrationForm = () => {
     try {
       const userList = await getSearchResults(searchInput);
       setSearchResults(userList);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   useEffect(() => {
@@ -53,7 +54,7 @@ const RegistrationForm = () => {
     try {
       await createNewUser(newUser);
       history.push("/");
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const onSubmit = ev => {
@@ -139,7 +140,7 @@ const RegistrationForm = () => {
             required
             maxLength="16"
           />
-          <Input type="submit" value="Submit" />
+          <StyledSubmit type="submit" value="Submit" />
         </form>
       </StyledCard>
     </StyledForm>
