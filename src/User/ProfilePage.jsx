@@ -26,7 +26,7 @@ export const StyledEditLink = styled(Link)`
 `;
 
 const StyledProfile = styled.div`
-  height: 400px;
+  height: 100%;
   padding: 20px;
 `;
 
@@ -66,6 +66,7 @@ const ProfilePage = ({
       );
     }
   };
+
 
   const displayFavouriteConferences = () => {
     if (favouriteConferences.length) {
@@ -114,8 +115,8 @@ const ProfilePage = ({
         <p className="occupation">{`Occupation: ${occupation}`}</p>
         {isCurrentUser && displayManager()}
       </StyledCard>
-      {isCurrentUser && (displayFavouriteConferences())}
       {isCurrentUser && (displayEmployees())}
+      {isCurrentUser && (displayFavouriteConferences())}
     </StyledProfile >
   );
 };

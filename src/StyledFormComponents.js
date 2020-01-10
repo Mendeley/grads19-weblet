@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledForm = styled.div`
-  height: 400px;
+  height: 100%;
   padding: 20px;
   display:flex; 
   flex-direction:row;
@@ -10,7 +10,7 @@ const StyledForm = styled.div`
 const StyledCardHeading = styled.h3`
   background: #dbd8db;
   width: 100%;
-  height: 55px;
+  height: 40px;
   font-size: 30px;
   font-weight: bold;
   text-align: center;
@@ -29,10 +29,10 @@ const StyledCardText = styled.h3`
 `;
 
 const StyledCard = styled.div`
-  width: ${({ profileCard }) => (profileCard ? `45%` : `900px`)};
-  height: ${({ profileCard }) => (profileCard ? `180vh` : `550px`)};
+  width: ${({ profileCard }) => (profileCard ? `65%` : `100%`)};
+  height: ${({ profileCard }) => (profileCard ? `0%` : `100%`)};
   margin: ${({ profileCard }) => (profileCard ? `10px` : `0 auto`)};
-  display: ${({ profileCard }) => profileCard && `inline-block`};
+  display: ${({ profileCard }) => (profileCard && `inline-block`)};
   border-style: solid;
   border-color: black;
   border-radius: 25px;
@@ -43,7 +43,11 @@ const StyledCard = styled.div`
   }
   vertical-align: middle;
   position: relative;
-  display: inline-block;
+  display: flex-center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding-bottom: 50px;
 `;
 
 export { StyledCardHeading, StyledCardText, StyledForm, StyledCard };

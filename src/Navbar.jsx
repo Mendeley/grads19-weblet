@@ -9,7 +9,7 @@ import { logoutUser } from "./api";
 export const StyledNavbar = styled.nav`
   background: #322d38;
   width: auto;
-  height: 4vh;
+  height: 5%;
   text-align: left;
 `;
 
@@ -36,7 +36,7 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
       await logoutUser(sessionToken.token);
       history.push("/");
       deleteSessionToken();
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const deleteSessionToken = () => {
@@ -71,19 +71,19 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
             </StyledListItem>
           </>
         ) : (
-          <>
-            <StyledListItem>
-              <StyledLink className="register" to="/users/register">
-                Register
+            <>
+              <StyledListItem>
+                <StyledLink className="register" to="/users/register">
+                  Register
               </StyledLink>
-            </StyledListItem>
-            <StyledListItem>
-              <StyledLink className="login" to="/users/login">
-                Login
+              </StyledListItem>
+              <StyledListItem>
+                <StyledLink className="login" to="/users/login">
+                  Login
               </StyledLink>
-            </StyledListItem>
-          </>
-        )}
+              </StyledListItem>
+            </>
+          )}
       </StyledList>
     </StyledNavbar>
   );
