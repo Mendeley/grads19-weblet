@@ -1,16 +1,22 @@
 import styled from "styled-components";
 
 const StyledForm = styled.div`
-  height: 100%;
-  padding: 20px;
-  display:flex; 
-  flex-direction:row;
+  width: 80%;
+  height: 0%;
+  margin: 25px;
+  display: inline-block;
+  border-radius: 25px;
+  position: relative;
+  display: flex-center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding-bottom: 50px;
 `;
 
 const StyledCardHeading = styled.h3`
   background: #dbd8db;
   width: 100%;
-  height: 40px;
+  height: 5%;
   font-size: 30px;
   font-weight: bold;
   text-align: center;
@@ -29,7 +35,7 @@ const StyledCardText = styled.h3`
 `;
 
 const StyledCard = styled.div`
-  width: ${({ profileCard }) => (profileCard ? `65%` : `100%`)};
+  width: ${({ profileCard }) => (profileCard ? `80%` : `100%`)};
   height: ${({ profileCard }) => (profileCard ? `0%` : `100%`)};
   margin: ${({ profileCard }) => (profileCard ? `10px` : `0 auto`)};
   display: ${({ profileCard }) => (profileCard && `inline-block`)};

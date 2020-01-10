@@ -18,7 +18,6 @@ export const WebscrapePage = ({ allCookies = {} }) => {
 		} else {
 			try {
 				await submitNewURL(URL, token);
-				// add setConference function with details from web scrape
 			} catch (error) {
 				console.log(error);
 			}
@@ -38,9 +37,8 @@ export const WebscrapePage = ({ allCookies = {} }) => {
 				name="URL"
 				value={URL}
 				onChange={handleChange}
-				size="60"
 			/>
-			<Input type="submit" value="Submit"/>
+			<Input type="submit" value="Submit" />
 		</form>
 	);
 };

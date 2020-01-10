@@ -5,7 +5,7 @@ import { getTimestring, getDatestring } from "../utils";
 
 const StyledCardHeading = styled.div`
   background: #dbd8db;
-  width: 315px;
+  width: 100%;
   height: 55px;
   font-size: 24px;
   font-weight: bold;
@@ -17,7 +17,7 @@ const StyledCard = styled.div`
   border-color: black;
   border-radius: 0 0 25px 25px;
   background: #f7f4f1;
-  width: 315px;
+  width: 100%;
   height: 250px;
   transition: 0.3s;
   :hover {
