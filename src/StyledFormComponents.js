@@ -91,7 +91,6 @@ const StyledSubmit = styled.input`
   margin: 6px 4px;
   `
 
-// position: absolute;
-// bottom: 8 %;
-// right: 20 %;
+
+
 export { StyledCardHeading, StyledCardText, StyledForm, StyledCard, StyledCancelSubmit, StyledSaveSubmit, StyledSubmit };

@@ -5,11 +5,13 @@ import { Link, useHistory } from "react-router-dom";
 import { cookieOptions, cookieName } from "./Constants/Cookies";
 import Button from "./Button";
 import { logoutUser } from "./api";
+import ResizeImage from 'react-resize-image';
+import Logo from './ConFoundLogo.png';
 
 export const StyledNavbar = styled.nav`
   background: #1F73B2;
-  width: auto;
-  height: 5%;
+  width: 100%;
+  height: 100%;
   text-align: left;
 `;
 
@@ -27,12 +29,15 @@ const StyledListItem = styled.li`
 export const StyledLink = styled(Link)`
   color: white;
   background: #1F73B2;
+  font-size: 180%;
 `;
 
 export const StyledButton = styled(Button)`
   color: white;
   background: #1F73B2;
   border: none;
+  font-size: 180%;
+
 `;
 
 export const Navbar = ({ cookies, allCookies = {} }) => {
@@ -59,16 +64,16 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
         {sessionToken ? (
           <>
             <StyledListItem>
-              <StyledLink className="addConference" to="/add">
-                Add Conference
-              </StyledLink>
-            </StyledListItem>
-            <StyledListItem>
               <StyledLink
                 className="profilePage"
                 to={`/users/${sessionToken.userId}`}
               >
                 Profile
+              </StyledLink>
+            </StyledListItem>
+            <StyledListItem>
+              <StyledLink className="addConference" to="/add">
+                Add Conference
               </StyledLink>
             </StyledListItem>
             <StyledListItem>
@@ -91,6 +96,11 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
               </StyledListItem>
             </>
           )}
+        <ResizeImage
+          src={Logo}
+          alt="ConFound Logo"
+          options={{ width: 100, height: 10 }}
+        />
       </StyledList>
     </StyledNavbar>
   );
