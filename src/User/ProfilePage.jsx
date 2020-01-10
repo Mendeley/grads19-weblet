@@ -89,7 +89,7 @@ const ProfilePage = ({
     if (employees.length) {
       return (
         <>
-          <StyledCard className="employeesCard">
+          <StyledCard profileCard className="employeesCard">
             <StyledCardHeading className="employeeListHeader">
               Employees:
             </StyledCardHeading>
