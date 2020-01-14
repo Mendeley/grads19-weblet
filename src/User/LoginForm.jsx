@@ -9,7 +9,8 @@ import {
   StyledCardHeading,
   StyledForm,
   StyledCard,
-  StyledSubmit
+  StyledSubmit,
+  StyledAddForm
 } from "../StyledFormComponents";
 
 export const StyledLink = styled(Link)`
@@ -26,6 +27,38 @@ export const StyledLink = styled(Link)`
   position: absolute;
   top: 6%;
   right: 2%;
+
+  @media only screen and (min-width: 600px) and (max-width:1100px){
+    display: block;
+    height: 13%;
+    width: 20%;
+    color: black;
+    text-decoration: none;
+    background-color: #1F73B2;
+    color: white;
+    font-weight: bold;
+    line-height: 40px;
+    border-radius: 11px;
+    position: absolute;
+    top: 3%;
+    right: 4%;
+  }
+
+    @media only screen and (max-width:600px){
+    display: block;
+    height: 15%;
+    width: 35%;
+    color: black;
+    text-decoration: none;
+    background-color: #1F73B2;
+    color: white;
+    font-weight: bold;
+    line-height: 40px;
+    border-radius: 11px;
+    position: absolute;
+    top: 1%;
+    right: 5%;
+  }
 `;
 
 
@@ -62,27 +95,38 @@ const LoginForm = () => {
   return (
     <StyledForm>
       <StyledCard>
+        <StyledLink to={`/users/register`}>Register</StyledLink>
+        <br></br>
+        <br></br>
         <StyledCardHeading>Login here:</StyledCardHeading>
-        <StyledLink to={`/users/register`}>Register New User</StyledLink>
         <form onSubmit={onSubmit}>
-          <Input
-            label="Username: "
-            type="text"
-            name="username"
-            value={user.username}
-            onChange={handleChange}
-            required
-            maxLength="100"
-          />
-          <Input
-            label="Password: "
-            type="password"
-            name="password"
-            value={user.password}
-            onChange={handleChange}
-            required
-            maxLength="16"
-          />
+          <StyledAddForm>
+            <Input
+              label="Username: "
+              type="text"
+              name="username"
+              value={user.username}
+              onChange={handleChange}
+              required
+              maxLength="100"
+            />
+            <Input
+              label="Password: "
+              type="password"
+              name="password"
+              value={user.password}
+              onChange={handleChange}
+              required
+              maxLength="16"
+            />
+          </StyledAddForm>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+
           <StyledSubmit type="submit" value="Submit" />
         </form>
       </StyledCard>

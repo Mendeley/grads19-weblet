@@ -43,6 +43,7 @@ export const StyledLink = styled(Link)`
   line-height: 40px;
   border-radius: 11px;
   margin: auto;
+  font-weight: bold;
 `;
 
 const ConferenceItem = ({ conference }) => {

@@ -8,7 +8,8 @@ import {
   StyledCardHeading,
   StyledForm,
   StyledCard,
-  StyledSaveSubmit
+  StyledSaveSubmit,
+  StyledAddForm
 } from "../StyledFormComponents";
 
 const UpdateForm = ({
@@ -53,6 +54,7 @@ const UpdateForm = ({
   return (
     <StyledForm>
       <StyledCard>
+
         <StyledCardHeading>Edit a conference:</StyledCardHeading>
         <form
           onSubmit={ev => {
@@ -60,52 +62,72 @@ const UpdateForm = ({
             submitForm();
           }}
         >
-          <Input
-            label="Conference Name: "
-            type="text"
-            name="name"
-            value={updatedConference.name}
-            onChange={handleChange}
-            required
-            maxLength="80"
-          />
-          <Input
-            label="Date and Time: "
-            type="datetime-local"
-            name="dateTime"
-            value={updatedConference.dateTime}
-            onChange={handleChange}
-            required
-          />
-          <Input
-            label="City: "
-            type="text"
-            name="city"
-            value={updatedConference.city}
-            onChange={handleChange}
-            required
-            maxLength="50"
-          />
-          <Input
-            label="Description: "
-            type="text"
-            name="description"
-            value={updatedConference.description}
-            onChange={handleChange}
-            required
-            maxLength="1000"
-          />
-          <Input
-            label="Topic: "
-            type="text"
-            name="topic"
-            value={updatedConference.topic}
-            onChange={handleChange}
-            required
-            maxLength="20"
-          />
+          <StyledAddForm>
+            <Input
+              label="Conference Name: "
+              type="text"
+              name="name"
+              value={updatedConference.name}
+              onChange={handleChange}
+              required
+              maxLength="80"
+            />
+            <Input
+              label="Date and Time: "
+              type="datetime-local"
+              name="dateTime"
+              value={updatedConference.dateTime}
+              onChange={handleChange}
+              required
+            />
+            <Input
+              label="City: "
+              type="text"
+              name="city"
+              value={updatedConference.city}
+              onChange={handleChange}
+              required
+              maxLength="50"
+            />
+            <Input
+              label="Description: "
+              type="text"
+              name="description"
+              value={updatedConference.description}
+              onChange={handleChange}
+              required
+              maxLength="1000"
+            />
+            <Input
+              label="Topic: "
+              type="text"
+              name="topic"
+              value={updatedConference.topic}
+              onChange={handleChange}
+              required
+              maxLength="20"
+            />
+          </StyledAddForm>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
           <StyledSaveSubmit type="submit" value="Save" />
         </form>
+
       </StyledCard>
     </StyledForm>
   );

@@ -25,6 +25,38 @@ export const StyledEditLink = styled(Link)`
   position: absolute;
   bottom: 12%;
   right: 10%;
+
+  @media only screen and (min-width:600px) and (max-width: 1100px){
+  display: block;
+  height: 13%;
+  width: 18%;
+  color: black;
+  text-decoration: none;
+  background-color: #1F73B2;
+  color: white;
+  font-weight: bold;
+  line-height: 40px;
+  border-radius: 11px;
+  position: absolute;
+  bottom: 4%;
+  right: 6%;
+  }
+
+  @media only screen and (max-width: 600px){
+  display: block;
+  height: 15%;
+  width: 35%;
+  color: black;
+  text-decoration: none;
+  background-color: #1F73B2;
+  color: white;
+  font-weight: bold;
+  line-height: 40px;
+  border-radius: 11px;
+  position: absolute;
+  bottom: 4%;
+  left: 36%;
+  }
 `;
 
 const StyledProfile = styled.div`
@@ -104,11 +136,6 @@ const ProfilePage = ({
   return (
     <StyledProfile>
       <StyledCard profileCard>
-        {isCurrentUser && (
-          <StyledEditLink className="editLink" to={`/users/${id}/edit`}>
-            Edit
-          </StyledEditLink>
-        )}
         <StyledCardHeading className="name">
           {`${firstName} ${lastName}`}
         </StyledCardHeading>
@@ -116,6 +143,11 @@ const ProfilePage = ({
         <p className="email">{`Email: ${email}`}</p>
         <p className="occupation">{`Occupation: ${occupation}`}</p>
         {isCurrentUser && displayManager()}
+        {isCurrentUser && (
+          <StyledEditLink className="editLink" to={`/users/${id}/edit`}>
+            Edit
+          </StyledEditLink>
+        )}
       </StyledCard>
       {isCurrentUser && (displayEmployees())}
       {isCurrentUser && (displayFavouriteConferences())}

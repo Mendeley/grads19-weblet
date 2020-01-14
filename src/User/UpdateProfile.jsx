@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import Input from "../Input";
 import {
   StyledForm,
+  StyledAddForm,
   StyledCard,
   StyledCardHeading,
   StyledCancelSubmit,
@@ -54,36 +55,53 @@ const UpdateProfile = ({
     <StyledForm>
       <StyledCard>
         <StyledCardHeading>Edit Profile</StyledCardHeading>
+
         <form
           onSubmit={ev => {
             ev.preventDefault();
             submitForm();
           }}
         >
-          <Input
-            label="First Name: "
-            type="text"
-            name="firstName"
-            value={updatedUser.firstName || user.firstName}
-            onChange={handleChange}
-            required
-          />
-          <Input
-            label="Last Name: "
-            type="text"
-            name="lastName"
-            value={updatedUser.lastName || user.lastName}
-            onChange={handleChange}
-            required
-          />
-          <Input
-            label="Occupation: "
-            type="text"
-            name="occupation"
-            value={updatedUser.occupation || user.occupation}
-            onChange={handleChange}
-            required
-          />
+          <StyledAddForm>
+            <Input
+              label="First Name: "
+              type="text"
+              name="firstName"
+              value={updatedUser.firstName || user.firstName}
+              onChange={handleChange}
+              required
+            />
+            <Input
+              label="Last Name: "
+              type="text"
+              name="lastName"
+              value={updatedUser.lastName || user.lastName}
+              onChange={handleChange}
+              required
+            />
+            <Input
+              label="Occupation: "
+              type="text"
+              name="occupation"
+              value={updatedUser.occupation || user.occupation}
+              onChange={handleChange}
+              required
+            />
+          </StyledAddForm>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
           <StyledSaveSubmit type="submit" value="Save" />
           <StyledCancelSubmit type="button" value="Cancel" onClick={cancelUserUpate} />
         </form>

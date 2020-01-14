@@ -5,13 +5,12 @@ import { Link, useHistory } from "react-router-dom";
 import { cookieOptions, cookieName } from "./Constants/Cookies";
 import Button from "./Button";
 import { logoutUser } from "./api";
-import ResizeImage from 'react-resize-image';
 import Logo from './ConFoundLogo.png';
 
 export const StyledNavbar = styled.nav`
   background: #1F73B2;
   width: 100%;
-  height: 100%;
+  height:100%;
   text-align: left;
 `;
 
@@ -30,6 +29,7 @@ export const StyledLink = styled(Link)`
   color: white;
   background: #1F73B2;
   font-size: 180%;
+  text-decoration: none;
 `;
 
 export const StyledButton = styled(Button)`
@@ -37,6 +37,7 @@ export const StyledButton = styled(Button)`
   background: #1F73B2;
   border: none;
   font-size: 180%;
+  text-decoration: none;
 
 `;
 
@@ -58,22 +59,31 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
   return (
     <StyledNavbar>
       <StyledList>
+        <img
+          src={Logo}
+          alt="ConFound Logo"
+          usemap="#logo"
+        />
+        <map name="logo">
+          <area shape="rect" coords="0,0,1000,1000" href="/" alt="Home"></area>
+        </map>
+        <br></br>
         <StyledListItem>
           <StyledLink to="/">Home</StyledLink>
         </StyledListItem>
         {sessionToken ? (
           <>
             <StyledListItem>
+              <StyledLink className="addConference" to="/add">
+                Add Conference
+              </StyledLink>
+            </StyledListItem>
+            <StyledListItem>
               <StyledLink
                 className="profilePage"
                 to={`/users/${sessionToken.userId}`}
               >
                 Profile
-              </StyledLink>
-            </StyledListItem>
-            <StyledListItem>
-              <StyledLink className="addConference" to="/add">
-                Add Conference
               </StyledLink>
             </StyledListItem>
             <StyledListItem>
@@ -96,11 +106,6 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
               </StyledListItem>
             </>
           )}
-        <ResizeImage
-          src={Logo}
-          alt="ConFound Logo"
-          options={{ width: 100, height: 10 }}
-        />
       </StyledList>
     </StyledNavbar>
   );
