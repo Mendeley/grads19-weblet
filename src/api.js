@@ -1,38 +1,30 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
+const spring_url = "http://confound.test.corp.mendeley.com/api";
+// const spring_url = "http://localhost/api";
+
 export const getConferenceList = async () => {
-  const response = await axios.get(
-    "http://a64db30de322f11eaacf306f8a34d69c-1025846818.eu-west-1.elb.amazonaws.com:8080/conferences"
-  );
+  const response = await axios.get(`${spring_url}/conferences`);
   return response.data;
 };
 
 export const getConferenceById = async id => {
-  const response = await axios.get(
-    `http://a64db30de322f11eaacf306f8a34d69c-1025846818.eu-west-1.elb.amazonaws.com:8080/conferences/${id}`
-  );
+  const response = await axios.get(`${spring_url}/conferences/${id}`);
   return response.data;
 };
 
 export const createNewConference = async (conference, token) => {
-  await axios.post(
-    "http://a64db30de322f11eaacf306f8a34d69c-1025846818.eu-west-1.elb.amazonaws.com:8080/conferences",
-    conference,
-    {
-      headers: { Authorization: token }
-    }
-  );
+  await axios.post("${spring_url}/conferences", conference, {
+    headers: { Authorization: token }
+  });
 };
 
 export const deleteConferenceById = async (id, token) => {
   try {
-    await axios.delete(
-      `http://a64db30de322f11eaacf306f8a34d69c-1025846818.eu-west-1.elb.amazonaws.com:8080/conferences/${id}`,
-      {
-        headers: { Authorization: token }
-      }
-    );
+    await axios.delete(`${spring_url}/conferences/${id}`, {
+      headers: { Authorization: token }
+    });
     toast.success("Conference successfully deleted!");
   } catch (error) {
     toast.error("Conference not deleted!");
@@ -42,13 +34,9 @@ export const deleteConferenceById = async (id, token) => {
 
 export const updateConferenceById = async (id, conference, token) => {
   try {
-    await axios.patch(
-      `http://a64db30de322f11eaacf306f8a34d69c-1025846818.eu-west-1.elb.amazonaws.com:8080/conferences/${id}`,
-      conference,
-      {
-        headers: { Authorization: token }
-      }
-    );
+    await axios.patch(`${spring_url}/conferences/${id}`, conference, {
+      headers: { Authorization: token }
+    });
     toast.success("Conference details have been updated!");
   } catch (error) {
     toast.error("Conference details have not been updated!");
@@ -58,10 +46,7 @@ export const updateConferenceById = async (id, conference, token) => {
 
 export const createNewUser = async user => {
   try {
-    await axios.post(
-      "http://a64db30de322f11eaacf306f8a34d69c-1025846818.eu-west-1.elb.amazonaws.com:8080/users",
-      user
-    );
+    await axios.post(`${spring_url}/users`, user);
     toast.success("User successfully registered!");
   } catch (error) {
     toast.error("User registration failed!");
@@ -70,18 +55,13 @@ export const createNewUser = async user => {
 };
 
 export const getSearchResults = async input => {
-  const response = await axios.get(
-    `http://a64db30de322f11eaacf306f8a34d69c-1025846818.eu-west-1.elb.amazonaws.com:8080/users/search?query=${input}`
-  );
+  const response = await axios.get(`${spring_url}/users/search?query=${input}`);
   return response.data;
 };
 
 export const loginUser = async user => {
   try {
-    const response = await axios.post(
-      "http://a64db30de322f11eaacf306f8a34d69c-1025846818.eu-west-1.elb.amazonaws.com:8080/auth/login",
-      user
-    );
+    const response = await axios.post(`${spring_url}/auth/login`, user);
     toast.success("Login successful!");
     return response.data;
   } catch (error) {
@@ -91,23 +71,17 @@ export const loginUser = async user => {
 };
 
 export const getUserById = async (id, token) => {
-  const response = await axios.get(
-    `http://a64db30de322f11eaacf306f8a34d69c-1025846818.eu-west-1.elb.amazonaws.com:8080/users/${id}`,
-    {
-      headers: { Authorization: token }
-    }
-  );
+  const response = await axios.get(`${spring_url}/users/${id}`, {
+    headers: { Authorization: token }
+  });
   return response.data;
 };
 
 export const logoutUser = async token => {
   try {
-    await axios.delete(
-      "http://a64db30de322f11eaacf306f8a34d69c-1025846818.eu-west-1.elb.amazonaws.com:8080/auth/logout",
-      {
-        headers: { Authorization: token }
-      }
-    );
+    await axios.delete(`${spring_url}/auth/logout`, {
+      headers: { Authorization: token }
+    });
     toast.success("Logout successful!");
   } catch (error) {
     toast.error("Logout failed!");
@@ -117,13 +91,9 @@ export const logoutUser = async token => {
 
 export const updateUserById = async (id, user, token) => {
   try {
-    await axios.patch(
-      `http://a64db30de322f11eaacf306f8a34d69c-1025846818.eu-west-1.elb.amazonaws.com:8080/users/${id}`,
-      user,
-      {
-        headers: { Authorization: token }
-      }
-    );
+    await axios.patch(`${spring_url}/users/${id}`, user, {
+      headers: { Authorization: token }
+    });
     toast.success("Profile details have been updated!");
   } catch (error) {
     toast.error("Profile details have not been updated!");
@@ -132,29 +102,23 @@ export const updateUserById = async (id, user, token) => {
 };
 
 export const getEmployeeList = async (userId, token) => {
-  const response = await axios.get(
-    `http://a64db30de322f11eaacf306f8a34d69c-1025846818.eu-west-1.elb.amazonaws.com:8080/users?manager_id=${userId}`,
-    {
-      headers: { Authorization: token }
-    }
-  );
+  const response = await axios.get(`${spring_url}/users?manager_id=${userId}`, {
+    headers: { Authorization: token }
+  });
   return response.data;
 };
 
 export const getFavouritedConferencesByUserId = async token => {
-  const response = await axios.get(
-    `http://a64db30de322f11eaacf306f8a34d69c-1025846818.eu-west-1.elb.amazonaws.com:8080/user-conferences`,
-    {
-      headers: { Authorization: token }
-    }
-  );
+  const response = await axios.get(`${spring_url}/user-conferences`, {
+    headers: { Authorization: token }
+  });
   return response.data;
 };
 
 export const addFavouriteConference = async (userId, conferenceId, token) => {
   try {
     await axios.post(
-      "http://a64db30de322f11eaacf306f8a34d69c-1025846818.eu-west-1.elb.amazonaws.com:8080/user-conferences",
+      `${spring_url}/user-conferences`,
       { userId, conferenceId },
       {
         headers: { Authorization: token }
@@ -169,12 +133,9 @@ export const addFavouriteConference = async (userId, conferenceId, token) => {
 
 export const removeFavouriteConference = async (conferenceId, token) => {
   try {
-    await axios.delete(
-      `http://a64db30de322f11eaacf306f8a34d69c-1025846818.eu-west-1.elb.amazonaws.com:8080/user-conferences/${conferenceId}`,
-      {
-        headers: { Authorization: token }
-      }
-    );
+    await axios.delete(`${spring_url}/user-conferences/${conferenceId}`, {
+      headers: { Authorization: token }
+    });
     toast.info("Conference has been unfavourited!");
   } catch (error) {
     toast.error("Conference has not been unfavourited!");
@@ -183,14 +144,10 @@ export const removeFavouriteConference = async (conferenceId, token) => {
 };
 
 export const submitNewURL = async (URL, token) => {
-  await axios.post(
-    "http://a64db30de322f11eaacf306f8a34d69c-1025846818.eu-west-1.elb.amazonaws.com:8080/add",
-    URL,
-    {
-      headers: {
-        Authorization: token,
-        "content-type": "application/json"
-      }
+  await axios.post(`${spring_url}/add`, URL, {
+    headers: {
+      Authorization: token,
+      "content-type": "application/json"
     }
-  );
+  });
 };
