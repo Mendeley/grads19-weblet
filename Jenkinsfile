@@ -7,7 +7,8 @@ pipeline {
     stages {
         stage ('checkout git') {
             steps {
-                git credentialsId: 'jenkins-gitlab', branch: 'GP19-156_deployment', url: 'git@github.com:Mendeley/grads19-weblet.git'
+              //  git credentialsId: 'jenkins-gitlab', branch: 'GP19-156_deployment', url: 'git@github.com:Mendeley/grads19-weblet.git'
+              checkout scm
             }
         }
         stage ('ecr login') {
