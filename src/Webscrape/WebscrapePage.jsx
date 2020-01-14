@@ -38,8 +38,9 @@ export const WebscrapePage = ({ allCookies = {} }) => {
 				name="URL"
 				value={URL}
 				onChange={handleChange}
+				size="60"
 			/>
-			<Input type="submit" value="Submit" />
+			<Input type="submit" value="Submit URL"/>
 		</form>
 	);
 };
