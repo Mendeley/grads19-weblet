@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { useCookies, CookiesProvider } from "react-cookie";
@@ -12,6 +12,7 @@ import LoginForm from "./User/LoginForm";
 import AuthRedirect from "./AuthRedirect";
 import AddConference from "./Conference/AddConference";
 import UserContainer from "./User/UserContainer";
+import SearchResult from "./Conference/SearchResult";
 
 const StyledApp = styled.div`
   text-align: center;
@@ -29,6 +30,8 @@ function App() {
     setCookie(cookieName, sessionTokenData, cookieOptions);
   };
 
+  const [conferences, setConferences] = useState([]);
+
   return (
     <CookiesProvider>
       <BrowserRouter>
@@ -36,7 +39,15 @@ function App() {
           <Navbar />
           <Switch>
             <Route exact path="/">
-              <ConferenceList />
+              <ConferenceList
+                conferences={conferences}
+                setConferences={setConferences}
+              />
+            </Route>
+            <Route path="/search">
+              <SearchResult
+                conferences={conferences}
+                setConferences={setConferences} />
             </Route>
             <Route path="/add">
               <AuthRedirect redirectPath="/users/login">

@@ -21,9 +21,9 @@ const StyledConferenceList = styled.ul`
 `;
 
 
+
 const ConferenceList = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [conferences, setConferences] = useState([]);
   const [error, setError] = useState(false);
 
   useEffect(() => {

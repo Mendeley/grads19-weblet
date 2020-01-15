@@ -42,7 +42,12 @@ export const StyledButton = styled(Button)`
   text-decoration: none;
 `;
 
-export const Navbar = ({ cookies, allCookies = {} }) => {
+export const Navbar = ({
+  conferences,
+  setConferences,
+  cookies,
+  allCookies = {}
+}) => {
   const history = useHistory();
   const sessionToken = allCookies.sessionToken;
   const logout = async () => {
@@ -107,6 +112,12 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
               </StyledListItem>
             </>
           )}
+
+        <StyledListItem>
+          <StyledLink className="search" to="/search">
+            Search
+              </StyledLink>
+        </StyledListItem>
       </StyledList>
     </StyledNavbar>
   );
