@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { DebounceInput } from "react-debounce-input";
 import Input from "../Input";
+import Option from "../Option";
 import { createNewUser, getSearchResults } from "../api";
+import styled from "styled-components";
 import {
   StyledCardHeading,
   StyledForm,
-  StyledCard
+  StyledAddForm,
+  StyledSearchForm,
+  StyledCard,
+  StyledSubmit
 } from "../StyledFormComponents";
 
 const RegistrationForm = () => {
@@ -31,7 +35,7 @@ const RegistrationForm = () => {
     try {
       const userList = await getSearchResults(searchInput);
       setSearchResults(userList);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   useEffect(() => {
@@ -43,6 +47,7 @@ const RegistrationForm = () => {
   const handleChange = event => {
     const { name, value } = event.target;
     setUser({ ...user, [name]: value });
+    console.log({ value })
   };
 
   const submitForm = async () => {
@@ -53,70 +58,104 @@ const RegistrationForm = () => {
     try {
       await createNewUser(newUser);
       history.push("/");
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const onSubmit = ev => {
     ev.preventDefault();
     submitForm();
   };
+
+
+  const StyledPadding = styled.div`
+  padding-top: 35px;
+  padding-bottom: 50px;
+  @media only screen and (max-width:1100px){
+  padding-top: 60px;
+  padding-bottom: 10px;
+  }
+ `
+
+  const StyledDropDown = styled.div`
+  position: absolute;
+  top: 60%;
+  left: 45%;
+  @media only screen and (max-width:1100px){
+    position: absolute;
+    top: 60%;
+    left: 23%;
+  }
+ `
   return (
     <StyledForm>
       <StyledCard>
-        <StyledCardHeading>add a new user:</StyledCardHeading>
+        <StyledCardHeading>add a new user</StyledCardHeading>
         <form onSubmit={onSubmit}>
-          <Input
-            label="First Name: "
-            type="text"
-            name="firstName"
-            value={user.firstName}
-            onChange={handleChange}
-            required
-            maxLength="100"
-          />
-          <Input
-            label="Surname: "
-            type="text"
-            name="lastName"
-            value={user.lastName}
-            onChange={handleChange}
-            required
-            maxLength="100"
-          />
-          <Input
-            label="Email Address: "
-            type="email"
-            name="email"
-            pattern="[a-zA-Z0-9\.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[\.A-Za-z]{1,10}"
-            title="Enter a valid email address such as example@email.com."
-            value={user.email}
-            onChange={handleChange}
-            required
-            maxLength="100"
-          />
-          <Input
-            label="Occupation: "
-            type="text"
-            name="occupation"
-            value={user.occupation}
-            onChange={handleChange}
-            required
-            maxLength="100"
-          />
-          <label>Manager: </label>
-          <DebounceInput
-            minLength={3}
-            debounceTimeout={500}
-            onChange={handleSearch}
-          />
-          <select onChange={handleChange} name="managerId" defaultValue={null}>
-            <option value={null}>---- select manager ----</option>
-            {searchResults.map(user => (
-              <option key={user.id} value={user.id}>
-                {user.firstName} {user.lastName}
-              </option>
-            ))}
-          </select>
+
+          <StyledAddForm>
+            <Input
+              label="First Name: "
+              type="text"
+              name="firstName"
+              value={user.firstName}
+              onChange={handleChange}
+              required
+              maxLength="100"
+            />
+            <Input
+              label="Surname: "
+              type="text"
+              name="lastName"
+              value={user.lastName}
+              onChange={handleChange}
+              required
+              maxLength="100"
+            />
+            <Input
+              label="Email Address: "
+              type="email"
+              name="email"
+              pattern="[a-zA-Z0-9\.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[\.A-Za-z]{1,10}"
+              title="Enter a valid email address such as example@email.com."
+              value={user.email}
+              onChange={handleChange}
+              required
+              maxLength="100"
+            />
+            <Input
+              label="Occupation: "
+              type="text"
+              name="occupation"
+              value={user.occupation}
+              onChange={handleChange}
+              required
+              maxLength="100"
+            />
+          </StyledAddForm>
+
+          <StyledSearchForm>
+            <Input
+              label="Manager: "
+              minLength={3}
+              debounceTimeout={500}
+              onChange={handleSearch}
+
+            />
+            {/* <StyledDropDown> */}
+
+            <select onChange={handleChange} name="managerId" defaultValue={null}>
+              <option value={null}>---- select manager ----</option>
+              {searchResults.map(user => (
+                <option key={user.id} value={user.id}>
+                  {user.firstName} {user.lastName}
+                </option>
+              ))}
+            </select>
+
+            {/* </StyledDropDown> */}
+          </StyledSearchForm>
+          <StyledPadding></StyledPadding>
+
           <Input
             label="Username: "
             type="text"
@@ -139,7 +178,9 @@ const RegistrationForm = () => {
             required
             maxLength="16"
           />
-          <Input type="submit" value="Submit" />
+
+
+          <StyledSubmit type="submit" value="Submit" />
         </form>
       </StyledCard>
     </StyledForm>

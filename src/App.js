@@ -16,7 +16,7 @@ import SearchResult from "./Conference/SearchResult";
 
 const StyledApp = styled.div`
   text-align: center;
-  background: #ccb7bb;
+  background: #FAFAFA;
   width: auto;
   min-height: 100vh;
 `;
