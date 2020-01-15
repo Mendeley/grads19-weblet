@@ -5,14 +5,12 @@ import { Link, useHistory } from "react-router-dom";
 import { cookieOptions, cookieName } from "./Constants/Cookies";
 import Button from "./Button";
 import { logoutUser } from "./api";
-import Logo from './ConFoundLogo.png';
-
-
+import Logo from "./ConFoundLogo.png";
 
 export const StyledNavbar = styled.nav`
-  background: #1F73B2;
+  background: #1f73b2;
   width: 100%;
-  height:100%;
+  height: 100%;
   text-align: left;
 `;
 
@@ -29,14 +27,14 @@ const StyledListItem = styled.li`
 
 export const StyledLink = styled(Link)`
   color: white;
-  background: #1F73B2;
+  background: #1f73b2;
   font-size: 180%;
   text-decoration: none;
 `;
 
 export const StyledButton = styled(Button)`
   color: white;
-  background: #1F73B2;
+  background: #1f73b2;
   border: none;
   font-size: 180%;
   text-decoration: none;
@@ -55,7 +53,7 @@ export const Navbar = ({
       await logoutUser(sessionToken.token);
       history.push("/");
       deleteSessionToken();
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const deleteSessionToken = () => {
@@ -65,11 +63,7 @@ export const Navbar = ({
   return (
     <StyledNavbar>
       <StyledList>
-        <img
-          src={Logo}
-          alt="ConFound Logo"
-          useMap="#logo"
-        />
+        <img src={Logo} alt="ConFound Logo" useMap="#logo" />
         <map name="logo">
           <area shape="rect" coords="0,0,1000,1000" href="/" alt="Home"></area>
         </map>
@@ -99,24 +93,23 @@ export const Navbar = ({
             </StyledListItem>
           </>
         ) : (
-            <>
-              <StyledListItem>
-                <StyledLink className="register" to="/users/register">
-                  Register
+          <>
+            <StyledListItem>
+              <StyledLink className="register" to="/users/register">
+                Register
               </StyledLink>
-              </StyledListItem>
-              <StyledListItem>
-                <StyledLink className="login" to="/users/login">
-                  Login
+            </StyledListItem>
+            <StyledListItem>
+              <StyledLink className="login" to="/users/login">
+                Login
               </StyledLink>
-              </StyledListItem>
-            </>
-          )}
-
+            </StyledListItem>
+          </>
+        )}
         <StyledListItem>
           <StyledLink className="search" to="/search">
             Search
-              </StyledLink>
+          </StyledLink>
         </StyledListItem>
       </StyledList>
     </StyledNavbar>

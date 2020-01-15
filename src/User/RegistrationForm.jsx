@@ -74,16 +74,16 @@ const RegistrationForm = () => {
     }
   `;
 
-  const StyledDropDown = styled.div`
-    position: absolute;
-    top: 60%;
-    left: 45%;
-    @media only screen and (max-width: 1100px) {
-      position: absolute;
-      top: 60%;
-      left: 23%;
-    }
-  `;
+  // const StyledDropDown = styled.div`
+  //   position: absolute;
+  //   top: 60%;
+  //   left: 45%;
+  //   @media only screen and (max-width: 1100px) {
+  //     position: absolute;
+  //     top: 60%;
+  //     left: 23%;
+  //   }
+  // `;
   return (
     <StyledForm>
       <StyledCard>
@@ -138,7 +138,6 @@ const RegistrationForm = () => {
               onChange={handleSearch}
             />
             {/* <StyledDropDown> */}
-
             <select
               onChange={handleChange}
               name="managerId"
@@ -151,7 +150,6 @@ const RegistrationForm = () => {
                 </option>
               ))}
             </select>
-
             {/* </StyledDropDown> */}
           </StyledSearchForm>
           <StyledPadding></StyledPadding>
@@ -178,7 +176,6 @@ const RegistrationForm = () => {
             required
             maxLength="16"
           />
-
 
           <StyledSubmit type="submit" value="Submit" />
         </form>
