@@ -29,7 +29,12 @@ export const StyledLink = styled(Link)`
   color: white;
 `;
 
-export const Navbar = ({ cookies, allCookies = {} }) => {
+export const Navbar = ({
+  conferences,
+  setConferences,
+  cookies,
+  allCookies = {}
+}) => {
   const history = useHistory();
   const sessionToken = allCookies.sessionToken;
   const logout = async () => {
@@ -86,7 +91,10 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
           </>
         )}
         <StyledListItem>
-          <ElasticsearchBar />
+          <ElasticsearchBar
+            EsSearchResults={conferences}
+            setEsSearchResults={setConferences}
+          />
         </StyledListItem>
       </StyledList>
     </StyledNavbar>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { useCookies, CookiesProvider } from "react-cookie";
@@ -30,6 +30,8 @@ function App() {
     setCookie(cookieName, sessionTokenData, cookieOptions);
   };
 
+  const [conferences, setConferences] = useState([]);
+
   return (
     <CookiesProvider>
       <BrowserRouter>
@@ -37,7 +39,10 @@ function App() {
           <Navbar />
           <Switch>
             <Route exact path="/">
-              <ConferenceList />
+              <ConferenceList
+                conferences={conferences}
+                setConferences={setConferences}
+              />
             </Route>
             <Route path="/add">
               <AuthRedirect redirectPath="/users/login">

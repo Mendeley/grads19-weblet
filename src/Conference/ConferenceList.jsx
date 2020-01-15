@@ -12,9 +12,9 @@ const StyledConferenceList = styled.ul`
   justify-content: center;
 `;
 
-const ConferenceList = () => {
+const ConferenceList = ({ conferences, setConferences }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [conferences, setConferences] = useState([]);
+  // const [conferences, setConferences] = useState([]);
   const [error, setError] = useState(false);
 
   useEffect(() => {

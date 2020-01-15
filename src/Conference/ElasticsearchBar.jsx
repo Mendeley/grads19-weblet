@@ -3,9 +3,9 @@ import { DebounceInput } from "react-debounce-input";
 import Input from "../Input";
 import { getElasticsearchResults } from "../api";
 
-const ElasticsearchBar = () => {
+const ElasticsearchBar = ({ EsSearchResults, setEsSearchResults }) => {
   const [EsSearchInput, setEsSearchInput] = useState("");
-  const [EsSearchResults, setEsSearchResults] = useState([]);
+  // const [EsSearchResults, setEsSearchResults] = useState([]);
 
   const handleSearch = event => {
     setEsSearchInput(event.target.value);
