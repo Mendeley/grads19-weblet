@@ -11,7 +11,7 @@ const StyledConferenceList = styled.ul`
   flex-wrap: wrap;
   justify-content: center;
 
-  @media only screen and (max-width:600px){
+  @media only screen and (max-width: 600px) {
     list-style-type: none;
     margin: 0;
     width: 80%;
@@ -20,9 +20,7 @@ const StyledConferenceList = styled.ul`
   }
 `;
 
-
-
-const ConferenceList = () => {
+const ConferenceList = ({ conferences, setConferences }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -41,8 +39,6 @@ const ConferenceList = () => {
     }
     fetchData();
   }, []);
-
-
 
   return (
     <StyledConferenceList>
