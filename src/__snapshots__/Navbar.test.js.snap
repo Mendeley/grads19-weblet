@@ -110,6 +110,35 @@ exports[`Navbar renders a logged-in navbar with text 1`] = `
                   className="sc-AykKF btWmVE"
                 >
                   <Styled(Link)
+                    className="search"
+                    to="/search"
+                  >
+                    <Link
+                      className="sc-AykKG iwAXoS search"
+                      to="/search"
+                    >
+                      <LinkAnchor
+                        className="sc-AykKG iwAXoS search"
+                        href="/search"
+                        navigate={[Function]}
+                      >
+                        <a
+                          className="sc-AykKG iwAXoS search"
+                          href="/search"
+                          onClick={[Function]}
+                        >
+                          Search
+                        </a>
+                      </LinkAnchor>
+                    </Link>
+                  </Styled(Link)>
+                </li>
+              </styled.li>
+              <styled.li>
+                <li
+                  className="sc-AykKF btWmVE"
+                >
+                  <Styled(Link)
                     className="addConference"
                     to="/add"
                   >
@@ -191,35 +220,6 @@ exports[`Navbar renders a logged-in navbar with text 1`] = `
                       </styled.button>
                     </Button>
                   </Styled(Button)>
-                </li>
-              </styled.li>
-              <styled.li>
-                <li
-                  className="sc-AykKF btWmVE"
-                >
-                  <Styled(Link)
-                    className="search"
-                    to="/search"
-                  >
-                    <Link
-                      className="sc-AykKG iwAXoS search"
-                      to="/search"
-                    >
-                      <LinkAnchor
-                        className="sc-AykKG iwAXoS search"
-                        href="/search"
-                        navigate={[Function]}
-                      >
-                        <a
-                          className="sc-AykKG iwAXoS search"
-                          href="/search"
-                          onClick={[Function]}
-                        >
-                          Search
-                        </a>
-                      </LinkAnchor>
-                    </Link>
-                  </Styled(Link)>
                 </li>
               </styled.li>
             </ul>
@@ -332,6 +332,35 @@ exports[`Navbar renders a logged-out navbar with text 1`] = `
                   className="sc-AykKF btWmVE"
                 >
                   <Styled(Link)
+                    className="search"
+                    to="/search"
+                  >
+                    <Link
+                      className="sc-AykKG iwAXoS search"
+                      to="/search"
+                    >
+                      <LinkAnchor
+                        className="sc-AykKG iwAXoS search"
+                        href="/search"
+                        navigate={[Function]}
+                      >
+                        <a
+                          className="sc-AykKG iwAXoS search"
+                          href="/search"
+                          onClick={[Function]}
+                        >
+                          Search
+                        </a>
+                      </LinkAnchor>
+                    </Link>
+                  </Styled(Link)>
+                </li>
+              </styled.li>
+              <styled.li>
+                <li
+                  className="sc-AykKF btWmVE"
+                >
+                  <Styled(Link)
                     className="register"
                     to="/users/register"
                   >
@@ -379,35 +408,6 @@ exports[`Navbar renders a logged-out navbar with text 1`] = `
                           onClick={[Function]}
                         >
                           Login
-                        </a>
-                      </LinkAnchor>
-                    </Link>
-                  </Styled(Link)>
-                </li>
-              </styled.li>
-              <styled.li>
-                <li
-                  className="sc-AykKF btWmVE"
-                >
-                  <Styled(Link)
-                    className="search"
-                    to="/search"
-                  >
-                    <Link
-                      className="sc-AykKG iwAXoS search"
-                      to="/search"
-                    >
-                      <LinkAnchor
-                        className="sc-AykKG iwAXoS search"
-                        href="/search"
-                        navigate={[Function]}
-                      >
-                        <a
-                          className="sc-AykKG iwAXoS search"
-                          href="/search"
-                          onClick={[Function]}
-                        >
-                          Search
                         </a>
                       </LinkAnchor>
                     </Link>

@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import { getTimestring, getDatestring } from "../utils";
 
 const StyledCardHeading = styled.div`
-  background: #1F73B2;
+  background: #1f73b2;
   width: 100%;
   height: 55px;
   font-size: 24px;
   font-weight: bold;
   text-align: center;
-  color: white; 
+  color: white;
 `;
 
 const StyledCard = styled.div`
@@ -38,7 +38,7 @@ export const StyledLink = styled(Link)`
   height: 15%;
   width: 25%;
   text-decoration: none;
-  background-color: #1F73B2;
+  background-color: #1f73b2;
   color: white;
   line-height: 40px;
   border-radius: 11px;

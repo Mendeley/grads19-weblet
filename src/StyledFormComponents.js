@@ -12,7 +12,6 @@ const StyledForm = styled.div`
   justify-content: space-evenly;
   padding-bottom: 50px;
   font-size: 25px;
-
 `;
 
 const StyledCardHeading = styled.h3`
@@ -25,7 +24,7 @@ const StyledCardHeading = styled.h3`
   vertical-align: middle;
   text-transform: uppercase;
 
-  @media only screen and (max-width: 600px){
+  @media only screen and (max-width: 600px) {
     background: white;
     width: 100%;
     height: 5%;
@@ -49,11 +48,11 @@ const StyledCard = styled.div`
   width: ${({ profileCard }) => (profileCard ? `70%` : `85%`)};
   height: ${({ profileCard }) => (profileCard ? `0%` : `100%`)};
   margin: ${({ profileCard }) => (profileCard ? `10px` : `0 auto`)};
-  display: ${({ profileCard }) => (profileCard && `inline-block`)};
+  display: ${({ profileCard }) => profileCard && `inline-block`};
   border-style: solid;
   border-color: black;
   border-radius: 25px;
-  background: #FFFFFF;
+  background: #ffffff;
   transition: 0.3s;
   :hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -68,25 +67,24 @@ const StyledCard = styled.div`
   padding-left: 60px;
   padding-right: 60px;
 
-  @media only screen and (max-width:600px){
-  width: ${({ profileCard }) => (profileCard ? `70%` : `100%`)};
-  height: ${({ profileCard }) => (profileCard ? `0%` : `100%`)};
-  margin: ${({ profileCard }) => (profileCard ? `10px` : `0`)};
-  display: ${({ profileCard }) => (profileCard && `inline-block`)};
-  border-style: solid;
-  border-color: black;
-  border-radius: 25px;
-  background: #FFFFFF;
-  padding: 0;
-  padding-bottom: 50px;
-  
+  @media only screen and (max-width: 600px) {
+    width: ${({ profileCard }) => (profileCard ? `70%` : `100%`)};
+    height: ${({ profileCard }) => (profileCard ? `0%` : `100%`)};
+    margin: ${({ profileCard }) => (profileCard ? `10px` : `0`)};
+    display: ${({ profileCard }) => profileCard && `inline-block`};
+    border-style: solid;
+    border-color: black;
+    border-radius: 25px;
+    background: #ffffff;
+    padding: 0;
+    padding-bottom: 50px;
   }
 `;
 
 const StyledCancelSubmit = styled.input`
   border-style: solid;
   border-radius: 11px;
-  background-color: #1F73B2;
+  background-color: #1f73b2;
   color: white;
   padding: 8px 24px;
   text-decoration: none;
@@ -97,10 +95,10 @@ const StyledCancelSubmit = styled.input`
   bottom: 8%;
   right: 10%;
 
-   @media only screen and (max-width:1100px){
-      border-style: solid;
+  @media only screen and (max-width: 1100px) {
+    border-style: solid;
     border-radius: 11px;
-    background-color: #1F73B2;
+    background-color: #1f73b2;
     color: white;
     padding: 8px 24px;
     text-decoration: none;
@@ -110,13 +108,11 @@ const StyledCancelSubmit = styled.input`
     position: absolute;
     bottom: 2%;
     left: 7%;
-   
   }
-  
-  `
+`;
 const StyledSaveSubmit = styled.input`
   border-style: solid;
-  background-color: #1F73B2;
+  background-color: #1f73b2;
   border-radius: 11px;
   color: white;
   padding: 8px 24px;
@@ -128,9 +124,9 @@ const StyledSaveSubmit = styled.input`
   bottom: 8%;
   right: 20%;
 
-  @media only screen and (max-width:1100px){
+  @media only screen and (max-width: 1100px) {
     border-style: solid;
-    background-color: #1F73B2;
+    background-color: #1f73b2;
     border-radius: 11px;
     color: white;
     padding: 8px 24px;
@@ -142,12 +138,10 @@ const StyledSaveSubmit = styled.input`
     bottom: 2%;
     right: 7%;
   }
-
-
-  `
+`;
 const StyledSubmit = styled.input`
   border-style: solid;
-  background-color: #1F73B2;
+  background-color: #1f73b2;
   border-radius: 11px;
   color: white;
   padding: 8px 24px;
@@ -157,13 +151,12 @@ const StyledSubmit = styled.input`
   margin: auto;
   display: flex;
   justify-content: center;
-      width: 110px;
-    
+  width: 110px;
 
-  @media only screen and (min-width: 600px) and (max-width:1100px){
+  @media only screen and (min-width: 600px) and (max-width: 1100px) {
     display: block;
     text-decoration: none;
-    background-color: #1F73B2;
+    background-color: #1f73b2;
     color: white;
     border-radius: 11px;
     padding: 8px 24px;
@@ -177,11 +170,10 @@ const StyledSubmit = styled.input`
     width: 90px;
   }
 
-    @media only screen and (max-width:600px){
-
+  @media only screen and (max-width: 600px) {
     display: block;
     text-decoration: none;
-    background-color: #1F73B2;
+    background-color: #1f73b2;
     color: white;
     border-radius: 11px;
     padding: 8px 24px;
@@ -194,7 +186,7 @@ const StyledSubmit = styled.input`
     justify-content: center;
     width: 85px;
   }
-  `
+`;
 
 const StyledAddForm = styled.div`
   display: flex;
@@ -202,19 +194,26 @@ const StyledAddForm = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  @media only screen and (max-width:1100px){
+  @media only screen and (max-width: 1100px) {
     display: flex;
     flex-direction: column;
     justify-content: center;
- 
   }
-
-
-  `
+`;
 
 const StyledSearchForm = styled.div`
   display: inline-grid;
   justify-items: center;
-  `
+`;
 
-export { StyledCardHeading, StyledCardText, StyledForm, StyledCard, StyledCancelSubmit, StyledSaveSubmit, StyledSubmit, StyledAddForm, StyledSearchForm };
+export {
+  StyledCardHeading,
+  StyledCardText,
+  StyledForm,
+  StyledCard,
+  StyledCancelSubmit,
+  StyledSaveSubmit,
+  StyledSubmit,
+  StyledAddForm,
+  StyledSearchForm
+};

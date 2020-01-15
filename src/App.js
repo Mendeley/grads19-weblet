@@ -16,7 +16,7 @@ import SearchResult from "./Conference/SearchResult";
 
 const StyledApp = styled.div`
   text-align: center;
-  background: #FAFAFA;
+  background: #fafafa;
   width: auto;
   min-height: 100vh;
 `;
@@ -47,7 +47,8 @@ function App() {
             <Route path="/search">
               <SearchResult
                 conferences={conferences}
-                setConferences={setConferences} />
+                setConferences={setConferences}
+              />
             </Route>
             <Route path="/add">
               <AuthRedirect redirectPath="/users/login">

@@ -17,7 +17,7 @@ export const StyledEditLink = styled(Link)`
   width: 7%;
   color: black;
   text-decoration: none;
-  background-color: #1F73B2;
+  background-color: #1f73b2;
   color: white;
   font-weight: bold;
   line-height: 40px;
@@ -26,36 +26,36 @@ export const StyledEditLink = styled(Link)`
   bottom: 12%;
   right: 10%;
 
-  @media only screen and (min-width:600px) and (max-width: 1100px){
-  display: block;
-  height: 13%;
-  width: 18%;
-  color: black;
-  text-decoration: none;
-  background-color: #1F73B2;
-  color: white;
-  font-weight: bold;
-  line-height: 40px;
-  border-radius: 11px;
-  position: absolute;
-  bottom: 4%;
-  right: 6%;
+  @media only screen and (min-width: 600px) and (max-width: 1100px) {
+    display: block;
+    height: 13%;
+    width: 18%;
+    color: black;
+    text-decoration: none;
+    background-color: #1f73b2;
+    color: white;
+    font-weight: bold;
+    line-height: 40px;
+    border-radius: 11px;
+    position: absolute;
+    bottom: 4%;
+    right: 6%;
   }
 
-  @media only screen and (max-width: 600px){
-  display: block;
-  height: 15%;
-  width: 35%;
-  color: black;
-  text-decoration: none;
-  background-color: #1F73B2;
-  color: white;
-  font-weight: bold;
-  line-height: 40px;
-  border-radius: 11px;
-  position: absolute;
-  bottom: 4%;
-  left: 36%;
+  @media only screen and (max-width: 600px) {
+    display: block;
+    height: 15%;
+    width: 35%;
+    color: black;
+    text-decoration: none;
+    background-color: #1f73b2;
+    color: white;
+    font-weight: bold;
+    line-height: 40px;
+    border-radius: 11px;
+    position: absolute;
+    bottom: 4%;
+    left: 36%;
   }
 `;
 
@@ -101,7 +101,6 @@ const ProfilePage = ({
     }
   };
 
-
   const displayFavouriteConferences = () => {
     if (favouriteConferences.length) {
       return (
@@ -115,9 +114,10 @@ const ProfilePage = ({
               favouriteConferences={favouriteConferences}
             />
           </StyledCard>
-        </>)
+        </>
+      );
     }
-  }
+  };
 
   const displayEmployees = () => {
     if (employees.length) {
@@ -129,9 +129,10 @@ const ProfilePage = ({
             </StyledCardHeading>
             <EmployeeList className="employeeList" employees={employees} />
           </StyledCard>
-        </>)
+        </>
+      );
     }
-  }
+  };
 
   return (
     <StyledProfile>
@@ -149,9 +150,9 @@ const ProfilePage = ({
           </StyledEditLink>
         )}
       </StyledCard>
-      {isCurrentUser && (displayEmployees())}
-      {isCurrentUser && (displayFavouriteConferences())}
-    </StyledProfile >
+      {isCurrentUser && displayEmployees()}
+      {isCurrentUser && displayFavouriteConferences()}
+    </StyledProfile>
   );
 };
 

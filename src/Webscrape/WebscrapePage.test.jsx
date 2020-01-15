@@ -6,7 +6,7 @@ import Adapter from "enzyme-adapter-react-16";
 import { Router, MemoryRouter } from "react-router-dom";
 import { act } from "react-dom/test-utils";
 import { createMemoryHistory } from "history";
-import { wrapper, setMountedWrapper } from "../TestUtils";
+import { setMountedWrapper } from "../TestUtils";
 
 configure({ adapter: new Adapter() });
 
