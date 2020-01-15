@@ -3,7 +3,8 @@ import { useHistory } from "react-router-dom";
 import { withCookies } from "react-cookie";
 import Input from "../Input";
 import { createNewConference } from "../api";
-import { StyledSubmit, StyledAddForm } from "../StyledFormComponents";
+import WebscrapePage from "../Webscrape/WebscrapePage";
+import { StyledCardText, StyledSubmit, StyledAddForm } from "../StyledFormComponents";
 import styled from "styled-components";
 
 export const AddConferenceForm = ({ allCookies = {} }) => {
@@ -41,6 +42,9 @@ export const AddConferenceForm = ({ allCookies = {} }) => {
  `
 
   return (
+    <>
+      <WebscrapePage setConference={setConference}/>
+      <StyledCardText>Or:</StyledCardText>
     <form
       onSubmit={ev => {
         ev.preventDefault();
