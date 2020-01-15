@@ -15,7 +15,7 @@ import UserContainer from "./User/UserContainer";
 
 const StyledApp = styled.div`
   text-align: center;
-  background: #ccb7bb;
+  background: #FAFAFA;
   width: auto;
   min-height: 100vh;
 `;
