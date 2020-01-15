@@ -42,7 +42,7 @@ export const Navbar = ({
       await logoutUser(sessionToken.token);
       history.push("/");
       deleteSessionToken();
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const deleteSessionToken = () => {
@@ -77,24 +77,23 @@ export const Navbar = ({
             </StyledListItem>
           </>
         ) : (
-          <>
-            <StyledListItem>
-              <StyledLink className="register" to="/users/register">
-                Register
+            <>
+              <StyledListItem>
+                <StyledLink className="register" to="/users/register">
+                  Register
               </StyledLink>
-            </StyledListItem>
-            <StyledListItem>
-              <StyledLink className="login" to="/users/login">
-                Login
+              </StyledListItem>
+              <StyledListItem>
+                <StyledLink className="login" to="/users/login">
+                  Login
               </StyledLink>
-            </StyledListItem>
-          </>
-        )}
+              </StyledListItem>
+            </>
+          )}
         <StyledListItem>
-          <ElasticsearchBar
-            EsSearchResults={conferences}
-            setEsSearchResults={setConferences}
-          />
+          <StyledLink className="search" to="/search">
+            Search
+              </StyledLink>
         </StyledListItem>
       </StyledList>
     </StyledNavbar>

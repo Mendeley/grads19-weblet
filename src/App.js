@@ -5,7 +5,6 @@ import { useCookies, CookiesProvider } from "react-cookie";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ConferenceContainer from "./Conference/ConferenceContainer";
-//import ElasticsearchBar from "./Conference/ElasticsearchBar";
 import ConferenceList from "./Conference/ConferenceList";
 import Navbar from "./Navbar";
 import RegistrationForm from "./User/RegistrationForm";
@@ -13,6 +12,7 @@ import LoginForm from "./User/LoginForm";
 import AuthRedirect from "./AuthRedirect";
 import AddConference from "./Conference/AddConference";
 import UserContainer from "./User/UserContainer";
+import SearchResult from "./Conference/SearchResult";
 
 const StyledApp = styled.div`
   text-align: center;
@@ -43,6 +43,11 @@ function App() {
                 conferences={conferences}
                 setConferences={setConferences}
               />
+            </Route>
+            <Route path="/search">
+              <SearchResult
+                conferences={conferences}
+                setConferences={setConferences} />
             </Route>
             <Route path="/add">
               <AuthRedirect redirectPath="/users/login">

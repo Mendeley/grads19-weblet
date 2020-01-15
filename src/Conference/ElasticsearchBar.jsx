@@ -1,34 +1,37 @@
-import React, { useState, useEffect } from "react";
-import { DebounceInput } from "react-debounce-input";
-import Input from "../Input";
-import { getElasticsearchResults } from "../api";
+// import React, { useState, useEffect } from "react";
+// import { useHistory } from "react-router-dom";
+// import Input from "../Input";
+// import { getElasticsearchResults } from "../api";
 
-const ElasticsearchBar = ({ EsSearchResults, setEsSearchResults }) => {
-  const [EsSearchInput, setEsSearchInput] = useState("");
-  // const [EsSearchResults, setEsSearchResults] = useState([]);
+// const ElasticsearchBar = () => {
+//   let history = useHistory();
+//   const [EsSearchInput, setEsSearchInput] = useState("");
 
-  const handleSearch = event => {
-    setEsSearchInput(event.target.value);
-  };
+//   const handleSearch = event => {
+//     setEsSearchInput(event.target.value);
+//   };
 
-  const searchConferences = async () => {
-    try {
-      const conferenceList = await getElasticsearchResults(EsSearchInput);
-      setEsSearchResults(conferenceList);
-    } catch (error) {}
-  };
+//   const searchConferences = async () => {
+//     try {
+//       console.log(EsSearchInput);
+//       const conferenceList = await getElasticsearchResults(EsSearchInput);
+//       console.log(conferenceList);
 
-  const onSubmit = ev => {
-    ev.preventDefault();
-    searchConferences();
-  };
+//     } catch (error) { }
+//   };
 
-  return (
-    <form onSubmit={onSubmit}>
-      <Input onChange={handleSearch} />
-      <Input type="submit" value="Submit" />
-    </form>
-  );
-};
+//   const onSubmit = ev => {
+//     ev.preventDefault();
+//     searchConferences();
+//     //history.push("/search");
+//   };
 
-export default ElasticsearchBar;
+//   return (
+//     <form onSubmit={onSubmit}>
+//       <Input onChange={handleSearch} placeholder="Search..." />
+//       <Input type="submit" value="Submit" />
+//     </form>
+//   );
+// };
+
+// export default ElasticsearchBar;
