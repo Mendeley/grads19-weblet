@@ -22,7 +22,7 @@ const StyledConferenceList = styled.ul`
 
 
 
-const ConferenceList = () => {
+const ConferenceList = ({ conferences, setConferences }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 

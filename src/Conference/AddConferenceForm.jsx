@@ -43,64 +43,64 @@ export const AddConferenceForm = ({ allCookies = {} }) => {
 
   return (
     <>
-      <WebscrapePage setConference={setConference}/>
+      <WebscrapePage setConference={setConference} />
       <StyledCardText>Or:</StyledCardText>
-    <form
-      onSubmit={ev => {
-        ev.preventDefault();
-        submitForm();
-      }}
-    >
-      <StyledAddForm>
-        <Input
-          label="Conference Name: "
-          type="text"
-          name="name"
-          value={conference.name}
-          onChange={handleChange}
-          required
-          maxLength="80"
-        />
-        <Input
-          label="Date and Time: "
-          type="datetime-local"
-          name="dateTime"
-          value={conference.dateTime}
-          onChange={handleChange}
-          required
-        />
-        <Input
-          label="City: "
-          type="text"
-          name="city"
-          value={conference.city}
-          onChange={handleChange}
-          required
-          maxLength="50"
-        />
-        <Input
-          label="Description: "
-          type="text"
-          name="description"
-          value={conference.description}
-          onChange={handleChange}
-          required
-          maxLength="1000"
-        />
-        <Input
-          label="Topic: "
-          type="text"
-          name="topic"
-          value={conference.topic}
-          onChange={handleChange}
-          required
-          maxLength="20"
-        />
-      </StyledAddForm>
-      <StyledPadding></StyledPadding>
-      <StyledSubmit type="submit" value="Submit" />
-
-    </form>
+      <form
+        onSubmit={ev => {
+          ev.preventDefault();
+          submitForm();
+        }}
+      >
+        <StyledAddForm>
+          <Input
+            label="Conference Name: "
+            type="text"
+            name="name"
+            value={conference.name}
+            onChange={handleChange}
+            required
+            maxLength="80"
+          />
+          <Input
+            label="Date and Time: "
+            type="datetime-local"
+            name="dateTime"
+            value={conference.dateTime}
+            onChange={handleChange}
+            required
+          />
+          <Input
+            label="City: "
+            type="text"
+            name="city"
+            value={conference.city}
+            onChange={handleChange}
+            required
+            maxLength="50"
+          />
+          <Input
+            label="Description: "
+            type="text"
+            name="description"
+            value={conference.description}
+            onChange={handleChange}
+            required
+            maxLength="1000"
+          />
+          <Input
+            label="Topic: "
+            type="text"
+            name="topic"
+            value={conference.topic}
+            onChange={handleChange}
+            required
+            maxLength="20"
+          />
+        </StyledAddForm>
+        <StyledPadding></StyledPadding>
+        <StyledSubmit type="submit" value="Submit" />
+      </form>
+    </>
   );
 };
 export default withCookies(AddConferenceForm);

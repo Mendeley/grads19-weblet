@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Input from "../Input";
-import Option from "../Option";
 import { createNewUser, getSearchResults } from "../api";
 import styled from "styled-components";
 import {
@@ -76,16 +75,7 @@ const RegistrationForm = () => {
   }
  `
 
-  const StyledDropDown = styled.div`
-  position: absolute;
-  top: 60%;
-  left: 45%;
-  @media only screen and (max-width:1100px){
-    position: absolute;
-    top: 60%;
-    left: 23%;
-  }
- `
+
   return (
     <StyledForm>
       <StyledCard>
@@ -141,7 +131,7 @@ const RegistrationForm = () => {
               onChange={handleSearch}
 
             />
-            {/* <StyledDropDown> */}
+
 
             <select onChange={handleChange} name="managerId" defaultValue={null}>
               <option value={null}>---- select manager ----</option>
@@ -152,33 +142,33 @@ const RegistrationForm = () => {
               ))}
             </select>
 
-            {/* </StyledDropDown> */}
+
           </StyledSearchForm>
           <StyledPadding></StyledPadding>
-
-          <Input
-            label="Username: "
-            type="text"
-            name="username"
-            pattern="[a-zA-Z0-9]*"
-            title="Must not contain any spaces or special characters."
-            value={user.username}
-            onChange={handleChange}
-            required
-            maxLength="100"
-          />
-          <Input
-            label="Password: "
-            type="password"
-            name="password"
-            pattern="((?=.*[a-z])(?=.*[0-9])(?=.*[!?\\#@^&£$*+;:~])(?=.*[A-Z]).{8,16})"
-            title="Must contain at least one number, one uppercase and lowercase letter, one special character and have between 8 and 16 characters."
-            value={user.password}
-            onChange={handleChange}
-            required
-            maxLength="16"
-          />
-
+          <StyledAddForm>
+            <Input
+              label="Username: "
+              type="text"
+              name="username"
+              pattern="[a-zA-Z0-9]*"
+              title="Must not contain any spaces or special characters."
+              value={user.username}
+              onChange={handleChange}
+              required
+              maxLength="100"
+            />
+            <Input
+              label="Password: "
+              type="password"
+              name="password"
+              pattern="((?=.*[a-z])(?=.*[0-9])(?=.*[!?\\#@^&£$*+;:~])(?=.*[A-Z]).{8,16})"
+              title="Must contain at least one number, one uppercase and lowercase letter, one special character and have between 8 and 16 characters."
+              value={user.password}
+              onChange={handleChange}
+              required
+              maxLength="16"
+            />
+          </StyledAddForm>
 
           <StyledSubmit type="submit" value="Submit" />
         </form>

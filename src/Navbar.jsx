@@ -77,6 +77,11 @@ export const Navbar = ({
         <StyledListItem>
           <StyledLink to="/">Home</StyledLink>
         </StyledListItem>
+        <StyledListItem>
+          <StyledLink className="search" to="/search">
+            Search
+              </StyledLink>
+        </StyledListItem>
         {sessionToken ? (
           <>
             <StyledListItem>
@@ -112,12 +117,6 @@ export const Navbar = ({
               </StyledListItem>
             </>
           )}
-
-        <StyledListItem>
-          <StyledLink className="search" to="/search">
-            Search
-              </StyledLink>
-        </StyledListItem>
       </StyledList>
     </StyledNavbar>
   );
