@@ -13,20 +13,54 @@ export const StyledLink = styled(Link)`
 
 export const StyledEditLink = styled(Link)`
   display: block;
-  height: 40px;
-  width: 100px;
+  height: 13%;
+  width: 7%;
+  color: black;
   text-decoration: none;
-  background-color: papayawhip;
+  background-color: #1F73B2;
+  color: white;
+  font-weight: bold;
   line-height: 40px;
   border-radius: 11px;
-  border: 3px solid black;
   position: absolute;
-  bottom: 18px;
-  left: 18px;
+  bottom: 12%;
+  right: 10%;
+
+  @media only screen and (min-width:600px) and (max-width: 1100px){
+  display: block;
+  height: 13%;
+  width: 18%;
+  color: black;
+  text-decoration: none;
+  background-color: #1F73B2;
+  color: white;
+  font-weight: bold;
+  line-height: 40px;
+  border-radius: 11px;
+  position: absolute;
+  bottom: 4%;
+  right: 6%;
+  }
+
+  @media only screen and (max-width: 600px){
+  display: block;
+  height: 15%;
+  width: 35%;
+  color: black;
+  text-decoration: none;
+  background-color: #1F73B2;
+  color: white;
+  font-weight: bold;
+  line-height: 40px;
+  border-radius: 11px;
+  position: absolute;
+  bottom: 4%;
+  left: 36%;
+  }
 `;
 
 const StyledProfile = styled.div`
-  height: 400px;
+  height: 100%;
   padding: 20px;
 `;
 
@@ -67,14 +101,41 @@ const ProfilePage = ({
     }
   };
 
+
+  const displayFavouriteConferences = () => {
+    if (favouriteConferences.length) {
+      return (
+        <>
+          <StyledCard profileCard>
+            <StyledCardHeading className="favouriteConferencesHeader">
+              Favourited Conferences:
+            </StyledCardHeading>
+            <FavouriteConferenceList
+              className="favouriteConferencesList"
+              favouriteConferences={favouriteConferences}
+            />
+          </StyledCard>
+        </>)
+    }
+  }
+
+  const displayEmployees = () => {
+    if (employees.length) {
+      return (
+        <>
+          <StyledCard profileCard className="employeesCard">
+            <StyledCardHeading className="employeeListHeader">
+              Employees:
+            </StyledCardHeading>
+            <EmployeeList className="employeeList" employees={employees} />
+          </StyledCard>
+        </>)
+    }
+  }
+
   return (
     <StyledProfile>
       <StyledCard profileCard>
-        {isCurrentUser && (
-          <StyledEditLink className="editLink" to={`/users/${id}/edit`}>
-            Edit
-          </StyledEditLink>
-        )}
         <StyledCardHeading className="name">
           {`${firstName} ${lastName}`}
         </StyledCardHeading>
@@ -82,43 +143,15 @@ const ProfilePage = ({
         <p className="email">{`Email: ${email}`}</p>
         <p className="occupation">{`Occupation: ${occupation}`}</p>
         {isCurrentUser && displayManager()}
+        {isCurrentUser && (
+          <StyledEditLink className="editLink" to={`/users/${id}/edit`}>
+            Edit
+          </StyledEditLink>
+        )}
       </StyledCard>
-      {isCurrentUser && (
-        <>
-          <StyledCard profileCard>
-            {favouriteConferences.length > 0 ? (
-              <>
-                <StyledCardHeading className="favouriteConferencesHeader">
-                  Favourited Conferences:
-                </StyledCardHeading>
-                <FavouriteConferenceList
-                  className="favouriteConferencesList"
-                  favouriteConferences={favouriteConferences}
-                />
-              </>
-            ) : (
-              <StyledCardHeading className="favouriteConferencesHeader">
-                No Favourited Conferences
-              </StyledCardHeading>
-            )}
-          </StyledCard>
-          <StyledCard className="employeesCard">
-            {employees.length > 0 ? (
-              <>
-                <StyledCardHeading className="employeeListHeader">
-                  Employees:
-                </StyledCardHeading>
-                <EmployeeList className="employeeList" employees={employees} />
-              </>
-            ) : (
-              <StyledCardHeading className="employeeListHeader">
-                No Linked Employees
-              </StyledCardHeading>
-            )}
-          </StyledCard>
-        </>
-      )}
-    </StyledProfile>
+      {isCurrentUser && (displayEmployees())}
+      {isCurrentUser && (displayFavouriteConferences())}
+    </StyledProfile >
   );
 };
 
