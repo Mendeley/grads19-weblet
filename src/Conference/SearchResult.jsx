@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ConferenceItem from "./ConferenceItem";
 import Input from "../Input";
 import { getElasticsearchResults } from "../api";
+import { StyledSubmit } from "../StyledFormComponents";
 
 const StyledConferenceList = styled.ul`
   margin: 0;
@@ -43,7 +44,7 @@ const SearchResult = () => {
     <div>
       <form onSubmit={onSubmit}>
         <Input onChange={handleSearch} placeholder="Search by topic..." />
-        <Input type="submit" value="Submit" />
+        <StyledSubmit type="submit" value="Submit" />
       </form>
 
       <StyledConferenceList>
