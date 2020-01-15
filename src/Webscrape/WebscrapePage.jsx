@@ -43,10 +43,7 @@ export const WebscrapePage = ({ allCookies = {} }) => {
 			</StyledAddForm>
 			<br></br>
 			<br></br>
-			<StyledSubmit type="submit" value="Submit" />
-
-
-
+			<StyledSubmit type="submit" value="Submit URL" />
 		</form>
 	);
 };
