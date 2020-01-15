@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import CookieAddConferenceForm from "./AddConferenceForm";
 import {
   StyledCardHeading,
@@ -7,7 +7,6 @@ import {
 } from "../StyledFormComponents";
 
 const AddConference = () => {
-
   return (
     <StyledForm>
       <StyledCard>

@@ -41,7 +41,7 @@ describe("submitForm", () => {
       </MemoryRouter>
     );
 
-    wrapper.find(AddConferenceForm).simulate("submit", ev);
+    wrapper.find(".form").simulate("submit", ev);
 
     expect(createNewConference).toHaveBeenCalledTimes(1);
     expect(createNewConference).toHaveBeenCalledWith(
@@ -70,7 +70,7 @@ describe("submitForm", () => {
       </Router>
     );
 
-    wrapper.find(AddConferenceForm).simulate("submit", ev);
+    wrapper.find(".form").simulate("submit", ev);
 
     await apiReturnValue;
 
@@ -93,7 +93,7 @@ describe("submitForm", () => {
       </Router>
     );
 
-    wrapper.find(AddConferenceForm).simulate("submit", ev);
+    wrapper.find(".form").simulate("submit", ev);
 
     expect(history.location.pathname).toBe("/add");
   });

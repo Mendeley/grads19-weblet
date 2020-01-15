@@ -16,8 +16,6 @@ import {
   StyledCard
 } from "../StyledFormComponents";
 
-
-
 export const StyledEditLink = styled(Link)`
   display: block;
   height: 8%;
@@ -26,7 +24,7 @@ export const StyledEditLink = styled(Link)`
   text-decoration: none;
   text-align: center;
   display: inline-block;
-  background-color: #1F73B2;
+  background-color: #1f73b2;
   color: white;
   font-weight: bold;
   line-height: 40px;
@@ -35,24 +33,23 @@ export const StyledEditLink = styled(Link)`
   bottom: 7%;
   right: 47%;
 
-   
-  @media only screen and (max-width:1100px){
-  display: block;
-  height: 4.5%;
-  width: 25%;
-  color: black;
-  text-decoration: none;
-  text-align: center;
-  display: inline-block;
-  background-color: #1F73B2;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 40px;
-  border-radius: 11px;
-  position: absolute;
-  bottom: 2.2%;
-  right: 55%;
+  @media only screen and (max-width: 1100px) {
+    display: block;
+    height: 4.5%;
+    width: 25%;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    background-color: #1f73b2;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 40px;
+    border-radius: 11px;
+    position: absolute;
+    bottom: 2.2%;
+    right: 55%;
   }
 `;
 
@@ -63,7 +60,7 @@ export const StyledDeleteButton = styled(Button)`
   width: 9%;
   font-weight: bold;
   font-size: 25px;
-  background-color: #1F73B2;
+  background-color: #1f73b2;
   color: white;
   line-height: 40px;
   border-radius: 11px;
@@ -73,23 +70,22 @@ export const StyledDeleteButton = styled(Button)`
   right: 36%;
   text-align: center;
   line-height: 0%;
-  
 
-  @media only screen and (max-width:1100px){
-  border-style: solid;
-  display: block;
-  height: 5%;
-  width: 31%;
-  font-weight: bold;
-  font-size: 18px;
-  background-color: #1F73B2;
-  color: white;
-  line-height: 40px;
-  border-radius: 11px;
-  position: absolute;
-  margin: auto;
-  bottom: 2%;
-  right: 20%;
+  @media only screen and (max-width: 1100px) {
+    border-style: solid;
+    display: block;
+    height: 5%;
+    width: 31%;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #1f73b2;
+    color: white;
+    line-height: 40px;
+    border-radius: 11px;
+    position: absolute;
+    margin: auto;
+    bottom: 2%;
+    right: 20%;
   }
 `;
 
@@ -100,7 +96,7 @@ export const StyledInterestButton = styled(Button)`
   width: 11%;
   font-weight: bold;
   font-size: 25px;
-  background-color: #1F73B2;
+  background-color: #1f73b2;
   color: white;
   line-height: 40px;
   border-radius: 11px;
@@ -110,30 +106,28 @@ export const StyledInterestButton = styled(Button)`
   text-align: center;
   line-height: 0%;
 
-	
-  @media only screen and (max-width:1100px){
-  border-style: solid;
-  display: block;
-  height: 5%;
-  width: 48%;
-  font-weight: bold;
-  font-size: 18px;
-  background-color: #1F73B2;
-  color: white;
-  border-radius: 11px;
-  position: absolute;
-  bottom: 8%;
-  right:27%;
+  @media only screen and (max-width: 1100px) {
+    border-style: solid;
+    display: block;
+    height: 5%;
+    width: 48%;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #1f73b2;
+    color: white;
+    border-radius: 11px;
+    position: absolute;
+    bottom: 8%;
+    right: 27%;
   }
 `;
 
 export const StyledPadding = styled.div`
- padding-top: 30px;
-   @media only screen and (max-width:1100px){
+  padding-top: 30px;
+  @media only screen and (max-width: 1100px) {
     padding-top: 60px;
   }
- `;
-
+`;
 
 export const ConferenceDetails = ({
   conference,
@@ -161,10 +155,13 @@ export const ConferenceDetails = ({
 
   useEffect(() => {
     conferenceDoesntExistInFavList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const token = allCookies.sessionToken ? allCookies.sessionToken.token : null;
-  const userId = allCookies.sessionToken ? allCookies.sessionToken.userId : null;
+  const userId = allCookies.sessionToken
+    ? allCookies.sessionToken.userId
+    : null;
 
   const conferenceId = parseInt(id);
   if (isLoading) {
@@ -213,19 +210,25 @@ export const ConferenceDetails = ({
         {token && (
           <>
             {!userInterested ? (
-              <StyledInterestButton onClick={expressInterest}>Interested</StyledInterestButton>
+              <StyledInterestButton onClick={expressInterest}>
+                Interested
+              </StyledInterestButton>
             ) : (
-                <StyledInterestButton onClick={deexpressInterest}>Uninterested</StyledInterestButton>
-              )}
+              <StyledInterestButton onClick={deexpressInterest}>
+                Uninterested
+              </StyledInterestButton>
+            )}
             <StyledEditLink className="editLink" to={`/${id}/edit`}>
               Edit
-						</StyledEditLink>
-            <StyledDeleteButton className="deleteButton" onClick={deleteThisConference}>
+            </StyledEditLink>
+            <StyledDeleteButton
+              className="deleteButton"
+              onClick={deleteThisConference}
+            >
               Delete
-						</StyledDeleteButton>
+            </StyledDeleteButton>
           </>
         )}
-
       </StyledCard>
     </StyledForm>
   );
