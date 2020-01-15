@@ -154,3 +154,10 @@ export const submitNewURL = async (URL, token) => {
 	});
 	return response.data;
 };
+
+export const getElasticsearchResults = async input => {
+  const response = await axios.get(
+    `http://localhost:8080/conferences?topic=${input}`
+  );
+  return response.data;
+};

@@ -4,6 +4,7 @@ import { submitNewURL } from "../api";
 import { withCookies } from "react-cookie";
 import { toast } from "react-toastify";
 import Loader from "./WebscrapeLoadingSpinner";
+import { StyledSubmit, StyledAddForm } from "../StyledFormComponents";
 
 export const WebscrapePage = ({ allCookies = {} , setConference}) => {
 	const token = allCookies.sessionToken ? allCookies.sessionToken.token : null;
@@ -45,15 +46,17 @@ export const WebscrapePage = ({ allCookies = {} , setConference}) => {
 		>
 			{isLoading ? (<Loader />) : (
 				<>
+           <StyledAddForm>
 						<Input
 								label="URL:"
 								type="text"
 								name="URL"
 								value={URL}
 								onChange={handleChange}
-								size="60"
 						/> 
-						<Input type="submit" value="Submit URL" />    </>)}
+             </StyledAddForm>
+						<StyledSubmit type="submit" value="Submit URL" />    </>)}
+
 		</form>
 );
 };

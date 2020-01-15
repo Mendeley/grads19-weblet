@@ -8,13 +8,76 @@ import { loginUser } from "../api";
 import {
   StyledCardHeading,
   StyledForm,
-  StyledCard
+  StyledCard,
+  StyledSubmit,
+  StyledAddForm
 } from "../StyledFormComponents";
 
 export const StyledLink = styled(Link)`
-  color: #7a517d;
-  padding: 10px;
+    display: block;
+    text-decoration: none;
+    background-color: #1F73B2;
+    color: white;
+    border-radius: 11px;
+    padding: 8px 24px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 6px 4px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    width: 60px;
+    
+
+  @media only screen and (min-width: 600px) and (max-width:1100px){
+    display: block;
+    text-decoration: none;
+    background-color: #1F73B2;
+    color: white;
+    border-radius: 11px;
+    padding: 8px 24px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 6px 4px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    width: 45px;
+  }
+
+    @media only screen and (max-width:600px){
+
+    display: block;
+    text-decoration: none;
+    background-color: #1F73B2;
+    color: white;
+    border-radius: 11px;
+    padding: 8px 24px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 6px 4px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    width: 35px;
+  }
 `;
+
+const StyledPadding = styled.div` 
+  padding-bottom: 100px;
+  @media only screen and (max-width:1100px){
+  padding-top: 10px;
+  padding-bottom: 150px;
+  }
+ `
+
+const StyledSpace = styled.div`
+  padding-top: 10px; 
+  padding-bottom: 10px;
+ `
 
 const LoginForm = () => {
   const [, setCookie] = useCookies([cookieName]);
@@ -38,7 +101,7 @@ const LoginForm = () => {
       const sessionTokenData = await loginUser(user);
       setSessionToken(sessionTokenData);
       history.push("/");
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const onSubmit = ev => {
@@ -49,28 +112,34 @@ const LoginForm = () => {
   return (
     <StyledForm>
       <StyledCard>
-        <StyledCardHeading>Login here:</StyledCardHeading>
-        <StyledLink to={`/users/register`}>Register New User</StyledLink>
+        <StyledCardHeading>Login</StyledCardHeading>
         <form onSubmit={onSubmit}>
-          <Input
-            label="Username: "
-            type="text"
-            name="username"
-            value={user.username}
-            onChange={handleChange}
-            required
-            maxLength="100"
-          />
-          <Input
-            label="Password: "
-            type="password"
-            name="password"
-            value={user.password}
-            onChange={handleChange}
-            required
-            maxLength="16"
-          />
-          <Input type="submit" value="Submit" />
+          <StyledPadding>
+            <StyledAddForm>
+              <Input
+                label="Username: "
+                type="text"
+                name="username"
+                value={user.username}
+                onChange={handleChange}
+                required
+                maxLength="100"
+              />
+              <Input
+                label="Password: "
+                type="password"
+                name="password"
+                value={user.password}
+                onChange={handleChange}
+                required
+                maxLength="16"
+              />
+            </StyledAddForm>
+          </StyledPadding>
+          <StyledSpace>
+            <StyledSubmit type="submit" value="Submit" />
+          </StyledSpace>
+          <StyledLink to={`/users/register`}>Register</StyledLink>
         </form>
       </StyledCard>
     </StyledForm>

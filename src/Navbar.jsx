@@ -5,11 +5,14 @@ import { Link, useHistory } from "react-router-dom";
 import { cookieOptions, cookieName } from "./Constants/Cookies";
 import Button from "./Button";
 import { logoutUser } from "./api";
+import Logo from './ConFoundLogo.png';
+
+
 
 export const StyledNavbar = styled.nav`
-  background: #322d38;
-  width: auto;
-  height: 5%;
+  background: #1F73B2;
+  width: 100%;
+  height:100%;
   text-align: left;
 `;
 
@@ -26,9 +29,25 @@ const StyledListItem = styled.li`
 
 export const StyledLink = styled(Link)`
   color: white;
+  background: #1F73B2;
+  font-size: 180%;
+  text-decoration: none;
 `;
 
-export const Navbar = ({ cookies, allCookies = {} }) => {
+export const StyledButton = styled(Button)`
+  color: white;
+  background: #1F73B2;
+  border: none;
+  font-size: 180%;
+  text-decoration: none;
+`;
+
+export const Navbar = ({
+  conferences,
+  setConferences,
+  cookies,
+  allCookies = {}
+}) => {
   const history = useHistory();
   const sessionToken = allCookies.sessionToken;
   const logout = async () => {
@@ -46,6 +65,15 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
   return (
     <StyledNavbar>
       <StyledList>
+        <img
+          src={Logo}
+          alt="ConFound Logo"
+          useMap="#logo"
+        />
+        <map name="logo">
+          <area shape="rect" coords="0,0,1000,1000" href="/" alt="Home"></area>
+        </map>
+        <br></br>
         <StyledListItem>
           <StyledLink to="/">Home</StyledLink>
         </StyledListItem>
@@ -65,9 +93,9 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
               </StyledLink>
             </StyledListItem>
             <StyledListItem>
-              <Button className="logout" navLink onClick={logout}>
+              <StyledButton className="logout" navLink onClick={logout}>
                 Logout
-              </Button>
+              </StyledButton>
             </StyledListItem>
           </>
         ) : (
@@ -84,6 +112,12 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
               </StyledListItem>
             </>
           )}
+
+        <StyledListItem>
+          <StyledLink className="search" to="/search">
+            Search
+              </StyledLink>
+        </StyledListItem>
       </StyledList>
     </StyledNavbar>
   );
