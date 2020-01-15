@@ -20,52 +20,57 @@ import {
 
 export const StyledEditLink = styled(Link)`
   display: block;
-  height: 10.5%;
+  height: 8%;
   width: 7%;
   color: black;
   text-decoration: none;
+  text-align: center;
+  display: inline-block;
   background-color: #1F73B2;
   color: white;
   font-weight: bold;
   line-height: 40px;
   border-radius: 11px;
   position: absolute;
-  bottom: 12%;
-  right: 20%;
+  bottom: 7%;
+  right: 47%;
 
    
   @media only screen and (max-width:1100px){
   display: block;
-  height: 10%;
-  width: 20%;
+  height: 4.5%;
+  width: 25%;
   color: black;
   text-decoration: none;
+  text-align: center;
+  display: inline-block;
   background-color: #1F73B2;
   color: white;
   font-weight: bold;
+  font-size: 18px;
   line-height: 40px;
   border-radius: 11px;
   position: absolute;
-  bottom: 2%;
-  right: 35%;
+  bottom: 2.2%;
+  right: 55%;
   }
 `;
 
 export const StyledDeleteButton = styled(Button)`
   border-style: solid;
   display: block;
-  height: 11%;
-  width: 7%;
+  height: 8.5%;
+  width: 9%;
   font-weight: bold;
-  font-size: 17px;
+  font-size: 25px;
   background-color: #1F73B2;
   color: white;
   line-height: 40px;
   border-radius: 11px;
   position: absolute;
   margin: auto;
-  bottom: 12%;
-  right: 10%;
+  bottom: 7%;
+  right: 36%;
   text-align: center;
   line-height: 0%;
   
@@ -73,10 +78,10 @@ export const StyledDeleteButton = styled(Button)`
   @media only screen and (max-width:1100px){
   border-style: solid;
   display: block;
-  height: 10%;
-  width: 24%;
+  height: 5%;
+  width: 31%;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 18px;
   background-color: #1F73B2;
   color: white;
   line-height: 40px;
@@ -84,42 +89,51 @@ export const StyledDeleteButton = styled(Button)`
   position: absolute;
   margin: auto;
   bottom: 2%;
-  right: 8%;
+  right: 20%;
   }
 `;
 
 export const StyledInterestButton = styled(Button)`
   border-style: solid;
   display: block;
-  height: 11%;
+  height: 8.5%;
   width: 11%;
   font-weight: bold;
-  font-size: 17px;
+  font-size: 25px;
   background-color: #1F73B2;
   color: white;
   line-height: 40px;
   border-radius: 11px;
   position: absolute;
-  bottom: 12%;
-  right: 30%;
+  bottom: 7%;
+  right: 56%;
   text-align: center;
   line-height: 0%;
+
 	
   @media only screen and (max-width:1100px){
   border-style: solid;
   display: block;
-  height: 10%;
-  width: 40%;
+  height: 5%;
+  width: 48%;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 18px;
   background-color: #1F73B2;
   color: white;
   border-radius: 11px;
   position: absolute;
-  bottom: 2%;
-  right: 58%;
+  bottom: 8%;
+  right:27%;
   }
 `;
+
+export const StyledPadding = styled.div`
+ padding-top: 30px;
+   @media only screen and (max-width:1100px){
+    padding-top: 60px;
+  }
+ `;
+
 
 export const ConferenceDetails = ({
   conference,
@@ -195,10 +209,7 @@ export const ConferenceDetails = ({
         <p className="time">{getTimestring(date)}</p>
         <p className="city">{city}</p>
         <p className="description">{description}</p>
-        <br></br>
-        <br></br>
-        <br></br>
-
+        <StyledPadding></StyledPadding>
         {token && (
           <>
             {!userInterested ? (
@@ -214,6 +225,7 @@ export const ConferenceDetails = ({
 						</StyledDeleteButton>
           </>
         )}
+
       </StyledCard>
     </StyledForm>
   );

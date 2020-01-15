@@ -4,6 +4,7 @@ import { withCookies } from "react-cookie";
 import Input from "../Input";
 import { createNewConference } from "../api";
 import { StyledSubmit, StyledAddForm } from "../StyledFormComponents";
+import styled from "styled-components";
 
 export const AddConferenceForm = ({ allCookies = {} }) => {
   let history = useHistory();
@@ -31,6 +32,13 @@ export const AddConferenceForm = ({ allCookies = {} }) => {
       history.push("/");
     } catch (error) { }
   };
+
+  const StyledPadding = styled.div`
+    padding-bottom: 40px;
+  @media only screen and (max-width:1100px){
+  padding-bottom: 50px;
+  }
+ `
 
   return (
     <form
@@ -85,22 +93,7 @@ export const AddConferenceForm = ({ allCookies = {} }) => {
           maxLength="20"
         />
       </StyledAddForm>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-
+      <StyledPadding></StyledPadding>
       <StyledSubmit type="submit" value="Submit" />
 
     </form>

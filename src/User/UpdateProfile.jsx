@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import Input from "../Input";
+import styled from "styled-components";
 import {
   StyledForm,
   StyledAddForm,
@@ -51,6 +52,13 @@ const UpdateProfile = ({
     } else cancelUserUpate();
   };
 
+  const StyledPadding = styled.div`
+   padding-bottom: 80px;
+  @media only screen and (max-width:1100px){
+  padding-bottom: 55px;
+  }
+ `
+
   return (
     <StyledForm>
       <StyledCard>
@@ -88,20 +96,7 @@ const UpdateProfile = ({
               required
             />
           </StyledAddForm>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
+          <StyledPadding></StyledPadding>
           <StyledSaveSubmit type="submit" value="Save" />
           <StyledCancelSubmit type="button" value="Cancel" onClick={cancelUserUpate} />
         </form>

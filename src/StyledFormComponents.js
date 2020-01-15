@@ -11,6 +11,8 @@ const StyledForm = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding-bottom: 50px;
+  font-size: 25px;
+
 `;
 
 const StyledCardHeading = styled.h3`
@@ -63,6 +65,8 @@ const StyledCard = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding-bottom: 50px;
+  padding-left: 60px;
+  padding-right: 60px;
 
   @media only screen and (max-width:600px){
   width: ${({ profileCard }) => (profileCard ? `70%` : `100%`)};
@@ -73,12 +77,8 @@ const StyledCard = styled.div`
   border-color: black;
   border-radius: 25px;
   background: #FFFFFF;
-  transition: 0.3s;
-  :hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  }
-  padding: 0  ;
-  padding-bottom: 35px;
+  padding: 0;
+  padding-bottom: 50px;
   
   }
 `;
@@ -154,7 +154,46 @@ const StyledSubmit = styled.input`
   text-decoration: none;
   font-size: 18px;
   font-weight: bold;
-  margin: 6px 4px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+      width: 110px;
+    
+
+  @media only screen and (min-width: 600px) and (max-width:1100px){
+    display: block;
+    text-decoration: none;
+    background-color: #1F73B2;
+    color: white;
+    border-radius: 11px;
+    padding: 8px 24px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 6px 4px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    width: 90px;
+  }
+
+    @media only screen and (max-width:600px){
+
+    display: block;
+    text-decoration: none;
+    background-color: #1F73B2;
+    color: white;
+    border-radius: 11px;
+    padding: 8px 24px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 6px 4px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    width: 85px;
+  }
   `
 
 const StyledAddForm = styled.div`
@@ -162,39 +201,20 @@ const StyledAddForm = styled.div`
   align-items: start;
   flex-direction: column;
   justify-content: center;
-  position: absolute;
-  left: 40%;
 
   @media only screen and (max-width:1100px){
     display: flex;
-    align-items: start;
     flex-direction: column;
     justify-content: center;
-    position: absolute;
-    left: 10%;
+ 
   }
 
 
   `
 
 const StyledSearchForm = styled.div`
-  display: flex;
-  align-items: start;
-  flex-direction: flex-start;
-  justify-content: center;
-  position: absolute;
-  left: 40.5%;
-  @media only screen and (max-width:1100px){
-    display: flex;
-    flex-wrap: wrap;
-    align-items: start;
-    flex-direction: flex-start;
-    justify-content: center;
-    position: absolute;
-    left: 11.5%;
-
-  }
-
+  display: inline-grid;
+  justify-items: center;
   `
 
 export { StyledCardHeading, StyledCardText, StyledForm, StyledCard, StyledCancelSubmit, StyledSaveSubmit, StyledSubmit, StyledAddForm, StyledSearchForm };

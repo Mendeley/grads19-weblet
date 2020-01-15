@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { cookieName } from "../Constants/Cookies";
+import styled from "styled-components";
 import Input from "../Input";
 import { updateConferenceById } from "../api";
 import {
@@ -9,7 +10,7 @@ import {
   StyledForm,
   StyledCard,
   StyledSaveSubmit,
-  StyledAddForm
+  StyledAddForm,
 } from "../StyledFormComponents";
 
 const UpdateForm = ({
@@ -51,11 +52,17 @@ const UpdateForm = ({
     }
   };
 
+  const StyledPadding = styled.div`
+  padding-bottom: 100px;
+  @media only screen and (max-width:1100px){
+  padding-bottom: 10px;
+  }
+ `
   return (
     <StyledForm>
       <StyledCard>
 
-        <StyledCardHeading>Edit a conference:</StyledCardHeading>
+        <StyledCardHeading>Edit a conference</StyledCardHeading>
         <form
           onSubmit={ev => {
             ev.preventDefault();
@@ -108,23 +115,7 @@ const UpdateForm = ({
               maxLength="20"
             />
           </StyledAddForm>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
+          <StyledPadding></StyledPadding>
           <StyledSaveSubmit type="submit" value="Save" />
         </form>
 

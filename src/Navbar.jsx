@@ -7,6 +7,8 @@ import Button from "./Button";
 import { logoutUser } from "./api";
 import Logo from './ConFoundLogo.png';
 
+
+
 export const StyledNavbar = styled.nav`
   background: #1F73B2;
   width: 100%;
@@ -38,7 +40,6 @@ export const StyledButton = styled(Button)`
   border: none;
   font-size: 180%;
   text-decoration: none;
-
 `;
 
 export const Navbar = ({ cookies, allCookies = {} }) => {
@@ -62,7 +63,7 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
         <img
           src={Logo}
           alt="ConFound Logo"
-          usemap="#logo"
+          useMap="#logo"
         />
         <map name="logo">
           <area shape="rect" coords="0,0,1000,1000" href="/" alt="Home"></area>
