@@ -146,12 +146,13 @@ export const removeFavouriteConference = async (conferenceId, token) => {
 };
 
 export const submitNewURL = async (URL, token) => {
-	await axios.post("http://localhost:8080/add", URL, {
+	const response = await axios.post("http://localhost:8080/add", URL, {
 		headers: {
 			Authorization: token,
 			"content-type": "application/json"
 		}
 	});
+	return response.data;
 };
 
 export const getElasticsearchResults = async input => {
