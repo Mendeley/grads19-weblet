@@ -1,14 +1,16 @@
 import styled from "styled-components";
 
 const StyledForm = styled.div`
-  height: 400px;
+  height: 100%;
   padding: 20px;
+  display:flex; 
+  flex-direction:row;
 `;
 
 const StyledCardHeading = styled.h3`
   background: #dbd8db;
   width: 100%;
-  height: 55px;
+  height: 40px;
   font-size: 30px;
   font-weight: bold;
   text-align: center;
@@ -16,11 +18,21 @@ const StyledCardHeading = styled.h3`
   text-transform: uppercase;
 `;
 
+const StyledCardText = styled.h3`
+  background: #dbd8db;
+  width: 100%;
+  height: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+`;
+
 const StyledCard = styled.div`
-  width: ${({ profileCard }) => (profileCard ? `45%` : `900px`)};
-  height: ${({ profileCard }) => (profileCard ? `80vh` : `450px`)};
+  width: ${({ profileCard }) => (profileCard ? `65%` : `100%`)};
+  height: ${({ profileCard }) => (profileCard ? `0%` : `100%`)};
   margin: ${({ profileCard }) => (profileCard ? `10px` : `0 auto`)};
-  display: ${({ profileCard }) => profileCard && `inline-block`};
+  display: ${({ profileCard }) => (profileCard && `inline-block`)};
   border-style: solid;
   border-color: black;
   border-radius: 25px;
@@ -31,6 +43,11 @@ const StyledCard = styled.div`
   }
   vertical-align: middle;
   position: relative;
+  display: flex-center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding-bottom: 50px;
 `;
 
-export { StyledCardHeading, StyledForm, StyledCard };
+export { StyledCardHeading, StyledCardText, StyledForm, StyledCard };

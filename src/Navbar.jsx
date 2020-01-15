@@ -10,7 +10,9 @@ import ElasticsearchBar from "./Conference/ElasticsearchBar";
 export const StyledNavbar = styled.nav`
   background: #322d38;
   width: auto;
+
   height: 100%;
+
   text-align: left;
 `;
 
@@ -90,6 +92,7 @@ export const Navbar = ({
               </StyledListItem>
             </>
           )}
+
         <StyledListItem>
           <StyledLink className="search" to="/search">
             Search
