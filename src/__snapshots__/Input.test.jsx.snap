@@ -3,6 +3,7 @@
 exports[`Input renders a dateTime input 1`] = `
 <styled.div>
   <label />
+  <br />
   <input
     type="datetime-local"
   />
@@ -12,6 +13,7 @@ exports[`Input renders a dateTime input 1`] = `
 exports[`Input renders a submit input 1`] = `
 <styled.div>
   <label />
+  <br />
   <input
     type="submit"
   />
@@ -21,6 +23,7 @@ exports[`Input renders a submit input 1`] = `
 exports[`Input renders a text input 1`] = `
 <styled.div>
   <label />
+  <br />
   <input
     type="text"
   />
