@@ -154,32 +154,32 @@ const RegistrationForm = () => {
 
             {/* </StyledDropDown> */}
           </StyledSearchForm>
-          <StyledPadding>
-            <StyledAddForm>
-              <Input
-                label="Username: "
-                type="text"
-                name="username"
-                pattern="[a-zA-Z0-9]*"
-                title="Must not contain any spaces or special characters."
-                value={user.username}
-                onChange={handleChange}
-                required
-                maxLength="100"
-              />
-              <Input
-                label="Password: "
-                type="password"
-                name="password"
-                pattern="((?=.*[a-z])(?=.*[0-9])(?=.*[!?\\#@^&£$*+;:~])(?=.*[A-Z]).{8,16})"
-                title="Must contain at least one number, one uppercase and lowercase letter, one special character and have between 8 and 16 characters."
-                value={user.password}
-                onChange={handleChange}
-                required
-                maxLength="16"
-              />
-            </StyledAddForm>
-          </StyledPadding>
+          <StyledPadding></StyledPadding>
+
+          <Input
+            label="Username: "
+            type="text"
+            name="username"
+            pattern="[a-zA-Z0-9]*"
+            title="Must not contain any spaces or special characters."
+            value={user.username}
+            onChange={handleChange}
+            required
+            maxLength="100"
+          />
+          <Input
+            label="Password: "
+            type="password"
+            name="password"
+            pattern="((?=.*[a-z])(?=.*[0-9])(?=.*[!?\\#@^&£$*+;:~])(?=.*[A-Z]).{8,16})"
+            title="Must contain at least one number, one uppercase and lowercase letter, one special character and have between 8 and 16 characters."
+            value={user.password}
+            onChange={handleChange}
+            required
+            maxLength="16"
+          />
+
+
           <StyledSubmit type="submit" value="Submit" />
         </form>
       </StyledCard>
