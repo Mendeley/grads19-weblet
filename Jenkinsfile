@@ -7,7 +7,6 @@ pipeline {
     stages {
         stage ('checkout git') {
             steps {
-              //  git credentialsId: 'jenkins-gitlab', branch: 'GP19-156_deployment', url: 'git@github.com:Mendeley/grads19-weblet.git'
               checkout scm
             }
         }
@@ -31,7 +30,11 @@ pipeline {
         stage ('deploy') {
             steps {
                 ansiColor('xterm') {
-                 sh """
+                 sh """#!/bin/bash
+                    TEMP_CRED=\$(aws sts assume-role --role-arn arn:aws:iam::620835497377:role/cross-account-access-jenkins --role-session-name test-account-jenkins)
+                    export AWS_ACCESS_KEY_ID=\$(echo \${TEMP_CRED} | jq -r .Credentials.AccessKeyId)
+                    export AWS_SECRET_ACCESS_KEY=\$(echo \${TEMP_CRED} | jq -r .Credentials.SecretAccessKey)
+                    export AWS_SESSION_TOKEN=\$(echo \${TEMP_CRED} | jq -r .Credentials.SessionToken)
                     aws eks update-kubeconfig --name eks_cluster --region eu-west-1
                     kubectl set image deployment/reactdeploy reactfe=620835497377.dkr.ecr.eu-west-1.amazonaws.com/reactfe:latest
                  """
