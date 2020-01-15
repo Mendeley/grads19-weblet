@@ -5,11 +5,12 @@ import { Link, useHistory } from "react-router-dom";
 import { cookieOptions, cookieName } from "./Constants/Cookies";
 import Button from "./Button";
 import { logoutUser } from "./api";
+import ElasticsearchBar from "./Conference/ElasticsearchBar";
 
 export const StyledNavbar = styled.nav`
   background: #322d38;
   width: auto;
-  height: 4vh;
+  height: 100%;
   text-align: left;
 `;
 
@@ -84,6 +85,9 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
             </StyledListItem>
           </>
         )}
+        <StyledListItem>
+          <ElasticsearchBar />
+        </StyledListItem>
       </StyledList>
     </StyledNavbar>
   );

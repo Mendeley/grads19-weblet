@@ -135,7 +135,7 @@ export const addFavouriteConference = async (userId, conferenceId, token) => {
 
 export const getElasticsearchResults = async input => {
   const response = await axios.get(
-    `http://localhost:8080/conferences/search?query=${input}`
+    `http://localhost:8080/conferences?topic=${input}`
   );
   return response.data;
 };
