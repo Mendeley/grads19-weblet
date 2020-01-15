@@ -64,7 +64,7 @@ export const Navbar = ({ cookies, allCookies = {} }) => {
         </map>
         <br></br>
         <StyledListItem>
-          <StyledLink to="/">Homey</StyledLink>
+          <StyledLink to="/">Home</StyledLink>
         </StyledListItem>
         {sessionToken ? (
           <>
