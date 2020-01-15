@@ -29,10 +29,6 @@ const UpdateProfile = ({
     return <p>Loading...</p>;
   }
 
-  if (error) {
-    return <p>An error has occurred...</p>;
-  }
-
   const handleChange = event => {
     const { name, value } = event.target;
     setUpdatedUser({ ...updatedUser, [name]: value });

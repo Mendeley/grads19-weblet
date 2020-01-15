@@ -152,7 +152,5 @@ export const submitNewURL = async (URL, token) => {
 			"content-type": "application/json"
 		}
 	});
-	console.log(response)
 	return response.data;
 };
-
