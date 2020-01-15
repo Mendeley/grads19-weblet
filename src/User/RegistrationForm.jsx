@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Input from "../Input";
-import Option from "../Option";
 import { createNewUser, getSearchResults } from "../api";
 import styled from "styled-components";
 import {
@@ -35,7 +34,7 @@ const RegistrationForm = () => {
     try {
       const userList = await getSearchResults(searchInput);
       setSearchResults(userList);
-    } catch (error) { }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -47,7 +46,7 @@ const RegistrationForm = () => {
   const handleChange = event => {
     const { name, value } = event.target;
     setUser({ ...user, [name]: value });
-    console.log({ value })
+    console.log({ value });
   };
 
   const submitForm = async () => {
@@ -58,7 +57,7 @@ const RegistrationForm = () => {
     try {
       await createNewUser(newUser);
       history.push("/");
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const onSubmit = ev => {
@@ -66,32 +65,30 @@ const RegistrationForm = () => {
     submitForm();
   };
 
-
   const StyledPadding = styled.div`
-  padding-top: 35px;
-  padding-bottom: 50px;
-  @media only screen and (max-width:1100px){
-  padding-top: 60px;
-  padding-bottom: 10px;
-  }
- `
+    padding-top: 35px;
+    padding-bottom: 50px;
+    @media only screen and (max-width: 1100px) {
+      padding-top: 60px;
+      padding-bottom: 10px;
+    }
+  `;
 
   const StyledDropDown = styled.div`
-  position: absolute;
-  top: 60%;
-  left: 45%;
-  @media only screen and (max-width:1100px){
     position: absolute;
     top: 60%;
-    left: 23%;
-  }
- `
+    left: 45%;
+    @media only screen and (max-width: 1100px) {
+      position: absolute;
+      top: 60%;
+      left: 23%;
+    }
+  `;
   return (
     <StyledForm>
       <StyledCard>
         <StyledCardHeading>add a new user</StyledCardHeading>
         <form onSubmit={onSubmit}>
-
           <StyledAddForm>
             <Input
               label="First Name: "
@@ -139,11 +136,14 @@ const RegistrationForm = () => {
               minLength={3}
               debounceTimeout={500}
               onChange={handleSearch}
-
             />
             {/* <StyledDropDown> */}
 
-            <select onChange={handleChange} name="managerId" defaultValue={null}>
+            <select
+              onChange={handleChange}
+              name="managerId"
+              defaultValue={null}
+            >
               <option value={null}>---- select manager ----</option>
               {searchResults.map(user => (
                 <option key={user.id} value={user.id}>

@@ -65,8 +65,8 @@ describe("ConferenceDetails", () => {
     expect(findElement(".time")).toBe("12:34");
     expect(findElement(".city")).toBe(mockData.city);
     expect(findElement(".description")).toBe(mockData.description);
-    expect(findElement(".editLink")).toBe("Edit Conference");
-    expect(findElement(".deleteButton")).toBe("Delete Conference");
+    expect(findElement(".editLink")).toBe("Edit");
+    expect(findElement(".deleteButton")).toBe("Delete");
   });
 
   it("renders a logged-out conference details page", async () => {

@@ -125,8 +125,8 @@ describe("ProfilePage", () => {
     expect(findElement(".employeeListHeader")).toBe("Employees:");
   });
 
-  it("renders current user's profile information without manager and with empty employees card", async () => {
-    expect.assertions(10);
+  it("renders current user's profile information without manager or employees card", async () => {
+    expect.assertions(9);
 
     const history = createMemoryHistory();
     history.push("/users/11");
@@ -161,9 +161,8 @@ describe("ProfilePage", () => {
     );
     expect(findElement(".manager")).toBe("Manager: None Assigned");
     expect(wrapper.find(".managerLink").length).toBe(0);
-    expect(wrapper.find(".employeesCard").length).toBe(2);
-    expect(wrapper.find(".employeeListHeader").length).toBe(2);
-    expect(findElement(".employeeListHeader")).toBe("No Linked Employees");
+    expect(wrapper.find(".employeesCard").length).toBe(0);
+    expect(wrapper.find(".employeeListHeader").length).toBe(0);
   });
 
   it("renders profile information of user who is not the current one", async () => {

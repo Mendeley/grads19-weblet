@@ -55,12 +55,28 @@ exports[`Navbar renders a logged-in navbar with text 1`] = `
     >
       <styled.nav>
         <nav
-          className="sc-AykKD efbWzt"
+          className="sc-AykKD jjNKQp"
         >
           <styled.ul>
             <ul
               className="sc-AykKE bwFPTU"
             >
+              <img
+                alt="ConFound Logo"
+                src="ConFoundLogo.png"
+                useMap="#logo"
+              />
+              <map
+                name="logo"
+              >
+                <area
+                  alt="Home"
+                  coords="0,0,1000,1000"
+                  href="/"
+                  shape="rect"
+                />
+              </map>
+              <br />
               <styled.li>
                 <li
                   className="sc-AykKF btWmVE"
@@ -69,16 +85,16 @@ exports[`Navbar renders a logged-in navbar with text 1`] = `
                     to="/"
                   >
                     <Link
-                      className="sc-AykKG jJIHsa"
+                      className="sc-AykKG kvjcUC"
                       to="/"
                     >
                       <LinkAnchor
-                        className="sc-AykKG jJIHsa"
+                        className="sc-AykKG kvjcUC"
                         href="/"
                         navigate={[Function]}
                       >
                         <a
-                          className="sc-AykKG jJIHsa"
+                          className="sc-AykKG kvjcUC"
                           href="/"
                           onClick={[Function]}
                         >
@@ -98,16 +114,16 @@ exports[`Navbar renders a logged-in navbar with text 1`] = `
                     to="/add"
                   >
                     <Link
-                      className="sc-AykKG jJIHsa addConference"
+                      className="sc-AykKG kvjcUC addConference"
                       to="/add"
                     >
                       <LinkAnchor
-                        className="sc-AykKG jJIHsa addConference"
+                        className="sc-AykKG kvjcUC addConference"
                         href="/add"
                         navigate={[Function]}
                       >
                         <a
-                          className="sc-AykKG jJIHsa addConference"
+                          className="sc-AykKG kvjcUC addConference"
                           href="/add"
                           onClick={[Function]}
                         >
@@ -127,16 +143,16 @@ exports[`Navbar renders a logged-in navbar with text 1`] = `
                     to="/users/1"
                   >
                     <Link
-                      className="sc-AykKG jJIHsa profilePage"
+                      className="sc-AykKG kvjcUC profilePage"
                       to="/users/1"
                     >
                       <LinkAnchor
-                        className="sc-AykKG jJIHsa profilePage"
+                        className="sc-AykKG kvjcUC profilePage"
                         href="/users/1"
                         navigate={[Function]}
                       >
                         <a
-                          className="sc-AykKG jJIHsa profilePage"
+                          className="sc-AykKG kvjcUC profilePage"
                           href="/users/1"
                           onClick={[Function]}
                         >
@@ -151,24 +167,30 @@ exports[`Navbar renders a logged-in navbar with text 1`] = `
                 <li
                   className="sc-AykKF btWmVE"
                 >
-                  <Button
+                  <Styled(Button)
                     className="logout"
                     navLink={true}
                     onClick={[Function]}
                   >
-                    <styled.button
-                      className="logout"
+                    <Button
+                      className="sc-AykKH jNfhPE logout"
                       navLink={true}
                       onClick={[Function]}
                     >
-                      <button
-                        className="sc-AykKC kmEWeK logout"
+                      <styled.button
+                        className="sc-AykKH jNfhPE logout"
+                        navLink={true}
                         onClick={[Function]}
                       >
-                        Logout
-                      </button>
-                    </styled.button>
-                  </Button>
+                        <button
+                          className="sc-AykKC kmEWeK sc-AykKH jNfhPE logout"
+                          onClick={[Function]}
+                        >
+                          Logout
+                        </button>
+                      </styled.button>
+                    </Button>
+                  </Styled(Button)>
                 </li>
               </styled.li>
             </ul>
@@ -226,12 +248,28 @@ exports[`Navbar renders a logged-out navbar with text 1`] = `
     <Navbar>
       <styled.nav>
         <nav
-          className="sc-AykKD efbWzt"
+          className="sc-AykKD jjNKQp"
         >
           <styled.ul>
             <ul
               className="sc-AykKE bwFPTU"
             >
+              <img
+                alt="ConFound Logo"
+                src="ConFoundLogo.png"
+                useMap="#logo"
+              />
+              <map
+                name="logo"
+              >
+                <area
+                  alt="Home"
+                  coords="0,0,1000,1000"
+                  href="/"
+                  shape="rect"
+                />
+              </map>
+              <br />
               <styled.li>
                 <li
                   className="sc-AykKF btWmVE"
@@ -240,16 +278,16 @@ exports[`Navbar renders a logged-out navbar with text 1`] = `
                     to="/"
                   >
                     <Link
-                      className="sc-AykKG jJIHsa"
+                      className="sc-AykKG kvjcUC"
                       to="/"
                     >
                       <LinkAnchor
-                        className="sc-AykKG jJIHsa"
+                        className="sc-AykKG kvjcUC"
                         href="/"
                         navigate={[Function]}
                       >
                         <a
-                          className="sc-AykKG jJIHsa"
+                          className="sc-AykKG kvjcUC"
                           href="/"
                           onClick={[Function]}
                         >
@@ -269,16 +307,16 @@ exports[`Navbar renders a logged-out navbar with text 1`] = `
                     to="/users/register"
                   >
                     <Link
-                      className="sc-AykKG jJIHsa register"
+                      className="sc-AykKG kvjcUC register"
                       to="/users/register"
                     >
                       <LinkAnchor
-                        className="sc-AykKG jJIHsa register"
+                        className="sc-AykKG kvjcUC register"
                         href="/users/register"
                         navigate={[Function]}
                       >
                         <a
-                          className="sc-AykKG jJIHsa register"
+                          className="sc-AykKG kvjcUC register"
                           href="/users/register"
                           onClick={[Function]}
                         >
@@ -298,16 +336,16 @@ exports[`Navbar renders a logged-out navbar with text 1`] = `
                     to="/users/login"
                   >
                     <Link
-                      className="sc-AykKG jJIHsa login"
+                      className="sc-AykKG kvjcUC login"
                       to="/users/login"
                     >
                       <LinkAnchor
-                        className="sc-AykKG jJIHsa login"
+                        className="sc-AykKG kvjcUC login"
                         href="/users/login"
                         navigate={[Function]}
                       >
                         <a
-                          className="sc-AykKG jJIHsa login"
+                          className="sc-AykKG kvjcUC login"
                           href="/users/login"
                           onClick={[Function]}
                         >
