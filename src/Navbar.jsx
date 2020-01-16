@@ -5,8 +5,13 @@ import { Link, useHistory } from "react-router-dom";
 import { cookieOptions, cookieName } from "./Constants/Cookies";
 import Button from "./Button";
 import { logoutUser } from "./api";
-import Logo from './ConFoundLogo.png';
+import Logo from './ConFoundLogo.svg';
 
+
+const Padding = styled.div`
+  padding-top: 10px;
+  padding-left: 10px;
+  `
 
 
 export const StyledNavbar = styled.nav`
@@ -65,15 +70,16 @@ export const Navbar = ({
   return (
     <StyledNavbar>
       <StyledList>
-        <img
-          src={Logo}
-          alt="ConFound Logo"
-          useMap="#logo"
-        />
-        <map name="logo">
-          <area shape="rect" coords="0,0,1000,1000" href="/" alt="Home"></area>
-        </map>
-        <br></br>
+        <Padding>
+          <img
+            src={Logo}
+            alt="ConFound Logo"
+            useMap="#logo"
+          />
+          <map name="logo">
+            <area shape="rect" coords="0,0,1000,1000" href="/" alt="Home"></area>
+          </map>
+        </Padding>
         <StyledListItem>
           <StyledLink to="/">Home</StyledLink>
         </StyledListItem>
