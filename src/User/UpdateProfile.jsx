@@ -33,10 +33,6 @@ const UpdateProfile = ({
     return <p>Loading...</p>;
   }
 
-  if (error) {
-    return <p>An error has occurred...</p>;
-  }
-
   const handleChange = event => {
     const { name, value } = event.target;
     setUpdatedUser({ ...updatedUser, [name]: value });
@@ -48,22 +44,21 @@ const UpdateProfile = ({
         await updateUserById(id, updatedUser, sessionToken.token);
         history.push(`/users/${id}`);
         setUser({ ...user, ...updatedUser });
-      } catch (error) { }
+      } catch (error) {}
     } else cancelUserUpate();
   };
 
   const StyledPadding = styled.div`
-   padding-bottom: 80px;
-  @media only screen and (max-width:1100px){
-  padding-bottom: 55px;
-  }
- `
+    padding-bottom: 80px;
+    @media only screen and (max-width: 1100px) {
+      padding-bottom: 55px;
+    }
+  `;
 
   return (
     <StyledForm>
       <StyledCard>
         <StyledCardHeading>Edit Profile</StyledCardHeading>
-
         <form
           onSubmit={ev => {
             ev.preventDefault();
@@ -98,7 +93,11 @@ const UpdateProfile = ({
           </StyledAddForm>
           <StyledPadding></StyledPadding>
           <StyledSaveSubmit type="submit" value="Save" />
-          <StyledCancelSubmit type="button" value="Cancel" onClick={cancelUserUpate} />
+          <StyledCancelSubmit
+            type="button"
+            value="Cancel"
+            onClick={cancelUserUpate}
+          />
         </form>
       </StyledCard>
     </StyledForm>

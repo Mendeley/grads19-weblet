@@ -150,4 +150,10 @@ export const submitNewURL = async (URL, token) => {
       "content-type": "application/json"
     }
   });
+  return response.data;
+};
+
+export const getElasticsearchResults = async input => {
+  const response = await axios.get(`${spring_url}/conferences?topic=${input}`);
+  return response.data;
 };

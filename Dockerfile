@@ -19,7 +19,6 @@ RUN npm audit fix
 COPY . .
 RUN npm run-script build
 RUN CI=true npm test a
-
 # Stage 2 - the production environment
 FROM nginx:1.17-alpine
 COPY --from=build /app/build /usr/share/nginx/html

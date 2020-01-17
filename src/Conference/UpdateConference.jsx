@@ -10,7 +10,7 @@ import {
   StyledForm,
   StyledCard,
   StyledSaveSubmit,
-  StyledAddForm,
+  StyledAddForm
 } from "../StyledFormComponents";
 
 const UpdateForm = ({
@@ -53,15 +53,14 @@ const UpdateForm = ({
   };
 
   const StyledPadding = styled.div`
-  padding-bottom: 100px;
-  @media only screen and (max-width:1100px){
-  padding-bottom: 10px;
-  }
- `
+    padding-bottom: 100px;
+    @media only screen and (max-width: 1100px) {
+      padding-bottom: 10px;
+    }
+  `;
   return (
     <StyledForm>
       <StyledCard>
-
         <StyledCardHeading>Edit a conference</StyledCardHeading>
         <form
           onSubmit={ev => {
@@ -118,7 +117,6 @@ const UpdateForm = ({
           <StyledPadding></StyledPadding>
           <StyledSaveSubmit type="submit" value="Save" />
         </form>
-
       </StyledCard>
     </StyledForm>
   );

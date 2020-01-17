@@ -14,26 +14,25 @@ import {
 } from "../StyledFormComponents";
 
 export const StyledLink = styled(Link)`
-    display: block;
-    text-decoration: none;
-    background-color: #1F73B2;
-    color: white;
-    border-radius: 11px;
-    padding: 8px 24px;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-    margin: 6px 4px;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    width: 60px;
-    
+  display: block;
+  text-decoration: none;
+  background-color: #1f73b2;
+  color: white;
+  border-radius: 11px;
+  padding: 8px 24px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 6px 4px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  width: 60px;
 
-  @media only screen and (min-width: 600px) and (max-width:1100px){
+  @media only screen and (min-width: 600px) and (max-width: 1100px) {
     display: block;
     text-decoration: none;
-    background-color: #1F73B2;
+    background-color: #1f73b2;
     color: white;
     border-radius: 11px;
     padding: 8px 24px;
@@ -47,11 +46,10 @@ export const StyledLink = styled(Link)`
     width: 45px;
   }
 
-    @media only screen and (max-width:600px){
-
+  @media only screen and (max-width: 600px) {
     display: block;
     text-decoration: none;
-    background-color: #1F73B2;
+    background-color: #1f73b2;
     color: white;
     border-radius: 11px;
     padding: 8px 24px;
@@ -66,18 +64,18 @@ export const StyledLink = styled(Link)`
   }
 `;
 
-const StyledPadding = styled.div` 
-  padding-bottom: 100px;
-  @media only screen and (max-width:1100px){
-  padding-top: 10px;
-  padding-bottom: 150px;
+const StyledPadding = styled.div`
+   padding-bottom: 100px;
+  @media only screen and (max-width: 1100px) {
+    padding-top: 10px;
+    padding-bottom: 150px;
   }
- `
+`;
 
 const StyledSpace = styled.div`
-  padding-top: 10px; 
+  padding-top: 10px;
   padding-bottom: 10px;
- `
+`;
 
 const LoginForm = () => {
   const [, setCookie] = useCookies([cookieName]);
@@ -101,7 +99,7 @@ const LoginForm = () => {
       const sessionTokenData = await loginUser(user);
       setSessionToken(sessionTokenData);
       history.push("/");
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const onSubmit = ev => {

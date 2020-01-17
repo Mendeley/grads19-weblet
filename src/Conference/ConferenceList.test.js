@@ -48,7 +48,7 @@ describe("ConferenceList", () => {
     await act(async () => {
       setMountedWrapper(
         <Router history={history}>
-          <ConferenceList />
+          <ConferenceList conferences={mockData} />
         </Router>
       );
 
@@ -66,7 +66,7 @@ describe("ConferenceList", () => {
     getConferenceList.mockImplementation(() => apiReturnValue);
 
     await act(async () => {
-      setMountedWrapper(<ConferenceList />);
+      setMountedWrapper(<ConferenceList conferences={[]} />);
 
       await apiReturnValue;
     });
