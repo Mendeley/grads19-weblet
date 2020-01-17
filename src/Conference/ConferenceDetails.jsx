@@ -157,6 +157,7 @@ export const ConferenceDetails = ({
     if (allCookies.sessionToken) {
       conferenceDoesntExistInFavList();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allCookies.sessionToken]);
 
   const token = allCookies.sessionToken ? allCookies.sessionToken.token : null;
