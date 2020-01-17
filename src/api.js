@@ -15,7 +15,7 @@ export const getConferenceById = async id => {
 };
 
 export const createNewConference = async (conference, token) => {
-  await axios.post("${spring_url}/conferences", conference, {
+  await axios.post(`${spring_url}/conferences`, conference, {
     headers: { Authorization: token }
   });
 };
