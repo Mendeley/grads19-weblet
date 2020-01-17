@@ -144,7 +144,7 @@ export const removeFavouriteConference = async (conferenceId, token) => {
 };
 
 export const submitNewURL = async (URL, token) => {
-  await axios.post(`${spring_url}/add`, URL, {
+  const response = await axios.post(`${spring_url}/add`, URL, {
     headers: {
       Authorization: token,
       "content-type": "application/json"
