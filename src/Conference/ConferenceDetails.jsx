@@ -154,9 +154,10 @@ export const ConferenceDetails = ({
   };
 
   useEffect(() => {
-    conferenceDoesntExistInFavList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (allCookies.sessionToken) {
+      conferenceDoesntExistInFavList();
+    }
+  }, [allCookies.sessionToken]);
 
   const token = allCookies.sessionToken ? allCookies.sessionToken.token : null;
   const userId = allCookies.sessionToken
